@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-PLAN-001 |
 | Title | Hedge Fund Transition — Master Plan |
-| Version | 0.6 |
+| Version | 0.7 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -24,6 +24,7 @@
 | 0.4 | 2026-09-24 | Recorded round 5 (DEC-21 to DEC-24). Applied Erratum 01 to the wave counts (W2 23 total, W3 29 total). |
 | 0.5 | 2026-09-24 | Recorded round 6 (DEC-25 to DEC-28). |
 | 0.6 | 2026-09-24 | Recorded round 7 (DEC-29 to DEC-32). Q35 and Q36 are not asked (Q25 = B). |
+| 0.7 | 2026-09-24 | Recorded round 8 (DEC-33 to DEC-36). Changed risk R-02 for manual fact refresh (DEC-35). Changed risk R-07 to match DEC-32 (no information-grade scheme in W1). Corrected the decision count above Table 6.0-1. |
 
 This document is not legal advice. It is not tax advice. It is not investment
 advice. Section 3 states this rule in full.
@@ -192,12 +193,12 @@ Rules:
 - The output serves the user's own decisions. It is not advice to a
   third party.
 
-Table 6.0-1 lists the 16 founder decisions that set this plan. Read
+Table 6.0-1 lists the 36 founder decisions that set this plan. Read
 [QUESTIONS.md](QUESTIONS.md) for the full question text and every option.
 Read [design-addendum-01.md](evidence/design-addendum-01.md) for the
 mission reset in full.
 
-**Table 6.0-1. Founder decisions DEC-01 to DEC-32**
+**Table 6.0-1. Founder decisions DEC-01 to DEC-36**
 
 | DEC | Question | Answer | Effect |
 |---|---|---|---|
@@ -233,6 +234,10 @@ mission reset in full.
 | DEC-30 | Q26 agent authority | B: analysis plus model-portfolio records | Agents read, analyze, write, and record hypothetical model-portfolio positions. Agents do not draft or send orders. |
 | DEC-31 | Q27 data sources | A + C + D: OpenDART, exchange/broker data, web search | OpenDART for disclosures and financials; exchange or broker data for prices, volume, and flows; web search for regulation, news, and macro. P2 selects the price provider. Data adapters stay per source for the US extension. |
 | DEC-32 | Q28 confidential data | B: gitignored local directory | Holdings and personal data stay in a gitignored local directory. No classification scheme in W1. Revisit with legal review before W2 (MNPI GAP). |
+| DEC-33 | Q29 document language | A: STE English for technical documents; Korean for information products and external documents | Agents, skills, rules, and procedures use ASD-STE100 English. Briefings, reports, answers, alerts, the dashboard, and regulatory and investor documents use Korean. Responses to the user use Korean. AAA-12 applies the STE checks or the Korean style checks by document language. |
+| DEC-34 | Q30 AAA scope | A: all criteria, only AAA ships | AAA-01 to AAA-14 apply to every agent, skill, gate, template, and document. A component with a grade below AAA does not ship. |
+| DEC-35 | Q31 fact freshness | D: manual | No fixed re-verification schedule. `/refresh-facts` runs only on the founder's request. Every value still shows its source and `as_of` date (AAA-04). Risk R-02 goes up. |
+| DEC-36 | Q32 approval scope | B: free drafts, approval before final status or a commit | Agents write drafts with no approval prompt. A change to final status and every commit need a founder approval. No CCGS `modes.automation` value matches exactly (`.claude/docs/automation-modes.md`:66-94); P2 extends `guided` or adds a value. Control decisions still follow DEC-17. |
 
 ### 6.1 Organization
 
@@ -630,8 +635,8 @@ The founder answers 40 questions in 10 rounds, in `QUESTIONS.md`. Round
 R3+ is a follow-up round the mission reset added (DEC-09). It holds
 Q37-Q40, the questions that confirm the mission reset's scope
 ([design-addendum-01.md](evidence/design-addendum-01.md) §7). Rounds 1
-through 7 and round R3+ are done, with 32 decisions recorded, DEC-01
-through DEC-32. Q35 and Q36 are not asked, because Q25 = B (DEC-29).
+through 8 and round R3+ are done, with 36 decisions recorded, DEC-01
+through DEC-36. Q35 and Q36 are not asked, because Q25 = B (DEC-29).
 
 Rules:
 
@@ -660,8 +665,8 @@ synthesis from the tasks in Section 8; mark it INFERENCE.
 | R5 | Q17-Q20 | P2, P6, P7 | Done |
 | R6 | Q21-Q24 | P2, P5, P6, P7, P8 | Done |
 | R7 | Q25-Q28 | P3, P4, P8 | Done |
-| R8 | Q29-Q32 | P2, P3, P4, P9 | Next |
-| R9 | Q33-Q36 | P3, P4, P5, P8 | Not started |
+| R8 | Q29-Q32 | P2, P3, P4, P9 | Done |
+| R9 | Q33-Q36 | P3, P4, P5, P8 | Next |
 
 ## 10. Verification strategy
 
@@ -730,12 +735,12 @@ Do not carry the original P6-P9 estimate forward without this check.
 | ID | Risk | Likelihood | Impact | Mitigation | Owner | Phase |
 |---|---|---|---|---|---|---|
 | R-01 | Agents get treated as legal personnel | M | H | Enforce the F-10 role list; check the human-boundary list on every agent (AAA-08) | Founder / cco | P2, P4 |
-| R-02 | Regulatory values go stale | M | M | Run `/refresh-facts` on a quarterly schedule (Q31); every value carries an `as_of` date in the registry | cco / compliance-analyst | P4, P9 |
+| R-02 | Regulatory values go stale | H | M | No fixed schedule (DEC-35). The founder runs `/refresh-facts` on request. Every value carries an `as_of` date in the registry, and every product shows it next to the value (AAA-04). Revisit a fixed schedule before wave W2 | Founder; data-steward (W1); cco / compliance-analyst (W2) | P4, P9 |
 | R-03 | An advisory gate gets skipped silently | M | H | Fixed control seats (DEC-18); agent verdict plus a recorded user approval (DEC-17); allow-lists (P-04); a control decision without a receipt reads NOT ASSESSED; revisit hook enforcement before real capital | Worker | P4 |
 | R-04 | A silent break appears during the transplant | H | M | Run the SB-01 to SB-28 test set before Phase P6 starts | Worker | P3 |
 | R-05 | A same-session review gets mistaken for an independent one | M | H | Label every agent review "pre-screen" (F-09); require a human sign-off receipt | Founder | P4, P5 |
 | R-06 | Scope grows toward the full 29-agent (W3) organization before it is needed | H | M | Design the full organization, build wave W1 first (P-07); a founder approval gate before each wave activation | Advisor | P2, P6, P8 |
-| R-07 | Confidential data or MNPI (undisclosed material information) reaches the repository | M | H | Apply the Q28 information-grade policy; start with a gitignored local directory; add a `settings.json` deny rule for that directory | cro (W1), cco (W2) | P4 |
+| R-07 | Confidential data or MNPI (undisclosed material information) reaches the repository | M | H | Keep holdings and personal data in a gitignored local directory (DEC-32); add a `settings.json` deny rule for that directory; revisit an information-grade scheme with legal review before wave W2 | cro (W1), cco (W2) | P4 |
 | R-08 | Upstream CCGS changes drift away from the transplant | M | M | Keep foundation file paths identical (P-06); use `UPGRADING.md` strategy A2 or B | Worker | P3 |
 | R-09 | An agent states a legal or regulatory fact with no source | M | H | Enforce the AAA-04 citation rule; every fact in this plan cites HF-REF-NN or F-NN | Advisor | All phases; checked at P9 |
 | R-10 | The agent `model:` tier pin turns out not to work | M | L | Measure whether the `model:` field changes behavior during Phase P3, before the Q34 tier plan is relied on | Worker | P3 |
@@ -764,13 +769,13 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
 
 1. Done. The founder read `README.md` and this plan (`PLAN.md`).
 2. Done. The founder and the Advisor ran round 1 (Q01-Q04), round 2
-   (Q05-Q08), round 3 (Q09-Q12), the follow-up round R3+ (Q37-Q40), and
-   round 4 (Q13-Q16), round 5 (Q17-Q20), round 6 (Q21-Q24), and round 7
-   (Q25-Q28).
-3. Done. The Advisor recorded 32 decisions, DEC-01 through DEC-32, in
+   (Q05-Q08), round 3 (Q09-Q12), the follow-up round R3+ (Q37-Q40),
+   round 4 (Q13-Q16), round 5 (Q17-Q20), round 6 (Q21-Q24), round 7
+   (Q25-Q28), and round 8 (Q29-Q32).
+3. Done. The Advisor recorded 36 decisions, DEC-01 through DEC-36, in
    `QUESTIONS.md`.
-4. **Next action.** The founder and the Advisor run round 8 (Q29-Q32,
-   quality and documents) and round 9 (Q33-Q34, resources).
+4. **Next action.** The founder and the Advisor run round 9 (Q33-Q34,
+   resources).
 5. Q35 and Q36 are not asked, because Q25 = B (DEC-29).
 6. The Advisor adds Q35 and Q36 to round 9 only if the Q25 answer is C
    or D.
@@ -789,14 +794,14 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
 | UR-01 | Build the best hedge-fund organization | Section 6; `ORG-BLUEPRINT.md` | The mission (DEC-09); the wave roster (W1 11, W2 23 total, W3 29 total, plus 0-4 conditional) |
 | UR-02 | Use the standard hedge-fund org structure; staff it with AAA-or-better agents | Section 6; Section 10; `AAA-QUALITY-BAR.md` | The mission (DEC-09); the wave roster; the AAA-01 to AAA-14 grading rule; "only AAA may ship" |
 | UR-03 | Use transition strategy C (transplant the operating foundation only) | Section 2; Section 3; Section 6; `TRANSPLANT-MANIFEST.md` | F-01, the review's Strategy C recommendation |
-| UR-04 | Decide the agents and skills through discussion with the founder | Section 9; `QUESTIONS.md` | 10 rounds, 40 questions, DEC-NN decision log. Status: rounds 1-7 and round R3+ are done (32 decisions). Round 8 is next. |
-| UR-05 | Ask the founder detailed questions | Section 9; `QUESTIONS.md` | 40 questions with 질문/왜 묻는가/근거 fields. Status: rounds 1-7 and round R3+ are done (32 decisions); rounds 8 and 9 remain. |
+| UR-04 | Decide the agents and skills through discussion with the founder | Section 9; `QUESTIONS.md` | 10 rounds, 40 questions, DEC-NN decision log. Status: rounds 1-8 and round R3+ are done (36 decisions). Round 9 is next. |
+| UR-05 | Ask the founder detailed questions | Section 9; `QUESTIONS.md` | 40 questions with 질문/왜 묻는가/근거 fields. Status: rounds 1-8 and round R3+ are done (36 decisions); round 9 remains. |
 | UR-06 | Give 4-5 options per question | Section 9 rules; `QUESTIONS.md` | Every question has 4 or 5 options ([`evidence/question-spec.md`](evidence/question-spec.md)). |
 | UR-07 | Use `hedge_fund_setup_report.md` as the base frame | Section 4.2 | HF-REF-00 to HF-REF-20 chunk index |
 | UR-08 | Split the report into optimal chunks | Section 4.2; Section 8, Phase P0 | 21 chunks, byte-exact reassembly check |
 | UR-09 | Keep AAA quality or better | Section 10; `AAA-QUALITY-BAR.md` | The bar is defined and testable. The first certification records come from the P5 pilot, because no agent or skill exists yet. |
 | UR-10 | Base every claim on facts and verify it | Section 5; Section 7, P-01 | F-01 to F-16, each with a citation |
-| UR-11 | Write technical documents in ASD-STE100 | Document header; Section 7, P-10 | Verifiers checked sentence length, voice, and tense by hand in v0.1. The STE lint helper (P3) makes the check repeatable. |
+| UR-11 | Write technical documents in ASD-STE100 | Document header; Section 7, P-10; DEC-33 | Verifiers checked sentence length, voice, and tense by hand in v0.1. The STE lint helper (P3) makes the check repeatable. DEC-33 keeps technical documents in STE English and puts information products and external documents in Korean. |
 
 ## Appendix B: Glossary
 

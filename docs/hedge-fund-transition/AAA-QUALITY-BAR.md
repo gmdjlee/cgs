@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-QA-001 |
 | Title | AAA Quality Bar |
-| Version | 0.2 |
+| Version | 0.3 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -24,6 +24,7 @@ investment advice. `PLAN.md` §3 states this rule in full.
 |---|---|---|
 | 0.1 | 2026-09-24 | Initial draft. |
 | 0.2 | 2026-09-24 | Applied DEC-17: control check CT3 now needs an approval receipt instead of a protected-path hook. The accepting party for an exception is the user (DEC-10). |
+| 0.3 | 2026-09-24 | Applied DEC-33 and DEC-34: the Korean style checks now cover the information products for the user, and every component must reach AAA to ship. |
 
 ## 2. Purpose
 
@@ -90,7 +91,7 @@ file and line.
 | **AAA-09** Failing-gate test | A failing-gate test exists for the component. It breaks the guarded thing, confirms the check fails, then restores it. | hook, gate | Make one mutation — for example, a control decision with no receipt, or a missing config key. Run the check. Confirm it fails or blocks. Restore the file or state. Make one mutation per tool call. | The check fails or reads NOT ASSESSED in the broken state; a hook, where one exists, returns exit code 2. The check passes after the restore. Both runs are logged. | The before-and-after transcript, in `tests/integration/control/` or the certification record. | `.claude/rules/skill-authoring.md`:86-87 ("A gate you have not watched fail is not a gate... Break the thing it guards, confirm it fails, restore."); PLAN.md P-08. |
 | **AAA-10** Independent review | A different agent pre-screens the component. The founder reviews it. A receipt records both. | agent, skill, gate, hook, template, doc | Spawn an agent other than the author to pre-screen the component. Hash the reviewed file with `review-receipts.sh hash`. Give the founder the pre-screen result and get a sign-off. | A `Reviewed-Content-Hash:` line exists for the file. The founder's sign-off is logged. The pre-screen alone does not satisfy AAA-10. | The `review-receipts.sh` output line and the founder's sign-off entry, in the certification record (Section 7). | `.claude/scripts/review-receipts.sh` (`hash` mode); design-spec F-09 ("A subagent in the same session is not an independent reviewer... It is a pre-screen."). |
 | **AAA-11** Scenario | The component works inside the Phase P7 dry run, with no manual patch. | agent, skill, gate, hook, template | Run the component inside the P7 dry run — one investment idea through the full cycle, or one setup stage through its gate. | The component completes its part of the dry run. No file outside the component's own writes needed a manual edit. | A retained screenshot or log, in `production/qa/evidence/`. | `PLAN.md` Phase P7; `.claude/docs/coding-standards.md` ("A parse check is not a run."). |
-| **AAA-12** Language | An English technical document passes the ASD-STE100 checks (Section 9). A Korean regulatory or investor document passes the Korean style checks (Section 9). | doc, skill, agent, template | Run the STE-lint helper on the file. For a Korean document, run the Korean style checklist. | The lint helper reports 0 findings, or every finding carries a dated, documented exception. The Korean checklist has no open item. | The lint helper's output, in the certification record. | `.claude/scripts/ste-lint.sh` — an observation-only script (`CLAUDE.md`:75, "Helpers in `.claude/scripts/` emit observations, never verdicts."); Section 9 of this document. |
+| **AAA-12** Language | An English technical document passes the ASD-STE100 checks (Section 9). A Korean information product, regulatory document, or investor document passes the Korean style checks (Section 9, DEC-33). | doc, skill, agent, template | Run the STE-lint helper on the file. For a Korean document, run the Korean style checklist. | The lint helper reports 0 findings, or every finding carries a dated, documented exception. The Korean checklist has no open item. | The lint helper's output, in the certification record. | `.claude/scripts/ste-lint.sh` — an observation-only script (`CLAUDE.md`:75, "Helpers in `.claude/scripts/` emit observations, never verdicts."); Section 9 of this document. |
 | **AAA-13** Benchmark trace | A control-related component names the `ORG-BLUEPRINT.md` §12 principle it encodes. | agent, gate, hook, template | For each control-related component, find the matching row in `ORG-BLUEPRINT.md` §12. Check the citation carries through to the component's own file. | At least one named principle, with its citation, appears in the component file or its certification record. | The trace line, in the certification record. | `ORG-BLUEPRINT.md` §12; HF-REF-17 §9.5 표 9-5 (most rows; some rows in §12 cite HF-REF-14 §8.5 표 8-3 or HF-REF-16 §9.3 instead — read the row's own citation). |
 | **AAA-14** Audit trail | The component's actions are logged. The design decision behind it cites a DEC-NN entry. | agent, skill, gate, hook | Confirm `log-agent.sh` / `log-agent-stop.sh` and `session-stop.sh` fire on a representative run. Find the DEC-NN entry in `QUESTIONS.md` behind the component's design. | A log entry exists for the representative run. The DEC-NN citation is present. | The log location and the DEC-NN citation, in the certification record. | `.claude/hooks/log-agent.sh`, `.claude/hooks/log-agent-stop.sh`, `.claude/hooks/session-stop.sh`; `QUESTIONS.md` (the DEC-NN log). |
 
@@ -432,13 +433,15 @@ exception, into a PASS.
 10. **Non-simple tense.** Flag a future-perfect, past-perfect, or
     conditional-chain verb form outside a quoted source.
 
-### 9.2 Korean style checks (regulatory and investor documents)
+### 9.2 Korean style checks (information products, regulatory and investor documents)
 
-The founder has not yet answered Q29 (document language policy;
-`question-spec.md` R8). This checklist is **INFERENCE** — a provisional
-design placeholder built from general plain-Korean legal-writing
-practice, not from a chunk or a repository file. Mark every check below
-INFERENCE until the founder answers Q29. Build a companion
+DEC-33 (Q29) sets the scope: these checks apply to the Korean
+information products for the user (briefings, reports, answers, alerts,
+the dashboard) and to Korean regulatory and investor documents. The
+checklist content is still **INFERENCE**. It comes from general
+plain-Korean legal-writing practice, not from a chunk or a repository
+file. P3 confirms each check with the founder before the checks gate a
+certification. Build a companion
 Korean-language script in Phase P3, alongside `ste-lint.sh`.
 
 1. **문장 길이 (Sentence length).** Flag a sentence over about 60

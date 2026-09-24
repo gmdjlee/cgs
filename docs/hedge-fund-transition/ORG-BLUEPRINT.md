@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-ORG-001 |
 | Title | Hedge Fund Standard Organization Blueprint |
-| Version | 0.3 |
+| Version | 0.4 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -28,6 +28,7 @@ accounting firm first.
 | 0.1 | 2026-09-24 | Initial draft. |
 | 0.2 | 2026-09-24 | Mission reset after founder rounds 1-3; activation waves; W1 information core. |
 | 0.3 | 2026-09-24 | Kept ceo-office in W2 (Erratum 01: W1 11, W2 23 total, W3 29 total). Applied DEC-17 to §8 and §9. Recorded DEC-17 to DEC-24 in §14. Defined the 8 /stock-pitch sections (DEC-23). |
+| 0.4 | 2026-09-24 | Recorded DEC-25, DEC-29, DEC-30, and DEC-32 in §14, and marked Q35 and Q36 as not asked. Changed the /refresh-facts cadence in §11A to "on request" (DEC-35). |
 
 ## 2. Purpose and basis
 
@@ -593,7 +594,7 @@ one owner agent (Section 6). The table below lists every W1 product
 | /portfolio-review | portfolio-manager | Model portfolio view and sizing proposals | Weekly |
 | /call-review | cio, chief-of-staff | Track record of past calls against outcomes | Monthly |
 | /coverage-config | data-steward | Coverage universe, sector clusters, data sources | On change |
-| /refresh-facts | data-steward | Re-verification of medium and high volatility values | Quarterly |
+| /refresh-facts | data-steward | Re-verification of medium and high volatility values | On the user's request only (DEC-35); no fixed schedule |
 
 The CCGS donors for these skills stay as in
 [TRANSPLANT-MANIFEST.md](TRANSPLANT-MANIFEST.md): design-system (section
@@ -684,11 +685,10 @@ attention, not counsel.
 ## 14. Decisions that change this blueprint
 
 The founder's answers to the questions in [QUESTIONS.md](QUESTIONS.md)
-drive most of the design choices above. Q01 to Q12 are decided (DEC-01 to
-DEC-12). The mission reset added four more questions, Q37 to Q40; these
-are decided too (DEC-13 to DEC-16, addendum §1). Every other Q-ID in the
-table below stays open. The table maps each question to the section it
-changes.
+drive most of the design choices above. Every Q-ID in the table below is
+decided, except Q35 and Q36. These two are not asked, because Q25 = B
+(DEC-29). The mission reset added Q37 to Q40 (DEC-13 to DEC-16, addendum
+§1). The table maps each question to the section it changes.
 
 | Q-ID | Decision | Sections it changes | Why | Status |
 |---|---|---|---|---|
@@ -711,12 +711,12 @@ changes.
 | Q18 | Investment decision body | §3, §11 | A virtual investment committee (cio, cro, portfolio-manager, red-team-analyst) presents; the user decides; minutes are kept. | Decided — DEC-22 |
 | Q19 | Stock-pitch standard depth | §11A | /stock-pitch uses the full 8-section format, plus the bull, bear, and synthesis parts. | Decided — DEC-23 |
 | Q20 | Call-quality validation | §11A | Call record (/call-review) plus a model portfolio against a benchmark. | Decided — DEC-24 |
-| Q21 | Organization-principle benchmark priority | §12 | Sets which principles in §12 get built first. | Open |
-| Q25 | Code/model pipeline scope | §6, §9 | Activates data-engineer and strengthens the model-change control point. | Open |
-| Q26 | Agent execution authority | §3, §4, §8 | Sets the "must not do" boundary for trader- and order-related agents. | Open |
-| Q28 | MNPI / confidential-data handling | §3, §13 | Narrows agent data-access scope; may close gap #1 in §13. | Open |
-| Q35 | (conditional on Q25 = C/D) Model/strategy-change approver | §9 | Sets the exact owner of the model-change control point. | Open |
-| Q36 | (conditional on Q25 = C/D) Evidence-gate strength for a model-parameter change | §9 | Sets whether the model-change control's hard-block column stays "Yes" in every case, or only for a change that affects capital, leverage, or a limit. | Open |
+| Q21 | Organization-principle benchmark priority | §12 | Documented principles, research-centred collective management, and capacity control come first. | Decided — DEC-25 |
+| Q25 | Code/model pipeline scope | §6, §9 | Analysis code only. data-engineer and the other three Q25 conditional agents stay off. | Decided — DEC-29 |
+| Q26 | Agent execution authority | §3, §4, §8 | Agents analyze and record hypothetical model-portfolio positions. No agent drafts or sends an order. | Decided — DEC-30 |
+| Q28 | MNPI / confidential-data handling | §3, §13 | Holdings and personal data stay in a gitignored local directory. Gap #1 in §13 stays open until legal review before W2. | Decided — DEC-32 |
+| Q35 | (conditional on Q25 = C/D) Model/strategy-change approver | §9 | Sets the exact owner of the model-change control point. | Not asked (Q25 = B) |
+| Q36 | (conditional on Q25 = C/D) Evidence-gate strength for a model-parameter change | §9 | Sets whether the model-change control's hard-block column stays "Yes" in every case, or only for a change that affects capital, leverage, or a limit. | Not asked (Q25 = B) |
 | Q37 | Non-investment scope | §2A, §6 | Sets wave W1 as investment information only; sets wave W2 as operations, IR, and regulatory reporting. | Decided — DEC-13 |
 | Q38 | Delivery form | §11A | Sets the four delivery forms: briefing, report, Q&A, and alert. | Decided — DEC-14 |
 | Q39 | Coverage universe | §11A | Sets the coverage universe and the config-data rule for a later US addition. | Decided — DEC-15 |
@@ -729,14 +729,14 @@ fact-refresh cadence, approval scope, weekly hours, agent model tier).
 These questions govern implementation and tooling, not the organization
 design in this blueprint.
 
-**Open questions with a changed option set.** Addendum §7 changes the
-option set for six open questions, to match the mission reset: Q17
+**Questions with a changed option set.** Addendum §7 changed the
+option set for six questions, to match the mission reset: Q17
 (lifecycle cadence), Q19 (memo depth, for /stock-pitch), Q20 (call-quality
 judging method), Q22 (skill bundles, now the Section 11A product list),
 Q23 (first milestone, now a W1 vertical slice), and Q24 (delivery
 surface, now the Section 11A products; investor tools move to wave W2).
-These questions stay open. Record the changed options in
-[QUESTIONS.md](QUESTIONS.md) before asking them.
+The founder answered all six with the changed options (DEC-21, DEC-23,
+DEC-24, DEC-26, DEC-27, and DEC-28).
 
 ---
 
