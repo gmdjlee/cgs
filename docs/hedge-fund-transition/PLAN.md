@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-PLAN-001 |
 | Title | Hedge Fund Transition — Master Plan |
-| Version | 0.7 |
+| Version | 0.8 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -25,6 +25,7 @@
 | 0.5 | 2026-09-24 | Recorded round 6 (DEC-25 to DEC-28). |
 | 0.6 | 2026-09-24 | Recorded round 7 (DEC-29 to DEC-32). Q35 and Q36 are not asked (Q25 = B). |
 | 0.7 | 2026-09-24 | Recorded round 8 (DEC-33 to DEC-36). Changed risk R-02 for manual fact refresh (DEC-35). Changed risk R-07 to match DEC-32 (no information-grade scheme in W1). Corrected the decision count above Table 6.0-1. |
+| 0.8 | 2026-09-24 | Recorded round 9 (DEC-37 and DEC-38). Phase P1 is done. Set the schedule rate in Section 11.3 (DEC-37). Changed risk R-10 for the DEC-38 tier plan. |
 
 This document is not legal advice. It is not tax advice. It is not investment
 advice. Section 3 states this rule in full.
@@ -193,12 +194,12 @@ Rules:
 - The output serves the user's own decisions. It is not advice to a
   third party.
 
-Table 6.0-1 lists the 36 founder decisions that set this plan. Read
+Table 6.0-1 lists the 38 founder decisions that set this plan. Read
 [QUESTIONS.md](QUESTIONS.md) for the full question text and every option.
 Read [design-addendum-01.md](evidence/design-addendum-01.md) for the
 mission reset in full.
 
-**Table 6.0-1. Founder decisions DEC-01 to DEC-36**
+**Table 6.0-1. Founder decisions DEC-01 to DEC-38**
 
 | DEC | Question | Answer | Effect |
 |---|---|---|---|
@@ -238,6 +239,8 @@ mission reset in full.
 | DEC-34 | Q30 AAA scope | A: all criteria, only AAA ships | AAA-01 to AAA-14 apply to every agent, skill, gate, template, and document. A component with a grade below AAA does not ship. |
 | DEC-35 | Q31 fact freshness | D: manual | No fixed re-verification schedule. `/refresh-facts` runs only on the founder's request. Every value still shows its source and `as_of` date (AAA-04). Risk R-02 goes up. |
 | DEC-36 | Q32 approval scope | B: free drafts, approval before final status or a commit | Agents write drafts with no approval prompt. A change to final status and every commit need a founder approval. No CCGS `modes.automation` value matches exactly (`.claude/docs/automation-modes.md`:66-94); P2 extends `guided` or adds a value. Control decisions still follow DEC-17. |
+| DEC-37 | Q33 weekly hours | D: 40 hours or more per week | The core phases (201-548 h) take about 5-14 weeks. With P8 (261-748 h), they take about 7-19 weeks. The P5 re-estimate replaces these numbers before P6 starts (Section 11.4). |
+| DEC-38 | Q34 model tiers | C: three tiers, with a judgment exception | Tier 1 uses Opus, Tier 2 uses Sonnet, and Tier 3 uses Haiku. A Tier 3 agent that writes a judgment output uses Sonnet, because `.claude/docs/model-tiers.md` keeps Haiku for work with no judgment. W1: Opus for cio, cro, and chief-of-staff; Sonnet for portfolio-manager, head-of-research, market-strategist, research-analyst, and red-team-analyst; Haiku for data-steward, idea-screener, and trader. P3 measures whether the agent `model:` field applies (F-12, R-10). P2 applies the same rule to W2 and W3. |
 
 ### 6.1 Organization
 
@@ -409,6 +412,9 @@ returns exit code 0; every area assessment carries a verifier pass.
 | Entry criteria | Exit criteria | Estimate | Owner |
 |---|---|---|---|
 | P0 done; `QUESTIONS.md` holds 40 questions in 10 rounds | Every question Q01-Q34 and Q37-Q40 (and Q35-Q36 if triggered) has one DEC-NN entry | 4-8 h (plus 2-4 h founder time) | Advisor + Founder |
+
+Status: Done (2026-09-24). The register holds 38 decisions, DEC-01 to
+DEC-38. Q35 and Q36 are not asked, because Q25 = B (DEC-29).
 
 Tasks:
 
@@ -634,9 +640,8 @@ Gating questions: Q29, Q30, Q31.
 The founder answers 40 questions in 10 rounds, in `QUESTIONS.md`. Round
 R3+ is a follow-up round the mission reset added (DEC-09). It holds
 Q37-Q40, the questions that confirm the mission reset's scope
-([design-addendum-01.md](evidence/design-addendum-01.md) §7). Rounds 1
-through 8 and round R3+ are done, with 36 decisions recorded, DEC-01
-through DEC-36. Q35 and Q36 are not asked, because Q25 = B (DEC-29).
+([design-addendum-01.md](evidence/design-addendum-01.md) §7). All rounds
+are done, with 38 decisions recorded, DEC-01 through DEC-38. Q35 and Q36 are not asked, because Q25 = B (DEC-29).
 
 Rules:
 
@@ -666,7 +671,7 @@ synthesis from the tasks in Section 8; mark it INFERENCE.
 | R6 | Q21-Q24 | P2, P5, P6, P7, P8 | Done |
 | R7 | Q25-Q28 | P3, P4, P8 | Done |
 | R8 | Q29-Q32 | P2, P3, P4, P9 | Done |
-| R9 | Q33-Q36 | P3, P4, P5, P8 | Next |
+| R9 | Q33-Q36 | P3, P4, P5, P8 | Done |
 
 ## 10. Verification strategy
 
@@ -724,6 +729,9 @@ week.
 | 30 h/week | 7-18 weeks | 9-25 weeks |
 | 40 h/week | 5-14 weeks | 7-19 weeks |
 
+DEC-37 sets the rate at 40 hours or more per week. Use the 40 h/week
+row as the plan schedule until the P5 re-estimate (Section 11.4).
+
 ### 11.4 Re-estimate rule
 
 Phase P5 measures the actual hours for the 3 pilot components. Use the
@@ -743,7 +751,7 @@ Do not carry the original P6-P9 estimate forward without this check.
 | R-07 | Confidential data or MNPI (undisclosed material information) reaches the repository | M | H | Keep holdings and personal data in a gitignored local directory (DEC-32); add a `settings.json` deny rule for that directory; revisit an information-grade scheme with legal review before wave W2 | cro (W1), cco (W2) | P4 |
 | R-08 | Upstream CCGS changes drift away from the transplant | M | M | Keep foundation file paths identical (P-06); use `UPGRADING.md` strategy A2 or B | Worker | P3 |
 | R-09 | An agent states a legal or regulatory fact with no source | M | H | Enforce the AAA-04 citation rule; every fact in this plan cites HF-REF-NN or F-NN | Advisor | All phases; checked at P9 |
-| R-10 | The agent `model:` tier pin turns out not to work | M | L | Measure whether the `model:` field changes behavior during Phase P3, before the Q34 tier plan is relied on | Worker | P3 |
+| R-10 | The agent `model:` tier pin turns out not to work | M | L | Measure whether the `model:` field changes behavior during Phase P3, before the DEC-38 tier plan is relied on. If the field does not apply, record the tiers as intent only; every agent then runs on the session model | Worker | P3 |
 | R-11 | Two concurrent tracks (setup and operation) do not fit one `project.stage` value | M | M | Keep `project.stage` a single scalar (Q17); change only the `/help` and `/gate-check` tables (F-11) | Worker | P2, P3 |
 | R-12 | The source report is not legal, tax, or investment advice; some topics are gaps | H | H | State the disclaimer in Section 3; route each gap to outside counsel before the matching phase closes | Founder | P1 (decision to get counsel); ongoing |
 | R-13 | Confident but wrong information misleads the single decision maker | M | H | Run the bull, bear, and synthesis process for every call; state a confidence level; run `/call-review` to track the record; give a source and an as-of date on every number | cio / red-team-analyst | P6, P7 |
@@ -771,15 +779,16 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
 2. Done. The founder and the Advisor ran round 1 (Q01-Q04), round 2
    (Q05-Q08), round 3 (Q09-Q12), the follow-up round R3+ (Q37-Q40),
    round 4 (Q13-Q16), round 5 (Q17-Q20), round 6 (Q21-Q24), round 7
-   (Q25-Q28), and round 8 (Q29-Q32).
-3. Done. The Advisor recorded 36 decisions, DEC-01 through DEC-36, in
-   `QUESTIONS.md`.
-4. **Next action.** The founder and the Advisor run round 9 (Q33-Q34,
-   resources).
-5. Q35 and Q36 are not asked, because Q25 = B (DEC-29).
-6. The Advisor adds Q35 and Q36 to round 9 only if the Q25 answer is C
-   or D.
-7. The Advisor drafts the Phase P2 design package from the completed
+   (Q25-Q28), round 8 (Q29-Q32), and round 9 (Q33-Q34).
+3. Done. The Advisor recorded 38 decisions, DEC-01 through DEC-38, in
+   `QUESTIONS.md`. Phase P1 is done.
+4. Done. Q35 and Q36 are not asked, because Q25 = B (DEC-29).
+5. In progress. The Advisor reconciles `ORG-BLUEPRINT.md`,
+   `TRANSPLANT-MANIFEST.md`, and `AAA-QUALITY-BAR.md` with DEC-17 to
+   DEC-38.
+6. If the founder changes Q25 to C or D later, the Advisor asks Q35 and
+   Q36 before Phase P8.
+7. **Next action.** The Advisor drafts the Phase P2 design package from the completed
    decision log.
 8. The founder approves the Phase P2 design package with an approval
    receipt.
@@ -794,8 +803,8 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
 | UR-01 | Build the best hedge-fund organization | Section 6; `ORG-BLUEPRINT.md` | The mission (DEC-09); the wave roster (W1 11, W2 23 total, W3 29 total, plus 0-4 conditional) |
 | UR-02 | Use the standard hedge-fund org structure; staff it with AAA-or-better agents | Section 6; Section 10; `AAA-QUALITY-BAR.md` | The mission (DEC-09); the wave roster; the AAA-01 to AAA-14 grading rule; "only AAA may ship" |
 | UR-03 | Use transition strategy C (transplant the operating foundation only) | Section 2; Section 3; Section 6; `TRANSPLANT-MANIFEST.md` | F-01, the review's Strategy C recommendation |
-| UR-04 | Decide the agents and skills through discussion with the founder | Section 9; `QUESTIONS.md` | 10 rounds, 40 questions, DEC-NN decision log. Status: rounds 1-8 and round R3+ are done (36 decisions). Round 9 is next. |
-| UR-05 | Ask the founder detailed questions | Section 9; `QUESTIONS.md` | 40 questions with 질문/왜 묻는가/근거 fields. Status: rounds 1-8 and round R3+ are done (36 decisions); round 9 remains. |
+| UR-04 | Decide the agents and skills through discussion with the founder | Section 9; `QUESTIONS.md` | 10 rounds, 40 questions, DEC-NN decision log. Status: all rounds are done (38 decisions; Q35 and Q36 not asked, Q25 = B). |
+| UR-05 | Ask the founder detailed questions | Section 9; `QUESTIONS.md` | 40 questions with 질문/왜 묻는가/근거 fields. Status: all rounds are done (38 decisions). |
 | UR-06 | Give 4-5 options per question | Section 9 rules; `QUESTIONS.md` | Every question has 4 or 5 options ([`evidence/question-spec.md`](evidence/question-spec.md)). |
 | UR-07 | Use `hedge_fund_setup_report.md` as the base frame | Section 4.2 | HF-REF-00 to HF-REF-20 chunk index |
 | UR-08 | Split the report into optimal chunks | Section 4.2; Section 8, Phase P0 | 21 chunks, byte-exact reassembly check |
