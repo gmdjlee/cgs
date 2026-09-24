@@ -11,7 +11,8 @@
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
 | Baseline | CCGS v1.1.1 (7ed2c3e) |
-| Writing standard | ASD-STE100 writing rules |
+| Writing standard | ASD-STE100 writing rules. Checked manually in v0.1; the STE lint helper is a P3 deliverable. |
+| Working files | The names design-spec, question-spec, wf1.json, assess-compact.md, orgmap.json, verifier-issues.md, review.txt, and mapping.txt refer to files in [`evidence/`](evidence/README.md). |
 
 This document is not legal advice. It is not tax advice. It is not investment
 advice. Section 3 states this rule in full.
@@ -62,18 +63,19 @@ firm. Section 12, risk R-12, lists the gaps that need outside counsel.
 | `docs/org-migration-review/README.md` | The T1/T2 reuse-rate review summary. |
 | `docs/org-migration-review/index.html` | The full review report, with charts and the component mapping table. |
 
-The working files below built this plan. They are session-scratch files.
-They are not part of the repository.
+The working files below built this plan. They are in `evidence/`; see
+`evidence/README.md`. Do not edit them. They are a frozen record of the
+analysis.
 
 | File | Content |
 |---|---|
-| `design-spec.md` | The Advisor's design decisions (F-01 to F-16, SB-01 to SB-28, the org roster, the lifecycle, the control model, the skill catalog, phases P0 to P9, the AAA bar, the risk list). |
-| `question-spec.md` | The 36 founder questions in 9 rounds. |
-| `wf1.json` | The raw assessment result: 6 area assessments plus the org blueprint (`orgmap`), each independently verified. |
-| `assess-compact.md` | A readable digest of `wf1.json`. |
-| `orgmap.json` | The org blueprint raw result. |
-| `verifier-issues.md` | The verifier's corrections, applied in this document set. |
-| `review.txt`, `mapping.txt` | The prior T1/T2 review's working notes and component mapping table. |
+| [`evidence/design-spec.md`](evidence/design-spec.md) | The Advisor's design decisions (F-01 to F-16, SB-01 to SB-28, the org roster, the lifecycle, the control model, the skill catalog, phases P0 to P9, the AAA bar, the risk list). |
+| [`evidence/question-spec.md`](evidence/question-spec.md) | The 36 founder questions in 9 rounds. |
+| [`evidence/wf1.json`](evidence/wf1.json) | The raw assessment result: 6 area assessments plus the org blueprint (`orgmap`), each independently verified. |
+| [`evidence/assess-compact.md`](evidence/assess-compact.md) | A readable digest of `wf1.json`. |
+| [`evidence/orgmap.json`](evidence/orgmap.json) | The org blueprint raw result. |
+| [`evidence/verifier-issues.md`](evidence/verifier-issues.md) | The verifier's corrections, applied in this document set. |
+| [`evidence/review.txt`](evidence/review.txt), [`evidence/mapping.txt`](evidence/mapping.txt) | The prior T1/T2 review's working notes and component mapping table. |
 
 ### 4.2 Report chunk index
 
@@ -322,7 +324,7 @@ Tasks:
 2. Ask the founder round 1 (Q01-Q04).
 3. Record each answer as DEC-01 to DEC-04 in `QUESTIONS.md`.
 4. Repeat steps 2-3 for rounds 2 through 9, in order.
-5. Add Q35 and Q36 to round 7 only if the Q25 answer is C or D.
+5. Add Q35 and Q36 to round 9 only if the Q25 answer is C or D.
 6. Close each round once every question in it has a DEC-NN entry.
 
 Outputs: `QUESTIONS.md` (answered register with DEC-NN entries); a term map
@@ -644,7 +646,7 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
    `QUESTIONS.md`.
 4. The Advisor and the founder run rounds 2 through 9, in order, one round
    at a time.
-5. The Advisor adds Q35 and Q36 to round 7 only if the Q25 answer is C or
+5. The Advisor adds Q35 and Q36 to round 9 only if the Q25 answer is C or
    D.
 6. The Advisor drafts the Phase P2 design package from the completed
    decision log.
@@ -662,14 +664,14 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
 | UR-01 | Build the best hedge-fund organization | Section 6; `ORG-BLUEPRINT.md` | The full roster, tier structure, and stage counts |
 | UR-02 | Use the standard hedge-fund org structure; staff it with AAA-or-better agents | Section 6; Section 10; `AAA-QUALITY-BAR.md` | The AAA-01 to AAA-14 grading rule; "only AAA may ship" |
 | UR-03 | Use transition strategy C (transplant the operating foundation only) | Section 2; Section 3; Section 6; `TRANSPLANT-MANIFEST.md` | F-01, the review's Strategy C recommendation |
-| UR-04 | Decide the agents and skills through discussion with the founder | Section 9 | 9 rounds, 36 questions, DEC-NN decision log |
-| UR-05 | Ask the founder detailed questions | Section 9; `QUESTIONS.md` | 36 questions with 질문/왜 묻는가/근거 fields |
-| UR-06 | Give 4-5 options per question | Section 9 rules | The `question-spec.md` option format |
+| UR-04 | Decide the agents and skills through discussion with the founder | Section 9; `QUESTIONS.md` | 9 rounds, 36 questions, DEC-NN decision log. Status: in progress. Round 1 starts when this plan is delivered. |
+| UR-05 | Ask the founder detailed questions | Section 9; `QUESTIONS.md` | 36 questions with 질문/왜 묻는가/근거 fields. Status: in progress (rounds 1 to 9). |
+| UR-06 | Give 4-5 options per question | Section 9 rules; `QUESTIONS.md` | Every question has 4 or 5 options ([`evidence/question-spec.md`](evidence/question-spec.md)). |
 | UR-07 | Use `hedge_fund_setup_report.md` as the base frame | Section 4.2 | HF-REF-00 to HF-REF-20 chunk index |
 | UR-08 | Split the report into optimal chunks | Section 4.2; Section 8, Phase P0 | 21 chunks, byte-exact reassembly check |
-| UR-09 | Keep AAA quality or better | Section 10; `AAA-QUALITY-BAR.md` | Per-phase verification table |
+| UR-09 | Keep AAA quality or better | Section 10; `AAA-QUALITY-BAR.md` | The bar is defined and testable. The first certification records come from the P5 pilot, because no agent or skill exists yet. |
 | UR-10 | Base every claim on facts and verify it | Section 5; Section 7, P-01 | F-01 to F-16, each with a citation |
-| UR-11 | Write technical documents in ASD-STE100 | Document header; Section 7, P-10 | The writing-standard field; the sentence-length and voice rules |
+| UR-11 | Write technical documents in ASD-STE100 | Document header; Section 7, P-10 | Verifiers checked sentence length, voice, and tense by hand in v0.1. The STE lint helper (P3) makes the check repeatable. |
 
 ## Appendix B: Glossary
 

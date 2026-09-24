@@ -89,7 +89,7 @@ of the "cited by" column below.
 | SRC id | category | short title | cited by |
 |---|---|---|---|
 | SRC-01 | 국내 법령 | 자본시장법 제249조~제249조의18 | HF-REF-01, HF-REF-03, HF-REF-04, HF-REF-05, HF-REF-06, HF-REF-09, HF-REF-18 |
-| SRC-02 | 국내 법령 | 시행령 제271조의2 (등록요건) | HF-REF-01, HF-REF-05, HF-REF-18 |
+| SRC-02 | 국내 법령 | 시행령 제271조의2 (등록요건) | HF-REF-01, HF-REF-05, HF-REF-08, HF-REF-18 |
 | SRC-03 | 국내 제도 | 금융위, 사모펀드 하위규정 시행 (2021) | HF-REF-03, HF-REF-06 |
 | SRC-04 | 국내 제도 | 김·장, 자본시장법 개정 해설 | HF-REF-05 |
 | SRC-05 | 국내 제도 | 아주경제, 최소 투자금 Q&A | HF-REF-01 |

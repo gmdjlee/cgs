@@ -11,7 +11,8 @@
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
 | Baseline | CCGS v1.1.1 (7ed2c3e) |
-| Writing standard | ASD-STE100 writing rules |
+| Writing standard | ASD-STE100 writing rules. Checked manually in v0.1; the STE lint helper is a P3 deliverable. |
+| Working files | The names design-spec, question-spec, wf1.json, assess-compact.md, orgmap.json, verifier-issues.md, review.txt, and mapping.txt refer to files in [`evidence/`](evidence/README.md). |
 | Scope | The target hedge-fund organization: functions, human-required roles, reporting lines, agent roster, archetype variants, delegation rules, control points, recurring artifacts, lifecycle, and benchmark principles |
 
 This document is not legal advice. It is not tax advice. It is not
@@ -185,52 +186,52 @@ every row, in addition to any row-specific entry:
 - Make an investor promise.
 - Give legal advice.
 
-Where the "CCGS donor skeleton" column reads "GAP — no donor named," the
-design record names no source skill or agent to build from. Treat this as
-a new build, not a transplant.
+The "CCGS donor skeleton" column names the CCGS agent whose file skeleton
+the new agent copies: the frontmatter, the collaboration protocol, and the
+named mechanism. No game content transfers (Strategy C). The evidence for
+each mechanism is in `evidence/assess-compact.md` (agents-gates area).
 
 | # | Agent ID | Tier | Supports (human role) | Reports to | Stage | Condition | Primary chunks | CCGS donor skeleton | Prohibited beyond the general list |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | ceo-office | 1 | 대표이사(CEO) | CEO (human) / board | 1 | core | HF-REF-08 표 6-1; HF-REF-05 표 4-1 | producer | — |
 | 2 | cio | 1 | CIO | CEO | 1 | core | HF-REF-08 §6.2; HF-REF-09 §7.1 | creative-director (protocol shape only) | Must not set the final risk budget. |
-| 3 | cro | 1 | 위험관리 담당(CRO) | CEO or board — never CIO | 1 | core | HF-REF-09 §7.2; HF-REF-14 | GAP — no donor named | Its verdict must not be overridden by any other agent (Section 8). |
-| 4 | cco | 1 | 준법감시인(CCO) | CEO or board | 1 | core | HF-REF-06 §4.5; HF-REF-14 | GAP — no donor named | Its verdict must not be overridden by any other agent (Section 8); must not do asset management. |
+| 3 | cro | 1 | 위험관리 담당(CRO) | CEO or board — never CIO | 1 | core | HF-REF-09 §7.2; HF-REF-14 | technical-director (Strategic Decision Workflow shape); systems-designer (Formula Output Format for limit formulas) | Its verdict must not be overridden by any other agent (Section 8). |
+| 4 | cco | 1 | 준법감시인(CCO) | CEO or board | 1 | core | HF-REF-06 §4.5; HF-REF-14 | technical-director (Strategic Decision Workflow shape); security-engineer (per-change review checklist) | Its verdict must not be overridden by any other agent (Section 8); must not do asset management. |
 | 5 | coo | 1 | CFO·COO | CEO | 1 | core | HF-REF-08 표 6-1; HF-REF-10 §7.4 | producer | — |
-| 6 | portfolio-manager | 2 | 포트폴리오 매니저(PM)·운용역 | cio | 1 | core | HF-REF-08 표 6-1; HF-REF-09 §7.1 | GAP — no donor named | Must not submit an order. |
-| 7 | fund-operations-lead | 2 | 오퍼레이션 | coo | 1 | core | HF-REF-10 §7.4 표 7-2 | GAP — no donor named | — |
-| 8 | head-of-research | 2 | 애널리스트 (research function) | cio | 2 | core | HF-REF-08 표 6-1; HF-REF-09 §7.1 | GAP — no donor named | — |
-| 9 | head-of-trading | 2 | 트레이더 (execution function) | cio | 2 | core | HF-REF-09 §7.3; HF-REF-06 §4.4 | GAP — no donor named | Must not send a live order. |
-| 10 | investor-relations-lead | 2 | IR 전담 인력 | coo | 2 | core | HF-REF-08 §6.3 표 6-2 (2단계 row) | GAP — no donor named | Must not make an investor promise. |
+| 6 | portfolio-manager | 2 | 포트폴리오 매니저(PM)·운용역 | cio | 1 | core | HF-REF-08 표 6-1; HF-REF-09 §7.1 | game-designer (Question-First Workflow shape only) | Must not submit an order. |
+| 7 | fund-operations-lead | 2 | 오퍼레이션 | coo | 1 | core | HF-REF-10 §7.4 표 7-2 | release-manager (strict, no-skip staged pipeline) | — |
+| 8 | head-of-research | 2 | 애널리스트 (research function) | cio | 2 | core | HF-REF-08 표 6-1; HF-REF-09 §7.1 | game-designer (Question-First Workflow shape only) | — |
+| 9 | head-of-trading | 2 | 트레이더 (execution function) | cio | 2 | core | HF-REF-09 §7.3; HF-REF-06 §4.4 | release-manager (no-skip pipeline; halt on a failed step) | Must not send a live order. |
+| 10 | investor-relations-lead | 2 | IR 전담 인력 | coo | 2 | core | HF-REF-08 §6.3 표 6-2 (2단계 row) | community-manager (no-unverified-claims rule; crisis communication) | Must not make an investor promise. |
 | 11 | technology-lead | 2 | IT·데이터·보안 | coo | 2 | core | HF-REF-12 §7.8 | technical-director | — |
-| 12 | legal-counsel-liaison | 2 | 법무 (external law-firm interface) | ceo-office, with a dotted line to cco | 2 | core | HF-REF-08 표 6-1 | GAP — no donor named | Must not give legal advice. |
-| 13 | risk-analytics-lead | 2 | CRO's 전담 리스크팀 (stage 2) / 중앙 리스크·데이터 플랫폼 (stage 3) | cro | 3 | core | HF-REF-08 §6.3 표 6-2; HF-REF-09 §7.2 | GAP — no donor named | Shares the cro's non-override protection (Section 8). |
-| 14 | quant-research-lead | 2 | CIO (수석 연구자 겸직 — may double as chief researcher, INFERENCE; see §7.2) | cio | 1 | CONDITIONAL archetype = quant (Q05 = B) | HF-REF-08 표 6-3; HF-REF-12 §7.8 | GAP — no donor named | No approval authority over a model change (Section 9). |
-| 15 | model-governance-lead | 2 | model-change control (new control function) | cro — never to research | 1 | CONDITIONAL archetype = quant (Q05 = B) | HF-REF-12 §7.8; HF-REF-14 §8.5 표 8-3 | GAP — no donor named | Gives technical input only; approval rests with cro/cco (Section 9). |
-| 16 | research-analyst | 3 | 애널리스트·퀀트 리서처 | cio (stage 1) / head-of-research (stage 2+) | 1 | core — instance count per Q11 | HF-REF-08 표 6-1; HF-REF-09 §7.1 | GAP — no donor named | Must not make the final investment call. |
-| 17 | trader | 3 | 트레이더 | cio (stage 1) / head-of-trading (stage 2+) | 1 | core — execution support only | HF-REF-08 표 6-1; HF-REF-09 §7.3 | GAP — no donor named | Must not send a live order. |
+| 12 | legal-counsel-liaison | 2 | 법무 (external law-firm interface) | ceo-office, with a dotted line to cco | 2 | core | HF-REF-08 표 6-1 | No domain donor; game-designer (Question-First Workflow shape only) | Must not give legal advice. |
+| 13 | risk-analytics-lead | 2 | CRO's 전담 리스크팀 (stage 2) / 중앙 리스크·데이터 플랫폼 (stage 3) | cro | 3 | core | HF-REF-08 §6.3 표 6-2; HF-REF-09 §7.2 | analytics-engineer (metric taxonomy; dashboard specification) | Shares the cro's non-override protection (Section 8). |
+| 14 | quant-research-lead | 2 | CIO (수석 연구자 겸직 — may double as chief researcher, INFERENCE; see §7.2) | cio | 1 | CONDITIONAL archetype = quant (Q05 = B) | HF-REF-08 표 6-3; HF-REF-12 §7.8 | prototyper (research isolation rule; PROCEED/PIVOT/KILL) | No approval authority over a model change (Section 9). |
+| 15 | model-governance-lead | 2 | model-change control (new control function) | cro — never to research | 1 | CONDITIONAL archetype = quant (Q05 = B) | HF-REF-12 §7.8; HF-REF-14 §8.5 표 8-3 | lead-programmer (standards enforcement; code review); qa-lead (evidence-type table) | Gives technical input only; approval rests with cro/cco (Section 9). |
+| 16 | research-analyst | 3 | 애널리스트·퀀트 리서처 | cio (stage 1) / head-of-research (stage 2+) | 1 | core — instance count per Q11 | HF-REF-08 표 6-1; HF-REF-09 §7.1 | game-designer (Question-First Workflow shape only) | Must not make the final investment call. |
+| 17 | trader | 3 | 트레이더 | cio (stage 1) / head-of-trading (stage 2+) | 1 | core — execution support only | HF-REF-08 표 6-1; HF-REF-09 §7.3 | No domain donor; lead-programmer (Implementation Workflow shape only) | Must not send a live order. |
 | 18 | investor-relations | 3 | IR·마케팅 | coo (stage 1) / investor-relations-lead (stage 2+) | 1 | core | HF-REF-08 표 6-1; HF-REF-11 §7.7 | community-manager (discipline only) | Must not make an investor promise. |
-| 19 | risk-analyst | 3 | CRO's team | cro | 2 | core | HF-REF-09 §7.2 표 7-1 | GAP — no donor named | — |
-| 20 | compliance-analyst | 3 | CCO's team | cco | 2 | core | HF-REF-06 §4.5 | GAP — no donor named | — |
-| 21 | regulatory-reporting-specialist | 3 | CCO's team (regulatory calendar) | cco | 2 | core | HF-REF-06 §4.3 표 4-3 | GAP — no donor named | — |
-| 22 | operations-analyst | 3 | 오퍼레이션 | fund-operations-lead | 2 | core | HF-REF-10 §7.4 표 7-2 | GAP — no donor named | Must not give the final reconciliation-correction approval. |
-| 23 | fund-accountant | 3 | 펀드 회계·기준가 (shadow NAV, fee calc) | fund-operations-lead | 2 | core | HF-REF-10 §7.4; HF-REF-11 §7.6 | GAP — no donor named | Must not give the final NAV confirmation. |
+| 19 | risk-analyst | 3 | CRO's team | cro | 2 | core | HF-REF-09 §7.2 표 7-1 | systems-designer (Formula Output Format) | — |
+| 20 | compliance-analyst | 3 | CCO's team | cco | 2 | core | HF-REF-06 §4.5 | security-engineer (per-change review checklist) | — |
+| 21 | regulatory-reporting-specialist | 3 | CCO's team (regulatory calendar) | cco | 2 | core | HF-REF-06 §4.3 표 4-3 | release-manager (staged pipeline; version numbering) | — |
+| 22 | operations-analyst | 3 | 오퍼레이션 | fund-operations-lead | 2 | core | HF-REF-10 §7.4 표 7-2 | qa-tester (checklist and case writing) | Must not give the final reconciliation-correction approval. |
+| 23 | fund-accountant | 3 | 펀드 회계·기준가 (shadow NAV, fee calc) | fund-operations-lead | 2 | core | HF-REF-10 §7.4; HF-REF-11 §7.6 | economy-designer (canonical registry awareness) | Must not give the final NAV confirmation. |
 | 24 | investor-communications-writer | 3 | IR reporting drafts | investor-relations-lead | 2 | core | HF-REF-11 §7.7 | writer | Must not make an investor promise. |
 | 25 | security-officer | 3 | IT·보안 | technology-lead | 2 | core | HF-REF-12 §7.8 | security-engineer | Must not grant or revoke an access right alone. |
-| 26 | governance-secretary | 3 | 이사회·감사 / 투자위원회 minutes, succession tracking | ceo-office / board | 3 | core | HF-REF-16 §9.3; HF-REF-17 §9.5 표 9-5 | GAP — no donor named | Must not cast a board or investment-committee vote. |
-| 27 | quant-researcher | 3 | 퀀트 리서처 | quant-research-lead | — | CONDITIONAL archetype = quant | HF-REF-08 표 6-1; HF-REF-12 §7.8 | GAP — no donor named | Must not approve a model for live use. |
-| 28 | data-engineer | 3 | IT·데이터 (code pipeline) | technology-lead | 2 | CONDITIONAL code pipeline (Q25 = C/D) | HF-REF-12 §7.8 | GAP — no donor named | — |
-| 29 | valuation-analyst | 3 | 자산 평가 위원회 support | cro / valuation-committee chair | 2 | CONDITIONAL non-marketable-asset strategy (Q06 = C) | HF-REF-06 §4.5 | GAP — no donor named | Must not give the final valuation vote. |
-| 30 | macro-economist | 3 | 이코노미스트 (macro archetype) | cio | 1 | CONDITIONAL archetype = macro (Q05 = D) | HF-REF-03 §2.1 표 2-1; HF-REF-09 §7.1 | GAP — no donor named | — |
-| 31 | pod-lead | 3 | 운용팀(pod) lead | capital-allocation-support / cio (solid line); central risk, dotted oversight via cro | 3 | CONDITIONAL archetype = multi-manager (Q05 = C) — not fit for the founding stage, HF-REF-03 §2.1 | HF-REF-08 §6.4 표 6-3 | GAP — no donor named | Must not exceed the pod loss limit the cro sets. |
-| 32 | capital-allocation-support | 3 | 자본배분위원회 | cio / 자본배분위원회 | 3 | CONDITIONAL archetype = multi-manager (Q05 = C) — not fit for the founding stage, HF-REF-03 §2.1 | HF-REF-08 §6.4 표 6-3 | GAP — no donor named | Must not give the final capital-allocation vote. |
+| 26 | governance-secretary | 3 | 이사회·감사 / 투자위원회 minutes, succession tracking | ceo-office / board | 3 | core | HF-REF-16 §9.3; HF-REF-17 §9.5 표 9-5 | producer (records; milestone tracking) | Must not cast a board or investment-committee vote. |
+| 27 | quant-researcher | 3 | 퀀트 리서처 | quant-research-lead | 1 | CONDITIONAL archetype = quant (Q05 = B or E) | HF-REF-08 표 6-1; HF-REF-12 §7.8 | prototyper (isolation rule; worktree isolation) | Must not approve a model for live use. |
+| 28 | data-engineer | 3 | IT·데이터 (code pipeline) | technology-lead | 2 | CONDITIONAL code pipeline (Q25 = C/D) | HF-REF-12 §7.8 | devops-engineer (branching strategy; CI); engine-programmer (data pipeline code) | — |
+| 29 | valuation-analyst | 3 | 자산 평가 위원회 support | cro / valuation-committee chair | 2 | CONDITIONAL non-marketable-asset strategy (Q06 = C) | HF-REF-06 §4.5 | economy-designer (canonical registry; conflicting-value flags) | Must not give the final valuation vote. |
+| 30 | macro-economist | 3 | 이코노미스트 (macro archetype) | cio | 1 | CONDITIONAL archetype = macro (Q05 = D) | HF-REF-03 §2.1 표 2-1; HF-REF-09 §7.1 | systems-designer (Formula Output Format) | — |
+| 31 | pod-lead | 3 | 운용팀(pod) lead | capital-allocation-support / cio (solid line); central risk, dotted oversight via cro | 3 | CONDITIONAL archetype = multi-manager (Q05 = C) — not fit for the founding stage, HF-REF-03 §2.1 | HF-REF-08 §6.4 표 6-3 | producer (scope and schedule discipline) | Must not exceed the pod loss limit the cro sets. |
+| 32 | capital-allocation-support | 3 | 자본배분위원회 | cio / 자본배분위원회 | 3 | CONDITIONAL archetype = multi-manager (Q05 = C) — not fit for the founding stage, HF-REF-03 §2.1 | HF-REF-08 §6.4 표 6-3 | economy-designer (source and sink balance model) | Must not give the final capital-allocation vote. |
 
 ### 6.1 Stage counts, with the arithmetic
 
 - **Stage 1: 10–13.** 10 core agents (rows 1–5, 6, 7, 16, 17, 18) plus 0–3
   archetype-conditional agents. The quant archetype adds up to 3
   (quant-research-lead and model-governance-lead, row 14–15, plus
-  quant-researcher, row 27, whose stage is unrestricted and so may start
-  at stage 1). The macro archetype adds 1 (macro-economist, row 30).
+  quant-researcher, row 27, stage 1). The macro archetype adds 1 (macro-economist, row 30).
   Archetypes do not combine, so 3 is the ceiling from a single archetype,
   not a sum of archetypes. 10 + (0 to 3) = 10–13.
 - **Stage 2: 22–27.** Carry forward stage 1 (10 core + 0–3 conditional).

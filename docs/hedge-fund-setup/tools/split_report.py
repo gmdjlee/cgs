@@ -177,6 +177,7 @@ CHUNKS = [
     ("HF-REF-08", "08-organization.md", 448, 537, "low",
      ["organization", "governance", "compensation"],
      {
+      "SRC-02": "등록 요건 위반(투자운용인력 3명 미만)",
       "SRC-46": "5% 손실을 내면 자본이 줄어들고 7.5% 손실을 내면 퇴출된다"},
      []),
     ("HF-REF-09", "09-investment-risk-execution.md", 538, 583, "low",

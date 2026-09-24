@@ -11,7 +11,8 @@
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
 | Baseline | CCGS v1.1.1 (7ed2c3e) |
-| Writing standard | ASD-STE100 writing rules |
+| Writing standard | ASD-STE100 writing rules. Checked manually in v0.1; the STE lint helper is a P3 deliverable. |
+| Working files | The names design-spec, question-spec, wf1.json, assess-compact.md, orgmap.json, verifier-issues.md, review.txt, and mapping.txt refer to files in [`evidence/`](evidence/README.md). |
 | Scope | The AAA-01 to AAA-14 acceptance bar for every hedge-fund agent, skill, gate, hook, template, and document; the new control, investment, reporting, and setup rubric categories; the certification procedure and record; the Skill Testing Framework registry mapping; the ASD-STE100 and Korean language-quality checks. |
 
 This document is not legal advice. It is not tax advice. It is not

@@ -9,7 +9,7 @@ sections: ["6. 조직도", "6.1 기능 체계", "6.2 국내 신설 운용사의 
 domains: ["organization", "governance", "compensation"]
 volatility: "low"
 volatility_note: "Structure, principles, examples, or definitions. Stable."
-sources: ["SRC-46"]
+sources: ["SRC-02", "SRC-46"]
 related: []
 ---
 
