@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-MAN-001 |
 | Title | Component-Level Transplant Manifest for Strategy C |
-| Version | 0.2 |
+| Version | 0.3 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -33,6 +33,7 @@ Missing coverage is marked GAP.
 |---|---|---|
 | 0.1 | 2026-09-24 | Initial draft. |
 | 0.2 | 2026-09-24 | Added Section 9, the effect of founder decisions DEC-01 to DEC-16 and the mission reset (DEC-09), from [design-addendum-01.md](evidence/design-addendum-01.md). §3's verdict counts do not change. |
+| 0.3 | 2026-09-24 | Added Section 10: the 69 CONDITIONAL components resolved against DEC-01 to DEC-38, with the counts after the decisions. Changed §9.2 (Q25 answered, DEC-29) and the strict_gate_checks row in §5.4 (DEC-17). |
 
 ## 2. Verdict definitions
 
@@ -275,7 +276,7 @@ settings.json, statusline.sh, project.yaml, .gitignore, coordination-rules.md, d
 | team.size (individual/small/studio) | K | TAKE-MODIFY | — | Rename the values only; the wording is cosmetic. Do not let cro or cco seats scale with this key. | Sets which agents are active by default, based on team size. | .claude/hooks/yaml-helper.sh:468,1016-1017; effects-map.md:1270-1276 |
 | project.stage | W | TAKE-MODIFY | — | Keep the single authoritative-value, gate-check-only-write, and dual legacy-mirror mechanism. Replace all seven stage names with the fund's own lifecycle stages. | Tracks the current development phase; only gate-check may advance it, and only on a PASS verdict. | .claude/hooks/yaml-helper.sh:473,1057-1060,1149-1177; effects-map.md:1589-1598 |
 | testing.strict.{logic,integration,visual,ui,config} | W | TAKE-MODIFY | — | Keep the per-type block-or-advisory mechanism. Redesign the five type names into a hedge-fund evidence taxonomy. | Sets whether missing or failing evidence blocks a story, per evidence type. | effects-map.md:1107-1115 |
-| strict_gate_checks | K | TAKE-MODIFY | — | Keep the key. Implement it, or replace it with the protected-path hook design, before it can block a compliance failure. | Controls whether a failed gate blocks stage advancement or only warns; not yet wired to any hook. | effects-map.md:1230-1253 |
+| strict_gate_checks | K | TAKE-MODIFY | — | Keep the key. Do not rely on it (SB-17). DEC-17 uses a cro verdict plus a recorded user approval instead. A control decision with no receipt reads NOT ASSESSED. | Controls whether a failed gate blocks stage advancement or only warns; not yet wired to any hook. | effects-map.md:1230-1253 |
 | commands.{build,test,run,smoke} | K | CONDITIONAL | Q25 = C or D | Keep the OS-aware map and fallback logic. Replace the values with the strategy code's own build, test, and run commands. | Names the shell commands a code or model pipeline runs for build, test, run, and smoke checks. | effects-map.md:1732-1740 |
 | testing.framework | W | CONDITIONAL | Q25 = C or D | Replace the engine test-runner table with the strategy code's own test framework and coverage tool. | Names the test runner and coverage tool a code or model pipeline uses. | effects-map.md:1070-1078 |
 | qa.coverage_minimum | W | CONDITIONAL | Q25 = C or D | Keep the enforcement mechanism. Swap the engine-specific coverage-report parsing for the strategy code's own tool. | Sets the minimum code-coverage percentage enforced when qa.level is full. | effects-map.md:1207-1213 |
@@ -801,10 +802,9 @@ component's transplant fitness. §3 stays the authoritative count.
 ### 9.2 DEC-05 and the Q25 conditional set
 
 DEC-05 picks the single-manager fundamental archetype. This keeps
-every Q25-conditional item off, unless the founder answers Q25 as C or
-D (round 7, not yet run). §5.10's code-pipeline branch, and every
-CONDITIONAL row keyed to Q25 in §5.4, §5.6, §5.7, §5.8, and §5.9, wait
-on that answer.
+every Q25-conditional item off. DEC-29 answers Q25 as B: analysis code
+only. For §5.10, the "HF (Q25 = A or B)" column applies. Section 10
+records the resolved verdict of every CONDITIONAL row.
 
 ### 9.3 The transplant order for wave W1
 
@@ -856,3 +856,155 @@ This set includes `.claude/skills/launch-checklist/SKILL.md`,
 `.claude/docs/templates/test-evidence.md`, and the other W2-only
 components §5 lists. §8 does not change any of their verdicts; this
 section states only when to build them.
+
+## 10. Resolved verdicts after founder decisions DEC-01 to DEC-38
+
+The founder answered every question (DEC-01 to DEC-38). Q35 and Q36
+were not asked, because Q25 = B (DEC-29). This section applies the
+decisions to the 69 CONDITIONAL components that Table 3-1 counts. It
+also lists 6 CONDITIONAL rows in §5.3 and §5.4 that the 232 do not
+count.
+
+### 10.1 Resolution rules
+
+- A condition that the decisions meet gives TAKE or TAKE-MODIFY. The
+  "Required change" column in §5 sets which one.
+- A condition that the decisions do not meet gives LEAVE.
+- DEFERRED means that a later trigger decides the verdict: wave W2
+  activation, or a P2 design choice. The row names the trigger.
+- For §5.10, Q25 = B, so the "HF (Q25 = A or B)" column applies.
+- The mission reset changed the options of Q09, Q20, Q22, and Q24
+  (addendum §7). A §5 condition that names one of these questions
+  refers to the original option set in
+  [question-spec.md](evidence/question-spec.md). The Advisor maps each
+  original option to the decision that now covers it.
+- Table 3-1 and Table 3-2 do not change. They record transplant
+  fitness before the decisions. This section records the result after
+  the decisions.
+
+### 10.2 Resolved counts
+
+**Table 10-1. The 69 counted CONDITIONAL components, resolved**
+
+| Resolved verdict | Count |
+|---|---|
+| TAKE | 0 |
+| TAKE-MODIFY | 10 |
+| LEAVE | 43 |
+| DEFERRED | 16 |
+| **Total** | **69** |
+
+**Table 10-2. All 232 components, after the decisions**
+
+| Verdict | Count | Share |
+|---|---|---|
+| TAKE | 28 | 12.1% |
+| TAKE-MODIFY | 69 | 29.7% |
+| LEAVE | 119 | 51.3% |
+| DEFERRED | 16 | 6.9% |
+| **Total** | **232** | **100.0%** |
+
+Reuse after the decisions (TAKE + TAKE-MODIFY) = 97 / 232 = 41.8%.
+If every DEFERRED component resolves to take, reuse = 113 / 232 =
+48.7%. The range before the decisions was 37.5% to 67.2% (§3).
+
+### 10.3 Row-by-row resolution
+
+| § | Component | Condition in §5 | Resolved | Wave | Decisions | Reason |
+|---|---|---|---|---|---|---|
+| 5.1 | `.claude/hooks/validate-assets.sh` | Q15 (limits kept as config data) | TAKE-MODIFY | W1 | DEC-19 | DEC-19 keeps the loss and exposure limits in config files. Point the path filter at the limits directory. |
+| 5.5 | `.claude/rules/gameplay-code.md` | Q05 = B or E | LEAVE | n/a | DEC-05 | Q05 = A, single-manager fundamental (DEC-05). The row serves a quant or hybrid archetype. |
+| 5.5 | `.claude/rules/ui-code.md` | Q24 = B | DEFERRED | W2; P2 may use it for the W1 dashboard | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. P2 decides if the W1 HTML dashboard reuses this file. |
+| 5.6 | `.claude/docs/templates/accessibility-requirements.md` | Q24 = B | DEFERRED | W2; P2 may use it for the W1 dashboard | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. P2 decides if the W1 HTML dashboard reuses this file. |
+| 5.6 | `.claude/docs/templates/architecture-doc-from-code.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.6 | `.claude/docs/templates/architecture-traceability.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.6 | `.claude/docs/templates/design-doc-from-implementation.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.6 | `.claude/docs/templates/economy-model.md` | Q22 includes A | DEFERRED | W2 | DEC-13 | The original Q22 option A (setup and rules bundle) moved to W2 (DEC-13). The revised Q22 (DEC-26) has other options. Decide the fee and waterfall document at W2 activation. |
+| 5.6 | `.claude/docs/templates/hud-design.md` | Q25 = D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.6 | `.claude/docs/templates/interaction-pattern-library.md` | Q24 = B | DEFERRED | W2; P2 may use it for the W1 dashboard | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. P2 decides if the W1 HTML dashboard reuses this file. |
+| 5.6 | `.claude/docs/templates/player-journey.md` | Q24 = B or C | DEFERRED | W2 | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. |
+| 5.6 | `.claude/docs/templates/prototype-report.md` | Q05 = B or E, or Q20 | DEFERRED | W1 (P2 decides) | DEC-05, DEC-24 | The Q05 clause fails (DEC-05 = A). The original Q20 (paper-trade criteria) became call-quality judging (DEC-24). P2 decides if /call-review uses the PROCEED, PIVOT, KILL memo. |
+| 5.6 | `.claude/docs/templates/technical-design-document.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.6 | `.claude/docs/templates/test-plan.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.6 | `.claude/docs/templates/ux-spec.md` | Q24 = B | DEFERRED | W2; P2 may use it for the W1 dashboard | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. P2 decides if the W1 HTML dashboard reuses this file. |
+| 5.6 | `.claude/docs/templates/guidance/interaction-pattern-library-guide-navigation-feedback.md` | Q24 = B | DEFERRED | W2; P2 may use it for the W1 dashboard | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. P2 decides if the W1 HTML dashboard reuses this file. |
+| 5.6 | `.claude/docs/templates/guidance/interaction-pattern-library-guide-standard-controls.md` | Q24 = B | DEFERRED | W2; P2 may use it for the W1 dashboard | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. P2 decides if the W1 HTML dashboard reuses this file. |
+| 5.6 | `.claude/docs/templates/guidance/interaction-pattern-library-guide.md` | Q24 = B | DEFERRED | W2; P2 may use it for the W1 dashboard | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. P2 decides if the W1 HTML dashboard reuses this file. |
+| 5.6 | `.claude/docs/templates/guidance/ux-spec-guide.md` | Q24 = B | DEFERRED | W2; P2 may use it for the W1 dashboard | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. P2 decides if the W1 HTML dashboard reuses this file. |
+| 5.7 | `.claude/docs/director-gates/td-system-boundary.md` | Q05 = B or E and Q25 = C or D | LEAVE | n/a | DEC-05, DEC-29 | Both clauses fail: Q05 = A (DEC-05) and Q25 = B (DEC-29). |
+| 5.7 | `.claude/docs/director-gates/td-architecture.md` | Q05 = B or E and Q25 = C or D | LEAVE | n/a | DEC-05, DEC-29 | Both clauses fail: Q05 = A (DEC-05) and Q25 = B (DEC-29). |
+| 5.7 | `.claude/docs/director-gates/td-adr.md` | Q05 = B or E and Q25 = C or D | LEAVE | n/a | DEC-05, DEC-29 | Both clauses fail: Q05 = A (DEC-05) and Q25 = B (DEC-29). |
+| 5.7 | `.claude/docs/director-gates/td-manifest.md` | Q05 = B or E and Q25 = C or D | LEAVE | n/a | DEC-05, DEC-29 | Both clauses fail: Q05 = A (DEC-05) and Q25 = B (DEC-29). |
+| 5.7 | `.claude/docs/director-gates/lp-feasibility.md` | Q05 = B or E and Q25 = C or D | LEAVE | n/a | DEC-05, DEC-29 | Both clauses fail: Q05 = A (DEC-05) and Q25 = B (DEC-29). |
+| 5.7 | `.claude/docs/director-gates/lp-code-review.md` | Q05 = B or E and Q25 = C or D | LEAVE | n/a | DEC-05, DEC-29 | Both clauses fail: Q05 = A (DEC-05) and Q25 = B (DEC-29). |
+| 5.7 | `.claude/docs/director-gates/ql-test-coverage.md` | Q05 = B or E and Q25 = C or D | LEAVE | n/a | DEC-05, DEC-29 | Both clauses fail: Q05 = A (DEC-05) and Q25 = B (DEC-29). |
+| 5.7 | `.claude/docs/director-gates/td-engine-risk.md` | Q05 = B or E and Q25 = C or D | LEAVE | n/a | DEC-05, DEC-29 | Both clauses fail: Q05 = A (DEC-05) and Q25 = B (DEC-29). |
+| 5.7 | `.claude/docs/director-gates/ql-story-ready.md` | Q05 = B or E and Q25 = C or D | LEAVE | n/a | DEC-05, DEC-29 | Both clauses fail: Q05 = A (DEC-05) and Q25 = B (DEC-29). |
+| 5.8 | `.claude/agents/technical-director.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.8 | `.claude/agents/qa-lead.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.8 | `.claude/agents/lead-programmer.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.8 | `.claude/agents/devops-engineer.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.8 | `.claude/agents/qa-tester.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.8 | `.claude/agents/engine-programmer.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.8 | `.claude/agents/gameplay-programmer.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.8 | `.claude/agents/ai-programmer.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.8 | `.claude/agents/tools-programmer.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.8 | `.claude/agents/performance-analyst.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.8 | `.claude/agents/economy-designer.md` | Q05 = B or E | LEAVE | n/a | DEC-05 | Q05 = A, single-manager fundamental (DEC-05). The row serves a quant or hybrid archetype. |
+| 5.8 | `.claude/agents/prototyper.md` | Q05 = B or E | LEAVE | n/a | DEC-05 | Q05 = A, single-manager fundamental (DEC-05). The row serves a quant or hybrid archetype. |
+| 5.8 | `.claude/agents/analytics-engineer.md` | Q09 = B, C, or D (stage 2+) | TAKE-MODIFY | W2 or W3 | DEC-09 | Original Q09 = D builds the full design and activates later stages on a trigger (DEC-09). The risk-metric and investor-reporting use starts in W2 or W3. |
+| 5.8 | `.claude/agents/localization-lead.md` | Q07 = B, C, D, or E | TAKE-MODIFY | W2 or later | DEC-07 | Q07 = B (DEC-07) adds a Cayman leg later. Jurisdiction locales start when a second jurisdiction starts. |
+| 5.9 | `.claude/skills/patch-notes/SKILL.md` | Q22 includes E | DEFERRED | W2 | DEC-13 | The original Q22 option E (IR and operations bundle) moved to W2 (DEC-13). Investor updates start in W2. |
+| 5.10 | `.claude/skills/architecture-decision/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/architecture-review/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/create-architecture/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/dev-story/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/code-review/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/test-setup/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/test-helpers/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/smoke-check/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/regression-suite/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/test-flakiness/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/reverse-document/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/perf-profile/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/create-epics/SKILL.md` | HF(Q25=A/B)=TAKE-MODIFY, HF(Q25=C/D)=TAKE-MODIFY | TAKE-MODIFY | W1 | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads TAKE-MODIFY. The W1 build cycle needs it. |
+| 5.10 | `.claude/skills/create-stories/SKILL.md` | HF(Q25=A/B)=TAKE-MODIFY, HF(Q25=C/D)=TAKE-MODIFY | TAKE-MODIFY | W1 | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads TAKE-MODIFY. The W1 build cycle needs it. |
+| 5.10 | `.claude/skills/story-readiness/SKILL.md` | HF(Q25=A/B)=TAKE-MODIFY, HF(Q25=C/D)=TAKE-MODIFY | TAKE-MODIFY | W1 | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads TAKE-MODIFY. The W1 build cycle needs it. |
+| 5.10 | `.claude/skills/test-evidence-review/SKILL.md` | HF(Q25=A/B)=TAKE-MODIFY, HF(Q25=C/D)=TAKE-MODIFY | TAKE-MODIFY | W1 | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads TAKE-MODIFY. The W1 build cycle needs it. |
+| 5.10 | `.claude/skills/security-audit/SKILL.md` | HF(Q25=A/B)=TAKE-MODIFY, HF(Q25=C/D)=TAKE-MODIFY | TAKE-MODIFY | W2 | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads TAKE-MODIFY. W2 needs it. |
+| 5.10 | `.claude/skills/story-done/SKILL.md` | HF(Q25=A/B)=CONDITIONAL, HF(Q25=C/D)=TAKE-MODIFY | TAKE-MODIFY | W1 | DEC-29 | The W1 build cycle uses stories: create-stories and story-readiness resolve to TAKE-MODIFY. This skill closes or plans those stories. Advisor judgment (INFERENCE). |
+| 5.10 | `.claude/skills/qa-plan/SKILL.md` | HF(Q25=A/B)=CONDITIONAL, HF(Q25=C/D)=TAKE-MODIFY | TAKE-MODIFY | W1 | DEC-29 | The W1 build cycle uses stories: create-stories and story-readiness resolve to TAKE-MODIFY. This skill closes or plans those stories. Advisor judgment (INFERENCE). |
+| 5.10 | `.claude/skills/team-qa/SKILL.md` | HF(Q25=A/B)=CONDITIONAL, HF(Q25=C/D)=TAKE-MODIFY | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29). The qa-lead and qa-tester agents it runs resolve to LEAVE. |
+| 5.10 | `.claude/skills/release-checklist/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=CONDITIONAL | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.10 | `.claude/skills/soak-test/SKILL.md` | HF(Q25=A/B)=LEAVE, HF(Q25=C/D)=CONDITIONAL | LEAVE | n/a | DEC-29 | Q25 = B (DEC-29): the Q25 = A or B column reads LEAVE. |
+| 5.11 | `.claude/skills/asset-spec/SKILL.md` | Q24 = B or C | DEFERRED | W2 | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. |
+| 5.11 | `.claude/skills/ux-design/SKILL.md` | Q24 = B | DEFERRED | W2; P2 may use it for the W1 dashboard | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. P2 decides if the W1 HTML dashboard reuses this file. |
+| 5.11 | `.claude/skills/ux-review/SKILL.md` | Q24 = B | DEFERRED | W2; P2 may use it for the W1 dashboard | DEC-13, DEC-28 | The mission reset moved the investor-tool question (original Q24) to W2. The revised Q24 (DEC-28) sets the user's dashboard, not an investor portal. P2 decides if the W1 HTML dashboard reuses this file. |
+| 5.11 | `.claude/skills/setup-engine/SKILL.md` | Q22 includes A | DEFERRED | W2 | DEC-13 | The original Q22 option A (setup and rules bundle) moved to W2 (DEC-13). Decide a guided vendor and jurisdiction selection skill at W2 activation. |
+| 5.3 (not counted) | `.claude/docs/code-root-resolution.md` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.4 (not counted) | `commands.{build,test,run,smoke}` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.4 (not counted) | `testing.framework` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.4 (not counted) | `qa.coverage_minimum` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.4 (not counted) | `naming.{classes,variables,constants,signals,files}` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+| 5.4 (not counted) | `code-root-resolution.md + resolve_code_root()` | Q25 = C or D | LEAVE | n/a | DEC-29 | Q25 = B, analysis code only (DEC-29). No code or model pipeline. |
+
+### 10.4 Notes
+
+1. **Tested analysis code.** DEC-29 needs versioned, tested scripts.
+   test-setup and test-helpers stay LEAVE, because they target an engine
+   test framework. P3 builds a small test harness for the analysis
+   scripts (INFERENCE).
+2. **Table 4-1, item 8.** The decisions split this item.
+   `.claude/hooks/validate-assets.sh` resolves to TAKE-MODIFY in W1
+   (DEC-19 limits in config files). `.claude/docs/code-root-resolution.md`
+   stays off (Q25 = B).
+3. **Condition notes on TAKE-MODIFY rows.** start and gate-check carry
+   "changes depend on Q17" and "changes depend on Q14". DEC-21 and
+   DEC-18 now answer both. P2 writes the concrete changes.
+4. **New config keys.** The §5.4 keys `code_pipeline.*` are NEW
+   (INFERENCE) with the condition Q25 = C or D. Q25 = B, so P3 does
+   not add them.
+5. **Source of this section.** A Worker resolved each row against the
+   decision log. The Advisor checked every row and corrected 16 rows,
+   where the Worker read a revised question with its original option
+   letters (Q20, Q22, Q24).
