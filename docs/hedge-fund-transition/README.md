@@ -49,8 +49,8 @@ W1의 정보 상품은 일간 브리핑, 주간 리포트, 수시 질의응답, 
 ## 다음 단계
 
 1. [PLAN.md](PLAN.md)와 [QUESTIONS.md](QUESTIONS.md)를 읽습니다.
-2. 1라운드부터 6라운드까지, 그리고 사명 재설정에 따른 추가 라운드(R3+)까지 답변을 기록했습니다(Q01~Q24, Q37~Q40, 총 28건). 자세한 내용은 [design-addendum-01.md](evidence/design-addendum-01.md)에 있습니다.
-3. 다음 라운드는 7라운드(Q25~Q28, 도구·데이터·권한)입니다. 답변은 [QUESTIONS.md](QUESTIONS.md)에 결정 ID(DEC-NN)로 기록합니다.
+2. 1라운드부터 7라운드까지, 그리고 사명 재설정에 따른 추가 라운드(R3+)까지 답변을 기록했습니다(Q01~Q28, Q37~Q40, 총 32건). Q25가 B이므로 조건부 질문 Q35와 Q36은 묻지 않습니다. 자세한 내용은 [design-addendum-01.md](evidence/design-addendum-01.md)에 있습니다.
+3. 다음 라운드는 8라운드(Q29~Q32, 품질·문서)와 9라운드(Q33~Q34, 자원)입니다. 답변은 [QUESTIONS.md](QUESTIONS.md)에 결정 ID(DEC-NN)로 기록합니다.
 
 ## 작성과 검증 방법
 

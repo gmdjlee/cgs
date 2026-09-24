@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-PLAN-001 |
 | Title | Hedge Fund Transition — Master Plan |
-| Version | 0.5 |
+| Version | 0.6 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -23,6 +23,7 @@
 | 0.3 | 2026-09-24 | Recorded round 4 (DEC-17 to DEC-20). Replaced the protected-path hook design with agent verdicts plus recorded user approval (DEC-17). Updated P-03, P-04, P-07, Phase P4, risks R-03, R-06, R-07, and the glossary. |
 | 0.4 | 2026-09-24 | Recorded round 5 (DEC-21 to DEC-24). Applied Erratum 01 to the wave counts (W2 23 total, W3 29 total). |
 | 0.5 | 2026-09-24 | Recorded round 6 (DEC-25 to DEC-28). |
+| 0.6 | 2026-09-24 | Recorded round 7 (DEC-29 to DEC-32). Q35 and Q36 are not asked (Q25 = B). |
 
 This document is not legal advice. It is not tax advice. It is not investment
 advice. Section 3 states this rule in full.
@@ -196,7 +197,7 @@ Table 6.0-1 lists the 16 founder decisions that set this plan. Read
 Read [design-addendum-01.md](evidence/design-addendum-01.md) for the
 mission reset in full.
 
-**Table 6.0-1. Founder decisions DEC-01 to DEC-28**
+**Table 6.0-1. Founder decisions DEC-01 to DEC-32**
 
 | DEC | Question | Answer | Effect |
 |---|---|---|---|
@@ -228,6 +229,10 @@ mission reset in full.
 | DEC-26 | Q22 first products | A + B: market information and stock information | Build /daily-briefing, /house-view, /event-alert, /idea-screen, /stock-pitch, /red-team-review, and /cio-synthesis first. Then risk, portfolio, and quality products. |
 | DEC-27 | Q23 first milestone | C: briefing plus one-stock vertical slice | One daily briefing, and one stock through screen, pitch, red team, synthesis, and the virtual investment committee. |
 | DEC-28 | Q24 delivery surface | D: dashboard plus notification channel | An HTML dashboard and a notification channel. P2 selects the channel from the tools that the new repository's environment can reach. |
+| DEC-29 | Q25 code pipeline | B: analysis code | Data collection, screens, valuation and stress calculations, and model-portfolio tracking run as versioned, tested scripts. No model-governance skills. The four quant conditional agents stay off. Q35 and Q36 are not asked. |
+| DEC-30 | Q26 agent authority | B: analysis plus model-portfolio records | Agents read, analyze, write, and record hypothetical model-portfolio positions. Agents do not draft or send orders. |
+| DEC-31 | Q27 data sources | A + C + D: OpenDART, exchange/broker data, web search | OpenDART for disclosures and financials; exchange or broker data for prices, volume, and flows; web search for regulation, news, and macro. P2 selects the price provider. Data adapters stay per source for the US extension. |
+| DEC-32 | Q28 confidential data | B: gitignored local directory | Holdings and personal data stay in a gitignored local directory. No classification scheme in W1. Revisit with legal review before W2 (MNPI GAP). |
 
 ### 6.1 Organization
 
@@ -625,8 +630,8 @@ The founder answers 40 questions in 10 rounds, in `QUESTIONS.md`. Round
 R3+ is a follow-up round the mission reset added (DEC-09). It holds
 Q37-Q40, the questions that confirm the mission reset's scope
 ([design-addendum-01.md](evidence/design-addendum-01.md) §7). Rounds 1
-through 6 and round R3+ are done, with 28 decisions recorded, DEC-01
-through DEC-28.
+through 7 and round R3+ are done, with 32 decisions recorded, DEC-01
+through DEC-32. Q35 and Q36 are not asked, because Q25 = B (DEC-29).
 
 Rules:
 
@@ -654,8 +659,8 @@ synthesis from the tasks in Section 8; mark it INFERENCE.
 | R4 | Q13-Q16 | P3, P4 | Done |
 | R5 | Q17-Q20 | P2, P6, P7 | Done |
 | R6 | Q21-Q24 | P2, P5, P6, P7, P8 | Done |
-| R7 | Q25-Q28 | P3, P4, P8 | Next |
-| R8 | Q29-Q32 | P2, P3, P4, P9 | Not started |
+| R7 | Q25-Q28 | P3, P4, P8 | Done |
+| R8 | Q29-Q32 | P2, P3, P4, P9 | Next |
 | R9 | Q33-Q36 | P3, P4, P5, P8 | Not started |
 
 ## 10. Verification strategy
@@ -760,13 +765,13 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
 1. Done. The founder read `README.md` and this plan (`PLAN.md`).
 2. Done. The founder and the Advisor ran round 1 (Q01-Q04), round 2
    (Q05-Q08), round 3 (Q09-Q12), the follow-up round R3+ (Q37-Q40), and
-   round 4 (Q13-Q16), round 5 (Q17-Q20), and round 6 (Q21-Q24).
-3. Done. The Advisor recorded 28 decisions, DEC-01 through DEC-28, in
+   round 4 (Q13-Q16), round 5 (Q17-Q20), round 6 (Q21-Q24), and round 7
+   (Q25-Q28).
+3. Done. The Advisor recorded 32 decisions, DEC-01 through DEC-32, in
    `QUESTIONS.md`.
-4. **Next action.** The founder and the Advisor run round 7 (Q25-Q28,
-   tools, data, and authority).
-5. The Advisor and the founder run rounds 8 and 9, in order, one round at
-   a time.
+4. **Next action.** The founder and the Advisor run round 8 (Q29-Q32,
+   quality and documents) and round 9 (Q33-Q34, resources).
+5. Q35 and Q36 are not asked, because Q25 = B (DEC-29).
 6. The Advisor adds Q35 and Q36 to round 9 only if the Q25 answer is C
    or D.
 7. The Advisor drafts the Phase P2 design package from the completed
@@ -784,8 +789,8 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
 | UR-01 | Build the best hedge-fund organization | Section 6; `ORG-BLUEPRINT.md` | The mission (DEC-09); the wave roster (W1 11, W2 23 total, W3 29 total, plus 0-4 conditional) |
 | UR-02 | Use the standard hedge-fund org structure; staff it with AAA-or-better agents | Section 6; Section 10; `AAA-QUALITY-BAR.md` | The mission (DEC-09); the wave roster; the AAA-01 to AAA-14 grading rule; "only AAA may ship" |
 | UR-03 | Use transition strategy C (transplant the operating foundation only) | Section 2; Section 3; Section 6; `TRANSPLANT-MANIFEST.md` | F-01, the review's Strategy C recommendation |
-| UR-04 | Decide the agents and skills through discussion with the founder | Section 9; `QUESTIONS.md` | 10 rounds, 40 questions, DEC-NN decision log. Status: rounds 1-6 and round R3+ are done (28 decisions). Round 7 is next. |
-| UR-05 | Ask the founder detailed questions | Section 9; `QUESTIONS.md` | 40 questions with 질문/왜 묻는가/근거 fields. Status: rounds 1-6 and round R3+ are done (28 decisions); rounds 7 through 9 remain. |
+| UR-04 | Decide the agents and skills through discussion with the founder | Section 9; `QUESTIONS.md` | 10 rounds, 40 questions, DEC-NN decision log. Status: rounds 1-7 and round R3+ are done (32 decisions). Round 8 is next. |
+| UR-05 | Ask the founder detailed questions | Section 9; `QUESTIONS.md` | 40 questions with 질문/왜 묻는가/근거 fields. Status: rounds 1-7 and round R3+ are done (32 decisions); rounds 8 and 9 remain. |
 | UR-06 | Give 4-5 options per question | Section 9 rules; `QUESTIONS.md` | Every question has 4 or 5 options ([`evidence/question-spec.md`](evidence/question-spec.md)). |
 | UR-07 | Use `hedge_fund_setup_report.md` as the base frame | Section 4.2 | HF-REF-00 to HF-REF-20 chunk index |
 | UR-08 | Split the report into optimal chunks | Section 4.2; Section 8, Phase P0 | 21 chunks, byte-exact reassembly check |
