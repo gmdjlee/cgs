@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-MAN-001 |
 | Title | Component-Level Transplant Manifest for Strategy C |
-| Version | 0.1 |
+| Version | 0.2 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -32,6 +32,7 @@ Missing coverage is marked GAP.
 | Version | Date | Change |
 |---|---|---|
 | 0.1 | 2026-09-24 | Initial draft. |
+| 0.2 | 2026-09-24 | Added Section 9, the effect of founder decisions DEC-01 to DEC-16 and the mission reset (DEC-09), from [design-addendum-01.md](evidence/design-addendum-01.md). §3's verdict counts do not change. |
 
 ## 2. Verdict definitions
 
@@ -782,3 +783,76 @@ row-by-row count from this manifest matches F-02 exactly, area by
 area and verdict by verdict. F-02 stays unedited. §3 Table 3-2
 states the independently-computed check next to Table 3-1 (F-02
 verbatim) and reports the match.
+
+## 9. Effect of founder decisions DEC-01 to DEC-16
+
+[design-addendum-01.md](evidence/design-addendum-01.md) records the
+founder's decisions DEC-01 to DEC-16 and the mission reset (DEC-09).
+This section states the effect on this manifest.
+
+### 9.1 The verdict counts stay the same
+
+Table 3-1 and Table 3-2 do not change. Both tables describe transplant
+fitness: whether a component transplants with no change, transplants
+with a rewrite, depends on a founder decision, or stays behind. The
+mission reset changes the build order. It does not change any
+component's transplant fitness. §3 stays the authoritative count.
+
+### 9.2 DEC-05 and the Q25 conditional set
+
+DEC-05 picks the single-manager fundamental archetype. This keeps
+every Q25-conditional item off, unless the founder answers Q25 as C or
+D (round 7, not yet run). §5.10's code-pipeline branch, and every
+CONDITIONAL row keyed to Q25 in §5.4, §5.6, §5.7, §5.8, and §5.9, wait
+on that answer.
+
+### 9.3 The transplant order for wave W1
+
+Wave W1 (addendum §3, §4) is the information core: 11 agents and 14
+information-product skills. Before this wave builds, the new
+repository needs these transplants first:
+
+- The minimum transplant set, §4, in the transplant order §4 states.
+- `.claude/skills/gate-check/`, for the PASS, CONCERNS, NOT ASSESSED,
+  or FAIL verdict every W1 product needs.
+- `.claude/skills/consistency-check/SKILL.md`, rewritten as the fact
+  registry every stock call and house-view cites (addendum §6;
+  DEC-16).
+- `.claude/skills/skill-test/SKILL.md`, to run the static and category
+  checks on every new W1 skill.
+- `.claude/skills/sprint-plan/SKILL.md` and
+  `.claude/skills/sprint-status/SKILL.md`, to run the W1 build cycle.
+- `.claude/skills/scope-check/SKILL.md`, to catch scope creep past the
+  W1 roster.
+- `.claude/skills/retrospective/SKILL.md`, to close each cycle.
+- `.claude/skills/help/SKILL.md` and `.claude/skills/onboard/SKILL.md`,
+  for orientation once the W1 agents exist.
+
+### 9.4 The donors for the W1 skills
+
+Addendum §6 names the CCGS donor skeleton for each W1 information
+product.
+
+**Table 9-1. W1 skill donors**
+
+| W1 skill | Donor skeleton |
+|---|---|
+| `/stock-pitch` | design-system, the section-cycle draft flow |
+| `/red-team-review` | design-review, the adversarial reviewer brief |
+| The bull, bear, and synthesis sequence | The team-* skeleton, §5.11 |
+| `/call-review` | post-mortem and playtest-report |
+| The fact registry every product cites | consistency-check |
+| `/idea-screen` | balance-check, the outlier-detection mechanism |
+
+§5.9 and §5.11 carry the full transplant detail for each donor.
+
+### 9.5 W2 transplants wait for wave W2
+
+Wave W2, fund operation, activates when the founder starts fund
+setup. The transplants that serve W2 functions wait for that trigger.
+This set includes `.claude/skills/launch-checklist/SKILL.md`,
+`.claude/skills/team-release/SKILL.md`,
+`.claude/docs/templates/incident-response.md`,
+`.claude/docs/templates/test-evidence.md`, and the other W2-only
+components §5 lists. §8 does not change any of their verdicts; this
+section states only when to build them.

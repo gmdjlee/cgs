@@ -6,13 +6,22 @@
 |---|---|
 | Document ID | HFT-PLAN-001 |
 | Title | Hedge Fund Transition — Master Plan |
-| Version | 0.1 |
+| Version | 0.4 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
 | Baseline | CCGS v1.1.1 (7ed2c3e) |
 | Writing standard | ASD-STE100 writing rules. Checked manually in v0.1; the STE lint helper is a P3 deliverable. |
 | Working files | The names design-spec, question-spec, wf1.json, assess-compact.md, orgmap.json, verifier-issues.md, review.txt, and mapping.txt refer to files in [`evidence/`](evidence/README.md). |
+
+**Change history**
+
+| Version | Date | Change |
+|---|---|---|
+| 0.1 | 2026-09-24 | Initial draft. |
+| 0.2 | 2026-09-24 | Added the mission reset (DEC-09) and decisions DEC-13 to DEC-16, from [design-addendum-01.md](evidence/design-addendum-01.md). Replaced the stage-based organization counts in Section 6 with the wave counts (W1 11, W2 22, W3 28, plus 0-4 conditional). Rewrote Phases P2, P5, P6, P7, and P8 in Section 8 for the wave roster and the information products. Recorded round R3+ (Q37-Q40) in Section 9; rounds 1-3 and R3+ are done, 16 decisions. Added risks R-13 to R-15. Updated Section 13 and Appendix A to match. |
+| 0.3 | 2026-09-24 | Recorded round 4 (DEC-17 to DEC-20). Replaced the protected-path hook design with agent verdicts plus recorded user approval (DEC-17). Updated P-03, P-04, P-07, Phase P4, risks R-03, R-06, R-07, and the glossary. |
+| 0.4 | 2026-09-24 | Recorded round 5 (DEC-21 to DEC-24). Applied Erratum 01 to the wave counts (W2 23 total, W3 29 total). |
 
 This document is not legal advice. It is not tax advice. It is not investment
 advice. Section 3 states this rule in full.
@@ -25,7 +34,7 @@ legal term is 일반 사모집합투자업자 (a general private-fund manager). 
 transition Strategy C: transplant only the operating foundation (hooks,
 config resolution, session state, gate mechanics, skill testing). Strategy C
 also writes every fund-domain agent and skill fresh. The plan turns the
-founder's answers to 36 questions (QUESTIONS.md) into a phased work plan, a
+founder's answers to 40 questions (QUESTIONS.md) into a phased work plan, a
 schedule, and a risk register. It cites every claim to a fact (Section 5), a
 report chunk (HF-REF-NN), or a marked INFERENCE or GAP.
 
@@ -34,7 +43,7 @@ report chunk (HF-REF-NN), or a marked INFERENCE or GAP.
 ### 3.1 In scope
 
 - The 10-phase work plan, P0 through P9 (Section 8).
-- The founder decision process, 9 rounds and 36 questions (Section 9).
+- The founder decision process, 10 rounds and 40 questions (Section 9).
 - A summary of the target organization, lifecycle, and control model
   (Section 6). Full detail is in ORG-BLUEPRINT.md.
 - The verification strategy for each phase (Section 10).
@@ -70,7 +79,7 @@ analysis.
 | File | Content |
 |---|---|
 | [`evidence/design-spec.md`](evidence/design-spec.md) | The Advisor's design decisions (F-01 to F-16, SB-01 to SB-28, the org roster, the lifecycle, the control model, the skill catalog, phases P0 to P9, the AAA bar, the risk list). |
-| [`evidence/question-spec.md`](evidence/question-spec.md) | The 36 founder questions in 9 rounds. |
+| [`evidence/question-spec.md`](evidence/question-spec.md) | The original specification of 36 founder questions in 9 rounds. `QUESTIONS.md` now holds 40 questions in 10 rounds. |
 | [`evidence/wf1.json`](evidence/wf1.json) | The raw assessment result: 6 area assessments plus the org blueprint (`orgmap`), each independently verified. |
 | [`evidence/assess-compact.md`](evidence/assess-compact.md) | A readable digest of `wf1.json`. |
 | [`evidence/orgmap.json`](evidence/orgmap.json) | The org blueprint raw result. |
@@ -98,7 +107,7 @@ plan.
 | `ORG-BLUEPRINT.md` | The target organization: roster, tiers, delegation rules, lifecycle, and control model, in full. |
 | `TRANSPLANT-MANIFEST.md` | The component-by-component transplant list (TAKE, TAKE-MODIFY, CONDITIONAL, LEAVE). |
 | `AAA-QUALITY-BAR.md` | The AAA quality bar and the grading rule. |
-| `QUESTIONS.md` | The 36 founder questions and the decision log (DEC-NN). |
+| `QUESTIONS.md` | The 40 founder questions (10 rounds) and the decision log (DEC-NN). |
 
 ## 5. Facts baseline
 
@@ -158,25 +167,86 @@ content transplants well, but domain content does not.
 
 Full detail is in **ORG-BLUEPRINT.md**. This section gives a summary only.
 
-Some items below are the Advisor's recommended answer to an open founder
-question, not yet a decision. Section 6.1's build order matches the
-recommended option for Q09. Section 6.3's control-blocking mechanism and
-fixed-seat scope match the recommended options for Q13 and Q14. Round 3
-(Q09) and Round 4 (Q13, Q14) confirm or change them.
+Section 6.1 states the wave roster. It follows the founder's Q09 decision,
+DEC-09 (Round 3, done). Section 6.3 states the control model that round 4
+decided: agent verdict plus recorded user approval (DEC-17) and fixed
+control seats (DEC-18).
+
+### 6.0 Mission and founder decisions
+
+The agent organization gives the founder, one user, all the investment
+information that a hedge-fund organization produces (DEC-09). The
+information areas are research, investment direction (the house view),
+risk, stock picking, and market analysis.
+
+Rules:
+
+- The user makes every investment decision. Agents give information,
+  analysis, and recommendations with a confidence level. Agents do not
+  send orders.
+- Every number carries a source and an as-of date (AAA-04).
+- Every stock call and every house-view change goes through the bull
+  case, the bear case, and the CIO synthesis (DEC-16).
+- The output serves the user's own decisions. It is not advice to a
+  third party.
+
+Table 6.0-1 lists the 16 founder decisions that set this plan. Read
+[QUESTIONS.md](QUESTIONS.md) for the full question text and every option.
+Read [design-addendum-01.md](evidence/design-addendum-01.md) for the
+mission reset in full.
+
+**Table 6.0-1. Founder decisions DEC-01 to DEC-24**
+
+| DEC | Question | Answer | Effect |
+|---|---|---|---|
+| DEC-01 | Q01 purpose | C: a whole-firm operating system | DEC-09 and DEC-13 narrow the first build to investment information. |
+| DEC-02 | Q02 people and agents | D: the founder plus agents, then a copilot after hiring | Agents support one user now. Human-required roles apply when the fund registers. |
+| DEC-03 | Q03 founder role | B: CEO and CIO | The user is the only decision maker for investment and firm matters. |
+| DEC-04 | Q04 repository | B: a new repository with CCGS as the upstream | No change from the original design. |
+| DEC-05 | Q05 archetype | A: single-manager fundamental | Quant agents stay conditional on Q25. Research depth is the core function. |
+| DEC-06 | Q06 strategy | B: long-biased | The design needs a downside-defense risk output: bear-market stress and net exposure. |
+| DEC-07 | Q07 jurisdiction | B: Korea first, Cayman later | The jurisdiction config holds a list. |
+| DEC-08 | Q08 investors | A and D: domestic HNWI, then a seed or anchor investor | This decision applies when the fund activates, in wave W2. |
+| DEC-09 | Q09 scale, plus the mission reset | D, plus the mission reset | See the mission above. |
+| DEC-10 | Q10 control lines | A: the CRO and the CCO report to the CEO | The cro agent reports to the user. Its verdicts stay non-overridable by other agents. Revisit this line before outside money arrives. |
+| DEC-11 | Q11 front office | A: sector analysts | The research-analyst agent runs as one instance per sector cluster. |
+| DEC-12 | Q12 governance | A: the founder holds sole control | The key-person clause and the succession plan stay on the document list. |
+| DEC-13 | Q37 non-investment scope | A: investment information first | Wave W1 is the information core. Operations, IR, regulatory reporting, and setup documents activate in wave W2. |
+| DEC-14 | Q38 delivery | A: briefings, reports, on-demand answers, and alerts | The daily briefing, the weekly report, on-demand answers, and event alerts make up the W1 products. |
+| DEC-15 | Q39 coverage | A, plus preparation for US equities | Korean listed equities at stock level; macro and global indicators for market analysis. US equities can join later. |
+| DEC-16 | Q40 conclusion method | A: the bull case, the bear case, then the CIO synthesis | Every stock call and every house-view change carries a bull case, a bear case, and a synthesis with a confidence level. |
+| DEC-17 | Q13 blocking method | B: agent verdict plus user approval | No protected-path hook. A control decision needs the cro verdict and a recorded user approval. A decision without a receipt reads NOT ASSESSED. Revisit before real capital. |
+| DEC-18 | Q14 control seats | A: never skipped | The cro (W1) and the cco (W2) join every gate and every cio synthesis, whatever the mode settings. |
+| DEC-19 | Q15 initial limits | B: cro drafts, founder approves | The cro drafts loss and exposure limits for the long-biased book. The founder approves. Limits live in config files. |
+| DEC-20 | Q16 review depth | D: by output type | Judgment outputs (stock calls, house view, limits) use full review. Routine outputs (daily briefing) use lean review. |
+| DEC-21 | Q17 lifecycle | A: stage axis plus information cycles | S1-S8 and G1-G3 serve the fund. W1 runs on daily, weekly, and monthly cycles. `project.stage` stays one scalar. |
+| DEC-22 | Q18 decision body | B: virtual investment committee plus minutes | cio, cro, portfolio-manager, and red-team-analyst present. The user decides. Minutes are kept. |
+| DEC-23 | Q19 stock-pitch depth | A: full format, 8 sections | /stock-pitch has 8 sections plus the bull, bear, and synthesis parts. P5 measures the time per stock. |
+| DEC-24 | Q20 call quality | C: call record plus model portfolio | /call-review tracks every call against its outcome. A model portfolio runs against a benchmark. |
 
 ### 6.1 Organization
 
-| Stage | Name | Agent count (design estimate) |
-|---|---|---|
-| Stage 1 | 설립기 (founding stage) | 10-13 |
-| Stage 2 | 성장기 (growth stage) | 22-27 |
-| Stage 3 | 기관화 (institutionalization stage) | 24-31 |
+The roster now activates in waves, not stages (DEC-09; addendum §3). A
+wave activates on a trigger, not on a calendar date.
 
-The roster follows HF-REF-08 표 6-1 (functions) and 표 6-2 (stage
-activation). The cro (risk officer support) and the cco (준법감시인, compliance
-officer, support) report outside the cio's line (HF-REF-08 §6.2). Counts
-are design estimates. They are not a fixed headcount. See Section 7, P-07,
-"Design stage 3, build stage 1 first," for the build order.
+| Wave | Trigger | Content | Agent count |
+|---|---|---|---|
+| W1 information core | Now | The agents and skills that produce investment information for the user. | 11 |
+| W2 fund operation | The founder starts fund setup (setup stage S1) | Non-investment functions: compliance, operations, NAV check, IR, regulatory reporting, setup documents. | 23 total |
+| W3 institutional | Growth stage 2 or 3 (HF-REF-08 표 6-2) | Dedicated teams and governance roles. | 29 total |
+| Conditional | Q25 = C or D | Quant-research and model-governance agents. | 0-4 more |
+
+Wave W1 runs on daily, weekly, and monthly information cycles: a daily
+briefing, a weekly report, and a monthly call-review, among other
+products (Section 6.0; Section 8, Phase P6).
+
+The roster follows HF-REF-08 표 6-1 (functions) and 표 6-2 (growth-stage
+activation) for the W2 and W3 content. The cro (risk officer support)
+reports to the user, who is the CEO and the CIO (DEC-03, DEC-10). The cco
+(준법감시인, compliance officer, support) joins in W2. Revisit these
+reporting lines before external money arrives (HF-REF-08 §6.2). Counts are
+design estimates. They are not a fixed headcount. See Section 7, P-07,
+"Design the full organization, build wave W1 first," for the build order.
 
 ### 6.2 Lifecycle design
 
@@ -208,11 +278,15 @@ only, not a new track dimension.
 
 - **Verdict vocabulary**: PASS, CONCERNS, FAIL, NOT ASSESSED. Precedence:
   FAIL beats CONCERNS. CONCERNS beats NOT ASSESSED. NOT ASSESSED beats PASS.
-- **Fixed control seats**: the cro and the cco stay active in every gate.
+- **Fixed control seats (DEC-18)**: the cro (from W1) and the cco (from
+  W2) stay active in every gate and in every cio synthesis.
   `modes.workflow`, `modes.review_mode`, and `team.size` do not remove them.
-- **Hook enforcement**: a PreToolUse hook blocks a write to a protected path
-  (for example `config/risk/**`, `policies/**`, `investor/outgoing/**`)
-  unless a matching approval receipt exists.
+- **Approval enforcement (DEC-17)**: a control decision needs the cro
+  verdict and a recorded approval by the user (an approval receipt). The
+  design does not build a protected-path hook. A prose gate cannot block a
+  tool call (F-03), so the receipt is the control. A control decision
+  without a receipt reads NOT ASSESSED. Revisit hook enforcement before
+  real capital (R-03).
 - **Registry**: a regulatory value registry stores each limit with an
   `as_of` date and an effective date.
 - **Pre-screen rule**: label every agent review a pre-screen (F-09). A human
@@ -226,10 +300,10 @@ only, not a new track dimension.
 | P-01 | Facts first |
 | P-02 | Humans hold legal roles |
 | P-03 | Control independence |
-| P-04 | Enforce controls with the harness, not with prose |
+| P-04 | Allow-lists and recorded approvals (DEC-17) |
 | P-05 | Data-driven limits |
 | P-06 | Keep foundation file paths for upstream updates |
-| P-07 | Design stage 3, build stage 1 first |
+| P-07 | Design the full organization, build wave W1 first |
 | P-08 | Test first |
 | P-09 | One verdict vocabulary |
 | P-10 | Language policy |
@@ -244,15 +318,17 @@ professionals, a compliance officer, and qualified officers (F-10). Agents
 support these roles. Agents never hold them. No document in this transition
 may assign a legal role to an agent.
 
-**P-03 Control independence.** The cro and the cco report outside the cio's
-line (Section 6.1). No agent may override, edit, or suppress a cro or a cco
-verdict. Only the founder or the board may accept a documented exception.
+**P-03 Control independence.** No agent may override, edit, or suppress a
+cro or a cco verdict. Only the user may accept a documented exception. The
+cro reports to the user (DEC-10). Revisit the reporting line before external
+money arrives (HF-REF-08 §6.2).
 
-**P-04 Enforce controls with the harness, not with prose.** Today's gates
-are advisory. A prose instruction does not block a tool call (F-03, F-08).
-Use a PreToolUse hook, a `tools: Agent(...)` allow-list, or a `settings.json`
-deny rule instead. Keep prose for guidance that carries no compliance
-weight.
+**P-04 Allow-lists and recorded approvals (DEC-17).** Today's gates are
+advisory. A prose instruction does not block a tool call (F-03, F-08). The
+founder chose agent verdicts plus a recorded user approval for control
+decisions. Use `tools: Agent(...)` allow-lists so a front-office agent
+cannot spawn or edit a control agent. Record every control approval as a
+receipt. Revisit hook enforcement before real capital (R-03).
 
 **P-05 Data-driven limits.** Store every loss limit, exposure limit, and
 leverage limit in a config file, never in code or in a skill's prose
@@ -264,14 +340,15 @@ file paths as CCGS for hooks, scripts, and config resolution (F-15). This
 keeps `UPGRADING.md` strategy A2 and strategy B usable for upstream security
 and bug fixes.
 
-**P-07 Design stage 3, build stage 1 first.** Design the full three-stage
-organization now. Build only the stage-1 roster first. This meets the
+**P-07 Design the full organization, build wave W1 first.** Design the
+full organization (W1, W2, W3) now. Build only the W1 information core
+first. This meets the
 "best organization" goal through the design. It also caps the organization
 at the size the founder needs, and no more (risk R-06).
 
 **P-08 Test first.** Write a test for every silent break, SB-01 to SB-28,
 before Phase P6 starts (Section 10). Write a failing-gate test for every
-new hook: break the guarded thing, confirm the check fails, then restore it
+new control gate and allow-list: break the guarded thing, confirm the check fails, then restore it
 (AAA-09).
 
 **P-09 One verdict vocabulary.** Use PASS, CONCERNS, FAIL, NOT ASSESSED
@@ -316,7 +393,7 @@ returns exit code 0; every area assessment carries a verifier pass.
 
 | Entry criteria | Exit criteria | Estimate | Owner |
 |---|---|---|---|
-| P0 done; `QUESTIONS.md` holds 36 questions in 9 rounds | Every question Q01-Q34 (and Q35-Q36 if triggered) has one DEC-NN entry | 4-8 h (plus 2-4 h founder time) | Advisor + Founder |
+| P0 done; `QUESTIONS.md` holds 40 questions in 10 rounds | Every question Q01-Q34 and Q37-Q40 (and Q35-Q36 if triggered) has one DEC-NN entry | 4-8 h (plus 2-4 h founder time) | Advisor + Founder |
 
 Tasks:
 
@@ -338,16 +415,21 @@ Gating questions: none. This phase produces the answers other phases need.
 |---|---|---|---|
 | P1 complete, all DEC-NN recorded | The founder approves the design package in writing (an approval receipt) | 12-30 h | Advisor |
 
+The design package uses [design-addendum-01.md](evidence/design-addendum-01.md)
+for the mission (DEC-09) and the wave roster (W1, W2, W3).
+
 Tasks:
 
-1. Finalize the agent roster from the Q05 and Q09 answers.
+1. Finalize the wave roster from the addendum and its Erratum 01: W1 (11
+   agents), W2 (23 total), W3 (29 total), and the Q25 conditional set
+   (0-4 more).
 2. Draft the lifecycle catalog (S1-S8, G1-G3) to replace
    `workflow-catalog.yaml`.
-3. Finalize the control model: verdict vocabulary, fixed seats, hook
-   rules.
+3. Finalize the control model: verdict vocabulary, fixed seats, and
+   approval-receipt rules (DEC-17).
 4. Draft the new `project.yaml` config schema: `archetype`, `jurisdiction`,
-   `risk.*`, `regulatory_calendar`, `controls.four_eyes`,
-   `controls.protected_paths`.
+   `risk.*`, `regulatory_calendar`, `coverage.*`, `controls.four_eyes`,
+   `controls.approval_required_for`.
 5. Set the skill build priority from the Q22 and Q23 answers.
 6. Build the Korean-English term map for shared documents.
 7. Present the design package to the founder for approval.
@@ -393,16 +475,16 @@ Tasks:
 1. Write the single verdict vocabulary into every gate file.
 2. Fix the cro and the cco seats. Remove their dependence on
    `modes.workflow`, `modes.review_mode`, and `team.size`.
-3. Build the protected-path PreToolUse hook and the approval-receipt
-   format.
+3. Build the approval-receipt format. A control decision without a
+   receipt reads NOT ASSESSED (DEC-17). Do not build a protected-path hook.
 4. Build the regulatory value registry (`as_of` and effective dates).
 5. Rewrite `coordination-rules.md` to add the non-override rule.
 6. Set the `tools: Agent(...)` allow-lists so a front-office agent cannot
    spawn or edit the cro, the cco, or their reports.
-7. Write a failing-gate test for every new hook.
+7. Write a failing-gate test for every control gate and allow-list.
 
-Outputs: `.claude/docs/coordination-rules.md` (revised); the protected-path
-hook script; the regulatory value registry file; the adapted
+Outputs: `.claude/docs/coordination-rules.md` (revised); the
+approval-receipt format; the regulatory value registry file; the adapted
 `review-receipts.sh`; agent frontmatter allow-lists;
 `tests/integration/control/*`.
 
@@ -412,24 +494,28 @@ Gating questions: Q10, Q13, Q14, Q15, Q25, Q26, Q28, Q35, Q36.
 
 | Entry criteria | Exit criteria | Estimate | Owner |
 |---|---|---|---|
-| P4 done | All three pilot components reach grade AAA; the re-estimate note exists | 10-25 h | Worker |
+| P4 done | All pilot components reach grade AAA; the re-estimate note exists | 10-25 h | Worker |
 
 Tasks:
 
-1. Build the cro agent to the AAA bar.
-2. Build the `/risk-report` skill to the AAA bar.
-3. Build the `/regulatory-calendar` skill to the AAA bar.
-4. Run each through the AAA-QUALITY-BAR.md checks.
+1. Build the chief-of-staff agent to the AAA bar.
+2. Build the `/daily-briefing` skill to the AAA bar.
+3. Run one stock through `/stock-pitch`, `/red-team-review`, and
+   `/cio-synthesis`, each to the AAA bar.
+4. Run each pilot component through the AAA-QUALITY-BAR.md checks.
 5. Log the actual hours spent on tasks 1-4.
-6. Re-estimate phases P6 through P9 from the measured hours.
+6. Re-estimate phases P6 through P9 from the measured hours. This
+   plan's P6-P9 hour estimates stay as stated until this re-estimate
+   runs.
 
-Outputs: `agents/cro.md`; `skills/risk-report/SKILL.md`;
-`skills/regulatory-calendar/SKILL.md`; a pilot log; a re-estimate note
-added to Section 11 of this document.
+Outputs: `agents/chief-of-staff.md`; `skills/daily-briefing/SKILL.md`;
+`skills/stock-pitch/SKILL.md`; `skills/red-team-review/SKILL.md`;
+`skills/cio-synthesis/SKILL.md`; a pilot log; a re-estimate note added
+to Section 11 of this document.
 
 Gating questions: Q22, Q23, Q33, Q34.
 
-### P6 — Stage-1 roster and priority skills
+### P6 — W1 roster and the W1 information products
 
 | Entry criteria | Exit criteria | Estimate | Owner |
 |---|---|---|---|
@@ -437,14 +523,22 @@ Gating questions: Q22, Q23, Q33, Q34.
 
 Tasks:
 
-1. Build the 10 stage-1 core agents (see `ORG-BLUEPRINT.md`).
-2. Build 0-3 archetype agents per the Q05 answer.
-3. Build the priority skill bundles from the Q22 answer.
-4. Build the matching templates.
-5. Run `/skill-test static` and `/skill-test category` on each new skill.
+1. Build the 11 W1 agents (addendum §4): chief-of-staff, cio, cro,
+   head-of-research, market-strategist, portfolio-manager,
+   research-analyst, idea-screener, red-team-analyst, data-steward,
+   and trader.
+2. Build the 14 W1 information-product skills (addendum §6):
+   `/daily-briefing`, `/weekly-report`, `/ask`, `/event-alert`,
+   `/house-view`, `/stock-pitch`, `/red-team-review`,
+   `/cio-synthesis`, `/idea-screen`, `/risk-report`,
+   `/portfolio-review`, `/call-review`, `/coverage-config`, and
+   `/refresh-facts`.
+3. Build the matching templates.
+4. Run `/skill-test static` and `/skill-test category` on each new
+   skill.
 
-Outputs: `agents/*.md` (stage-1 set); `skills/*/SKILL.md` (priority
-bundles); `templates/*`.
+Outputs: `agents/*.md` (the 11-agent W1 roster); `skills/*/SKILL.md`
+(the 14 W1 information products); `templates/*`.
 
 Gating questions: Q09, Q11, Q19, Q22.
 
@@ -452,39 +546,50 @@ Gating questions: Q09, Q11, Q19, Q22.
 
 | Entry criteria | Exit criteria | Estimate | Owner |
 |---|---|---|---|
-| P6 done for the stage-1 set one idea and one setup stage need | The idea cycle completes with no manual patching; the setup-stage gate returns a verdict; evidence is retained | 10-25 h | Worker + Founder (review) |
+| P6 done for the W1 set | One full week of the information cycle completes with no manual patching; evidence is retained | 10-25 h | Worker + Founder (review) |
 
 Tasks:
 
-1. Run one investment idea through the full cycle: idea, analysis,
-   portfolio review, pre-check, execution record, monitoring, and
-   post-review.
-2. Run one setup stage (S1-S8) through its own gate.
-3. Take a screenshot or a log of every step as evidence.
-4. Store the evidence in `production/qa/evidence/`.
-5. Record the dry run result and any patch it needs.
+1. Run one full week of the information cycle: 5 daily briefings
+   through `/daily-briefing` and 1 weekly report through
+   `/weekly-report`.
+2. Run 1 house view through `/house-view`.
+3. Run 2 stock calls through `/stock-pitch`, `/red-team-review`, and
+   `/cio-synthesis`.
+4. Trigger at least 1 alert through `/event-alert`.
+5. Take a screenshot or a log of every step as evidence.
+6. Store the evidence in `production/qa/evidence/`.
+7. Record the dry run result and any patch it needs.
 
 Outputs: `production/qa/evidence/*` (retained evidence); a dry-run report.
 
 Gating questions: Q17, Q18, Q20, Q23.
 
-### P8 — Stage-2/3 activation and conditional pipeline
+### P8 — W2 and W3 activation, plus the conditional pipeline
 
 | Entry criteria | Exit criteria | Estimate | Owner |
 |---|---|---|---|
-| P7 passed; the founder approves stage-2/3 activation | Each new component reaches grade AAA; the model-governance failing-gate test passes if the quant pipeline is built | 60-200 h (conditional on scope) | Worker |
+| P7 passed; the founder starts fund setup (the wave-W2 trigger, addendum §3) | Each new component reaches grade AAA; the model-governance failing-gate test passes if the quant pipeline is built | 60-200 h (conditional on scope) | Worker |
 
 Tasks:
 
-1. Build the remaining stage-2 agents and skills.
-2. Build the remaining stage-3 agents and skills.
+1. Build the remaining wave-W2 agents and skills, once the founder
+   starts fund setup (setup stage S1): cco, coo,
+   fund-operations-lead, investor-relations, compliance-analyst,
+   regulatory-reporting-specialist, operations-analyst,
+   fund-accountant, legal-counsel-liaison, technology-lead, and
+   security-officer.
+2. Build the remaining wave-W3 agents and skills, once the firm
+   reaches growth stage 2 or 3: head-of-trading,
+   investor-relations-lead, investor-communications-writer,
+   risk-analyst, risk-analytics-lead, and governance-secretary.
 3. If Q25 is C or D, build the quant research pipeline: `/model-change`,
    `/model-review`, `/backtest-evidence`, and the model governance
    controls.
-4. Activate conditional agents per the founder's archetype answer and the
-   Q24 answer.
+4. Activate the Q25 conditional agents: quant-research-lead,
+   model-governance-lead, quant-researcher, and data-engineer.
 
-Outputs: `agents/*.md` (stage-2/3 set); `skills/*/SKILL.md` (quant
+Outputs: `agents/*.md` (the W2 and W3 set); `skills/*/SKILL.md` (quant
 pipeline, if triggered); `templates/*` (investor-portal set, if Q24 is B).
 
 Gating questions: Q09, Q12, Q24, Q25, Q35, Q36.
@@ -511,8 +616,12 @@ Gating questions: Q29, Q30, Q31.
 
 ## 9. Founder decision process
 
-The founder answers 36 questions in 9 rounds, in `QUESTIONS.md`. Round 1
-starts right after the founder reads this plan.
+The founder answers 40 questions in 10 rounds, in `QUESTIONS.md`. Round
+R3+ is a follow-up round the mission reset added (DEC-09). It holds
+Q37-Q40, the questions that confirm the mission reset's scope
+([design-addendum-01.md](evidence/design-addendum-01.md) §7). Rounds 1
+through 5 and round R3+ are done, with 24 decisions recorded, DEC-01
+through DEC-24.
 
 Rules:
 
@@ -531,17 +640,18 @@ Rules:
 This table maps each round to the phases it unblocks. It is the Advisor's
 synthesis from the tasks in Section 8; mark it INFERENCE.
 
-| Round | Questions | Phases it unblocks |
-|---|---|---|
-| R1 | Q01-Q04 | P2, P3 |
-| R2 | Q05-Q08 | P2, P6 |
-| R3 | Q09-Q12 | P2, P4, P6, P8 |
-| R4 | Q13-Q16 | P3, P4 |
-| R5 | Q17-Q20 | P2, P6, P7 |
-| R6 | Q21-Q24 | P2, P5, P6, P7, P8 |
-| R7 | Q25-Q28 | P3, P4, P8 |
-| R8 | Q29-Q32 | P2, P3, P4, P9 |
-| R9 | Q33-Q36 | P3, P4, P5, P8 |
+| Round | Questions | Phases it unblocks | Status |
+|---|---|---|---|
+| R1 | Q01-Q04 | P2, P3 | Done |
+| R2 | Q05-Q08 | P2, P6 | Done |
+| R3 | Q09-Q12 | P2, P4, P6, P8 | Done |
+| R3+ | Q37-Q40 | P2, P6, P7 | Done |
+| R4 | Q13-Q16 | P3, P4 | Done |
+| R5 | Q17-Q20 | P2, P6, P7 | Done |
+| R6 | Q21-Q24 | P2, P5, P6, P7, P8 | Not started |
+| R7 | Q25-Q28 | P3, P4, P8 | Not started |
+| R8 | Q29-Q32 | P2, P3, P4, P9 | Not started |
+| R9 | Q33-Q36 | P3, P4, P5, P8 | Not started |
 
 ## 10. Verification strategy
 
@@ -551,12 +661,12 @@ phase to its check.
 | Phase | What is verified | How |
 |---|---|---|
 | P0 | Chunk lossless reassembly; 6 area assessments plus the org blueprint | `split_report.py --check` (exit 0); one verifier pass per area, plus one for the org blueprint |
-| P1 | Every question answered | A completeness check of DEC-NN entries against the 36 (plus 0-2 conditional) question IDs |
+| P1 | Every question answered | A completeness check of DEC-NN entries against the 38 unconditional (plus 0-2 conditional) question IDs |
 | P2 | The design package | A founder approval receipt; the term map checked against Appendix B |
 | P3 | Transplant integrity | SB-01 to SB-28 tests, one test per silent break |
 | P4 | The control spine | Failing-gate tests: break the guard, confirm the check fails, restore it |
 | P5 | The 3 pilot components | `/skill-test` static, spec, and category modes; one independent review receipt per component |
-| P6 | The stage-1 build | `/skill-test static` (0 FAIL) and `/skill-test category` (COMPLIANT) on every new skill; the ASD-STE100 lint helper run on every new document (observation only) |
+| P6 | The W1 build | `/skill-test static` (0 FAIL) and `/skill-test category` (COMPLIANT) on every new skill; the ASD-STE100 lint helper run on every new document (observation only) |
 | P7 | The dry run | The dry run itself: one idea through the full cycle, one setup stage through its gate, evidence retained |
 | P8 | Stage-2/3 build and the conditional pipeline | `/skill-test static` and `/skill-test category` on every new component; a model-governance failing-gate test if the quant pipeline is built |
 | P9 | Documentation and handoff | `/skill-test audit` across the full catalog; independent review receipts recorded for the document set |
@@ -611,16 +721,19 @@ Do not carry the original P6-P9 estimate forward without this check.
 |---|---|---|---|---|---|---|
 | R-01 | Agents get treated as legal personnel | M | H | Enforce the F-10 role list; check the human-boundary list on every agent (AAA-08) | Founder / cco | P2, P4 |
 | R-02 | Regulatory values go stale | M | M | Run `/refresh-facts` on a quarterly schedule (Q31); every value carries an `as_of` date in the registry | cco / compliance-analyst | P4, P9 |
-| R-03 | An advisory gate gets skipped silently | H | H | Replace prose gates with hooks and allow-lists (P-04); build the protected-path hook | Worker | P4 |
+| R-03 | An advisory gate gets skipped silently | M | H | Fixed control seats (DEC-18); agent verdict plus a recorded user approval (DEC-17); allow-lists (P-04); a control decision without a receipt reads NOT ASSESSED; revisit hook enforcement before real capital | Worker | P4 |
 | R-04 | A silent break appears during the transplant | H | M | Run the SB-01 to SB-28 test set before Phase P6 starts | Worker | P3 |
 | R-05 | A same-session review gets mistaken for an independent one | M | H | Label every agent review "pre-screen" (F-09); require a human sign-off receipt | Founder | P4, P5 |
-| R-06 | Scope grows toward the full 24-31 agent organization before it is needed | H | M | Design stage 3, build stage 1 first (P-07); a founder approval gate before each stage activation | Advisor | P2, P6, P8 |
-| R-07 | Confidential data or MNPI (undisclosed material information) reaches the repository | M | H | Apply the Q28 information-grade policy; start with a gitignored local directory; use the protected-path hook | cco | P4 |
+| R-06 | Scope grows toward the full 29-agent (W3) organization before it is needed | H | M | Design the full organization, build wave W1 first (P-07); a founder approval gate before each wave activation | Advisor | P2, P6, P8 |
+| R-07 | Confidential data or MNPI (undisclosed material information) reaches the repository | M | H | Apply the Q28 information-grade policy; start with a gitignored local directory; add a `settings.json` deny rule for that directory | cro (W1), cco (W2) | P4 |
 | R-08 | Upstream CCGS changes drift away from the transplant | M | M | Keep foundation file paths identical (P-06); use `UPGRADING.md` strategy A2 or B | Worker | P3 |
 | R-09 | An agent states a legal or regulatory fact with no source | M | H | Enforce the AAA-04 citation rule; every fact in this plan cites HF-REF-NN or F-NN | Advisor | All phases; checked at P9 |
 | R-10 | The agent `model:` tier pin turns out not to work | M | L | Measure whether the `model:` field changes behavior during Phase P3, before the Q34 tier plan is relied on | Worker | P3 |
 | R-11 | Two concurrent tracks (setup and operation) do not fit one `project.stage` value | M | M | Keep `project.stage` a single scalar (Q17); change only the `/help` and `/gate-check` tables (F-11) | Worker | P2, P3 |
 | R-12 | The source report is not legal, tax, or investment advice; some topics are gaps | H | H | State the disclaimer in Section 3; route each gap to outside counsel before the matching phase closes | Founder | P1 (decision to get counsel); ongoing |
+| R-13 | Confident but wrong information misleads the single decision maker | M | H | Run the bull, bear, and synthesis process for every call; state a confidence level; run `/call-review` to track the record; give a source and an as-of date on every number | cio / red-team-analyst | P6, P7 |
+| R-14 | Information for the user is read as investment advice to a third party | L | H | State in every product that it is for the user's own decisions; do not distribute products to a third party in wave W1 | chief-of-staff | P6, P9 |
+| R-15 | Stale prices or disclosures drive a call | M | M | The data-steward agent checks every as-of date; a product built on stale data shows NOT ASSESSED for that part | data-steward | P6, P7 |
 
 Section 12, risk R-12, lists the gaps that need outside counsel:
 
@@ -639,33 +752,35 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
 
 ## 13. Next steps
 
-1. The founder reads `README.md` and this plan (`PLAN.md`).
-2. The founder and the Advisor run round 1 (Q01-Q04) right after that
-   reading.
-3. The Advisor records each round-1 answer as a DEC-NN entry in
+1. Done. The founder read `README.md` and this plan (`PLAN.md`).
+2. Done. The founder and the Advisor ran round 1 (Q01-Q04), round 2
+   (Q05-Q08), round 3 (Q09-Q12), the follow-up round R3+ (Q37-Q40), and
+   round 4 (Q13-Q16), and round 5 (Q17-Q20).
+3. Done. The Advisor recorded 24 decisions, DEC-01 through DEC-24, in
    `QUESTIONS.md`.
-4. The Advisor and the founder run rounds 2 through 9, in order, one round
-   at a time.
-5. The Advisor adds Q35 and Q36 to round 9 only if the Q25 answer is C or
-   D.
-6. The Advisor drafts the Phase P2 design package from the completed
+4. **Next action.** The founder and the Advisor run round 6 (Q21-Q24,
+   the priorities).
+5. The Advisor and the founder run rounds 7 through 9, in order, one
+   round at a time.
+6. The Advisor adds Q35 and Q36 to round 9 only if the Q25 answer is C
+   or D.
+7. The Advisor drafts the Phase P2 design package from the completed
    decision log.
-7. The founder approves the Phase P2 design package with an approval
+8. The founder approves the Phase P2 design package with an approval
    receipt.
-8. The Worker starts Phase P3 once the founder approves Phase P2 and
-   answers Q04.
-9. The Advisor schedules the Phase P5 re-estimate check before Phase P6
-   starts.
+9. The Worker starts Phase P3 once the founder approves Phase P2.
+10. The Advisor schedules the Phase P5 re-estimate check before Phase
+    P6 starts.
 
 ## Appendix A: Requirements traceability
 
 | ID | Requirement | Satisfied in | Evidence |
 |---|---|---|---|
-| UR-01 | Build the best hedge-fund organization | Section 6; `ORG-BLUEPRINT.md` | The full roster, tier structure, and stage counts |
-| UR-02 | Use the standard hedge-fund org structure; staff it with AAA-or-better agents | Section 6; Section 10; `AAA-QUALITY-BAR.md` | The AAA-01 to AAA-14 grading rule; "only AAA may ship" |
+| UR-01 | Build the best hedge-fund organization | Section 6; `ORG-BLUEPRINT.md` | The mission (DEC-09); the wave roster (W1 11, W2 23 total, W3 29 total, plus 0-4 conditional) |
+| UR-02 | Use the standard hedge-fund org structure; staff it with AAA-or-better agents | Section 6; Section 10; `AAA-QUALITY-BAR.md` | The mission (DEC-09); the wave roster; the AAA-01 to AAA-14 grading rule; "only AAA may ship" |
 | UR-03 | Use transition strategy C (transplant the operating foundation only) | Section 2; Section 3; Section 6; `TRANSPLANT-MANIFEST.md` | F-01, the review's Strategy C recommendation |
-| UR-04 | Decide the agents and skills through discussion with the founder | Section 9; `QUESTIONS.md` | 9 rounds, 36 questions, DEC-NN decision log. Status: in progress. Round 1 starts when this plan is delivered. |
-| UR-05 | Ask the founder detailed questions | Section 9; `QUESTIONS.md` | 36 questions with 질문/왜 묻는가/근거 fields. Status: in progress (rounds 1 to 9). |
+| UR-04 | Decide the agents and skills through discussion with the founder | Section 9; `QUESTIONS.md` | 10 rounds, 40 questions, DEC-NN decision log. Status: rounds 1-5 and round R3+ are done (24 decisions). Round 6 is next. |
+| UR-05 | Ask the founder detailed questions | Section 9; `QUESTIONS.md` | 40 questions with 질문/왜 묻는가/근거 fields. Status: rounds 1-5 and round R3+ are done (24 decisions); rounds 6 through 9 remain. |
 | UR-06 | Give 4-5 options per question | Section 9 rules; `QUESTIONS.md` | Every question has 4 or 5 options ([`evidence/question-spec.md`](evidence/question-spec.md)). |
 | UR-07 | Use `hedge_fund_setup_report.md` as the base frame | Section 4.2 | HF-REF-00 to HF-REF-20 chunk index |
 | UR-08 | Split the report into optimal chunks | Section 4.2; Section 8, Phase P0 | 21 chunks, byte-exact reassembly check |
@@ -699,10 +814,12 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
   every gate. It does not scale down with `modes.workflow`,
   `modes.review_mode`, or `team.size` (F-04, F-05, F-06).
 - **protected path** — a file path (for example `config/risk/**`,
-  `policies/**`) that a PreToolUse hook blocks, unless a matching approval
-  receipt exists.
+  `policies/**`) whose change needs an approval receipt (DEC-17). No hook
+  blocks the write. The receipt is the control, and a change without a
+  receipt reads NOT ASSESSED.
 - **approval receipt** — a recorded, hashed approval for a change to a
   protected path, or for a stage advance. It names the approver's role and
   the content hash.
-- **stage activation** — the count of agents and skills built and turned
-  on at a given organization stage (stage 1, 2, or 3). See Section 6.1.
+- **activation wave** — the set of agents and skills turned on together:
+  W1 information core, W2 fund operation, W3 institutional. See Section
+  6.1 and `evidence/design-addendum-01.md` §3.

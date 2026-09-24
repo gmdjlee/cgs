@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-ORG-001 |
 | Title | Hedge Fund Standard Organization Blueprint |
-| Version | 0.1 |
+| Version | 0.3 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -26,6 +26,8 @@ accounting firm first.
 | Version | Date | Change |
 |---|---|---|
 | 0.1 | 2026-09-24 | Initial draft. |
+| 0.2 | 2026-09-24 | Mission reset after founder rounds 1-3; activation waves; W1 information core. |
+| 0.3 | 2026-09-24 | Kept ceo-office in W2 (Erratum 01: W1 11, W2 23 total, W3 29 total). Applied DEC-17 to §8 and §9. Recorded DEC-17 to DEC-24 in §14. Defined the 8 /stock-pitch sections (DEC-23). |
 
 ## 2. Purpose and basis
 
@@ -52,6 +54,43 @@ new). Its control process (decision records, traceability, change
 control, gates) is close to T1 (a software product organization, 70.3%
 reusable). This blueprint sets the organization. The reuse decision itself
 is out of scope here and belongs to `TRANSPLANT-MANIFEST.md`.
+
+## 2A. Mission and founder decisions
+
+The agent organization gives the founder, one user, all the investment
+information that a hedge-fund organization produces. The user holds the
+CEO and CIO roles together (DEC-03). The information areas are research,
+investment direction (house view), risk, stock picking, and market
+analysis (DEC-09).
+
+Rules:
+
+- The user makes every investment decision. Agents give information,
+  analysis, and recommendations with a confidence level.
+- Agents do not send orders.
+- Every number carries a source and an as-of date.
+- Every stock call and every house-view change goes through the bull
+  case, the bear case, and the synthesis (DEC-16).
+- The output serves the user's own decisions. It is not advice to third
+  parties.
+
+Three rounds of founder decisions set this mission reset. See
+[QUESTIONS.md](QUESTIONS.md) and `evidence/design-addendum-01.md`. The
+table below lists the decisions that shape this blueprint.
+
+| DEC | Question | Answer | Effect on this blueprint |
+|---|---|---|---|
+| DEC-03 | Q03 founder role | CEO and CIO, combined | The user is the only decision maker for investment and firm matters (Section 5). |
+| DEC-05 | Q05 archetype | Single-manager fundamental | Section 7 marks this archetype as selected. Quant rows stay CONDITIONAL. |
+| DEC-06 | Q06 strategy | Long-biased | The cro agent must give bear-market stress information for the book (Section 6). |
+| DEC-09 | Q09 scale, mission reset | Information core for one user | This section states the mission. Wave W1 sets the first roster (Section 6). |
+| DEC-10 | Q10 control lines | The cro and the cco report to the user | Section 5 states this rule and its review trigger. |
+| DEC-11 | Q11 front office | Sector analysts | research-analyst runs as one instance per sector cluster (Section 6). |
+| DEC-12 | Q12 governance | Founder sole control | The key-person clause and the succession plan stay on the document list (Section 13). |
+| DEC-13 | Q37 non-investment scope | Investment information first | Wave W1 covers investment information only. Wave W2 adds operations, IR, and regulatory reporting (Section 6). |
+| DEC-14 | Q38 delivery | Briefings, reports, Q&A, alerts | Section 11A states the delivery cadence. |
+| DEC-15 | Q39 coverage | Korean equities, macro, global indicators | Section 11A states the coverage rule. Coverage stays config data for a later US addition. |
+| DEC-16 | Q40 conclusion method | Bull case, bear case, CIO synthesis | Section 8 states the bull/bear rule. Every call needs both cases and a synthesis. |
 
 ## 3. Functions
 
@@ -112,7 +151,36 @@ not do" column lists the exact boundary for each role.
 
 ## 5. Reporting lines and independence rules
 
-### 5.1 Stage-1 reporting-line diagram
+### 5.1 W1 information-core reporting lines
+
+The cro agent reports to the user (CEO). Its verdicts stay
+non-overridable by other agents (Section 8, DEC-10). Revisit this rule
+before external money arrives (HF-REF-08 §6.2).
+
+```mermaid
+flowchart TB
+    USER["User<br/>CEO and CIO"] --> COS["chief-of-staff"]
+    USER --> CIO["cio"]
+    USER --> CRO["cro"]
+    CIO --> HOR["head-of-research"]
+    CIO --> MS["market-strategist"]
+    CIO --> PM["portfolio-manager"]
+    CIO --> RTA["red-team-analyst"]
+    HOR --> RA["research-analyst<br/>(per sector)"]
+    HOR --> ISC["idea-screener"]
+    COS --> DS["data-steward"]
+    PM --> TRD["trader"]
+```
+
+This diagram shows the wave-W1 roster (Section 6). Solid lines are
+reporting lines. The user is the only decision maker (DEC-03, Section
+2A).
+
+### 5.2 W2 fund-operation reporting lines (from HF-REF-08 §6.2)
+
+This diagram applies from wave W2, when the founder starts fund setup
+(Section 6). It keeps the CEO and CIO boxes separate, because HF-REF-08
+§6.2 states them as separate seats; the user holds both under DEC-03.
 
 ```mermaid
 flowchart TB
@@ -132,7 +200,7 @@ flowchart TB
 This diagram matches HF-REF-08 §6.2. Solid lines are internal reporting
 lines. The dotted line marks an outsourced relationship.
 
-### 5.2 Independence rules
+### 5.3 Independence rules
 
 - **Risk must not report to the CIO.** HF-REF-08 §6.2 names this the
   "핵심" (key) rule: "위험관리 담당이 CIO에게 보고하는 구조는 피해야 합니다"
@@ -151,23 +219,19 @@ lines. The dotted line marks an outsourced relationship.
   can demand a fix. The custodian watches management instructions and
   reconciles fund assets every quarter. HF-REF-06 §4.3 표 4-3.
 
-### 5.3 Dependency on founder questions Q03 and Q10
+### 5.4 Q03 and Q10 resolution
 
-This section's reporting-line design depends on two open founder
-decisions:
+The founder decided Q03 and Q10. The user holds the CEO and CIO roles
+together (DEC-03). The cro and the cco report to the user (DEC-10). This
+is the founder's own choice, not the report's recommended answer: the
+report recommends the CRO and CCO report outside the CEO's line when one
+person holds CEO and CIO, because the CEO's line is then also the CIO's
+line (HF-REF-08 §6.2).
 
-- **Q03** (the founder's own title — CEO only, CEO and CIO combined, CIO
-  only, or a non-executive chair) changes whether the CEO and CIO boxes in
-  the diagram above merge into one person.
-- **Q10** (the reporting line for the CRO and the CCO) sets whether both
-  report to the CEO, both report to the board, or the lines split — for
-  example, CRO to the CEO and CCO to the board. The recommended answer
-  depends on Q03: if the founder holds CEO and CIO together (Q03 = B), the
-  report recommends CRO and CCO report outside the CEO's line, because the
-  CEO's line is also the CIO's line in that case.
-
-Do not finalize the diagram in Section 5.1 until the founder answers Q03
-and Q10.
+The W1 diagram (Section 5.1) shows this reporting line for the
+information core. Revisit DEC-10 before external money arrives. An
+institutional investor checks the CRO reporting line in every operational
+due-diligence review (HF-REF-08 §6.2).
 
 ## 6. Standard agent roster
 
@@ -191,63 +255,89 @@ the new agent copies: the frontmatter, the collaboration protocol, and the
 named mechanism. No game content transfers (Strategy C). The evidence for
 each mechanism is in `evidence/assess-compact.md` (agents-gates area).
 
-| # | Agent ID | Tier | Supports (human role) | Reports to | Stage | Condition | Primary chunks | CCGS donor skeleton | Prohibited beyond the general list |
+| # | Agent ID | Tier | Supports (human role) | Reports to | Wave | Condition | Primary chunks | CCGS donor skeleton | Prohibited beyond the general list |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | ceo-office | 1 | 대표이사(CEO) | CEO (human) / board | 1 | core | HF-REF-08 표 6-1; HF-REF-05 표 4-1 | producer | — |
-| 2 | cio | 1 | CIO | CEO | 1 | core | HF-REF-08 §6.2; HF-REF-09 §7.1 | creative-director (protocol shape only) | Must not set the final risk budget. |
-| 3 | cro | 1 | 위험관리 담당(CRO) | CEO or board — never CIO | 1 | core | HF-REF-09 §7.2; HF-REF-14 | technical-director (Strategic Decision Workflow shape); systems-designer (Formula Output Format for limit formulas) | Its verdict must not be overridden by any other agent (Section 8). |
-| 4 | cco | 1 | 준법감시인(CCO) | CEO or board | 1 | core | HF-REF-06 §4.5; HF-REF-14 | technical-director (Strategic Decision Workflow shape); security-engineer (per-change review checklist) | Its verdict must not be overridden by any other agent (Section 8); must not do asset management. |
-| 5 | coo | 1 | CFO·COO | CEO | 1 | core | HF-REF-08 표 6-1; HF-REF-10 §7.4 | producer | — |
-| 6 | portfolio-manager | 2 | 포트폴리오 매니저(PM)·운용역 | cio | 1 | core | HF-REF-08 표 6-1; HF-REF-09 §7.1 | game-designer (Question-First Workflow shape only) | Must not submit an order. |
-| 7 | fund-operations-lead | 2 | 오퍼레이션 | coo | 1 | core | HF-REF-10 §7.4 표 7-2 | release-manager (strict, no-skip staged pipeline) | — |
-| 8 | head-of-research | 2 | 애널리스트 (research function) | cio | 2 | core | HF-REF-08 표 6-1; HF-REF-09 §7.1 | game-designer (Question-First Workflow shape only) | — |
-| 9 | head-of-trading | 2 | 트레이더 (execution function) | cio | 2 | core | HF-REF-09 §7.3; HF-REF-06 §4.4 | release-manager (no-skip pipeline; halt on a failed step) | Must not send a live order. |
-| 10 | investor-relations-lead | 2 | IR 전담 인력 | coo | 2 | core | HF-REF-08 §6.3 표 6-2 (2단계 row) | community-manager (no-unverified-claims rule; crisis communication) | Must not make an investor promise. |
-| 11 | technology-lead | 2 | IT·데이터·보안 | coo | 2 | core | HF-REF-12 §7.8 | technical-director | — |
-| 12 | legal-counsel-liaison | 2 | 법무 (external law-firm interface) | ceo-office, with a dotted line to cco | 2 | core | HF-REF-08 표 6-1 | No domain donor; game-designer (Question-First Workflow shape only) | Must not give legal advice. |
-| 13 | risk-analytics-lead | 2 | CRO's 전담 리스크팀 (stage 2) / 중앙 리스크·데이터 플랫폼 (stage 3) | cro | 3 | core | HF-REF-08 §6.3 표 6-2; HF-REF-09 §7.2 | analytics-engineer (metric taxonomy; dashboard specification) | Shares the cro's non-override protection (Section 8). |
-| 14 | quant-research-lead | 2 | CIO (수석 연구자 겸직 — may double as chief researcher, INFERENCE; see §7.2) | cio | 1 | CONDITIONAL archetype = quant (Q05 = B) | HF-REF-08 표 6-3; HF-REF-12 §7.8 | prototyper (research isolation rule; PROCEED/PIVOT/KILL) | No approval authority over a model change (Section 9). |
-| 15 | model-governance-lead | 2 | model-change control (new control function) | cro — never to research | 1 | CONDITIONAL archetype = quant (Q05 = B) | HF-REF-12 §7.8; HF-REF-14 §8.5 표 8-3 | lead-programmer (standards enforcement; code review); qa-lead (evidence-type table) | Gives technical input only; approval rests with cro/cco (Section 9). |
-| 16 | research-analyst | 3 | 애널리스트·퀀트 리서처 | cio (stage 1) / head-of-research (stage 2+) | 1 | core — instance count per Q11 | HF-REF-08 표 6-1; HF-REF-09 §7.1 | game-designer (Question-First Workflow shape only) | Must not make the final investment call. |
-| 17 | trader | 3 | 트레이더 | cio (stage 1) / head-of-trading (stage 2+) | 1 | core — execution support only | HF-REF-08 표 6-1; HF-REF-09 §7.3 | No domain donor; lead-programmer (Implementation Workflow shape only) | Must not send a live order. |
-| 18 | investor-relations | 3 | IR·마케팅 | coo (stage 1) / investor-relations-lead (stage 2+) | 1 | core | HF-REF-08 표 6-1; HF-REF-11 §7.7 | community-manager (discipline only) | Must not make an investor promise. |
-| 19 | risk-analyst | 3 | CRO's team | cro | 2 | core | HF-REF-09 §7.2 표 7-1 | systems-designer (Formula Output Format) | — |
-| 20 | compliance-analyst | 3 | CCO's team | cco | 2 | core | HF-REF-06 §4.5 | security-engineer (per-change review checklist) | — |
-| 21 | regulatory-reporting-specialist | 3 | CCO's team (regulatory calendar) | cco | 2 | core | HF-REF-06 §4.3 표 4-3 | release-manager (staged pipeline; version numbering) | — |
-| 22 | operations-analyst | 3 | 오퍼레이션 | fund-operations-lead | 2 | core | HF-REF-10 §7.4 표 7-2 | qa-tester (checklist and case writing) | Must not give the final reconciliation-correction approval. |
-| 23 | fund-accountant | 3 | 펀드 회계·기준가 (shadow NAV, fee calc) | fund-operations-lead | 2 | core | HF-REF-10 §7.4; HF-REF-11 §7.6 | economy-designer (canonical registry awareness) | Must not give the final NAV confirmation. |
-| 24 | investor-communications-writer | 3 | IR reporting drafts | investor-relations-lead | 2 | core | HF-REF-11 §7.7 | writer | Must not make an investor promise. |
-| 25 | security-officer | 3 | IT·보안 | technology-lead | 2 | core | HF-REF-12 §7.8 | security-engineer | Must not grant or revoke an access right alone. |
-| 26 | governance-secretary | 3 | 이사회·감사 / 투자위원회 minutes, succession tracking | ceo-office / board | 3 | core | HF-REF-16 §9.3; HF-REF-17 §9.5 표 9-5 | producer (records; milestone tracking) | Must not cast a board or investment-committee vote. |
-| 27 | quant-researcher | 3 | 퀀트 리서처 | quant-research-lead | 1 | CONDITIONAL archetype = quant (Q05 = B or E) | HF-REF-08 표 6-1; HF-REF-12 §7.8 | prototyper (isolation rule; worktree isolation) | Must not approve a model for live use. |
-| 28 | data-engineer | 3 | IT·데이터 (code pipeline) | technology-lead | 2 | CONDITIONAL code pipeline (Q25 = C/D) | HF-REF-12 §7.8 | devops-engineer (branching strategy; CI); engine-programmer (data pipeline code) | — |
-| 29 | valuation-analyst | 3 | 자산 평가 위원회 support | cro / valuation-committee chair | 2 | CONDITIONAL non-marketable-asset strategy (Q06 = C) | HF-REF-06 §4.5 | economy-designer (canonical registry; conflicting-value flags) | Must not give the final valuation vote. |
-| 30 | macro-economist | 3 | 이코노미스트 (macro archetype) | cio | 1 | CONDITIONAL archetype = macro (Q05 = D) | HF-REF-03 §2.1 표 2-1; HF-REF-09 §7.1 | systems-designer (Formula Output Format) | — |
-| 31 | pod-lead | 3 | 운용팀(pod) lead | capital-allocation-support / cio (solid line); central risk, dotted oversight via cro | 3 | CONDITIONAL archetype = multi-manager (Q05 = C) — not fit for the founding stage, HF-REF-03 §2.1 | HF-REF-08 §6.4 표 6-3 | producer (scope and schedule discipline) | Must not exceed the pod loss limit the cro sets. |
-| 32 | capital-allocation-support | 3 | 자본배분위원회 | cio / 자본배분위원회 | 3 | CONDITIONAL archetype = multi-manager (Q05 = C) — not fit for the founding stage, HF-REF-03 §2.1 | HF-REF-08 §6.4 표 6-3 | economy-designer (source and sink balance model) | Must not give the final capital-allocation vote. |
+| 1 | ceo-office | 1 | 대표이사(CEO) — firm management, from wave W2 (chief-of-staff holds the W1 briefing role) | CEO (human) / board | W2 | core | HF-REF-08 표 6-1; HF-REF-05 표 4-1 | producer | — |
+| 2 | cio | 1 | CIO — runs the bull, bear, and synthesis process; writes the synthesis with a confidence level (DEC-16) | CEO | W1 | core | HF-REF-08 §6.2; HF-REF-09 §7.1 | creative-director (protocol shape only) | Must not set the final risk budget. Must not decide for the user (Section 2A). |
+| 3 | cro | 1 | 위험관리 담당(CRO) — gives risk information: exposure, concentration, liquidity, bear-market stress, and regulatory limits (DEC-06, DEC-13) | user (CEO) — never cio (DEC-10) | W1 | core | HF-REF-09 §7.2; HF-REF-14 | technical-director (Strategic Decision Workflow shape); systems-designer (Formula Output Format for limit formulas) | Its verdict must not be overridden by any other agent (Section 8). |
+| 4 | cco | 1 | 준법감시인(CCO) | user (CEO), DEC-10 | W2 | core | HF-REF-06 §4.5; HF-REF-14 | technical-director (Strategic Decision Workflow shape); security-engineer (per-change review checklist) | Its verdict must not be overridden by any other agent (Section 8); must not do asset management. |
+| 5 | coo | 1 | CFO·COO | CEO | W2 | core | HF-REF-08 표 6-1; HF-REF-10 §7.4 | producer | — |
+| 6 | portfolio-manager | 2 | 포트폴리오 매니저(PM)·운용역 — turns approved calls into a model portfolio view and sizing proposals | cio | W1 | core | HF-REF-08 표 6-1; HF-REF-09 §7.1 | game-designer (Question-First Workflow shape only) | Must not submit an order. |
+| 7 | fund-operations-lead | 2 | 오퍼레이션 | coo | W2 | core | HF-REF-10 §7.4 표 7-2 | release-manager (strict, no-skip staged pipeline) | — |
+| 8 | head-of-research | 2 | 애널리스트 (research function) | cio | W1 | core | HF-REF-08 표 6-1; HF-REF-09 §7.1 | game-designer (Question-First Workflow shape only) | — |
+| 9 | head-of-trading | 2 | 트레이더 (execution function) | cio | W3 | core | HF-REF-09 §7.3; HF-REF-06 §4.4 | release-manager (no-skip pipeline; halt on a failed step) | Must not send a live order. |
+| 10 | investor-relations-lead | 2 | IR 전담 인력 | coo | W3 | core | HF-REF-08 §6.3 표 6-2 (2단계 row) | community-manager (no-unverified-claims rule; crisis communication) | Must not make an investor promise. |
+| 11 | technology-lead | 2 | IT·데이터·보안 | coo | W2 | core | HF-REF-12 §7.8 | technical-director | — |
+| 12 | legal-counsel-liaison | 2 | 법무 (external law-firm interface) | ceo-office, with a dotted line to cco | W2 | core | HF-REF-08 표 6-1 | No domain donor; game-designer (Question-First Workflow shape only) | Must not give legal advice. |
+| 13 | risk-analytics-lead | 2 | CRO's 전담 리스크팀 (stage 2) / 중앙 리스크·데이터 플랫폼 (stage 3) | cro | W3 | core | HF-REF-08 §6.3 표 6-2; HF-REF-09 §7.2 | analytics-engineer (metric taxonomy; dashboard specification) | Shares the cro's non-override protection (Section 8). |
+| 14 | quant-research-lead | 2 | CIO (수석 연구자 겸직 — may double as chief researcher, INFERENCE; see §7.2) | cio | CONDITIONAL | CONDITIONAL (Q25 = C or D) | HF-REF-08 표 6-3; HF-REF-12 §7.8 | prototyper (research isolation rule; PROCEED/PIVOT/KILL) | No approval authority over a model change (Section 9). |
+| 15 | model-governance-lead | 2 | model-change control (new control function) | cro — never to research | CONDITIONAL | CONDITIONAL (Q25 = C or D) | HF-REF-12 §7.8; HF-REF-14 §8.5 표 8-3 | lead-programmer (standards enforcement; code review); qa-lead (evidence-type table) | Gives technical input only; approval rests with cro/cco (Section 9). |
+| 16 | research-analyst | 3 | 애널리스트·퀀트 리서처 — writes the bull case and the full research note | cio (stage 1) / head-of-research (stage 2+) | W1 | core — one instance per sector cluster (DEC-11) | HF-REF-08 표 6-1; HF-REF-09 §7.1 | game-designer (Question-First Workflow shape only) | Must not make the final investment call. |
+| 17 | trader | 3 | 트레이더 — gives execution information only: liquidity, market impact, trading cost, including the 0.20% securities transaction tax (HF-REF-06 §4.6) | cio (stage 1) / head-of-trading (stage 2+) | W1 | core — execution support only | HF-REF-08 표 6-1; HF-REF-09 §7.3 | No domain donor; lead-programmer (Implementation Workflow shape only) | Must not send a live order. |
+| 18 | investor-relations | 3 | IR·마케팅 | coo (stage 1) / investor-relations-lead (stage 2+) | W2 | core | HF-REF-08 표 6-1; HF-REF-11 §7.7 | community-manager (discipline only) | Must not make an investor promise. |
+| 19 | risk-analyst | 3 | CRO's team | cro | W3 | core | HF-REF-09 §7.2 표 7-1 | systems-designer (Formula Output Format) | — |
+| 20 | compliance-analyst | 3 | CCO's team | cco | W2 | core | HF-REF-06 §4.5 | security-engineer (per-change review checklist) | — |
+| 21 | regulatory-reporting-specialist | 3 | CCO's team (regulatory calendar) | cco | W2 | core | HF-REF-06 §4.3 표 4-3 | release-manager (staged pipeline; version numbering) | — |
+| 22 | operations-analyst | 3 | 오퍼레이션 | fund-operations-lead | W2 | core | HF-REF-10 §7.4 표 7-2 | qa-tester (checklist and case writing) | Must not give the final reconciliation-correction approval. |
+| 23 | fund-accountant | 3 | 펀드 회계·기준가 (shadow NAV, fee calc) | fund-operations-lead | W2 | core | HF-REF-10 §7.4; HF-REF-11 §7.6 | economy-designer (canonical registry awareness) | Must not give the final NAV confirmation. |
+| 24 | investor-communications-writer | 3 | IR reporting drafts | investor-relations-lead | W3 | core | HF-REF-11 §7.7 | writer | Must not make an investor promise. |
+| 25 | security-officer | 3 | IT·보안 | technology-lead | W2 | core | HF-REF-12 §7.8 | security-engineer | Must not grant or revoke an access right alone. |
+| 26 | governance-secretary | 3 | 이사회·감사 / 투자위원회 minutes, succession tracking | ceo-office / board | W3 | core | HF-REF-16 §9.3; HF-REF-17 §9.5 표 9-5 | producer (records; milestone tracking) | Must not cast a board or investment-committee vote. |
+| 27 | quant-researcher | 3 | 퀀트 리서처 | quant-research-lead | CONDITIONAL | CONDITIONAL (Q25 = C or D) | HF-REF-08 표 6-1; HF-REF-12 §7.8 | prototyper (isolation rule; worktree isolation) | Must not approve a model for live use. |
+| 28 | data-engineer | 3 | IT·데이터 (code pipeline) | technology-lead | CONDITIONAL | CONDITIONAL (Q25 = C or D) | HF-REF-12 §7.8 | devops-engineer (branching strategy; CI); engine-programmer (data pipeline code) | — |
+| 29 | valuation-analyst | 3 | 자산 평가 위원회 support | cro / valuation-committee chair | not applicable (DEC-05, DEC-06) | not applicable — Q06 = B, long-biased (DEC-06) | HF-REF-06 §4.5 | economy-designer (canonical registry; conflicting-value flags) | Must not give the final valuation vote. |
+| 30 | macro-economist | 3 | 이코노미스트 (macro archetype) | cio | not applicable (DEC-05, DEC-06) | not applicable — archetype = single-manager fundamental (DEC-05) | HF-REF-03 §2.1 표 2-1; HF-REF-09 §7.1 | systems-designer (Formula Output Format) | — |
+| 31 | pod-lead | 3 | 운용팀(pod) lead | capital-allocation-support / cio (solid line); central risk, dotted oversight via cro | not applicable (DEC-05, DEC-06) | not applicable — archetype = single-manager fundamental (DEC-05) | HF-REF-08 §6.4 표 6-3 | producer (scope and schedule discipline) | Must not exceed the pod loss limit the cro sets. |
+| 32 | capital-allocation-support | 3 | 자본배분위원회 | cio / 자본배분위원회 | not applicable (DEC-05, DEC-06) | not applicable — archetype = single-manager fundamental (DEC-05) | HF-REF-08 §6.4 표 6-3 | economy-designer (source and sink balance model) | Must not give the final capital-allocation vote. |
+| 33 | chief-of-staff | 1 | The user (CEO and CIO) — daily briefing, weekly report, and routing | user | W1 | core (DEC-09) | Not in HF-REF — new role for the mission reset | producer (coordination, milestone tracking) | Must not change an analyst's conclusion (Section 8). |
+| 34 | market-strategist | 2 | Market analysis — macro, rates, FX, flows, and the KOSPI/KOSDAQ regime | cio | W1 | core (DEC-09) | Not in HF-REF — new role for the mission reset | systems-designer (Formula Output Format for indicators) | Must not make the final house-view decision. |
+| 35 | red-team-analyst | 3 | Bear case and thesis attack, for every stock call and house-view change | cio | W1 | core (DEC-09, DEC-16) | Not in HF-REF — new role for the mission reset | design-review (adversarial reviewer brief) | Must not write the bull case it attacks (Section 8). |
+| 36 | idea-screener | 3 | Idea generation — valuation, earnings, and event screens for the sector analysts | head-of-research | W1 | core (DEC-09) | Not in HF-REF — new role for the mission reset | balance-check (outlier detection) | Must not make the final investment call. |
+| 37 | data-steward | 3 | Data sources and freshness — source registry, adapters, and coverage config | chief-of-staff | W1 | core (DEC-09) | Not in HF-REF — new role for the mission reset | economy-designer (canonical registry) | Must not change a source value without a logged reason. |
 
-### 6.1 Stage counts, with the arithmetic
+### 6.1 Wave counts, with the arithmetic
 
-- **Stage 1: 10–13.** 10 core agents (rows 1–5, 6, 7, 16, 17, 18) plus 0–3
-  archetype-conditional agents. The quant archetype adds up to 3
-  (quant-research-lead and model-governance-lead, row 14–15, plus
-  quant-researcher, row 27, stage 1). The macro archetype adds 1 (macro-economist, row 30).
-  Archetypes do not combine, so 3 is the ceiling from a single archetype,
-  not a sum of archetypes. 10 + (0 to 3) = 10–13.
-- **Stage 2: 22–27.** Carry forward stage 1 (10 core + 0–3 conditional).
-  Add 12 stage-2 core agents: 5 Tier-2 leads (rows 8–12) and 7 Tier-3
-  specialists (rows 19–25). Add 0–2 stage-2 conditional agents
-  (data-engineer, row 28; valuation-analyst, row 29).
-  (10 + 0–3) + 12 + (0 to 2) = 22–27.
-- **Stage 3: 24–31.** Carry forward stage 2 (22–27). Add 2 stage-3 core
-  agents: risk-analytics-lead (row 13) and governance-secretary (row 26).
-  Add 0–2 multi-manager-only conditional agents (pod-lead, row 31;
-  capital-allocation-support, row 32).
-  (22 to 27) + 2 + (0 to 2) = 24–31.
+- **W1: 11 agent definitions.** Five new agents (chief-of-staff,
+  market-strategist, red-team-analyst, idea-screener, data-steward, rows
+  33–37) plus six agents kept or moved from the old roster (cio, cro,
+  portfolio-manager, research-analyst, trader, and head-of-research, rows
+  2, 3, 6, 8, 16, 17). research-analyst runs as one instance per sector
+  cluster (DEC-11). 5 + 6 = 11.
+- **W2: 11 agents named in addendum §4, plus ceo-office.** The addendum
+  names 11 agents moved to W2: cco, coo, fund-operations-lead,
+  investor-relations, compliance-analyst,
+  regulatory-reporting-specialist, operations-analyst, fund-accountant,
+  legal-counsel-liaison, technology-lead, and security-officer (rows 4,
+  5, 7, 18, 20, 21, 22, 23, 12, 11, 25). ceo-office (row 1) also moves to
+  W2: chief-of-staff takes its W1 briefing role, and ceo-office keeps
+  supporting firm management once fund setup starts. The addendum's own
+  count text states "11 more, 22 in total"; it does not name ceo-office in
+  that count. The Advisor keeps ceo-office in W2 because it supports
+  the fund-setup documents (business plan, financial model, registration
+  pack). `evidence/design-addendum-01.md` Erratum 01 records this
+  correction. 11 + 1 = 12. Running total after W1 and W2: 11 + 12 = 23.
+- **W3: 6 agents.** head-of-trading, investor-relations-lead,
+  investor-communications-writer, risk-analyst, risk-analytics-lead, and
+  governance-secretary (rows 9, 10, 24, 19, 13, 26). Running total after
+  W1, W2, and W3: 23 + 6 = 29.
+- **Conditional: 0 to 4.** quant-research-lead, model-governance-lead,
+  quant-researcher, and data-engineer (rows 14, 15, 27, 28). These
+  activate only when Q25 = C or D.
+- **Not applicable: 4.** macro-economist, pod-lead,
+  capital-allocation-support, and valuation-analyst (rows 30, 31, 32, 29).
+  DEC-05 and DEC-06 rule out their archetype or strategy condition.
 
-These counts are design estimates (design-spec §3), not a fixed headcount.
+**Final counts.** W1 = 11, W1 + W2 = 23, W1 + W2 + W3 = 29, plus 0 to 4
+conditional on Q25 = C or D. Addendum §4 gave 22 and 28 because it left
+ceo-office out of the W2 list; Erratum 01 corrects this.
+
+These counts are design estimates (design-spec §3), not a fixed
+headcount.
 
 ## 7. Archetype variants
+
+DEC-05 selected the single-manager fundamental archetype (Section 7.1).
+The other archetypes below stay in this document as reference.
 
 HF-REF-08 표 6-3 names four archetypes. This section adds a fifth,
 hybrid, variant as INFERENCE, because the loaded chunks do not give it a
@@ -326,8 +416,8 @@ HF-REF-16 §9.3, which describes D.E. Shaw as "하이브리드 (퀀트와 재량
 
 Front-office and back-office agents must not spawn a control agent. The
 `tools: Agent(...)` allow-list in each agent's frontmatter is a
-harness-enforced mechanism, not a prose rule (F-08). A PreToolUse hook
-reads this list and refuses a disallowed spawn. The pattern already exists
+harness-enforced mechanism, not a prose rule (F-08). The harness reads
+this list and refuses a disallowed spawn. The pattern already exists
 at `godot-specialist.md:4`, `unity-specialist.md:4`, and
 `unreal-specialist.md:4`. Set each agent's allow-list to the "May spawn"
 column below.
@@ -346,6 +436,18 @@ cco verdict. Only the founder or the board may accept a documented
 exception. A control review runs from a skill, not from the agent under
 review — the reviewed agent must never approve its own control check.
 
+**Bull, bear, and synthesis rule (DEC-16).** This rule applies from wave
+W1, for every stock call and every house-view change.
+
+- red-team-analyst writes the bear case. It must never write the bull
+  case it attacks.
+- cio writes the synthesis only after both the bull case and the bear
+  case exist.
+- chief-of-staff compiles the information products. It must not change
+  an analyst's conclusion.
+- No agent may edit a cro verdict. This restates the non-override rule
+  above for the bull, bear, and synthesis process.
+
 ## 9. Control points
 
 "Hard block" marks a control that stops the action until it passes. A "No"
@@ -354,6 +456,12 @@ the action, but a downstream step (a correction, a statutory filing) still
 applies. Rows 17–23 are new; the design record and the verifier review
 found them missing from the earlier draft (Section 14 lists the source
 corrections).
+
+Per DEC-17, "hard block" does not mean a hook. A hard-block control needs
+the cro verdict (and the cco verdict from W2) plus a recorded approval by
+the user. A control decision without that receipt reads NOT ASSESSED. The
+action does not proceed until the receipt exists. Revisit hook
+enforcement before real capital.
 
 | # | Control | Stage | Owner role | Rule | Hard block | Citation |
 |---|---|---|---|---|---|---|
@@ -464,6 +572,64 @@ stage.
    become operational-due-diligence evidence. The cycle then returns to
    step 1.
 
+## 11A. Information products and delivery (W1)
+
+Wave W1 delivers investment information through skills. Each skill has
+one owner agent (Section 6). The table below lists every W1 product
+(addendum §6).
+
+| Skill | Owner agent | Output | Cadence |
+|---|---|---|---|
+| /daily-briefing | chief-of-staff | Market, portfolio, risk, and watch-list events on one page | Each trading day |
+| /weekly-report | chief-of-staff | House view, sector reviews, pick-list changes, risk review | Weekly |
+| /ask | chief-of-staff | Routed answer from the right agent, with sources | On demand |
+| /event-alert | data-steward | Disclosure, price-move, and limit-proximity alerts | On event |
+| /house-view | market-strategist, red-team-analyst, cio | Market direction with bull case, bear case, and synthesis | Weekly, and on regime change |
+| /stock-pitch | research-analyst | Bull case and full research note for one stock, in 8 sections (DEC-23): 1 thesis, 2 business and industry structure, 3 competitive position, 4 financial analysis, 5 valuation, 6 catalysts and timeline, 7 risks and scenarios (bull, base, bear), 8 monitoring indicators and review triggers. The section list is INFERENCE for P2 approval. | On idea |
+| /red-team-review | red-team-analyst | Bear case against one pitch or house view | For every pitch and house-view change |
+| /cio-synthesis | cio | Synthesis, confidence level, and open questions for the user | After each red-team review |
+| /idea-screen | idea-screener | Ranked candidate list with screen evidence | Weekly |
+| /risk-report | cro | Exposure, concentration, liquidity, bear-market stress, regulatory limits | Daily summary, weekly full |
+| /portfolio-review | portfolio-manager | Model portfolio view and sizing proposals | Weekly |
+| /call-review | cio, chief-of-staff | Track record of past calls against outcomes | Monthly |
+| /coverage-config | data-steward | Coverage universe, sector clusters, data sources | On change |
+| /refresh-facts | data-steward | Re-verification of medium and high volatility values | Quarterly |
+
+The CCGS donors for these skills stay as in
+[TRANSPLANT-MANIFEST.md](TRANSPLANT-MANIFEST.md): design-system (section
+cycle) for /stock-pitch, design-review (adversarial review) for
+/red-team-review, the team-* skeleton for the bull, bear, and synthesis
+sequence, post-mortem and playtest-report for /call-review, and
+consistency-check for the fact registry.
+
+### 11A.1 Delivery cadence (DEC-14)
+
+The founder chose four delivery forms: a daily briefing, a weekly
+report, on-demand Q&A, and event alerts. Every product above uses one of
+these four forms.
+
+### 11A.2 Coverage rules (DEC-15)
+
+- Coverage starts with Korean listed equities, at stock level.
+- Coverage adds macro and global indicators, for market analysis.
+- Coverage, data sources, and the sector taxonomy stay in config data.
+  This lets US equities join later, with no code change.
+
+### 11A.3 Default sector clusters (addendum §5, INFERENCE)
+
+The clusters below are INFERENCE. Ask the founder to confirm them in a
+later round.
+
+1. IT, semiconductors, electronics
+2. Batteries, autos, industrials
+3. Financials
+4. Healthcare and biotech
+5. Consumer, retail, media, entertainment
+6. Materials, energy, utilities
+
+The taxonomy maps to KRX sectors now. It maps to GICS when US equities
+join (DEC-15).
+
 ## 12. Principles to encode
 
 This table is the "agent_encoding" field from `orgmap.json`, verbatim in
@@ -506,47 +672,71 @@ any of them.
 | 11 | Recommended standard performance-fee crystallization period | Only a statement that a shorter cycle is worse for the investor; no recommended value. | HF-REF-11 §7.6 |
 | 12 | Model-governance procedure detail (change-approval workflow, code-review standard, access-tier scheme) | A requirement for model-change approval, code-access rights, and change-history management, with no procedure detail. | HF-REF-12 §7.8 |
 
+**New risks from the mission reset (addendum §8).** These need design
+attention, not counsel.
+
+| ID | Risk | Mitigation | Needs design attention |
+|---|---|---|---|
+| R-13 | Confident but wrong information misleads the single decision maker. | Bull case, bear case, and synthesis for every call; confidence levels; the /call-review track record; sources and as-of dates on every number. | The confidence-level scale and the /call-review method (Section 11A). |
+| R-14 | Information for the user reads as investment advice to others. | State in every product that it serves the user's own decisions. Do not distribute products to third parties in wave W1. | The product-labeling standard for every skill in Section 11A. |
+| R-15 | Data freshness: a stale price or disclosure drives a call. | data-steward checks as-of dates. A product with stale data shows NOT ASSESSED for that part. | The as-of-date check method (data-steward, Section 6). |
+
 ## 14. Decisions that change this blueprint
 
-The founder's answers to the 36 questions in `QUESTIONS.md` drive most of
-the design choices above. The table below maps each question that changes
-this blueprint to the section it changes.
+The founder's answers to the questions in [QUESTIONS.md](QUESTIONS.md)
+drive most of the design choices above. Q01 to Q12 are decided (DEC-01 to
+DEC-12). The mission reset added four more questions, Q37 to Q40; these
+are decided too (DEC-13 to DEC-16, addendum §1). Every other Q-ID in the
+table below stays open. The table maps each question to the section it
+changes.
 
-| Q-ID | Decision | Sections it changes | Why |
-|---|---|---|---|
-| Q01 | Primary purpose of the agent organization | §6, §11 | Sets which stage to build first and the lifecycle emphasis (setup-only versus full cycle). |
-| Q02 | Agent-to-human-staff relationship | §3, §4, §8 | Changes the "agent may do" / "must not do" boundary and the delegation model. |
-| Q03 | The founder's own title | §5, §6 | Changes whether CEO and CIO combine; this changes the reporting-line diagram and the cio/ceo-office "reports to" cells. |
-| Q05 | Organization archetype | §6, §7 | Selects which archetype-conditional roster rows activate. |
-| Q06 | Core strategy | §7, §9 | Changes which archetype variant applies and which strategy-specific control points matter (short-sale, event-driven valuation, quant tax). |
-| Q07 | Jurisdiction and fund structure | §2, §11 | An offshore leg adds setup stages this blueprint does not cover; §11's S1–S8 track is the domestic track only. |
-| Q08 | Target investor type | §9, §10 | Affects the investor-count control point and which IR artifacts get priority. |
-| Q09 | Design/build scope (how many stages to implement now) | §6 | Sets which roster stage this blueprint's roster gets built first. |
-| Q10 | Reporting line for the control function | §5, §6 | Sets the cro/cco "reports to" cell directly. |
-| Q11 | Front-office segmentation basis | §6 | Sets the research-analyst instance count and how Tier 3 splits. |
-| Q12 | Governance and equity structure | §4, §6 | Sets when governance-secretary activates and what the board/IC human roles need. |
-| Q13 | Control-blocking mechanism | §8, §9 | Sets whether the "hard block" column in §9 is hook-enforced or prompt-only. |
-| Q14 | How far control seats (cro, cco) may be skipped | §6, §8 | Tests whether the "fixed seat" design in §6/§8 holds under every mode. |
-| Q15 | How to set the initial loss/exposure limit | §9 | Sets who authors the numeric value behind the loss-rule and leverage control points. |
-| Q16 | Review intensity (modes.review_mode) | §8, §9 | Sets which gates run in every mode versus only for setup or control artifacts. |
-| Q17 | Lifecycle structure | §11 | This question is §11's structure itself; a different answer replaces the S1–S8/G1–G3/cycle shape. |
-| Q18 | Investment decision body | §3, §11 | Changes the 투자위원회 role's weight and the investment cycle's decision-record step. |
-| Q19 | Investment-memo standard depth | §11 | Sets how much documentation the "deep analysis" step of the investment cycle produces. |
-| Q20 | Strategy-validation (paper-trading) pass criteria | §11 | Sets the exit criteria at setup stage S1. |
-| Q21 | Organization-principle benchmark priority | §12 | Sets which principles in §12 get built first. |
-| Q25 | Code/model pipeline scope | §6, §9 | Activates data-engineer and strengthens the model-change control point. |
-| Q26 | Agent execution authority | §3, §4, §8 | Sets the "must not do" boundary for trader- and order-related agents. |
-| Q28 | MNPI / confidential-data handling | §3, §13 | Narrows agent data-access scope; may close gap #1 in §13. |
-| Q35 | (conditional on Q25 = C/D) Model/strategy-change approver | §9 | Sets the exact owner of the model-change control point. |
-| Q36 | (conditional on Q25 = C/D) Evidence-gate strength for a model-parameter change | §9 | Sets whether the model-change control's hard-block column stays "Yes" in every case, or only for a change that affects capital, leverage, or a limit. |
+| Q-ID | Decision | Sections it changes | Why | Status |
+|---|---|---|---|---|
+| Q01 | Primary purpose of the agent organization | §6, §11 | Sets which stage to build first and the lifecycle emphasis (setup-only versus full cycle). | Decided — DEC-01 |
+| Q02 | Agent-to-human-staff relationship | §3, §4, §8 | Changes the "agent may do" / "must not do" boundary and the delegation model. | Decided — DEC-02 |
+| Q03 | The founder's own title | §5, §6 | Changes whether CEO and CIO combine; this changes the reporting-line diagram and the cio/ceo-office "reports to" cells. | Decided — DEC-03 |
+| Q05 | Organization archetype | §6, §7 | Selects which archetype-conditional roster rows activate. | Decided — DEC-05 |
+| Q06 | Core strategy | §7, §9 | Changes which archetype variant applies and which strategy-specific control points matter (short-sale, event-driven valuation, quant tax). | Decided — DEC-06 |
+| Q07 | Jurisdiction and fund structure | §2, §11 | An offshore leg adds setup stages this blueprint does not cover; §11's S1–S8 track is the domestic track only. | Decided — DEC-07 |
+| Q08 | Target investor type | §9, §10 | Affects the investor-count control point and which IR artifacts get priority. | Decided — DEC-08 |
+| Q09 | Design/build scope (how many stages to implement now) | §6 | Sets which roster stage this blueprint's roster gets built first. | Decided — DEC-09 |
+| Q10 | Reporting line for the control function | §5, §6 | Sets the cro/cco "reports to" cell directly. | Decided — DEC-10 |
+| Q11 | Front-office segmentation basis | §6 | Sets the research-analyst instance count and how Tier 3 splits. | Decided — DEC-11 |
+| Q12 | Governance and equity structure | §4, §6 | Sets when governance-secretary activates and what the board/IC human roles need. | Decided — DEC-12 |
+| Q13 | Control-blocking mechanism | §8, §9 | Sets how the "hard block" column in §9 works: cro verdict plus recorded user approval, no hook. | Decided — DEC-17 |
+| Q14 | How far control seats (cro, cco) may be skipped | §6, §8 | Keeps the fixed seats in every mode and every cio synthesis. | Decided — DEC-18 |
+| Q15 | How to set the initial loss/exposure limit | §9 | The cro drafts the limits; the user approves; the limits live in config files. | Decided — DEC-19 |
+| Q16 | Review intensity (modes.review_mode) | §8, §9 | Full review for judgment outputs; lean review for routine outputs. | Decided — DEC-20 |
+| Q17 | Lifecycle structure | §11 | Keeps the S1-S8 and G1-G3 stage axis for the fund; W1 runs on daily, weekly, and monthly cycles. | Decided — DEC-21 |
+| Q18 | Investment decision body | §3, §11 | A virtual investment committee (cio, cro, portfolio-manager, red-team-analyst) presents; the user decides; minutes are kept. | Decided — DEC-22 |
+| Q19 | Stock-pitch standard depth | §11A | /stock-pitch uses the full 8-section format, plus the bull, bear, and synthesis parts. | Decided — DEC-23 |
+| Q20 | Call-quality validation | §11A | Call record (/call-review) plus a model portfolio against a benchmark. | Decided — DEC-24 |
+| Q21 | Organization-principle benchmark priority | §12 | Sets which principles in §12 get built first. | Open |
+| Q25 | Code/model pipeline scope | §6, §9 | Activates data-engineer and strengthens the model-change control point. | Open |
+| Q26 | Agent execution authority | §3, §4, §8 | Sets the "must not do" boundary for trader- and order-related agents. | Open |
+| Q28 | MNPI / confidential-data handling | §3, §13 | Narrows agent data-access scope; may close gap #1 in §13. | Open |
+| Q35 | (conditional on Q25 = C/D) Model/strategy-change approver | §9 | Sets the exact owner of the model-change control point. | Open |
+| Q36 | (conditional on Q25 = C/D) Evidence-gate strength for a model-parameter change | §9 | Sets whether the model-change control's hard-block column stays "Yes" in every case, or only for a change that affects capital, leverage, or a limit. | Open |
+| Q37 | Non-investment scope | §2A, §6 | Sets wave W1 as investment information only; sets wave W2 as operations, IR, and regulatory reporting. | Decided — DEC-13 |
+| Q38 | Delivery form | §11A | Sets the four delivery forms: briefing, report, Q&A, and alert. | Decided — DEC-14 |
+| Q39 | Coverage universe | §11A | Sets the coverage universe and the config-data rule for a later US addition. | Decided — DEC-15 |
+| Q40 | Conclusion method | §8, §11A | Sets the bull case, bear case, and synthesis rule for every call. | Decided — DEC-16 |
 
 Some questions do not change this document. These are: Q04 (repository
 strategy); Q22–Q24 (skill priority, first milestone, investor-facing
 tool); Q27 (data source); and Q29–Q34 (language policy, AAA scope,
 fact-refresh cadence, approval scope, weekly hours, agent model tier).
 These questions govern implementation and tooling, not the organization
-design in
-this blueprint.
+design in this blueprint.
+
+**Open questions with a changed option set.** Addendum §7 changes the
+option set for six open questions, to match the mission reset: Q17
+(lifecycle cadence), Q19 (memo depth, for /stock-pitch), Q20 (call-quality
+judging method), Q22 (skill bundles, now the Section 11A product list),
+Q23 (first milestone, now a W1 vertical slice), and Q24 (delivery
+surface, now the Section 11A products; investor tools move to wave W2).
+These questions stay open. Record the changed options in
+[QUESTIONS.md](QUESTIONS.md) before asking them.
 
 ---
 
