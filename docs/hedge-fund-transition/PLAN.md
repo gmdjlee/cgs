@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-PLAN-001 |
 | Title | Hedge Fund Transition — Master Plan |
-| Version | 0.8 |
+| Version | 0.9 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -26,6 +26,7 @@
 | 0.6 | 2026-09-24 | Recorded round 7 (DEC-29 to DEC-32). Q35 and Q36 are not asked (Q25 = B). |
 | 0.7 | 2026-09-24 | Recorded round 8 (DEC-33 to DEC-36). Changed risk R-02 for manual fact refresh (DEC-35). Changed risk R-07 to match DEC-32 (no information-grade scheme in W1). Corrected the decision count above Table 6.0-1. |
 | 0.8 | 2026-09-24 | Recorded round 9 (DEC-37 and DEC-38). Phase P1 is done. Set the schedule rate in Section 11.3 (DEC-37). Changed risk R-10 for the DEC-38 tier plan. |
+| 0.9 | 2026-09-24 | Reconciled the plan body with DEC-17 to DEC-38: Sections 6.2 and 6.3, P-05, Phases P2 to P6 and P8, Section 11.1, and the glossary. Added the resolved reuse rate after the decisions (TRANSPLANT-MANIFEST.md Section 10) to the F-02 detail. |
 
 This document is not legal advice. It is not tax advice. It is not investment
 advice. Section 3 states this rule in full.
@@ -167,6 +168,12 @@ item resolves to take, the rate rises to 67.2%, above T2 and close to the T1
 rate. The hedge-fund reuse rate sits between T1 and T2 because governance
 content transplants well, but domain content does not.
 
+After the founder decisions, TRANSPLANT-MANIFEST.md Section 10 resolves
+the 69 conditional items: 10 TAKE-MODIFY, 43 LEAVE, and 16 DEFERRED. Reuse
+is now 97/232, 41.8%. If every DEFERRED item resolves to take, reuse is
+113/232, 48.7%. Q25 = B (DEC-29) keeps the code and model pipeline off, so
+the rate stays close to T2.
+
 ## 6. Target state summary
 
 Full detail is in **ORG-BLUEPRINT.md**. This section gives a summary only.
@@ -286,8 +293,10 @@ One stage axis carries the whole lifecycle. It has two parts.
 **Growth, G1 to G3** (HF-REF-08 표 6-2). G1 to G3 match the three
 organization stages in Section 6.1.
 
-The investment cycle (HF-REF-09 §7.1: idea, analysis, portfolio, pre-check,
-execution, monitoring, post-review) is a repeatable per-idea process. It is
+DEC-21 pairs the stage axis with information cycles: W1 runs on daily,
+weekly, and monthly cycles (Section 6.1). The investment cycle (HF-REF-09
+§7.1: idea, analysis, portfolio, pre-check, execution, monitoring,
+post-review) is a separate, repeatable per-idea process. It is
 not a stage. It runs like a story inside a stage. This keeps `project.stage`
 a single scalar value (F-11). `/help` and `/gate-check` need a table change
 only, not a new track dimension.
@@ -299,12 +308,18 @@ only, not a new track dimension.
 - **Fixed control seats (DEC-18)**: the cro (from W1) and the cco (from
   W2) stay active in every gate and in every cio synthesis.
   `modes.workflow`, `modes.review_mode`, and `team.size` do not remove them.
+- **Review depth (DEC-20)**: judgment outputs (a stock call, the house
+  view, a limit) get full review. Routine outputs (the daily briefing)
+  get lean review.
 - **Approval enforcement (DEC-17)**: a control decision needs the cro
   verdict and a recorded approval by the user (an approval receipt). The
   design does not build a protected-path hook. A prose gate cannot block a
   tool call (F-03), so the receipt is the control. A control decision
   without a receipt reads NOT ASSESSED. Revisit hook enforcement before
   real capital (R-03).
+- **Initial limits (DEC-19)**: the cro drafts loss and exposure limits
+  for the long-biased book. The founder approves them. Limits live in
+  config files.
 - **Registry**: a regulatory value registry stores each limit with an
   `as_of` date and an effective date.
 - **Pre-screen rule**: label every agent review a pre-screen (F-09). A human
@@ -319,7 +334,7 @@ only, not a new track dimension.
 | P-02 | Humans hold legal roles |
 | P-03 | Control independence |
 | P-04 | Allow-lists and recorded approvals (DEC-17) |
-| P-05 | Data-driven limits |
+| P-05 | Data-driven limits (DEC-19, DEC-25) |
 | P-06 | Keep foundation file paths for upstream updates |
 | P-07 | Design the full organization, build wave W1 first |
 | P-08 | Test first |
@@ -348,7 +363,7 @@ decisions. Use `tools: Agent(...)` allow-lists so a front-office agent
 cannot spawn or edit a control agent. Record every control approval as a
 receipt. Revisit hook enforcement before real capital (R-03).
 
-**P-05 Data-driven limits.** Store every loss limit, exposure limit, and
+**P-05 Data-driven limits (DEC-19, DEC-25).** Store every loss limit, exposure limit, and
 leverage limit in a config file, never in code or in a skill's prose
 (`coding-standards.md`). This lets the founder and the cro change a limit
 without a text edit to a skill file.
@@ -443,20 +458,31 @@ Tasks:
 
 1. Finalize the wave roster from the addendum and its Erratum 01: W1 (11
    agents), W2 (23 total), W3 (29 total), and the Q25 conditional set
-   (0-4 more).
+   (off, because Q25 = B).
 2. Draft the lifecycle catalog (S1-S8, G1-G3) to replace
    `workflow-catalog.yaml`.
 3. Finalize the control model: verdict vocabulary, fixed seats, and
    approval-receipt rules (DEC-17).
 4. Draft the new `project.yaml` config schema: `archetype`, `jurisdiction`,
    `risk.*`, `regulatory_calendar`, `coverage.*`, `controls.four_eyes`,
-   `controls.approval_required_for`.
+   `controls.approval_required_for`. Extend `modes.automation`'s `guided`
+   value, or add a new value, for the free-draft rule (DEC-36).
 5. Set the skill build priority from the Q22 and Q23 answers.
 6. Build the Korean-English term map for shared documents.
-7. Present the design package to the founder for approval.
+7. Select the notification channel from the tools the new repository's
+   environment can reach (DEC-28).
+8. Select the price or data provider from the DEC-31 source list.
+9. Map every W2 and W3 agent to a model tier: Opus, Sonnet, or Haiku.
+   Apply the DEC-38 judgment exception.
+10. Design the virtual investment committee (DEC-22). Seat cio, cro,
+    portfolio-manager, and red-team-analyst. The user decides. Keep
+    minutes.
+11. Present the design package to the founder for approval.
 
 Outputs: `ORG-BLUEPRINT.md` (updated for the DEC-NN choices);
-`TRANSPLANT-MANIFEST.md` draft; a config schema draft; the term map.
+`TRANSPLANT-MANIFEST.md` draft; a config schema draft; the term map; the
+notification-channel and price-provider selection; the W2/W3 model-tier
+map; the virtual investment committee design.
 
 Gating questions: Q01, Q02, Q03, Q05-Q12, Q17-Q24, Q29-Q31.
 
@@ -477,11 +503,20 @@ Tasks:
 6. Wire `log-instructions.sh` and `statusline.sh` to the new schema.
 7. Rewrite `detect-gaps.sh` for the new project shape.
 8. Build the ASD-STE100 lint helper as an observation-only script.
+9. Build a Korean style-check helper as an observation-only script
+   (DEC-33; AAA-QUALITY-BAR.md §9.2).
+10. Scaffold the test framework for the analysis-code scripts: data
+    collection, screens, valuation and stress calculations, and
+    model-portfolio tracking (DEC-29).
+11. Measure whether the agent `model:` field changes agent behavior
+    (DEC-38, F-12, R-10).
 
 Outputs: the new repository; `.claude/hooks/*`; `.claude/scripts/*`;
 `project.yaml`; `settings.json`; `.claude/scripts/ste-lint.sh`
 (observation only, per `.claude/docs/context-management.md`'s rule that a
-helper gives observations, never a verdict).
+helper gives observations, never a verdict); a Korean style-check helper
+(observation only; DEC-33); the analysis-code test scaffold (DEC-29); the
+`model:` field measurement note (DEC-38, R-10).
 
 Gating questions: Q04, Q16, Q25, Q27, Q29, Q32, Q34.
 
@@ -503,11 +538,21 @@ Tasks:
 6. Set the `tools: Agent(...)` allow-lists so a front-office agent cannot
    spawn or edit the cro, the cco, or their reports.
 7. Write a failing-gate test for every control gate and allow-list.
+8. Set the review depth by output type (DEC-20). Judgment outputs get
+   full review: a stock call, the house view, and a limit. Routine
+   outputs get lean review.
+9. Create the limit config file and its approval-receipt path (DEC-19).
+   The cro agent drafts the values after P6 builds it. The founder
+   approves them.
+10. Set up the gitignored local directory for holdings and personal
+    data. Add a `settings.json` deny rule for it (DEC-32).
 
 Outputs: `.claude/docs/coordination-rules.md` (revised); the
 approval-receipt format; the regulatory value registry file; the adapted
 `review-receipts.sh`; agent frontmatter allow-lists;
-`tests/integration/control/*`.
+`tests/integration/control/*`; the review-depth policy (DEC-20); the
+initial risk-limit config file (DEC-19); the gitignored local data
+directory and its `settings.json` deny rule (DEC-32).
 
 Gating questions: Q10, Q13, Q14, Q15, Q25, Q26, Q28, Q35, Q36.
 
@@ -521,8 +566,9 @@ Tasks:
 
 1. Build the chief-of-staff agent to the AAA bar.
 2. Build the `/daily-briefing` skill to the AAA bar.
-3. Run one stock through `/stock-pitch`, `/red-team-review`, and
-   `/cio-synthesis`, each to the AAA bar.
+3. Run one stock through `/idea-screen`, `/stock-pitch`,
+   `/red-team-review`, `/cio-synthesis`, and the virtual investment
+   committee step, each to the AAA bar (DEC-27).
 4. Run each pilot component through the AAA-QUALITY-BAR.md checks.
 5. Log the actual hours spent on tasks 1-4.
 6. Re-estimate phases P6 through P9 from the measured hours. This
@@ -530,9 +576,10 @@ Tasks:
    runs.
 
 Outputs: `agents/chief-of-staff.md`; `skills/daily-briefing/SKILL.md`;
-`skills/stock-pitch/SKILL.md`; `skills/red-team-review/SKILL.md`;
-`skills/cio-synthesis/SKILL.md`; a pilot log; a re-estimate note added
-to Section 11 of this document.
+`skills/idea-screen/SKILL.md`; `skills/stock-pitch/SKILL.md`;
+`skills/red-team-review/SKILL.md`; `skills/cio-synthesis/SKILL.md`; the
+virtual investment committee minutes record; a pilot log; a re-estimate
+note added to Section 11 of this document.
 
 Gating questions: Q22, Q23, Q33, Q34.
 
@@ -548,12 +595,16 @@ Tasks:
    head-of-research, market-strategist, portfolio-manager,
    research-analyst, idea-screener, red-team-analyst, data-steward,
    and trader.
-2. Build the 14 W1 information-product skills (addendum §6):
-   `/daily-briefing`, `/weekly-report`, `/ask`, `/event-alert`,
-   `/house-view`, `/stock-pitch`, `/red-team-review`,
-   `/cio-synthesis`, `/idea-screen`, `/risk-report`,
-   `/portfolio-review`, `/call-review`, `/coverage-config`, and
-   `/refresh-facts`.
+2. Build the 14 W1 information-product skills (addendum §6) in the
+   DEC-26 order. Build these 7 first: `/daily-briefing`, `/house-view`,
+   `/event-alert`, `/idea-screen`, `/stock-pitch`, `/red-team-review`, and
+   `/cio-synthesis`. Then build the risk, portfolio, and quality
+   products: `/risk-report`, `/portfolio-review`, and `/call-review`.
+   DEC-26 does not order `/weekly-report`, `/ask`, `/coverage-config`, and
+   `/refresh-facts`; P2 sets their place. `/call-review` tracks every call
+   against its outcome, and a model portfolio runs against a benchmark
+   (DEC-24). The cro and portfolio-manager outputs carry capacity
+   estimates (DEC-25).
 3. Build the matching templates.
 4. Run `/skill-test static` and `/skill-test category` on each new
    skill.
@@ -592,6 +643,10 @@ Gating questions: Q17, Q18, Q20, Q23.
 |---|---|---|---|
 | P7 passed; the founder starts fund setup (the wave-W2 trigger, addendum §3) | Each new component reaches grade AAA; the model-governance failing-gate test passes if the quant pipeline is built | 60-200 h (conditional on scope) | Worker |
 
+The 60-200 h range predates DEC-29. It covers the remaining roster and
+the quant pipeline for Q25 = C or D (design-spec §7). With Q25 = B, the
+pipeline work drops out. The P5 re-estimate sets a new P8 range.
+
 Tasks:
 
 1. Build the remaining wave-W2 agents and skills, once the founder
@@ -607,11 +662,13 @@ Tasks:
 3. If Q25 is C or D, build the quant research pipeline: `/model-change`,
    `/model-review`, `/backtest-evidence`, and the model governance
    controls.
-4. Activate the Q25 conditional agents: quant-research-lead,
-   model-governance-lead, quant-researcher, and data-engineer.
+4. If Q25 is C or D, activate the Q25 conditional agents:
+   quant-research-lead, model-governance-lead, quant-researcher, and
+   data-engineer. With Q25 = B, these four agents stay off (DEC-29).
 
 Outputs: `agents/*.md` (the W2 and W3 set); `skills/*/SKILL.md` (quant
-pipeline, if triggered); `templates/*` (investor-portal set, if Q24 is B).
+pipeline, if triggered); `templates/*` (investor-portal set, if the W2 investor-tool decision
+picks an in-house portal; TRANSPLANT-MANIFEST.md Section 10).
 
 Gating questions: Q09, Q12, Q24, Q25, Q35, Q36.
 
@@ -685,7 +742,7 @@ phase to its check.
 | P2 | The design package | A founder approval receipt; the term map checked against Appendix B |
 | P3 | Transplant integrity | SB-01 to SB-28 tests, one test per silent break |
 | P4 | The control spine | Failing-gate tests: break the guard, confirm the check fails, restore it |
-| P5 | The 3 pilot components | `/skill-test` static, spec, and category modes; one independent review receipt per component |
+| P5 | The pilot components (P5 tasks 1-3) | `/skill-test` static, spec, and category modes; one independent review receipt per component |
 | P6 | The W1 build | `/skill-test static` (0 FAIL) and `/skill-test category` (COMPLIANT) on every new skill; the ASD-STE100 lint helper run on every new document (observation only) |
 | P7 | The dry run | The dry run itself: one idea through the full cycle, one setup stage through its gate, evidence retained |
 | P8 | Stage-2/3 build and the conditional pipeline | `/skill-test static` and `/skill-test category` on every new component; a model-governance failing-gate test if the quant pipeline is built |
@@ -709,6 +766,10 @@ phase to its check.
 | P8 (conditional) | 60 | 200 |
 | **Total with P8** | **261** | **748** |
 | Review T2 estimate (comparison, F-01) | 253 | 703 |
+
+The P8 row and the "Total with P8" row predate DEC-29. They include the
+quant pipeline for Q25 = C or D (design-spec §7). With Q25 = B, the P5
+re-estimate (Section 11.4) sets new P8 numbers.
 
 ### 11.2 Conversion method
 
@@ -734,7 +795,7 @@ row as the plan schedule until the P5 re-estimate (Section 11.4).
 
 ### 11.4 Re-estimate rule
 
-Phase P5 measures the actual hours for the 3 pilot components. Use the
+Phase P5 measures the actual hours for the pilot components. Use the
 measured rate to re-estimate phases P6 through P9 before Phase P6 starts.
 Do not carry the original P6-P9 estimate forward without this check.
 
@@ -783,9 +844,9 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
 3. Done. The Advisor recorded 38 decisions, DEC-01 through DEC-38, in
    `QUESTIONS.md`. Phase P1 is done.
 4. Done. Q35 and Q36 are not asked, because Q25 = B (DEC-29).
-5. In progress. The Advisor reconciles `ORG-BLUEPRINT.md`,
-   `TRANSPLANT-MANIFEST.md`, and `AAA-QUALITY-BAR.md` with DEC-17 to
-   DEC-38.
+5. Done. The Advisor reconciled `ORG-BLUEPRINT.md`,
+   `TRANSPLANT-MANIFEST.md`, `AAA-QUALITY-BAR.md`, and this plan with
+   DEC-17 to DEC-38.
 6. If the founder changes Q25 to C or D later, the Advisor asks Q35 and
    Q36 before Phase P8.
 7. **Next action.** The Advisor drafts the Phase P2 design package from the completed
@@ -842,8 +903,8 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
   blocks the write. The receipt is the control, and a change without a
   receipt reads NOT ASSESSED.
 - **approval receipt** — a recorded, hashed approval for a change to a
-  protected path, or for a stage advance. It names the approver's role and
-  the content hash.
+  protected path, a stage advance, a final-status change, or a commit
+  (DEC-17, DEC-36). It names the approver's role and the content hash.
 - **activation wave** — the set of agents and skills turned on together:
   W1 information core, W2 fund operation, W3 institutional. See Section
   6.1 and `evidence/design-addendum-01.md` §3.

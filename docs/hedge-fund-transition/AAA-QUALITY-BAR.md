@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-QA-001 |
 | Title | AAA Quality Bar |
-| Version | 0.3 |
+| Version | 0.4 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -25,6 +25,7 @@ investment advice. `PLAN.md` §3 states this rule in full.
 | 0.1 | 2026-09-24 | Initial draft. |
 | 0.2 | 2026-09-24 | Applied DEC-17: control check CT3 now needs an approval receipt instead of a protected-path hook. The accepting party for an exception is the user (DEC-10). |
 | 0.3 | 2026-09-24 | Applied DEC-33 and DEC-34: the Korean style checks now cover the information products for the user, and every component must reach AAA to ship. |
+| 0.4 | 2026-09-24 | Reconciled with DEC-20 (review depth by output type), DEC-36 (no write prompt for a draft), and DEC-38 (model tier check for every agent). |
 
 ## 2. Purpose
 
@@ -107,18 +108,18 @@ line.
 
 | Metric | Category | Quote | File:line | Reused by |
 |---|---|---|---|---|
-| **G1** | gate (skill) | "Skill reads `production/session-state/review-mode.txt` (or equivalent) before deciding which directors to spawn" | quality-rubric.md:23 | AAA-07 — a hedge-fund control gate reads the mode, then must NOT let the mode remove the cro or cco seat. |
+| **G1** | gate (skill) | "Skill reads `production/session-state/review-mode.txt` (or equivalent) before deciding which directors to spawn" | quality-rubric.md:23 | AAA-07 — a hedge-fund control gate reads the mode, then must NOT let the mode remove the cro or cco seat. DEC-20 sets the mode by output type: full review for a judgment output, lean review for a routine one. |
 | **G5** | gate (skill) | "Skill never writes `production/stage.txt` without explicit user confirmation via \"May I write\"" | quality-rubric.md:27 | AAA-08 — the same no-silent-advance rule, applied to a human-required final call. |
 | **R3** | review (skill) | "Verdict is exactly one of: APPROVED / NEEDS REVISION / MAJOR REVISION NEEDED (design) or PASS / CONCERNS / FAIL (architecture)" | quality-rubric.md:42 | AAA-06 — the source pattern for one fixed vocabulary, generalized to PASS / CONCERNS / FAIL / NOT ASSESSED. |
 | **A5** | authoring (skill) | "Full authoring skills create a file skeleton with all section headers before filling content, to preserve progress on session interruption." | quality-rubric.md:66 | AAA-02 — a hedge-fund authoring skill (for example `/business-plan`, `/policy-author`) keeps this metric. |
-| **P3** | pipeline (skill) | "Skill asks \"May I write [artifact]?\" before creating each output file, not batch-approving all files at once" | quality-rubric.md:102 | AAA-05 and AAA-02 — an investment-cycle pipeline skill (for example `/investment-memo`) keeps this metric. |
+| **P3** | pipeline (skill) | "Skill asks \"May I write [artifact]?\" before creating each output file, not batch-approving all files at once" | quality-rubric.md:102 | AAA-05 and AAA-02 — an investment-cycle pipeline skill (for example `/investment-memo`) keeps this metric for a final output. DEC-36 waives the prompt for a draft. |
 | **AN1** | analysis (skill) | "Analysis phase uses only Read/Glob/Grep tools; no Write or Edit during the scan itself" | quality-rubric.md:118 | AAA-05 — a compliance or risk analysis skill (for example `/risk-report`) keeps this metric as a floor; Section 5's `control` category raises it to a hard block. |
-| **AN3** | analysis (skill) | "Any suggested file writes (e.g., tech-debt register, fix patches) are gated behind \"May I write\"" | quality-rubric.md:120 | AAA-05 — `/control-gap-register` (the `tech-debt` donor) keeps this metric. |
+| **AN3** | analysis (skill) | "Any suggested file writes (e.g., tech-debt register, fix patches) are gated behind \"May I write\"" | quality-rubric.md:120 | AAA-05 — `/control-gap-register` (the `tech-debt` donor) keeps this metric for a final output. DEC-36 waives the prompt for a draft. |
 | **T3** | team (skill) | "If any spawned agent returns BLOCKED or fails, skill surfaces it immediately and halts dependent work — never silently skips" | quality-rubric.md:137 | AAA-05 — an orchestration skill that spawns more than one agent keeps this metric. |
-| **SP4** | sprint (skill) | "Skill never writes sprint files or milestone records without \"May I write\"" | quality-rubric.md:155 | AAA-02 — the transplanted `sprint-plan`, `sprint-status`, `retrospective`, and `milestone-review` skills keep the `sprint` category and this metric. |
+| **SP4** | sprint (skill) | "Skill never writes sprint files or milestone records without \"May I write\"" | quality-rubric.md:155 | AAA-02 — the transplanted `sprint-plan`, `sprint-status`, `retrospective`, and `milestone-review` skills keep the `sprint` category and this metric for a final output. DEC-36 waives the prompt for a draft. |
 | **U1** | utility (skill) | "`/skill-test static [name]` returns COMPLIANT with 0 FAILs" | quality-rubric.md:172 | AAA-01 — the mechanism AAA-01 generalizes to every skill, not only the `utility` category. |
 | **D1** | director (agent) | "Returns APPROVE / CONCERNS / REJECT (or domain equivalent: REALISTIC/CONCERNS/UNREALISTIC for producer)" | quality-rubric.md:187 | AAA-06 — a Tier-1 leadership agent (for example cio, coo) that keeps this verdict shape maps it to PASS / CONCERNS / FAIL / NOT ASSESSED. |
-| **D4** | director (agent) | "Agent is assigned Opus model per coordination-rules.md" | quality-rubric.md:190 | AAA-02 — a Tier-1 leadership agent keeps this metric as a target, not a verified fact. design-spec F-12 marks an agent's `model:` field unverified; PLAN.md R-10 schedules the check in Phase P3. |
+| **D4** | director (agent) | "Agent is assigned Opus model per coordination-rules.md" | quality-rubric.md:190 | AAA-02 — a Tier-1 leadership agent keeps this metric as a target, not a verified fact. design-spec F-12 marks an agent's `model:` field unverified; PLAN.md R-10 schedules the check in Phase P3. DEC-38 sets the tier map for every other agent: Sonnet for Tier 2 and for a Tier 3 agent that writes a judgment output, Haiku for the other Tier 3 agents. Check each agent against this map after P3 confirms that the field applies. |
 | **L2** | lead (agent) | "Out-of-domain conflicts escalate to creative-director (design) or technical-director (tech)" | quality-rubric.md:200 | AAA-02 and AAA-07 — a Tier-2 lead escalates to its Tier-1 parent; a Tier-2 lead under cro or cco escalates inside that line only (`ORG-BLUEPRINT.md` §8). |
 | **S3** | specialist (agent) | "Out-of-domain requests are redirected to the correct agent, not refused silently" | quality-rubric.md:214 | AAA-02 — a Tier-3 specialist (for example research-analyst) keeps this metric. |
 | **Q3** | qa (agent) | "Does not propose new features; flags gaps for humans to decide" | quality-rubric.md:238 | AAA-08 — a compliance-analyst or risk-analyst agent flags a gap for the founder or the cco; it does not decide the exception itself. |
