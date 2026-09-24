@@ -1,0 +1,219 @@
+## skills ['n', 'ph', 'p', 'cp', 't1', 't2', 'e1', 'ch']
+adopt | 지원 | 기존 산출물 형식 준수 감사 | P,V | W | R | M | GDD 8개 섹션 이름(Player Fantasy 포함)을 준수 점수 기준으로 고정 (adopt/SKILL.md:135)
+architecture-decision | 기술 준비 | ADR 작성 | P,E | W | D | M | engine.name으로 엔진 전문가를 고르는 분기
+architecture-review | 기술 준비 | GDD→ADR 추적성·엔진 호환성 검토 | P,E | W | D | M | 같은 엔진 전문가 분기, ADR 필수 섹션 Engine Compatibility
+art-bible | 콘셉트 | 비주얼 아이덴티티 문서(9개 섹션) 작성 | C,V | W | W | M | 섹션 구성이 브랜드·스타일 가이드와 거의 일치
+asset-audit | 폴리시 | 에셋 명명·크기·형식 점검 | C,V | W | W | M | 2의 거듭제곱 텍스처, 오디오 샘플레이트 규칙 (SKILL.md:82-84)
+asset-spec | 사전 제작 | 에셋별 시각 명세와 생성 프롬프트 | C | W | W | M | 에셋 분류(스프라이트·VFX·3D)를 UI 에셋이나 캠페인 소재로 교체
+balance-check | 폴리시 | 전투·경제·성장 수치 이상치 탐지 | C | R | D | L | DPS, 처치 시간, 천장 확률 계산 (SKILL.md:94-119)
+brainstorm | 콘셉트 | MDA·Bartle 기반 콘셉트 발상 | C | R | R | L | MDA 미학, Bartle 분류, 동사 중심 발상 기법 (SKILL.md:162-253)
+bug-report | 제작 | 구조화된 버그 보고 | P,V | K | R | S | Scene/Level 필드 정도만 게임 용어
+bug-triage | 제작 | 심각도·우선순위 분류 | P | K | W | S | 일반 애자일 분류 방식
+changelog | 출시 | 커밋에서 변경 기록 생성 | P,V | W | R | S | 커밋을 Game과 Framework로 가르는 필터 (SKILL.md:35-49)
+code-review | 제작 | 아키텍처·ADR 준수 코드 리뷰 | P,E,C | W | D | M | specialists.* 설정으로 리뷰어 분기, 프레임레이트 독립성 점검 (SKILL.md:56-71)
+consistency-check | 시스템 설계 | GDD와 엔티티 레지스트리 충돌 검사 | C | W | W | M | 엔티티·아이템·공식 스키마를 공통 사실 레지스트리로 일반화
+content-audit | 지원 | 계획 대비 구현 콘텐츠 수량 대조 | C | R | R | L | 적·레벨·아이템 분류가 고정됨 (SKILL.md:153-182)
+create-architecture | 기술 준비 | 마스터 아키텍처 문서 작성 | P,E | W | D | M | 엔진 지식 공백 목록(학습 시점 이후 API 위험)
+create-control-manifest | 기술 준비 | ADR에서 필수·금지 규칙 추출 | P,E | W | D | M | 금지 API 예시가 3D 물리 엔진 교체 사례 (SKILL.md:130-139)
+create-epics | 사전 제작 | 설계 문서와 아키텍처로 에픽 생성 | P | K | R | S | PRD 기반 에픽 생성과 같은 구조
+create-stories | 사전 제작 | 에픽을 구현 가능한 스토리로 분할 | P,C | W | R | M | 스토리 유형에 Visual/Feel 포함 (SKILL.md:169-180). minimal 등급은 한 장짜리 브리프에서 바로 에픽을 만듦
+day-one-patch | 출시 | 출시 직후 긴급 패치 스프린트 | P,V | W | R | S | 골드 마스터, 심사 피드백 같은 용어만 게임
+design-review | 시스템 설계 | 설계 문서 완결성·일관성 검토 | C | R | R | L | 도메인 전문가 라우팅 표와 필수 섹션이 모두 게임 역할
+design-system | 시스템 설계 | 시스템별 GDD를 섹션 단위로 작성 | C | R | R | L | 필수 8개 섹션과 전문가 라우팅 표 (SKILL.md:1173-1201)
+dev-story | 제작 | 스토리 하나를 구현하고 테스트 | E,C | R | D | L | 레이어·유형별 개발자 라우팅 (SKILL.md:241-251), 엔진 전문가 분기 (SKILL.md:265-296)
+estimate | 지원 | 작업량 추정 | P | K | W | S | GDD 용어만 교체
+gate-check | 지원 | 단계 진입 판정(PASS/CONCERNS/FAIL) | C,P | R | R | L | 단계 기준이 게임 기준: 플레이테스트 횟수, 재미 검증, 플랫폼 인증 (references/gate-production.md:23-67)
+help | 지원 | 다음에 할 일 안내 | P,V | W | W | S | 라우팅 로직은 일반적이고 단계 이름은 workflow-catalog.yaml에서 읽음
+hotfix | 지원 | 긴급 수정 브랜치·승인·백포트 | P,V | K | R | S | 일반 SRE 핫픽스 절차
+launch-checklist | 출시 | 부서별 출시 준비 점검 | C,P | R | R | L | platform.cert_tier(none/itch/steam/console)로 인증 항목 분기 (SKILL.md:26-48)
+localize | 출시 | 현지화 파이프라인 | P,E,C | W | R | M | RTL 점검이 engine.name별 API로 분기 (SKILL.md:295-320)
+map-systems | 콘셉트 | 콘셉트를 시스템으로 분해하고 순서 결정 | C | R | R | L | 인벤토리는 아이템 DB를 뜻한다는 식의 게임 시스템 분류 (SKILL.md:114-129)
+milestone-review | 지원 | 마일스톤 완성도와 진행 여부 판단 | P | K | W | S | 일반 PM 검토
+onboard | 지원 | 역할별 온보딩 문서 | P,V | W | W | S | 역할 목록(프로그래머·디자이너·내러티브·QA) 교체
+patch-notes | 출시 | 플레이어용 패치 노트 | P,V | W | R | S | changelog와 같은 출처 필터
+perf-profile | 폴리시 | CPU·GPU·메모리 병목 분석 | C,E | R | D | L | performance.target_framerate, draw_call_limit 등을 읽음 (SKILL.md:83-89)
+playtest-report | 폴리시 | 플레이테스트 보고서 | C | W | R | M | 사용성 테스트 보고서로 대응 가능
+project-stage-detect | 지원 | 현재 단계와 공백 탐지 | P,V | W | R | M | GDD·ADR·코드 파일 수로 단계를 추정 (SKILL.md:123-131)
+propagate-design-change | 지원 | 설계 변경이 ADR에 미치는 영향 전파 | P | W | D | M | PRD→ADR 영향 전파로 그대로 쓸 수 있는 패턴
+prototype | 사전 제작 | 버릴 프로토타입과 PROCEED/PIVOT/KILL 판정 | C | R | R | L | 장르 12종별 경로 표 (SKILL.md:113-128)
+qa-plan | 제작 | 스프린트 QA 계획 | P,C | W | R | M | 스토리 유형 표에 Visual/Feel 포함 (SKILL.md:153-159)
+quick-design | 시스템 설계 | 작은 변경용 간이 명세 | C,P | W | W | M | MDA 미학 기준의 전환 조건 (SKILL.md:144, 291)
+regression-suite | 폴리시 | 회귀 테스트 목록 관리 | P,V | K | D | S | GDD 용어만 교체 (SKILL.md:99-118)
+release-checklist | 출시 | 플랫폼별 출시 전 점검 | P,C | W | R | M | Steamworks·ESRB 항목 (SKILL.md:218-227)
+retrospective | 제작 | 스프린트·마일스톤 회고 | P | K | K | S | 게임 의존 없음
+reverse-document | 지원 | 코드에서 설계 문서 역생성 | C,P | W | D | M | 출력 형식이 GDD 템플릿 기준 (SKILL.md:28-31)
+review-all-gdds | 시스템 설계 | GDD 전체 모순·게임 이론 검토 | C,P | R | R | L | 지배 전략·경제 순환·난이도 곡선 점검 (SKILL.md:314-473)
+scope-check | 제작 | 원래 계획 대비 범위 변화 점검 | P | K | K | S | 게임 의존 없음
+security-audit | 폴리시 | 저장·네트워크·치트 취약점 감사 | E,C,P | R | D | L | 엔진별 grep 패턴 표 (SKILL.md:47-51, 104-198)
+settings | 지원 | project.yaml 조회·변경 | P | K | K | S | 오류 메시지 예시에만 엔진 이름
+setup-engine | 콘셉트 | 엔진 선택과 버전 고정 | E | R | D | L | 1,254줄 전체가 엔진 선택·렌더링·명명·명령 표
+skill-improve | 메타 | 스킬 개선 반복(테스트→수정→재테스트) | P | K | K | S | 프레임워크 중립
+skill-test | 메타 | 스킬 구조·행동 검증(4개 모드) | P | K | K | S | 프레임워크 중립. 전환 작업의 회귀 안전망
+smoke-check | 제작 | 자동 테스트 실행과 QA 인계 판정 | E,P | W | D | M | 엔진별 테스트 명령 (SKILL.md:128-173)
+soak-test | 폴리시 | 장시간 구동 누수·피로 점검 | C,E | W | D | M | 엔진별 메모리 모니터 (SKILL.md:116-140)
+sprint-plan | 제작 | 스프린트 계획 작성·갱신 | P | K | K | S | 게임 의존 없음
+sprint-status | 제작 | 스프린트 현황 요약 | P | K | K | S | 게임 의존 없음
+start | 메타 | 첫 세션 온보딩과 경로 안내 | P,C | W | R | M | /brainstorm→/setup-engine→/map-systems 경로 표 (SKILL.md:76-145)
+story-done | 제작 | 수락 기준·증거 확인 후 스토리 종료 | P,V,C | W | R | L | 증거 유형 표 (SKILL.md:228-247). CONTRACT.md도 함께 수정해야 함
+story-readiness | 제작 | 구현 착수 준비 판정 | P,V | W | R | L | GDD·TR-ID·ADR 점검 목록 (SKILL.md:170-233). CONTRACT.md도 함께 수정해야 함
+team-audio | 제작 | 오디오 팀 조율 | P,C,E | D | D | S | 대응하는 조직이 없음
+team-combat | 제작 | 전투 기능 팀 조율 | P,C,E | D | D | S | 대응하는 조직이 없음
+team-level | 제작 | 레벨 팀 조율 | P,C | D | D | S | 대응하는 조직이 없음
+team-live-ops | 출시 | 시즌·이벤트 팀 조율 | P,C | R | R | L | 경제 설계는 가격 전략으로, 라이브옵스는 라이프사이클 마케팅으로
+team-narrative | 제작 | 내러티브 팀 조율 | P,C | R | W | M | T2 콘텐츠 팀과 가깝게 대응
+team-polish | 폴리시 | 성능·품질 마감 팀 조율 | P,C,E | R | D | M | 테크니컬 아티스트·사운드를 빼고 성능·QA만 유지
+team-qa | 제작 | QA 전체 주기 조율 | P | W | R | M | T1과 거의 1:1 대응
+team-release | 출시 | 릴리스 트레인 조율 | P,C | W | R | M | network-programmer만 빼면 그대로 대응
+team-ui | 사전 제작 | UX 파이프라인 팀 조율 | P,C,E | W | D | M | 프런트엔드 기능 팀과 거의 1:1 대응
+tech-debt | 지원 | 기술 부채 등록부 관리 | P | K | R | S | scan 모드의 코드 스멜 검색만 코드 전용
+test-evidence-review | 제작 | 테스트 증거의 질 검토 | P,V | K | R | S | 스토리 유형 표만 교체 (SKILL.md:83-88)
+test-flakiness | 폴리시 | CI 로그에서 불안정 테스트 탐지 | E,P | W | D | S | 엔진별 로그 위치·형식 (SKILL.md:58-65)
+test-helpers | 사전 제작 | 엔진별 테스트 헬퍼 생성 | E,P | W | D | L | 코드 생성 단계 전체가 엔진별 (SKILL.md:113-357)
+test-setup | 사전 제작 | 테스트 프레임워크·CI 초기 구성 | E,P | W | D | L | 엔진별 러너와 CI YAML 3종 (SKILL.md:161-372)
+ux-design | 사전 제작 | 화면·흐름 UX 명세 작성 | P,V,C | W | D | M | HUD 모드와 references/sections-hud.md (SKILL.md:357-420)
+ux-review | 사전 제작 | UX 명세 검증 | P,V,C | W | D | S | GDD 정합성 섹션과 HUD 점검 목록 (SKILL.md:140-146, 167-200)
+vertical-slice | 사전 제작 | 전체 루프 검증용 수직 단면 빌드 | C,P | R | R | L | 재미·핵심 판타지 플레이테스트 문항 (SKILL.md:183-215)
+## templates ['n', 'used', 't1', 't1e', 't2', 't2e']
+SKILL-CONTRACT-TEMPLATE.md | 0 | K | 스킬 계약 템플릿 | K | 스킬 계약 템플릿
+accessibility-requirements.md | 12 | W | 접근성(WCAG) 요구사항 | W | 디지털 접근성 점검표
+architecture-decision-record.md | 0 | W | ADR | D | 없음
+architecture-doc-from-code.md | 1 | K | 코드 기반 아키텍처 역문서 | D | 없음
+architecture-traceability.md | 0 | W | 요구사항 추적 매트릭스 | D | 없음
+art-bible.md | 6 | R | 디자인 시스템·브랜드 가이드 | R | 브랜드 가이드라인
+changelog-template.md | 0 | W | 변경 기록 | W | 고객 업데이트 기록
+concept-doc-from-prototype.md | 1 | W | 스파이크·PoC 역문서 | W | 파일럿 캠페인 회고
+design-doc-from-implementation.md | 1 | K | 구현 기반 기능 명세 역문서 | D | 없음
+difficulty-curve.md | 2 | R | 온보딩 복잡도 곡선(드물게 사용) | D | 없음
+economy-model.md | 0 | R | 가격·수익화 모델 | D | 없음
+faction-design.md | 0 | D | 없음 | R | 타깃·경쟁사 페르소나
+game-brief.md | 15 | W | 한 장짜리 제품 브리프 | W | 한 장짜리 캠페인 브리프
+game-concept.md | 24 | W | 제품 콘셉트 브리프 | W | 프로젝트 콘셉트 브리프
+game-design-document.md | 3 | R | PRD·기능 명세 | R | 크리에이티브·산출물 브리프
+game-pillars.md | 11 | W | 제품 원칙 | W | 브랜드·크리에이티브 원칙
+hud-design.md | 2 | R | 상시 대시보드·오버레이 명세 | D | 없음
+incident-response.md | 0 | K | 장애 대응(SRE) | W | 위기 커뮤니케이션 대응
+interaction-pattern-library.md | 1 | W | UI 컴포넌트·인터랙션 패턴 라이브러리 | R | 웹 소재 패턴 라이브러리
+level-design-document.md | 0 | D | 없음 | D | 없음
+milestone-definition.md | 2 | K | 릴리스 마일스톤 정의 | K | 프로젝트 마일스톤 정의
+narrative-character-sheet.md | 0 | D | 없음 | R | 오디언스 페르소나
+pitch-document.md | 0 | W | 투자·경영진 피치 | W | 고객 제안서
+player-journey.md | 4 | R | 사용자 여정 지도 | R | 고객 여정 지도
+post-mortem.md | 0 | K | 포스트모템 | K | 캠페인·프로젝트 포스트모템
+project-stage-report.md | 1 | W | 프로젝트 단계 보고서 | W | 프로젝트 단계 보고서
+prototype-report.md | 1 | W | 스파이크·PoC 보고서 | R | 파일럿·테스트 캠페인 보고서
+release-checklist-template.md | 0 | R | 배포·릴리스 점검표 | D | 없음
+release-notes.md | 0 | W | 릴리스 노트 | W | 고객 산출물 노트
+risk-register-entry.md | 2 | K | 위험 등록부 | K | 위험 등록부
+session-state.md | 17 | K | 세션 체크포인트 형식 | K | 세션 체크포인트 형식
+sound-bible.md | 1 | D | 없음 | D | 없음
+sprint-plan.md | 1 | K | 스프린트 계획 | K | 스프린트 계획
+systems-index.md | 27 | W | 기능 맵·기능 백로그 | R | 워크스트림·산출물 목록
+technical-design-document.md | 0 | W | 기술 설계 문서 | D | 없음
+test-evidence.md | 1 | K | QA 증거 기록 | W | 산출물 검수·승인 기록
+test-plan.md | 0 | W | QA·테스트 계획 | D | 없음
+ux-spec.md | 4 | K | UX·화면 명세 | R | 디지털 소재 크리에이티브 브리프
+vertical-slice-report.md | 1 | R | MVP·베타 검증 보고서 | D | 없음
+guidance/accessibility-requirements-guide.md | 1 | W | 접근성 요구사항 작성 안내 | W | 접근성 점검표 작성 안내
+guidance/hud-design-guide.md | 1 | R | 대시보드 명세 작성 안내 | D | 없음
+guidance/interaction-pattern-library-guide-game-specific.md | 0 | D | 없음 | D | 없음
+guidance/interaction-pattern-library-guide-navigation-feedback.md | 0 | K | 화면 이동·로딩·빈 상태·오류 상태 패턴 | R | 없음
+guidance/interaction-pattern-library-guide-standard-controls.md | 0 | K | 버튼·모달·토스트·툴팁 명세 | R | 없음
+guidance/interaction-pattern-library-guide.md | 1 | K | 패턴 라이브러리 안내 색인 | R | 없음
+guidance/ux-spec-guide.md | 1 | W | UX 명세 작성 안내 | R | 없음
+## gates ['id', 'owner', 'chk', 't1', 't1e', 't2', 't2e']
+CD-PILLARS | creative-director | 필러 정의 직후 스트레스 테스트 | K | 제품 원칙 스트레스 테스트 | K | 크리에이티브 원칙 점검
+CD-GDD-ALIGN | creative-director | 시스템 GDD와 필러의 정합성 | R | PRD와 제품 원칙 정합성 검토 | R | 산출물 브리프와 원칙 정합성
+CD-SYSTEMS | creative-director | 시스템 분해 결과의 비전 점검 | K | 기능 분해 비전 점검 | R | 워크스트림 분해 점검
+CD-NARRATIVE | creative-director | 스토리·세계관 문서 일관성 | D | 없음 | W | 브랜드 보이스 일관성
+CD-PLAYTEST | creative-director | 플레이테스트 보고서의 경험 검증 | R | 사용성 테스트·베타 피드백 검토 | R | 파일럿·고객 반응 검토
+CD-PHASE-GATE | creative-director | 단계 전환 시 크리에이티브 준비도 | K | 단계 전환 시 비전 준비도 | K | 단계 전환 시 크리에이티브 준비도
+TD-SYSTEM-BOUNDARY | technical-director | GDD 작성 전 시스템 경계 검토 | K | 모듈·서비스 경계 검토 | D | 없음
+TD-FEASIBILITY | technical-director | 초기 콘셉트의 기술 실현 가능성 | K | 기술 실현 가능성 검토 | R | 납품 실현 가능성
+TD-ARCHITECTURE | technical-director | 마스터 아키텍처 문서 승인 | K | 아키텍처 문서 승인 | D | 없음
+TD-ADR | technical-director | ADR 승인 전 검토 | K | ADR 검토 | D | 없음
+TD-ENGINE-RISK | technical-director | 학습 시점 이후 엔진 API 위험 | W | 프레임워크·런타임 버전 위험 검토 | D | 없음
+TD-PHASE-GATE | technical-director | 단계 전환 시 기술 준비도 | K | 단계 전환 시 기술 준비도 | W | 납품 준비도
+TD-MANIFEST | technical-director | 통제 목록 작성 전 검토 | K | 통제 목록 검토 | D | 없음
+TD-CHANGE-IMPACT | technical-director | 설계 변경 영향 평가 검토 | K | 변경 영향 평가 검토 | W | 범위 변경 영향
+PR-SCOPE | producer | 범위와 일정 검증 | K | 범위·일정 검증 | K | 범위·일정 검증
+PR-SPRINT | producer | 스프린트 계획 실현 가능성 | K | 스프린트 계획 검토 | K | 스프린트 계획 검토
+PR-MILESTONE | producer | 마일스톤 위험 평가 | K | 마일스톤 위험 평가 | K | 마일스톤 위험 평가
+PR-EPIC | producer | 스토리 분할 전 에픽 구조 | K | 에픽 구조 검토 | K | 에픽 구조 검토
+PR-PHASE-GATE | producer | 단계 전환 시 제작 준비도 | K | 단계 전환 시 제작 준비도 | K | 단계 전환 시 제작 준비도
+AD-CONCEPT-VISUAL | art-director | 필러 확정 후 비주얼 아이덴티티 방향 | W | 브랜드·UI 비주얼 방향 | K | 비주얼 아이덴티티 방향
+AD-ART-BIBLE | art-director | 에셋 제작 전 아트 바이블 승인 | R | 디자인 시스템·브랜드 가이드 승인 | W | 브랜드 가이드 승인
+AD-PHASE-GATE | art-director | 단계 전환 시 비주얼 준비도 | W | UI·비주얼 디자인 준비도 | K | 비주얼 준비도
+LP-FEASIBILITY | lead-programmer | 아키텍처 구현 가능성 | K | 구현 가능성 검토 | D | 없음
+LP-CODE-REVIEW | lead-programmer | 구현된 스토리의 코드 리뷰 | K | 코드 리뷰 | D | 없음
+QL-STORY-READY | qa-lead | 스프린트 전 수락 기준의 테스트 가능성 | K | 수락 기준 검토 | R | 산출물 준비도
+QL-TEST-COVERAGE | qa-lead | 에픽 종료 전 테스트 커버리지 | K | 테스트 커버리지 검토 | R | 산출물 검수 범위
+ND-CONSISTENCY | narrative-director | 작가 산출물의 내러티브 일관성 | D | 없음 | W | 카피·콘텐츠 일관성
+AD-VISUAL | art-director | 아트·테크아트 결정의 시각 일관성 | W | UI 시각 일관성 검토 | K | 시각 일관성 검토
+## infra ['n', 'kind', 'what', 'cls', 't1', 't2', 'e1', 'e2', 'ev']
+session-start.sh | 훅 | 세션 시작 안내, 상태 복구, 엔진 레퍼런스 불일치 점검 | 혼합 | W | W | S | M | L273-281 엔진 레퍼런스 경로 검사
+detect-gaps.sh | 훅 | 누락된 GDD·ADR·계획 문서 알림 | 게임 | W | R | M | L | L70 game-concept.md, L84-91 src·Assets·Source 탐색, L275-282 시스템 문서 규칙
+validate-commit.sh | 훅 | 커밋 전 JSON·GDD 섹션·하드코딩 수치 점검 | 혼합 | W | W | M | L | L175 ^design/gdd/ 필터, L304 damage·health 등 수치 정규식
+validate-push.sh | 훅 | 보호 브랜치 푸시 경고 | 범용 | K | K | S | S | 
+validate-assets.sh | 훅 | assets/ 아래 명명·JSON 검사 | 혼합 | W | W | S | S | L68 assets/ 경로가 아니면 즉시 종료
+validate-skill-change.sh | 훅 | 스킬 수정 후 skill-test 실행 안내 | 범용 | K | K | S | S | 
+notify.sh | 훅 | Windows 알림 표시 | 범용 | K | K | S | S | 
+pre-compact.sh | 훅 | 압축 전 상태·변경·WIP 기록 | 혼합 | W | W | S | S | L144 design/gdd/*.md 글롭
+post-compact.sh | 훅 | 압축 후 active.md 재확인 안내 | 범용 | K | K | S | S | 
+session-stop.sh | 훅 | active.md 보관, 커밋·에이전트 사용 집계 | 범용 | K | K | S | S | 
+log-agent.sh | 훅 | 서브에이전트 시작 감사 로그 | 범용 | K | K | S | S | 
+log-agent-stop.sh | 훅 | 서브에이전트 종료 감사 로그 | 범용 | K | K | S | S | 
+log-instructions.sh | 훅 | 로드된 규칙·지침 파일 기록(settings.json에는 미연결) | 범용 | K | K | S | S | 
+yaml-helper.sh | 헬퍼 | 설정 조회·병합·검증, code root 결정 | 혼합 | W | W | S | M | L472 engine.name 열거값, L1236-1239 엔진별 code root
+adr-dep-graph.sh | 스크립트 | ADR 의존 그래프와 순환 탐지 | 범용 | K | D | S | S | T2에서는 ADR을 만들지 않으므로 쓸 곳이 없음
+artifact-check.sh | 스크립트 | workflow-catalog 산출물 존재 확인 | 범용 | K | K | S | S | 경로는 카탈로그 데이터에서 읽음
+gdd-structure-check.sh | 스크립트 | GDD 8개 섹션 존재 검사 | 게임 | W | R | M | L | L37-44 섹션 목록, L49-55 제외 목록
+migrate-v1-config.sh | 스크립트 | v1.0→v1.1 설정 이관 | 혼합 | K | K | S | S | 주석과 메시지에만 부수적 언급
+project-coherence.sh | 스크립트 | project.yaml과 실제 엔진 파일 대조 | 게임 | R | D | M | S | L123-131, L161-190 godot|unity|unreal 분기
+review-receipts.sh | 스크립트 | 리뷰 대상의 내용 해시 추적 | 범용 | K | K | S | S | 
+review-scope.sh | 스크립트 | git diff로 교차 검토 범위 계산 | 게임 | W | W | S | M | L34 design/gdd 글롭, L38-44 제외 목록
+rotate-session-state.sh | 스크립트 | active.md 이력 회전 | 범용 | K | K | S | S | 
+agent-memory.md | 규칙 | .claude/agent-memory/** | 범용 | K | K | S | S | 
+ai-code.md | 규칙 | src/ai/** 행동 트리·NPC 인지 | 게임 | D | D | S | S | 
+data-files.md | 규칙 | assets/data/** 데이터 파일 | 혼합 | W | D | S | S | combat_enemies.json 예시
+design-docs.md | 규칙 | design/gdd/** 8개 섹션 GDD 스키마 | 게임 | W | R | M | L | 
+engine-code.md | 규칙 | src/core/** 엔진 코드 | 게임 | D | D | S | S | 
+gameplay-code.md | 규칙 | src/gameplay/** 게임플레이 코드 | 게임 | W | D | S | S | 비즈니스 로직 규칙으로 일반화
+narrative.md | 규칙 | design/narrative/** 세계관·대사 | 게임 | D | W | S | M | T2에서는 브랜드 보이스 규칙으로 전환
+network-code.md | 규칙 | src/networking/** 네트워크 코드 | 혼합 | W | D | S | S | 
+prototype-code.md | 규칙 | prototypes/** 프로토타입 코드 | 범용 | K | K | S | S | 
+shader-code.md | 규칙 | assets/shaders/** 셰이더 | 게임 | D | D | S | S | 
+skill-authoring.md | 규칙 | .claude/skills/**, .claude/agents/** 작성 규칙 | 범용 | K | K | S | S | 
+test-standards.md | 규칙 | tests/** 테스트 표준 | 범용 | K | K | S | S | 
+ui-code.md | 규칙 | src/ui/** 게임패드·색각 이상 모드 | 혼합 | W | W | S | S | 
+## config ['key', 'cls', 't1', 't2', 'note']
+modes.review_mode | 범용 | 유지 | 유지 | 게이트 실행 깊이(full/lean/solo)
+modes.rigor | 범용 | 유지 | 유지 | 절차 무게를 한 번에 정하는 상위 값
+modes.workflow | 범용 | 유지 | 유지 | 설계 문서 깊이(full/standard/minimal)
+workflow_overrides | 범용 | 유지 | 유지 | 시스템별 문서 요구 예외
+modes.automation | 범용 | 유지 | 유지 | 협업·안내·자율 모드
+modes.automation_always_ask | 범용 | 유지 | 유지 | 항상 확인받을 결정 범주
+modes.story_granularity | 범용 | 유지 | 유지 | 스토리 크기
+docs.density | 범용 | 유지 | 유지 | 문서 분량
+testing.framework | 게임 | 스택 테스트 러너로 이름 변경 | 검수 도구로 이름 변경 | 엔진별 기본값
+testing.strict.* | 혼합 | 유지하고 유형 이름 수정 | 유지하고 유형 이름 수정 | Visual/Feel 등 증거 유형별 차단 여부
+qa.level | 범용 | 유지 | 유지 | 증거 기준 수준
+qa.coverage_minimum | 소프트웨어 | 유지 | 교체 또는 제거 | 코드 커버리지 비율
+strict_gate_checks | 범용 | 유지 | 유지 | 게이트 FAIL을 차단으로 볼지
+team.size | 범용 | 유지 | 유지 | 활성 에이전트 수 조정
+platform.multiplayer | 게임 | 제거 | 제거 | 실시간 멀티플레이 여부
+platform.online | 혼합 | 외부 연동 여부로 이름 변경 | 고객 포털·API 여부로 이름 변경 | 온라인 서비스 여부
+platform.cert_tier | 게임 | 제거 | 제거 | itch/steam/console 인증 등급
+accessibility.target | 범용(예약) | 유지하고 실제로 연결 | 유지하고 실제로 연결 | 읽는 곳이 아직 없음
+cadence.sprint_length · milestone_length | 범용(예약) | 유지 | 유지 | 읽는 곳이 아직 없음
+performance.target_framerate 외 3개 | 게임 | 지연 시간·번들 크기 예산으로 교체 | 제거 | 프레임·드로우콜·메모리 예산
+performance.enforce | 범용 | 유지 | 유지 | warn/block/off
+project.stage | 혼합 | 단계 이름 변경 | 단계 이름 변경 | gate-check만 기록
+project.kind | 범용(예약) | 도메인 분기 지점으로 구현 | 도메인 분기 지점으로 구현 | 현재 읽는 곳이 0개
+engine.name + specialists | 게임 | stack.name과 전문가 매핑으로 교체 | 제거 | 엔진 전문가 라우팅
+commands | 범용 | 유지 | 유지(run은 해당 없을 수 있음) | build/test/run/smoke 명령
+naming | 혼합 | 구조는 유지하고 기본값 교체 | 대부분 제거 | 엔진별 명명 규칙
+features.session_state | 범용 | 유지 | 유지 | 세션 체크포인트 사용 여부
+features.token_budget_warn_at | 범용 | 유지하고 연결 누락 수정 | 유지하고 연결 누락 수정 | 문서는 세 곳에서 읽는다고 하지만 실제로 읽는 곳이 없음
+schema_version | 범용 | 유지 | 유지 | 설정 스키마 버전
+framework.version · last_upgraded | 범용 | 유지 | 유지 | CCGS 버전 기록
+{"counts": {"t1": {"agents": {"K": 16, "W": 9, "R": 19, "D": 5}, "skills": {"K": 16, "W": 37, "R": 18, "D": 3}, "templates": {"K": 14, "W": 18, "R": 9, "D": 5}, "gates": {"K": 19, "W": 4, "R": 3, "D": 2}, "hooks": {"K": 8, "W": 6, "R": 0, "D": 0}, "scripts": {"K": 5, "W": 2, "R": 1, "D": 0}, "rules": {"K": 4, "W": 5, "R": 0, "D": 4}, "total": {"K": 82, "W": 81, "R": 50, "D": 19}}, "t2": {"agents": {"K": 2, "W": 19, "R": 0, "D": 28}, "skills": {"K": 7, "W": 11, "R": 31, "D": 25}, "templates": {"K": 6, "W": 12, "R": 13, "D": 15}, "gates": {"K": 10, "W": 5, "R": 6, "D": 7}, "hooks": {"K": 8, "W": 5, "R": 1, "D": 0}, "scripts": {"K": 4, "W": 1, "R": 1, "D": 2}, "rules": {"K": 4, "W": 2, "R": 1, "D": 6}, "total": {"K": 41, "W": 55, "R": 53, "D": 83}}}, "lines": {"t1": {"agents": {"K": 1869, "W": 1327, "R": 2903, "D": 449}, "skills": {"K": 3095, "W": 11079, "R": 7436, "D": 524}, "templates": {"K": 1956, "W": 2743, "R": 1572, "D": 498}, "gates": {"K": 354, "W": 72, "R": 54, "D": 36}, "hooks": {"K": 667, "W": 2657, "R": 0, "D": 0}, "scripts": {"K": 1504, "W": 198, "R": 196, "D": 0}, "rules": {"K": 202, "W": 118, "R": 0, "D": 92}, "total": {"K": 9647, "W": 18194, "R": 12161, "D": 1599}}, "t2": {"agents": {"K": 272, "W": 2562, "R": 0, "D": 3714}, "skills": {"K": 1479, "W": 1959, "R": 10143, "D": 8553}, "templates": {"K": 647, "W": 1527, "R": 2512, "D": 2083}, "gates": {"K": 184, "W": 91, "R": 111, "D": 130}, "hooks": {"K": 667, "W": 2356, "R": 301, "D": 0}, "scripts": {"K": 1374, "W": 112, "R": 86, "D": 326}, "rules": {"K": 202, "W": 26, "R": 19, "D": 165}, "total": {"K": 4825, "W": 8633, "R": 13172, "D": 14971}}}, "groups": [["agents", "에이전트"], ["skills", "스킬"], ["templates", "템플릿"], ["gates", "디렉터 게이트"], ["hooks", "훅·헬퍼"], ["scripts", "스크립트"], ["rules", "규칙"]], "effort": {"cols": ["T1 최소 전환", "T1 전체 전환", "T2 지식 서비스"], "rows": [["에이전트", "13개 + 스택 전문가 3개", [19.2, 50.5], [48.0, 126.0], [33.4, 90.8]], ["스킬", "척추 스킬 36개", [44.0, 118.0], [93.9, 255.8], [108.2, 289.5]], ["템플릿", "", null, [19.7, 58.0], [20.4, 60.0]], ["디렉터 게이트", "", null, [3.5, 9.6], [5.1, 13.7]], ["훅·스크립트·규칙", "", [7.5, 19.9], [7.4, 19.9], [17.2, 46.3]], ["범위·용어 확정", "", [2, 4], null, null], ["보류 항목 정리(스킬 38개, 에이전트 36개)", "", [3.7, 7.4], null, null], ["문서 정리", "", [4, 10], [12, 30], [20, 40]], ["스택 레퍼런스 작성", "", null, [4, 10], null], ["새 납품 공정 설계와 신규 스킬 10~15개", "", null, null, [30, 120]], ["교차 참조 정리", "", [4, 10], [6, 16], [8, 20]], ["검증", "", [6, 12], [8, 16], [10, 20]], ["테스트 카탈로그 갱신", "", null, [1, 3], [1, 3]]], "total": [[90.4, 231.8], [203.5, 544.2], [253.2, 703.3]], "optional": ["선택: 행동 명세 123개 재작성", [30, 90], [30, 90], [30, 90]]}}
