@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CCGS 조직 전환 검토</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@600;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* ==== tokens ==== */
+:root {
+  --bg:#F2F4F3; --surface:#FFFFFF; --surface-2:#E8ECEA; --ink:#15201B; --ink-2:#33403A; --muted:#5B6862; --rule:#D2DAD6;
+  --accent:#2C4C9C; --accent-soft:#E3E9F6;
+  --keep:#1D6E44; --keep-bg:#DCEFE3; --adapt:#7A5400; --adapt-bg:#F6E8C6; --rebuild:#A63A24; --rebuild-bg:#F6DCD3; --drop:#56606A; --drop-bg:#E4E8EB;
+  --keep-fill:#237A4E; --adapt-fill:#D9A83A; --rebuild-fill:#B4452C; --drop-fill:#6B747D;
+  --on-keep:#FFFFFF; --on-adapt:#1A1405; --on-rebuild:#FFFFFF; --on-drop:#FFFFFF;
+  --on-accent:#FFFFFF;
+  --font-heading: "Hahmlet", "Noto Serif KR", serif;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0E1311; --surface:#151B19; --surface-2:#1C2421; --ink:#E2E8E5; --ink-2:#C2CCC7; --muted:#8E9B95; --rule:#2A3430;
+    --accent:#94AEEE; --accent-soft:#1C2641;
+    --keep:#74D29C; --keep-bg:#15301F; --adapt:#E6BC5E; --adapt-bg:#33280E; --rebuild:#F29274; --rebuild-bg:#3B1E15; --drop:#A9B0B8; --drop-bg:#242A2F;
+    --drop-fill:#737C85;
+    --on-accent:#0E1311;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0E1311; --surface:#151B19; --surface-2:#1C2421; --ink:#E2E8E5; --ink-2:#C2CCC7; --muted:#8E9B95; --rule:#2A3430;
+  --accent:#94AEEE; --accent-soft:#1C2641;
+  --keep:#74D29C; --keep-bg:#15301F; --adapt:#E6BC5E; --adapt-bg:#33280E; --rebuild:#F29274; --rebuild-bg:#3B1E15; --drop:#A9B0B8; --drop-bg:#242A2F;
+  --drop-fill:#737C85;
+  --on-accent:#0E1311;
+  color-scheme: dark;
+}
+
+/* ==== reset & base ==== */
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.7; margin: 0;
+  word-break: keep-all; overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important; scroll-behavior: auto !important;
+  }
+}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+h1, h2 { font-family: var(--font-heading); text-wrap: balance; color: var(--ink); }
+h1 { font-weight: 700; font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem); line-height: 1.15; margin: 0; }
+h2 { font-weight: 600; font-size: 1.6rem; margin: 0 0 20px; }
+h3 { font-family: var(--font-body); font-size: 1.08rem; font-weight: 600; margin: 0 0 10px; color: var(--ink); }
+p { margin: 0 0 14px; max-width: 65ch; }
+a { color: var(--accent); }
+code { font-family: var(--font-mono); font-size: .92em; background: var(--surface-2); padding: .1em .35em; border-radius: 4px; color: var(--ink-2); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ==== layout shell ==== */
+.wrap {
+  max-width: 960px; margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+  padding-block: clamp(16px, 4vw, 32px) 64px;
+}
+.site-header { padding-block: 8px 28px; border-bottom: 1px solid var(--rule); margin-bottom: 8px; }
+.eyebrow { font-family: var(--font-mono); font-size: .78rem; color: var(--muted); letter-spacing: .04em; margin: 0 0 10px; }
+.site-header h1 { margin-bottom: 14px; }
+.lede { max-width: 65ch; color: var(--ink-2); margin: 0 0 10px; }
+.meta-line { font-size: .85rem; color: var(--muted); margin: 0; }
+
+.section-nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--bg); border-bottom: 1px solid var(--rule);
+  overflow-x: auto; margin: 0 0 8px;
+}
+.section-nav ul { list-style: none; display: flex; gap: 6px; margin: 0; padding: 10px 2px; min-width: max-content; }
+.section-nav a {
+  display: inline-block; padding: 6px 12px; border-radius: 999px; font-size: .82rem;
+  color: var(--ink-2); text-decoration: none; white-space: nowrap; border: 1px solid transparent;
+}
+.section-nav a:hover { background: var(--surface-2); }
+.section-nav a.is-current { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600; }
+
+main { display: block; }
+.block { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 60px); }
+.block + .block { margin-top: 56px; }
+.lead-in { font-size: 1.05rem; color: var(--ink-2); }
+
+/* ==== cards ==== */
+.cards { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 24px 0; }
+@media (min-width: 760px) { .cards { grid-template-columns: 1fr 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; }
+.card-eyebrow { font-family: var(--font-mono); font-size: .78rem; color: var(--muted); letter-spacing: .04em; margin: 0 0 12px; }
+.card-figure { font-family: var(--font-heading); font-weight: 700; font-size: 3rem; color: var(--accent); margin: 0; line-height: 1; }
+.card-figure .unit { font-size: 1.4rem; margin-left: 2px; }
+.card-figure-note { font-size: .82rem; color: var(--muted); margin: 8px 0 16px; }
+.card h3 { margin-top: 4px; }
+dl.kv { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 14px 0 0; font-size: .88rem; }
+dl.kv dt { color: var(--muted); }
+dl.kv dd { margin: 0; font-weight: 600; color: var(--ink); }
+
+/* ==== stats ==== */
+.stats { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 20px 0; }
+@media (min-width: 560px) { .stats { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+.stat-num { font-family: var(--font-heading); font-weight: 700; font-size: 2rem; color: var(--accent); margin: 0 0 8px; }
+.stat-label { font-size: .85rem; color: var(--ink-2); margin: 0; }
+
+/* ==== layers ==== */
+.layers { display: flex; flex-direction: column; gap: 2px; margin: 20px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--rule); }
+.layer { padding: 20px clamp(16px, 3vw, 28px); }
+.layer-1 { background: var(--keep-bg); }
+.layer-2 { background: var(--adapt-bg); }
+.layer-3 { background: var(--rebuild-bg); }
+.layer h3 { margin-bottom: 6px; }
+.layer-desc { margin-bottom: 12px; color: var(--ink-2); }
+ul.tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 0; padding: 0; }
+ul.tags li { background: var(--surface); border: 1px solid var(--rule); border-radius: 999px; padding: 4px 10px; font-size: .8rem; color: var(--ink-2); }
+
+/* ==== chart shell ==== */
+.chart-title { margin-top: 28px; }
+.chart { overflow-x: auto; margin: 12px 0 20px; padding-bottom: 4px; }
+.note { font-size: .82rem; color: var(--muted); max-width: 70ch; }
+
+/* ==== callouts ==== */
+aside.callout, aside.recommend { border: 1px solid var(--rule); border-radius: 10px; padding: 20px 24px; margin: 20px 0; }
+aside.callout { background: var(--surface-2); }
+aside.recommend { background: var(--accent-soft); }
+aside.callout h3, aside.recommend h3 { margin-top: 0; }
+aside.callout p:last-child, aside.recommend p:last-child { margin-bottom: 0; }
+
+/* ==== strategy ==== */
+.strategy-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 24px 0; }
+@media (min-width: 980px) { .strategy-grid { grid-template-columns: repeat(3, 1fr); } }
+.strategy { border: 1px solid var(--rule); border-radius: 10px; padding: 22px; background: var(--surface); display: flex; flex-direction: column; }
+.strategy-key { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 600; color: var(--accent); margin: 0 0 6px; }
+.strategy ul.pros, .strategy ul.cons { list-style: none; margin: 0 0 12px; padding: 0; font-size: .88rem; }
+.strategy ul.pros li, .strategy ul.cons li { padding-left: 1.3em; position: relative; margin-bottom: 6px; }
+.strategy ul.pros li::before { content: "+"; position: absolute; left: 0; color: var(--keep); font-weight: 700; }
+.strategy ul.cons li::before { content: "\2212"; position: absolute; left: 0; color: var(--rebuild); font-weight: 700; }
+.fit-line { font-size: .85rem; color: var(--muted); margin-top: auto; padding-top: 10px; border-top: 1px dashed var(--rule); }
+
+/* ==== roadmap steps ==== */
+ol.steps { list-style: none; margin: 20px 0; padding: 0; counter-reset: step -1; display: flex; flex-direction: column; gap: 22px; }
+ol.steps li { counter-increment: step; border-left: 2px solid var(--rule); padding-left: 18px; }
+ol.steps li h3 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; }
+ol.steps li h3::before { content: counter(step) "단계"; font-family: var(--font-mono); font-weight: 600; color: var(--accent); font-size: .95rem; flex: none; }
+ol.steps li h3::after { font-size: .68rem; font-weight: 600; padding: 2px 9px; border-radius: 999px; background: var(--surface-2); color: var(--muted); letter-spacing: .02em; }
+ol.steps li:nth-child(-n+7) h3::after { content: "최소 전환"; }
+ol.steps li:last-child h3::after { content: "전체 전환"; background: var(--accent-soft); color: var(--accent); }
+ol.steps li p { margin: 0; }
+
+/* ==== tables ==== */
+.table-wrap { overflow-x: auto; margin: 16px 0; border: 1px solid var(--rule); border-radius: 10px; }
+table.t { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.t caption { text-align: left; padding: 12px 12px 0; font-size: .78rem; color: var(--muted); caption-side: top; }
+table.t th, table.t td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: top; }
+table.t th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+table.t tbody tr:last-child td { border-bottom: none; }
+table.t tbody tr:hover td { background: var(--surface-2); }
+.effort-total td { font-weight: 700; background: var(--surface-2); }
+.effort-optional td { color: var(--muted); font-style: italic; }
+.effort-subnote { font-size: .76rem; color: var(--muted); font-style: normal; margin-top: 2px; }
+
+/* ==== badges ==== */
+.fit { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; }
+.fit-5 { background: var(--keep-fill); color: var(--on-keep); }
+.fit-4 { background: var(--keep-bg); color: var(--keep); }
+.fit-3 { background: var(--adapt-bg); color: var(--adapt); }
+.fit-2 { background: var(--rebuild-bg); color: var(--rebuild); }
+.est { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: .72rem; border: 1px solid var(--rule); color: var(--muted); margin-left: 4px; }
+.sig { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; }
+.sig-silent { background: var(--rebuild-bg); color: var(--rebuild); }
+.sig-mislead { background: var(--adapt-bg); color: var(--adapt); }
+.sig-loud { background: var(--drop-bg); color: var(--drop); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 16px 0 4px; padding: 0; }
+.legend p { margin: 0; font-size: .85rem; display: flex; align-items: center; gap: 8px; }
+.legend-sub { flex-basis: 100%; font-size: .8rem; color: var(--muted); margin-top: 4px; }
+
+.chip { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; white-space: nowrap; }
+.chip.k { background: var(--keep-bg); color: var(--keep); }
+.chip.w { background: var(--adapt-bg); color: var(--adapt); }
+.chip.r { background: var(--rebuild-bg); color: var(--rebuild); }
+.chip.d { background: var(--drop-bg); color: var(--drop); }
+
+ul.plain { margin: 0; padding-left: 1.2em; }
+ul.plain li { margin-bottom: 10px; }
+
+dl.method { display: grid; grid-template-columns: 1fr; gap: 0; margin: 0; }
+dl.method dt { font-weight: 600; color: var(--ink); margin-top: 16px; }
+dl.method dt:first-child { margin-top: 0; }
+dl.method dd { margin: 4px 0 0; color: var(--ink-2); }
+
+/* ==== density chart (JS) ==== */
+.density-chart-inner { min-width: 420px; }
+.density-rows { display: flex; flex-direction: column; gap: 10px; }
+.density-row, .density-axis { display: grid; grid-template-columns: 9rem 1fr 4.5rem; align-items: center; gap: 12px; }
+.density-label { font-size: .8rem; color: var(--ink-2); }
+.density-track {
+  position: relative; height: 10px; border-radius: 999px; background: var(--surface-2);
+  background-image: repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 20%);
+  overflow: hidden;
+}
+.density-fill { display: block; height: 100%; background: var(--accent); border-radius: 999px 0 0 999px; }
+.density-value { font-family: var(--font-mono); font-size: .82rem; text-align: right; color: var(--ink); }
+.density-axis { margin-top: 2px; }
+.density-ticks { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: .68rem; color: var(--muted); }
+@media (max-width: 480px) {
+  .density-row, .density-axis { grid-template-columns: 6.5rem 1fr 3.5rem; gap: 8px; }
+}
+
+/* ==== verdict chart (JS) ==== */
+.verdict-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 16px; font-size: .82rem; color: var(--ink-2); }
+.legend-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.verdict-panels { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 900px) { .verdict-panels { grid-template-columns: 1fr 1fr; } }
+.verdict-panel { border: 1px solid var(--rule); border-radius: 10px; padding: 16px; background: var(--surface); overflow-x: auto; }
+.verdict-panel-title { margin: 0 0 12px; font-size: 1rem; }
+.verdict-rows { min-width: 300px; }
+.verdict-row { display: grid; grid-template-columns: 8rem 1fr 3rem; align-items: center; gap: 10px; padding: 4px 0; }
+.verdict-row-label { font-size: .8rem; color: var(--ink-2); }
+.verdict-bar { display: flex; height: 20px; border-radius: 4px; overflow: hidden; background: var(--surface-2); }
+.verdict-seg { display: flex; align-items: center; justify-content: center; min-width: 0; }
+.verdict-seg-text { font-family: var(--font-mono); font-size: .68rem; padding: 0 2px; white-space: nowrap; overflow: hidden; }
+.verdict-share { font-family: var(--font-mono); font-size: .8rem; text-align: right; }
+.verdict-divider { border: none; border-top: 1px dashed var(--rule); margin: 8px 0; }
+.seg-k { background: var(--keep-fill); color: var(--on-keep); }
+.seg-w { background: var(--adapt-fill); color: var(--on-adapt); }
+.seg-r { background: var(--rebuild-fill); color: var(--on-rebuild); }
+.seg-d { background: var(--drop-fill); color: var(--on-drop); }
+@media (max-width: 480px) {
+  .verdict-row { grid-template-columns: 6rem 1fr 2.6rem; gap: 8px; }
+}
+
+/* ==== effort table (JS) ==== */
+#effort-table .table-wrap { margin-top: 12px; }
+
+/* ==== detail explorer (JS) ==== */
+.detail-tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--rule); margin-bottom: 16px; }
+.detail-tab {
+  font: inherit; font-size: .85rem; padding: 8px 14px; border: 1px solid transparent; border-bottom: none;
+  border-radius: 8px 8px 0 0; background: transparent; color: var(--muted); cursor: pointer;
+}
+.detail-tab-count { font-family: var(--font-mono); color: inherit; margin-left: 2px; }
+.detail-tab.is-active { background: var(--surface); border-color: var(--rule); color: var(--ink); font-weight: 600; }
+.detail-tab.is-active .detail-tab-count { color: var(--accent); }
+
+.detail-toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 12px; }
+.detail-target { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
+.detail-target-btn { font: inherit; font-size: .78rem; padding: 7px 12px; border: none; background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.detail-target-btn.is-active { background: var(--accent); color: var(--on-accent); }
+.detail-target-btn + .detail-target-btn { border-left: 1px solid var(--rule); }
+
+.detail-filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter-chip {
+  font: inherit; font-size: .78rem; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--rule);
+  background: var(--surface); color: var(--ink-2); cursor: pointer; font-family: var(--font-mono);
+}
+.filter-chip[aria-pressed="true"] { background: var(--surface-2); color: var(--ink); font-weight: 600; border-color: var(--ink-2); }
+.filter-chip.filter-k[aria-pressed="true"] { background: var(--keep-bg); color: var(--keep); border-color: var(--keep); }
+.filter-chip.filter-w[aria-pressed="true"] { background: var(--adapt-bg); color: var(--adapt); border-color: var(--adapt); }
+.filter-chip.filter-r[aria-pressed="true"] { background: var(--rebuild-bg); color: var(--rebuild); border-color: var(--rebuild); }
+.filter-chip.filter-d[aria-pressed="true"] { background: var(--drop-bg); color: var(--drop); border-color: var(--drop); }
+
+.detail-search { margin-left: auto; }
+.detail-search-input {
+  font: inherit; font-size: .85rem; padding: 7px 12px; border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--surface); color: var(--ink); min-width: 12rem;
+}
+
+.detail-count { font-size: .8rem; color: var(--muted); margin: 0 0 8px; }
+.detail-empty { text-align: center; color: var(--muted); padding: 24px 12px !important; }
+
+#detail-app table.t th.is-emphasis { background: var(--accent-soft); }
+#detail-app table.t th:first-child, #detail-app table.t td:first-child { min-width: 12rem; }
+.pair-sep { color: var(--muted); }
+.muted-cell { color: var(--muted); }
+
+</style>
+<div class="wrap">
+<div class="site-header">
+<p class="eyebrow">Claude Code Game Studios v1.1.1 · 2026년 9월 24일 분석</p>
+<h1>CCGS 조직 전환 검토</h1>
+<p class="lede">게임 스튜디오용으로 만든 49개 에이전트와 74개 스킬 체계를 다른 조직으로 옮길 수 있는지, 구성 요소 232개와 64,151줄을 읽고 판정했습니다.</p>
+<p class="meta-line">판정 대상: T1 소프트웨어 제품 조직, T2 지식 서비스 조직</p>
+</div>
+<nav class="section-nav" aria-label="섹션 이동">
+<ul>
+<li><a href="#verdict">결론</a></li>
+<li><a href="#numbers">핵심 수치</a></li>
+<li><a href="#anatomy">구조</a></li>
+<li><a href="#fit">적합도</a></li>
+<li><a href="#vocab">용어</a></li>
+<li><a href="#strategy">전략</a></li>
+<li><a href="#roadmap">로드맵</a></li>
+<li><a href="#risks">위험 지점</a></li>
+<li><a href="#effort">작업량</a></li>
+<li><a href="#detail">상세 매핑</a></li>
+<li><a href="#side">부수 발견</a></li>
+<li><a href="#method">방법</a></li>
+</ul>
+</nav>
+<main>
+<!-- CONTENT FRAGMENT: include every <section> below verbatim, in this order. Do not reword Korean text. -->
+
+<section class="block" id="verdict">
+  <h2>결론</h2>
+  <p class="lead-in">이식은 가능합니다. 다만 어떤 조직으로 옮기느냐에 따라 작업의 성격이 달라집니다. 소프트웨어를 만드는 조직이라면 기존 체계를 고쳐 쓰는 것으로 충분하고, 문서와 캠페인을 납품하는 조직이라면 운영 기반만 가져와 공정을 새로 짜야 합니다.</p>
+  <div class="cards">
+    <article class="card" data-target="t1">
+      <p class="card-eyebrow">T1 · 소프트웨어 제품 조직</p>
+      <p class="card-figure">70.3<span class="unit">%</span></p>
+      <p class="card-figure-note">재사용 가능한 구성 요소 비율 (232개 중 163개, 줄 기준 66.9%)</p>
+      <h3>개조로 충분합니다</h3>
+      <p>SaaS·앱 개발팀처럼 코드를 출시하는 조직입니다. 설계 문서에서 아키텍처, 에픽, 스토리, 구현, 검증, 출시로 이어지는 공정이 그대로 남습니다. 바꿔야 할 것은 입력 문서(GDD)의 형식과 엔진 전문가로 향하는 라우팅, 그리고 게임 디자인 이론에 기대는 설계 단계 스킬입니다.</p>
+      <dl class="kv">
+        <dt>권장 전략</dt><dd>포크 후 단계적 전환</dd>
+        <dt>최소 전환</dt><dd>약 90~230시간</dd>
+        <dt>전체 전환</dt><dd>약 200~540시간</dd>
+      </dl>
+    </article>
+    <article class="card" data-target="t2">
+      <p class="card-eyebrow">T2 · 지식 서비스 조직</p>
+      <p class="card-figure">41.4<span class="unit">%</span></p>
+      <p class="card-figure-note">재사용 가능한 구성 요소 비율 (232개 중 96개, 줄 기준 32.4%)</p>
+      <h3>재구축에 가깝습니다</h3>
+      <p>마케팅·콘텐츠 에이전시나 컨설팅처럼 문서와 캠페인을 납품하는 조직입니다. 훅, 설정 해석기, 세션 상태, 게이트 장치 같은 운영 기반과 스프린트·회고 같은 관리 스킬은 남습니다. 그러나 코드, 테스트, 빌드를 전제로 한 생산 공정이 통째로 빠지므로 브리프에서 납품까지의 공정을 새로 설계해야 합니다.</p>
+      <dl class="kv">
+        <dt>권장 전략</dt><dd>운영 기반만 선별 이식</dd>
+        <dt>예상 작업량</dt><dd>약 250~700시간</dd>
+        <dt>핵심 과제</dt><dd>납품 공정과 신규 스킬 설계</dd>
+      </dl>
+    </article>
+  </div>
+  <p class="note">재사용 비율은 '유지'와 '수정' 판정을 합한 값입니다. 판정 기준은 <a href="#detail">상세 매핑</a>의 범례에서 확인할 수 있습니다.</p>
+</section>
+
+<section class="block" id="numbers">
+  <h2>핵심 수치</h2>
+  <div class="stats">
+    <div class="stat"><p class="stat-num">14.6%</p><p class="stat-label">게임 용어가 들어간 줄의 비율입니다. 엔진 레퍼런스를 제외한 64,151줄 가운데 9,397줄에 해당합니다.</p></div>
+    <div class="stat"><p class="stat-num">3.3%</p><p class="stat-label">훅 스크립트에서 같은 비율입니다. 운영 기반은 게임과 거의 무관합니다.</p></div>
+    <div class="stat"><p class="stat-num">1,445</p><p class="stat-label">에이전트 이름이 등장하는 (에이전트, 파일) 쌍의 수입니다. 역할 이름을 바꿀 때 고쳐야 하는 범위입니다.</p></div>
+    <div class="stat"><p class="stat-num">89</p><p class="stat-label"><code>design/gdd/</code> 경로를 참조하는 <code>.claude/</code> 파일 수입니다. 가장 넓게 퍼진 핵심 경로입니다.</p></div>
+  </div>
+</section>
+
+<section class="block" id="anatomy">
+  <h2>구조: 무엇이 게임에 묶여 있는가</h2>
+  <p>CCGS는 세 층으로 나누어 보면 이해하기 쉽습니다. 아래 층으로 갈수록 게임 도메인에 강하게 묶여 있습니다.</p>
+  <div class="layers">
+    <div class="layer layer-1">
+      <h3>운영 기반</h3>
+      <p class="layer-desc">거의 그대로 쓸 수 있습니다. 게임과 연결된 곳은 경로 몇 개와 엔진 열거값 정도입니다.</p>
+      <ul class="tags">
+        <li>세션 상태 저장·복구 (<code>active.md</code>)</li><li>압축 전후 훅</li><li>서브에이전트 감사 로그</li><li>설정 해석기와 로컬 재정의</li><li>리뷰 모드 full·lean·solo</li><li>자동화 모드</li><li>디렉터 게이트 호출 장치</li><li>커밋·푸시 검증 골격</li><li>스킬 정적 검사</li>
+      </ul>
+    </div>
+    <div class="layer layer-2">
+      <h3>전달 공정</h3>
+      <p class="layer-desc">일반적인 소프트웨어 개발 공정입니다. 다만 입력 문서가 GDD이고 구현 담당이 엔진 전문가로 라우팅되어 있어서, 이 두 연결점을 바꿔야 합니다.</p>
+      <ul class="tags">
+        <li>아키텍처와 ADR</li><li>통제 목록</li><li>에픽</li><li>스토리</li><li>구현</li><li>코드 리뷰</li><li>스토리 종료와 증거 규칙</li><li>스프린트</li><li>출시</li>
+      </ul>
+    </div>
+    <div class="layer layer-3">
+      <h3>도메인 팩</h3>
+      <p class="layer-desc">대상 조직의 지식으로 새로 써야 하는 부분입니다.</p>
+      <ul class="tags">
+        <li>게임 디자인 이론 (MDA, Bartle, Flow)</li><li>플레이테스트·재미 검증 게이트</li><li>아트·사운드 바이블</li><li>레벨·전투·경제 설계</li><li>엔진 전문가 15개</li><li>엔진 레퍼런스 46개 파일</li>
+      </ul>
+    </div>
+  </div>
+  <h3 class="chart-title">구성 요소별 게임 용어 포함 줄 비율</h3>
+  <div id="chart-density" class="chart" role="img" aria-label="구성 요소별 게임 용어 포함 줄 비율 막대그래프"></div>
+  <p class="note">줄 비율은 용어가 얼마나 퍼져 있는지를 보여 줄 뿐이며, 동작이 얼마나 묶여 있는지를 보여 주지는 않습니다. 예를 들어 스킬은 15.2%에 불과하지만 엔진 전문가 라우팅이나 GDD 섹션 이름처럼 동작을 바꾸는 결합이 곳곳에 있습니다. 그래서 판정은 파일을 직접 읽고 내렸습니다. 엔진 레퍼런스는 내용 전체가 엔진 전용이므로 비율과 관계없이 교체 대상이어서 그래프에서 제외했습니다.</p>
+  <aside class="callout">
+    <h3>이미 설계된 전환 지점: <code>project.kind</code></h3>
+    <p><code>effects-map.md</code>에는 <code>game | tool | engine | mod | library</code> 값을 받는 <code>project.kind</code> 키가 정의되어 있습니다. 원저자가 게임 이외의 프로젝트를 염두에 두었다는 근거입니다. 그러나 이 키는 "RESERVED, NOT IMPLEMENTED"로 표시되어 있고 읽는 스킬이나 훅이 하나도 없습니다. 실제로 쓰려면 <code>detect-gaps.sh</code>와 <code>session-start.sh</code>의 분기, <code>yaml-helper.sh</code>의 code root 결정, <code>workflow-catalog.yaml</code>의 종류별 단계 목록을 새로 만들어야 합니다.</p>
+  </aside>
+</section>
+
+<section class="block" id="fit">
+  <h2>대상별 적합도</h2>
+  <p>아래 그래프는 구성 요소를 네 가지 판정으로 나눈 결과입니다. T1은 '유지'와 '수정'이 대부분을 차지하고, T2는 '제거'와 '재설계'가 절반을 넘습니다.</p>
+  <div id="chart-verdicts" class="chart" role="img" aria-label="대상별 구성 요소 판정 분포 누적 막대그래프"></div>
+  <h3>대상 후보별 적합도</h3>
+  <p>직접 판정한 대상은 T1과 T2 두 가지입니다. 나머지 후보는 두 결과에서 추정한 값이므로 '추정'으로 표시했습니다.</p>
+  <div class="table-wrap">
+    <table class="t">
+      <thead><tr><th>대상</th><th>적합도</th><th>근거</th></tr></thead>
+      <tbody>
+        <tr><td>게임 인접 분야 (교육용 게임, XR 전시, 시뮬레이션)</td><td><span class="fit fit-5">매우 높음</span> <span class="est">추정</span></td><td>엔진 전문가와 아트·내러티브·레벨 역할이 대부분 그대로 쓰입니다. 학습 효과 검증처럼 도메인 기준만 더하면 됩니다.</td></tr>
+        <tr><td>소프트웨어 제품 조직 (T1: SaaS·앱 개발팀)</td><td><span class="fit fit-4">높음</span></td><td>구성 요소의 70.3%, 줄 기준 66.9%를 살릴 수 있습니다.</td></tr>
+        <tr><td>사내 도구·라이브러리 팀</td><td><span class="fit fit-4">높음</span> <span class="est">추정</span></td><td>T1과 같은 공정에서 UX와 아트의 비중만 줄어듭니다. <code>project.kind</code>에 <code>tool</code>과 <code>library</code> 값이 이미 예약되어 있습니다.</td></tr>
+        <tr><td>데이터·연구 조직</td><td><span class="fit fit-3">중간</span> <span class="est">추정</span></td><td>코드와 검증 공정은 남지만 산출물이 분석 보고서 중심이어서 스토리와 증거 규칙을 다시 정의해야 합니다.</td></tr>
+        <tr><td>지식 서비스 조직 (T2: 마케팅·콘텐츠 에이전시, 컨설팅)</td><td><span class="fit fit-2">낮음~중간</span></td><td>구성 요소의 41.4%, 줄 기준 32.4%만 살릴 수 있고 생산 공정을 새로 설계해야 합니다.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>단계 대응</h3>
+  <p>CCGS의 7단계는 <code>workflow-catalog.yaml</code>과 <code>project.stage</code>에 정의되어 있습니다. 단계의 개수와 순서는 두 대상 모두 그대로 쓸 수 있고, 이름과 필수 산출물을 바꾸면 됩니다.</p>
+  <div class="table-wrap">
+    <table class="t">
+      <thead><tr><th>CCGS 단계</th><th>현재 필수 산출물</th><th>T1 대응</th><th>T2 대응</th></tr></thead>
+      <tbody>
+        <tr><td>Concept</td><td><code>game-concept.md</code>, <code>art-bible.md</code>, <code>systems-index.md</code>, 엔진 설정</td><td>Discovery: 문제 정의, 제품 브리프, 기능 맵, 스택 선택</td><td>Brief: 고객 브리프와 목표 정의</td></tr>
+        <tr><td>Systems Design</td><td>시스템별 GDD, 교차 검토</td><td>Product Design: 기능 명세(PRD)</td><td>Strategy: 전략 문서와 산출물 지도</td></tr>
+        <tr><td>Technical Setup</td><td>아키텍처, ADR 3개 이상, 통제 목록, 접근성 문서</td><td>Tech Setup: 저장소·CI 구성, ADR</td><td>Tooling Setup: 템플릿, 브랜드 가이드, 검토 절차</td></tr>
+        <tr><td>Pre-Production</td><td>UX 명세, 에픽·스토리, 첫 스프린트, 프로토타입, 수직 단면</td><td>Planning: 스파이크·PoC, UX 흐름, 백로그</td><td>Planning: 개요안, 검토 일정, 인력 배치</td></tr>
+        <tr><td>Production</td><td>스프린트, 구현, 코드 리뷰, 스토리 종료, QA</td><td>Build: 스프린트, 코드 리뷰, 테스트</td><td>Delivery: 산출물 제작과 반복 검토</td></tr>
+        <tr><td>Polish</td><td>성능, 밸런스, 에셋 점검, 플레이테스트</td><td>Hardening: 성능, 접근성, 버그 배시, 베타</td><td>Refinement: 교정, 법무·준법 검토, 고객 수정</td></tr>
+        <tr><td>Release</td><td>출시 점검표, 패치 노트, 변경 기록</td><td>Launch: 배포와 릴리스 노트</td><td>Launch/Handoff: 게시·발표, 인계, 회고</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="block" id="vocab">
+  <h2>용어 대응표</h2>
+  <p>전환 작업의 절반은 용어를 바꾸는 일입니다. 일괄 치환을 시작하기 전에 아래 표를 대상 조직에 맞게 확정해 두면, 이후 모든 수정의 기준으로 쓸 수 있습니다.</p>
+  <div class="table-wrap">
+    <table class="t">
+      <thead><tr><th>CCGS 용어</th><th>T1 소프트웨어 제품 조직</th><th>T2 지식 서비스 조직</th></tr></thead>
+      <tbody>
+        <tr><td>GDD, <code>design/gdd/</code></td><td>PRD·기능 명세 (예: <code>design/specs/</code>)</td><td>크리에이티브·산출물 브리프</td></tr>
+        <tr><td><code>game-concept.md</code></td><td>제품 콘셉트 브리프</td><td>프로젝트·캠페인 콘셉트 브리프</td></tr>
+        <tr><td>game pillars</td><td>제품 원칙</td><td>브랜드·크리에이티브 원칙</td></tr>
+        <tr><td><code>systems-index.md</code></td><td>기능 맵·기능 백로그</td><td>워크스트림·산출물 목록</td></tr>
+        <tr><td>engine, <code>engine.name</code></td><td>기술 스택, <code>stack.name</code></td><td>해당 없음</td></tr>
+        <tr><td><code>docs/engine-reference/</code></td><td>버전을 고정한 프레임워크 레퍼런스</td><td>해당 없음</td></tr>
+        <tr><td>player</td><td>사용자·고객</td><td>고객사의 타깃 고객</td></tr>
+        <tr><td>playtest</td><td>사용성 테스트·베타 피드백</td><td>파일럿·고객 리뷰</td></tr>
+        <tr><td>vertical slice</td><td>MVP·walking skeleton</td><td>파일럿 산출물</td></tr>
+        <tr><td>art bible</td><td>디자인 시스템·브랜드 가이드</td><td>브랜드 가이드라인</td></tr>
+        <tr><td>player journey</td><td>사용자 여정 지도</td><td>고객 여정 지도</td></tr>
+        <tr><td>economy model</td><td>가격·수익화 모델</td><td>해당 없음</td></tr>
+        <tr><td>live-ops, season</td><td>라이프사이클 마케팅·릴리스 트레인</td><td>상시 캠페인 운영</td></tr>
+        <tr><td>patch notes</td><td>릴리스 노트</td><td>고객 업데이트 노트</td></tr>
+        <tr><td>Visual/Feel 스토리 유형</td><td>시각 회귀 테스트로 바꾸거나 삭제</td><td>시안 검수</td></tr>
+        <tr><td><code>performance.target_framerate</code></td><td>응답 지연·번들 크기 예산</td><td>해당 없음</td></tr>
+        <tr><td><code>platform.cert_tier</code> (itch·steam·console)</td><td>삭제 (앱 스토어 심사가 필요하면 새로 정의)</td><td>삭제</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="block" id="strategy">
+  <h2>전환 전략</h2>
+  <aside class="callout">
+    <h3>먼저 확인할 질문: CCGS를 옮길 필요가 있는가</h3>
+    <p>목적이 역할별 조언을 받는 것이라면 이미 설치된 도구로 충분할 수 있습니다. 이 환경에는 SuperClaude 페르소나(architect, frontend, backend, security, qa 등)와 engineering·design·finance 역할 플러그인이 설치되어 있습니다. CCGS를 옮길 이유가 되는 것은 단계별 산출물, 디렉터 게이트, 요구사항 추적(TR-ID), 스토리 증거 규칙, 세션 상태 보존처럼 프로젝트의 수명 주기를 관리하는 장치입니다. 이 장치가 필요할 때 전환이 의미가 있습니다.</p>
+  </aside>
+  <div class="strategy-grid">
+    <article class="strategy">
+      <p class="strategy-key">A</p>
+      <h3>포크 후 전면 전환</h3>
+      <p>저장소를 포크하고 용어, 경로, 에이전트를 대상 도메인에 맞게 바꿉니다.</p>
+      <ul class="pros"><li>결과물이 하나의 일관된 체계가 됩니다.</li><li>재사용률이 높은 T1에서 가장 적은 작업으로 끝납니다.</li></ul>
+      <ul class="cons"><li>upstream의 권장 병합 방식(UPGRADING.md 전략 A)을 사실상 쓸 수 없습니다. 파일 이름이 바뀌면 git의 유사도 기반 병합이 깨집니다.</li><li>CONTRIBUTING.md는 방향이 맞지 않는 PR을 닫는다고 명시하므로, 도메인 전환은 upstream에 되돌려 보낼 수 없습니다.</li></ul>
+      <p class="fit-line">적합한 대상: T1</p>
+    </article>
+    <article class="strategy">
+      <p class="strategy-key">B</p>
+      <h3>코어와 도메인 팩 분리</h3>
+      <p><code>project.kind</code>를 실제로 구현해 게임 팩은 그대로 두고 새 도메인 팩을 나란히 추가합니다.</p>
+      <ul class="pros"><li>upstream 파일을 가장 적게 건드리므로 병합 부담이 가장 작습니다.</li><li>여러 도메인을 한 체계에서 운영할 수 있습니다.</li></ul>
+      <ul class="cons"><li>초기 공사가 가장 큽니다. <code>project.kind</code> 연결은 스위치를 켜는 일이 아니라 새로 만드는 일입니다.</li><li>도메인마다 분기하는 스킬이 복잡해집니다.</li></ul>
+      <p class="fit-line">적합한 대상: 게임과 다른 도메인을 함께 운영하는 조직</p>
+    </article>
+    <article class="strategy">
+      <p class="strategy-key">C</p>
+      <h3>운영 기반만 선별 이식</h3>
+      <p>새 저장소에 운영 기반(훅, 설정 해석기, 세션 상태, 게이트 장치, 스킬 테스트)과 범용 관리 스킬만 가져오고, 도메인 에이전트와 스킬은 CCGS의 골격을 본떠 새로 씁니다.</p>
+      <ul class="pros"><li>게임용 잔재가 남지 않고 용어가 처음부터 깨끗합니다.</li><li>에이전트 골격(협업 프로토콜 3종)과 팀 스킬 골격을 복사해 쓸 수 있습니다.</li></ul>
+      <ul class="cons"><li>가져오지 않은 기능(gate-check 기준, 추적성 체계 등)은 다시 만들어야 합니다.</li></ul>
+      <p class="fit-line">적합한 대상: T2</p>
+    </article>
+  </div>
+  <aside class="recommend">
+    <h3>권장안</h3>
+    <p><strong>T1이라면 A를 권합니다.</strong> 70% 이상을 살릴 수 있는데 C처럼 다시 쓰는 것은 낭비이고, B의 추가 공사는 게임 팩을 함께 쓸 계획이 없다면 얻는 것이 없습니다. 다만 운영 기반 파일(훅, <code>yaml-helper.sh</code>, 스크립트)은 최소한으로만 고치고 차이는 설정값으로 흡수해 두십시오. 그러면 나중에 upstream의 운영 기반 수정만 골라서(UPGRADING.md 전략 B, cherry-pick) 받아올 수 있습니다.</p>
+    <p><strong>T2라면 C를 권합니다.</strong> 살릴 수 있는 것이 41.4%에 그치고 남는 부분이 대부분 운영 기반이므로, 게임 콘텐츠를 걷어내는 것보다 필요한 것만 가져오는 편이 작업량과 혼란이 모두 적습니다. 기능 단위의 전문 지식은 설치된 역할 플러그인에 맡기고, CCGS에서는 조율 장치만 가져오는 조합도 검토할 만합니다.</p>
+  </aside>
+</section>
+
+<section class="block" id="roadmap">
+  <h2>T1 권장 로드맵</h2>
+  <p>포크 후 단계적 전환(전략 A)을 기준으로 한 순서입니다. 0단계부터 6단계까지가 최소 전환이며, 공정의 척추만 먼저 살려 실제 프로젝트에 쓰면서 나머지를 고치는 방식입니다.</p>
+  <ol class="steps">
+    <li><h3>범위와 용어 확정</h3><p>대상 조직, 기술 스택, 용어 대응표를 확정합니다. 이 결과는 이후 모든 일괄 치환의 기준이 됩니다.</p></li>
+    <li><h3>게임 전용 요소 정리</h3><p>'제거' 판정을 받은 에이전트 5개, 팀 스킬 3개, 템플릿 5개, 규칙 4개와 엔진 레퍼런스를 지웁니다. 당장 전환하지 않을 스킬은 별도 폴더로 옮겨 호출되지 않게 합니다. 삭제한 뒤에는 이름이 다른 파일에 남아 있지 않은지 grep으로 확인합니다.</p></li>
+    <li><h3>운영 기반의 게임 연결점 수정</h3><p><code>yaml-helper.sh</code>의 열거값과 code root 표, <code>detect-gaps.sh</code>, <code>validate-commit.sh</code>, <code>validate-assets.sh</code>, <code>pre-compact.sh</code>, <code>statusline.sh</code>의 경로를 새 규칙에 맞춥니다. 아래 <a href="#risks">조용히 깨지는 지점</a> 목록을 점검표로 사용합니다.</p></li>
+    <li><h3>진입점 교체</h3><p><code>setup-engine</code>을 <code>setup-stack</code>으로 바꾸고, <code>start</code>, <code>help</code>, <code>workflow-catalog.yaml</code>의 단계 이름과 산출물 경로를 새 공정에 맞춥니다.</p></li>
+    <li><h3>공정의 척추 전환</h3><p><code>design/gdd/</code>, <code>game-concept.md</code>, <code>systems-index.md</code>를 새 명칭으로 바꾸고, <code>brainstorm</code>, <code>map-systems</code>, <code>design-system</code>, <code>design-review</code>, <code>gate-check</code>처럼 '재설계' 판정을 받은 설계 단계 스킬을 다시 씁니다. <code>story-done</code>과 <code>story-readiness</code>는 <code>CONTRACT.md</code>를 함께 고칩니다.</p></li>
+    <li><h3>에이전트 재편</h3><p>디렉터 3개와 리드의 도메인 지식을 제품 조직 기준으로 다시 쓰고, 엔진 전문가 15개를 선택한 스택에 맞는 3~5개로 교체합니다. 엔진 리드 에이전트의 <code>tools: Agent(...)</code> 허용 목록도 새 이름으로 바꿉니다.</p></li>
+    <li><h3>검증</h3><p><code>/skill-test static all</code>로 구조를 확인하고, 옛 경로와 용어가 0건인지 grep으로 확인합니다. 그다음 빈 샘플 프로젝트에서 <code>/start</code>부터 첫 스토리 종료까지 한 번 끝까지 실행합니다.</p></li>
+    <li><h3>나머지 정리</h3><p>보류한 스킬, 템플릿, 디렉터 게이트, 문서(README, WORKFLOW-GUIDE 등)를 정리합니다. 필요하면 스킬 테스트 프레임워크의 행동 명세도 다시 씁니다.</p></li>
+  </ol>
+</section>
+
+<section class="block" id="risks">
+  <h2>조용히 깨지는 지점</h2>
+  <p>이름만 바꾸는 방식의 전환이 위험한 이유는 오류 없이 기능이 꺼지는 곳이 많기 때문입니다. 아래 지점은 경로나 값을 바꾼 뒤 반드시 함께 고쳐야 합니다.</p>
+  <div class="table-wrap">
+    <table class="t">
+      <thead><tr><th>위치</th><th>바꾸는 것</th><th>증상</th><th>드러나는 방식</th></tr></thead>
+      <tbody>
+        <tr><td><code>validate-commit.sh:175</code></td><td><code>design/gdd/</code> 경로</td><td>GDD 섹션 검사가 더 이상 실행되지 않습니다.</td><td><span class="sig sig-silent">조용함</span></td></tr>
+        <tr><td><code>detect-gaps.sh:70-72</code></td><td><code>game-concept.md</code> 경로</td><td>완성된 프로젝트에서도 매번 NEW PROJECT 안내가 나옵니다.</td><td><span class="sig sig-mislead">오해 유발</span></td></tr>
+        <tr><td><code>detect-gaps.sh:275-282</code></td><td>시스템 문서 명명 규칙</td><td>문서 누락 검사가 오탐하거나 멈춥니다.</td><td><span class="sig sig-silent">조용함</span></td></tr>
+        <tr><td><code>pre-compact.sh:144</code></td><td><code>design/gdd/</code> 경로</td><td>WIP 검사가 빈 결과를 내서 정상 결과와 구분되지 않습니다.</td><td><span class="sig sig-silent">조용함</span></td></tr>
+        <tr><td><code>review-scope.sh:34</code>, <code>gdd-structure-check.sh:37-55</code></td><td>설계 문서 경로와 제외 목록</td><td>검토 범위가 비거나 다른 문서를 GDD로 검사합니다.</td><td><span class="sig sig-silent">조용함</span></td></tr>
+        <tr><td><code>yaml-helper.sh:1236-1239</code></td><td><code>engine.name</code> 값</td><td>code root가 빈 값이 되어 코드가 없는 프로젝트처럼 보입니다.</td><td><span class="sig sig-silent">조용함</span></td></tr>
+        <tr><td><code>yaml-helper.sh:472</code></td><td><code>engine.name</code> 열거값</td><td>새 값을 세션을 시작할 때마다 거부합니다.</td><td><span class="sig sig-loud">시끄러움</span></td></tr>
+        <tr><td><code>validate-assets.sh:68</code></td><td><code>assets/</code> 경로</td><td>훅 전체가 아무 일도 하지 않습니다.</td><td><span class="sig sig-silent">조용함</span></td></tr>
+        <tr><td><code>statusline.sh:78-135</code></td><td>단계 감지 경로, <code>.gd</code>·<code>.tscn</code> 확장자</td><td>상태 표시줄이 계속 Concept 단계로 표시됩니다.</td><td><span class="sig sig-silent">조용함</span></td></tr>
+        <tr><td><code>workflow-catalog.yaml</code> + <code>artifact-check.sh</code></td><td>산출물 경로</td><td>동등한 산출물이 있어도 모든 단계가 ABSENT로 나옵니다.</td><td><span class="sig sig-mislead">오해 유발</span></td></tr>
+        <tr><td><code>story-done</code>·<code>story-readiness</code>의 <code>CONTRACT.md</code></td><td><code>SKILL.md</code>만 수정</td><td>계약과 스킬이 어긋나서 이를 읽는 <code>gate-check</code>가 조용히 틀린 판정을 냅니다.</td><td><span class="sig sig-silent">조용함</span></td></tr>
+        <tr><td>엔진 리드 에이전트의 <code>tools: Agent(...)</code></td><td>하위 전문가 이름</td><td>하네스가 새 이름의 에이전트 호출을 막습니다.</td><td><span class="sig sig-loud">시끄러움</span></td></tr>
+        <tr><td><code>CCGS Skill Testing Framework/catalog.yaml</code></td><td>스킬·에이전트 이름 123개</td><td>audit 모드가 없는 항목을 보고하고, spec 모드가 옛 동작을 기준으로 실패합니다.</td><td><span class="sig sig-loud">시끄러움</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="block" id="effort">
+  <h2>작업량 추정</h2>
+  <p>Claude가 초안을 쓰고 사람이 검토하는 방식을 가정한 시간입니다. 규모를 가늠하기 위한 값이므로, 실제 계획은 스킬 두세 개를 표본으로 전환해 본 뒤 다시 측정하는 것이 좋습니다.</p>
+  <div id="effort-table"></div>
+  <p class="note">환산 기준은 S 0.25~0.5시간, M 1~3시간, L 3~8시간입니다. T1 전체 전환에서 엔진 전문가 15개는 스택 전문가 4개를 새로 쓰는 것으로 계산했습니다. 1인이 주 30시간을 쓴다고 보면 T1 최소 전환은 약 3~8주, T1 전체 전환은 약 7~18주, T2는 약 8~23주입니다. 스킬 테스트 프레임워크의 행동 명세 123개를 다시 쓰려면 30~90시간이 더 듭니다.</p>
+</section>
+
+<section class="block" id="detail">
+  <h2>상세 매핑</h2>
+  <p>232개 구성 요소와 설정 키 30개의 판정입니다. 탭과 대상을 바꾸고 판정별로 걸러 볼 수 있습니다.</p>
+  <div class="legend">
+    <p><span class="chip k">유지</span> 용어만 바꾸면 그대로 동작합니다.</p>
+    <p><span class="chip w">수정</span> 흐름과 역할은 유지하고 도메인 내용을 다시 씁니다. (원 판정 REWORD, REPURPOSE)</p>
+    <p><span class="chip r">재설계</span> 흐름을 바꾸거나 내용을 처음부터 다시 씁니다. (원 판정 REDESIGN, REPLACE)</p>
+    <p><span class="chip d">제거</span> 대상 조직에 대응하는 것이 없습니다.</p>
+    <p class="legend-sub">결합 유형은 P(범용 공정), V(용어만 게임), C(게임 디자인 개념이 동작에 포함), E(엔진 전용 동작)입니다. 작업량은 S(30분 미만), M(1~3시간), L(3시간 이상, 재작성)입니다.</p>
+  </div>
+  <div id="detail-app"></div>
+</section>
+
+<section class="block" id="side">
+  <h2>부수 발견</h2>
+  <p>전환과 별개로, 분석 중에 확인한 upstream 개선 후보입니다.</p>
+  <ul class="plain">
+    <li><code>features.token_budget_warn_at</code>: <code>effects-map.md</code>는 <code>pre-compact.sh</code>, <code>session-start.sh</code>, <code>statusline.sh</code>가 이 키를 읽는다고 설명합니다. 그러나 실제로 이 키가 나오는 곳은 <code>yaml-helper.sh:528</code>의 로컬 재정의 허용 목록뿐입니다.</li>
+    <li><code>agent-roster.md</code>는 qa-tester, devops-engineer, accessibility-specialist, community-manager를 Haiku로 표시합니다. 그러나 frontmatter에서 <code>haiku</code>로 고정된 것은 community-manager와 devops-engineer 두 개뿐이고, 나머지 두 개는 <code>inherit</code>입니다.</li>
+    <li><code>project.kind</code>, <code>accessibility.target</code>, <code>cadence.*</code> 키는 문서에 정의되어 있지만 읽는 곳이 없는 예약 상태입니다.</li>
+    <li><code>log-instructions.sh</code>는 hooks 폴더에 있지만 <code>settings.json</code>에 연결되어 있지 않고, <code>rules-reference.md</code>에서만 언급됩니다.</li>
+  </ul>
+</section>
+
+<section class="block" id="method">
+  <h2>방법과 한계</h2>
+  <dl class="method">
+    <dt>범위</dt><dd><code>.claude/</code> 전체(에이전트 49개, 스킬 74개의 파일 91개, 훅 14개, 스크립트 8개, 규칙 13개, 문서 105개), <code>docs/</code>, <code>CCGS Skill Testing Framework/</code>(파일 127개)를 대상으로 했습니다. 기준 버전은 v1.1.1(커밋 7ed2c3e)입니다.</dd>
+    <dt>정량 측정</dt><dd>game, player, GDD, playtest, 엔진 이름, engine, HUD, NPC, 셰이더 등 게임 전용 용어 14개 묶음을 정규식으로 세어 파일별 밀도와 줄 비율을 계산했습니다. level, blueprint처럼 일반 단어로도 쓰이는 말은 제외했습니다.</dd>
+    <dt>정성 판정</dt><dd>에이전트, 스킬 두 묶음, 런타임 인프라, 콘텐츠 인프라의 다섯 영역을 Sonnet 분석 작업자 다섯 개가 파일을 직접 읽고 판정했습니다. 인용된 file:line 근거는 grep으로 표본 대조했으며, 위치가 틀린 인용 1건(Vertical Slice 판정 규칙, 실제 위치 <code>gate-production.md:45-55</code>)을 바로잡았습니다.</dd>
+    <dt>보정</dt><dd>템플릿은 작업자가 '유지'로 판정했더라도 게임 용어 밀도가 100단어당 2.0 이상이면 '수정'으로 낮춰 집계했습니다. <code>ux-design</code>과 <code>ux-review</code>는 HUD 모드가 있어 '수정'으로 조정했습니다. T2에서 내러티브·아트 바이블 게이트 3개는 브랜드 영역으로 옮겨 쓰는 것이므로 '수정'으로 조정했고, <code>adr-dep-graph.sh</code>는 T2에서 ADR을 만들지 않으므로 '제거'로 조정했습니다.</dd>
+    <dt>한계</dt><dd>직접 판정한 대상은 T1과 T2 두 가지이며, 적합도 표의 나머지 후보는 추정입니다. 스킬을 실제로 실행해 보는 동적 검증은 하지 않았습니다. T1에서 '재설계' 판정을 받은 에이전트 19개 가운데 15개는 엔진 전문가이며, 실제로는 선택한 스택에 맞는 몇 개만 새로 쓰면 됩니다.</dd>
+  </dl>
+</section>
+
+</main>
+</div>
+<script>
+window.CCGS = {"data": {"agentsCols": ["n", "tier", "cp", "t1", "t1r", "t2", "t2r", "e1", "e2", "note"], "agents": [["creative-director", "디렉터", "C", "W", "제품 총괄(VP Product)", "W", "크리에이티브 총괄(ECD)", "L", "L", ""], ["technical-director", "디렉터", "V", "K", "엔지니어링 총괄(VP Eng)", "W", "운영 총괄", "S", "L", ""], ["producer", "디렉터", "V", "K", "프로그램 매니저", "K", "어카운트·프로젝트 디렉터", "S", "S", "두 대상 모두 그대로 쓸 수 있는 두 역할 중 하나"], ["game-designer", "리드", "C", "W", "프로덕트 매니저", "W", "전략 디렉터", "L", "L", "MDA·SDT·Flow 이론 부분을 새로 써야 함"], ["lead-programmer", "리드", "V", "K", "엔지니어링 리드", "D", "없음", "S", "-", ""], ["art-director", "리드", "C", "W", "디자인 총괄", "W", "아트 디렉터", "M", "S", ""], ["audio-director", "리드", "C", "D", "없음", "W", "오디오·팟캐스트 리드", "-", "L", ""], ["narrative-director", "리드", "C", "D", "없음", "W", "콘텐츠 전략 총괄", "-", "L", ""], ["qa-lead", "리드", "V", "K", "QA 리드", "W", "품질·교정 리드", "S", "M", ""], ["release-manager", "리드", "C+V", "W", "릴리스 매니저", "W", "캠페인 론칭 매니저", "M", "M", "스토어 인증 부분 교체"], ["localization-lead", "리드", "V", "K", "현지화 리드", "W", "글로벌 콘텐츠 리드", "S", "M", ""], ["systems-designer", "스페셜리스트", "C", "W", "그로스·데이터 분석가", "W", "마케팅 분석 전략가", "L", "L", ""], ["level-designer", "스페셜리스트", "C", "D", "없음", "D", "없음", "-", "-", ""], ["economy-designer", "스페셜리스트", "C", "W", "가격·수익화 전략가", "W", "로열티 프로그램 설계자", "L", "L", ""], ["gameplay-programmer", "스페셜리스트", "V", "K", "기능 개발자", "D", "없음", "S", "-", ""], ["engine-programmer", "스페셜리스트", "E", "R", "플랫폼·인프라 엔지니어", "D", "없음", "L", "-", ""], ["ai-programmer", "스페셜리스트", "C+E", "R", "응용 AI·에이전트 엔지니어", "D", "없음", "L", "-", "게임 AI(행동 트리·길찾기)라서 ML 역할과 다름"], ["network-programmer", "스페셜리스트", "E", "R", "실시간·분산 시스템 엔지니어", "D", "없음", "L", "-", ""], ["tools-programmer", "스페셜리스트", "V", "K", "개발자 경험(DX) 엔지니어", "D", "없음", "S", "-", ""], ["ui-programmer", "스페셜리스트", "V", "K", "프런트엔드 엔지니어", "D", "없음", "S", "-", ""], ["technical-artist", "스페셜리스트", "E", "R", "프런트엔드 성능·그래픽 엔지니어", "D", "없음", "L", "-", ""], ["sound-designer", "스페셜리스트", "C", "D", "없음", "W", "오디오 후반 작업 담당", "-", "M", ""], ["writer", "스페셜리스트", "V", "W", "UX 라이터·콘텐츠 디자이너", "W", "카피라이터", "M", "S", ""], ["world-builder", "스페셜리스트", "C", "D", "없음", "D", "없음", "-", "-", ""], ["qa-tester", "스페셜리스트", "V+E", "K", "QA 테스터·SDET", "W", "교정·검수 담당", "S", "M", "로스터 문서는 Haiku라고 적었지만 실제 설정은 inherit"], ["performance-analyst", "스페셜리스트", "V+E", "K", "성능 엔지니어·SRE", "D", "없음", "S", "-", ""], ["devops-engineer", "스페셜리스트", "V", "K", "DevOps 엔지니어", "D", "없음", "S", "-", ""], ["analytics-engineer", "스페셜리스트", "V", "K", "제품·데이터 분석가", "W", "마케팅 분석 리드", "S", "M", ""], ["ux-designer", "스페셜리스트", "V", "K", "UX 디자이너", "W", "서비스·CX 디자이너", "S", "M", ""], ["prototyper", "스페셜리스트", "V", "K", "디자인 테크놀로지스트", "W", "파일럿 기획 담당", "S", "M", ""], ["security-engineer", "스페셜리스트", "C+V", "W", "애플리케이션 보안 엔지니어", "D", "없음", "M", "-", "안티치트 중심이라 웹 보안 관점으로 재작성"], ["accessibility-specialist", "스페셜리스트", "V", "K", "접근성 전문가", "W", "포용적 커뮤니케이션 담당", "S", "M", "로스터 문서는 Haiku라고 적었지만 실제 설정은 inherit"], ["live-ops-designer", "스페셜리스트", "C", "W", "라이프사이클·리텐션 마케터", "W", "상시 캠페인 리드", "L", "M", ""], ["community-manager", "스페셜리스트", "V", "K", "커뮤니티 매니저", "K", "소셜 미디어 매니저", "S", "S", "두 대상 모두 그대로 쓸 수 있는 두 역할 중 하나"], ["godot-specialist", "엔진 리드", "E", "R", "스택 리드 스페셜리스트", "D", "없음", "L", "-", "tools: Agent(...) 허용 목록으로 하위 전문가 호출을 하네스가 강제"], ["unity-specialist", "엔진 리드", "E", "R", "스택 리드 스페셜리스트", "D", "없음", "L", "-", "tools: Agent(...) 허용 목록 교체 필요"], ["unreal-specialist", "엔진 리드", "E", "R", "스택 리드 스페셜리스트", "D", "없음", "L", "-", "tools: Agent(...) 허용 목록 교체 필요"], ["godot-gdscript-specialist", "엔진 하위", "E", "R", "프런트엔드 프레임워크 전문가", "D", "없음", "L", "-", ""], ["godot-csharp-specialist", "엔진 하위", "E", "R", "백엔드 언어 전문가", "D", "없음", "L", "-", ""], ["godot-shader-specialist", "엔진 하위", "E", "R", "그래픽·WebGL 전문가", "D", "없음", "L", "-", ""], ["godot-gdextension-specialist", "엔진 하위", "E", "R", "네이티브 모듈 전문가", "D", "없음", "L", "-", ""], ["ue-gas-specialist", "엔진 하위", "E", "R", "비즈니스 규칙 엔진 전문가", "D", "없음", "L", "-", ""], ["ue-blueprint-specialist", "엔진 하위", "E", "R", "로코드 플랫폼 전문가", "D", "없음", "L", "-", ""], ["ue-replication-specialist", "엔진 하위", "E", "R", "실시간 동기화 전문가", "D", "없음", "L", "-", ""], ["ue-umg-specialist", "엔진 하위", "E", "R", "디자인 시스템 컴포넌트 전문가", "D", "없음", "L", "-", ""], ["unity-dots-specialist", "엔진 하위", "E", "R", "데이터 파이프라인·성능 전문가", "D", "없음", "L", "-", ""], ["unity-shader-specialist", "엔진 하위", "E", "R", "그래픽 전문가", "D", "없음", "L", "-", ""], ["unity-addressables-specialist", "엔진 하위", "E", "R", "CDN·에셋 전송 전문가", "D", "없음", "L", "-", ""], ["unity-ui-specialist", "엔진 하위", "E", "R", "프런트엔드 UI 전문가", "D", "없음", "L", "-", ""]], "skillsCols": ["n", "ph", "p", "cp", "t1", "t2", "e1", "ch"], "skills": [["adopt", "지원", "기존 산출물 형식 준수 감사", "P,V", "W", "R", "M", "GDD 8개 섹션 이름(Player Fantasy 포함)을 준수 점수 기준으로 고정 (adopt/SKILL.md:135)"], ["architecture-decision", "기술 준비", "ADR 작성", "P,E", "W", "D", "M", "engine.name으로 엔진 전문가를 고르는 분기"], ["architecture-review", "기술 준비", "GDD→ADR 추적성·엔진 호환성 검토", "P,E", "W", "D", "M", "같은 엔진 전문가 분기, ADR 필수 섹션 Engine Compatibility"], ["art-bible", "콘셉트", "비주얼 아이덴티티 문서(9개 섹션) 작성", "C,V", "W", "W", "M", "섹션 구성이 브랜드·스타일 가이드와 거의 일치"], ["asset-audit", "폴리시", "에셋 명명·크기·형식 점검", "C,V", "W", "W", "M", "2의 거듭제곱 텍스처, 오디오 샘플레이트 규칙 (SKILL.md:82-84)"], ["asset-spec", "사전 제작", "에셋별 시각 명세와 생성 프롬프트", "C", "W", "W", "M", "에셋 분류(스프라이트·VFX·3D)를 UI 에셋이나 캠페인 소재로 교체"], ["balance-check", "폴리시", "전투·경제·성장 수치 이상치 탐지", "C", "R", "D", "L", "DPS, 처치 시간, 천장 확률 계산 (SKILL.md:94-119)"], ["brainstorm", "콘셉트", "MDA·Bartle 기반 콘셉트 발상", "C", "R", "R", "L", "MDA 미학, Bartle 분류, 동사 중심 발상 기법 (SKILL.md:162-253)"], ["bug-report", "제작", "구조화된 버그 보고", "P,V", "K", "R", "S", "Scene/Level 필드 정도만 게임 용어"], ["bug-triage", "제작", "심각도·우선순위 분류", "P", "K", "W", "S", "일반 애자일 분류 방식"], ["changelog", "출시", "커밋에서 변경 기록 생성", "P,V", "W", "R", "S", "커밋을 Game과 Framework로 가르는 필터 (SKILL.md:35-49)"], ["code-review", "제작", "아키텍처·ADR 준수 코드 리뷰", "P,E,C", "W", "D", "M", "specialists.* 설정으로 리뷰어 분기, 프레임레이트 독립성 점검 (SKILL.md:56-71)"], ["consistency-check", "시스템 설계", "GDD와 엔티티 레지스트리 충돌 검사", "C", "W", "W", "M", "엔티티·아이템·공식 스키마를 공통 사실 레지스트리로 일반화"], ["content-audit", "지원", "계획 대비 구현 콘텐츠 수량 대조", "C", "R", "R", "L", "적·레벨·아이템 분류가 고정됨 (SKILL.md:153-182)"], ["create-architecture", "기술 준비", "마스터 아키텍처 문서 작성", "P,E", "W", "D", "M", "엔진 지식 공백 목록(학습 시점 이후 API 위험)"], ["create-control-manifest", "기술 준비", "ADR에서 필수·금지 규칙 추출", "P,E", "W", "D", "M", "금지 API 예시가 3D 물리 엔진 교체 사례 (SKILL.md:130-139)"], ["create-epics", "사전 제작", "설계 문서와 아키텍처로 에픽 생성", "P", "K", "R", "S", "PRD 기반 에픽 생성과 같은 구조"], ["create-stories", "사전 제작", "에픽을 구현 가능한 스토리로 분할", "P,C", "W", "R", "M", "스토리 유형에 Visual/Feel 포함 (SKILL.md:169-180). minimal 등급은 한 장짜리 브리프에서 바로 에픽을 만듦"], ["day-one-patch", "출시", "출시 직후 긴급 패치 스프린트", "P,V", "W", "R", "S", "골드 마스터, 심사 피드백 같은 용어만 게임"], ["design-review", "시스템 설계", "설계 문서 완결성·일관성 검토", "C", "R", "R", "L", "도메인 전문가 라우팅 표와 필수 섹션이 모두 게임 역할"], ["design-system", "시스템 설계", "시스템별 GDD를 섹션 단위로 작성", "C", "R", "R", "L", "필수 8개 섹션과 전문가 라우팅 표 (SKILL.md:1173-1201)"], ["dev-story", "제작", "스토리 하나를 구현하고 테스트", "E,C", "R", "D", "L", "레이어·유형별 개발자 라우팅 (SKILL.md:241-251), 엔진 전문가 분기 (SKILL.md:265-296)"], ["estimate", "지원", "작업량 추정", "P", "K", "W", "S", "GDD 용어만 교체"], ["gate-check", "지원", "단계 진입 판정(PASS/CONCERNS/FAIL)", "C,P", "R", "R", "L", "단계 기준이 게임 기준: 플레이테스트 횟수, 재미 검증, 플랫폼 인증 (references/gate-production.md:23-67)"], ["help", "지원", "다음에 할 일 안내", "P,V", "W", "W", "S", "라우팅 로직은 일반적이고 단계 이름은 workflow-catalog.yaml에서 읽음"], ["hotfix", "지원", "긴급 수정 브랜치·승인·백포트", "P,V", "K", "R", "S", "일반 SRE 핫픽스 절차"], ["launch-checklist", "출시", "부서별 출시 준비 점검", "C,P", "R", "R", "L", "platform.cert_tier(none/itch/steam/console)로 인증 항목 분기 (SKILL.md:26-48)"], ["localize", "출시", "현지화 파이프라인", "P,E,C", "W", "R", "M", "RTL 점검이 engine.name별 API로 분기 (SKILL.md:295-320)"], ["map-systems", "콘셉트", "콘셉트를 시스템으로 분해하고 순서 결정", "C", "R", "R", "L", "인벤토리는 아이템 DB를 뜻한다는 식의 게임 시스템 분류 (SKILL.md:114-129)"], ["milestone-review", "지원", "마일스톤 완성도와 진행 여부 판단", "P", "K", "W", "S", "일반 PM 검토"], ["onboard", "지원", "역할별 온보딩 문서", "P,V", "W", "W", "S", "역할 목록(프로그래머·디자이너·내러티브·QA) 교체"], ["patch-notes", "출시", "플레이어용 패치 노트", "P,V", "W", "R", "S", "changelog와 같은 출처 필터"], ["perf-profile", "폴리시", "CPU·GPU·메모리 병목 분석", "C,E", "R", "D", "L", "performance.target_framerate, draw_call_limit 등을 읽음 (SKILL.md:83-89)"], ["playtest-report", "폴리시", "플레이테스트 보고서", "C", "W", "R", "M", "사용성 테스트 보고서로 대응 가능"], ["project-stage-detect", "지원", "현재 단계와 공백 탐지", "P,V", "W", "R", "M", "GDD·ADR·코드 파일 수로 단계를 추정 (SKILL.md:123-131)"], ["propagate-design-change", "지원", "설계 변경이 ADR에 미치는 영향 전파", "P", "W", "D", "M", "PRD→ADR 영향 전파로 그대로 쓸 수 있는 패턴"], ["prototype", "사전 제작", "버릴 프로토타입과 PROCEED/PIVOT/KILL 판정", "C", "R", "R", "L", "장르 12종별 경로 표 (SKILL.md:113-128)"], ["qa-plan", "제작", "스프린트 QA 계획", "P,C", "W", "R", "M", "스토리 유형 표에 Visual/Feel 포함 (SKILL.md:153-159)"], ["quick-design", "시스템 설계", "작은 변경용 간이 명세", "C,P", "W", "W", "M", "MDA 미학 기준의 전환 조건 (SKILL.md:144, 291)"], ["regression-suite", "폴리시", "회귀 테스트 목록 관리", "P,V", "K", "D", "S", "GDD 용어만 교체 (SKILL.md:99-118)"], ["release-checklist", "출시", "플랫폼별 출시 전 점검", "P,C", "W", "R", "M", "Steamworks·ESRB 항목 (SKILL.md:218-227)"], ["retrospective", "제작", "스프린트·마일스톤 회고", "P", "K", "K", "S", "게임 의존 없음"], ["reverse-document", "지원", "코드에서 설계 문서 역생성", "C,P", "W", "D", "M", "출력 형식이 GDD 템플릿 기준 (SKILL.md:28-31)"], ["review-all-gdds", "시스템 설계", "GDD 전체 모순·게임 이론 검토", "C,P", "R", "R", "L", "지배 전략·경제 순환·난이도 곡선 점검 (SKILL.md:314-473)"], ["scope-check", "제작", "원래 계획 대비 범위 변화 점검", "P", "K", "K", "S", "게임 의존 없음"], ["security-audit", "폴리시", "저장·네트워크·치트 취약점 감사", "E,C,P", "R", "D", "L", "엔진별 grep 패턴 표 (SKILL.md:47-51, 104-198)"], ["settings", "지원", "project.yaml 조회·변경", "P", "K", "K", "S", "오류 메시지 예시에만 엔진 이름"], ["setup-engine", "콘셉트", "엔진 선택과 버전 고정", "E", "R", "D", "L", "1,254줄 전체가 엔진 선택·렌더링·명명·명령 표"], ["skill-improve", "메타", "스킬 개선 반복(테스트→수정→재테스트)", "P", "K", "K", "S", "프레임워크 중립"], ["skill-test", "메타", "스킬 구조·행동 검증(4개 모드)", "P", "K", "K", "S", "프레임워크 중립. 전환 작업의 회귀 안전망"], ["smoke-check", "제작", "자동 테스트 실행과 QA 인계 판정", "E,P", "W", "D", "M", "엔진별 테스트 명령 (SKILL.md:128-173)"], ["soak-test", "폴리시", "장시간 구동 누수·피로 점검", "C,E", "W", "D", "M", "엔진별 메모리 모니터 (SKILL.md:116-140)"], ["sprint-plan", "제작", "스프린트 계획 작성·갱신", "P", "K", "K", "S", "게임 의존 없음"], ["sprint-status", "제작", "스프린트 현황 요약", "P", "K", "K", "S", "게임 의존 없음"], ["start", "메타", "첫 세션 온보딩과 경로 안내", "P,C", "W", "R", "M", "/brainstorm→/setup-engine→/map-systems 경로 표 (SKILL.md:76-145)"], ["story-done", "제작", "수락 기준·증거 확인 후 스토리 종료", "P,V,C", "W", "R", "L", "증거 유형 표 (SKILL.md:228-247). CONTRACT.md도 함께 수정해야 함"], ["story-readiness", "제작", "구현 착수 준비 판정", "P,V", "W", "R", "L", "GDD·TR-ID·ADR 점검 목록 (SKILL.md:170-233). CONTRACT.md도 함께 수정해야 함"], ["team-audio", "제작", "오디오 팀 조율", "P,C,E", "D", "D", "S", "대응하는 조직이 없음"], ["team-combat", "제작", "전투 기능 팀 조율", "P,C,E", "D", "D", "S", "대응하는 조직이 없음"], ["team-level", "제작", "레벨 팀 조율", "P,C", "D", "D", "S", "대응하는 조직이 없음"], ["team-live-ops", "출시", "시즌·이벤트 팀 조율", "P,C", "R", "R", "L", "경제 설계는 가격 전략으로, 라이브옵스는 라이프사이클 마케팅으로"], ["team-narrative", "제작", "내러티브 팀 조율", "P,C", "R", "W", "M", "T2 콘텐츠 팀과 가깝게 대응"], ["team-polish", "폴리시", "성능·품질 마감 팀 조율", "P,C,E", "R", "D", "M", "테크니컬 아티스트·사운드를 빼고 성능·QA만 유지"], ["team-qa", "제작", "QA 전체 주기 조율", "P", "W", "R", "M", "T1과 거의 1:1 대응"], ["team-release", "출시", "릴리스 트레인 조율", "P,C", "W", "R", "M", "network-programmer만 빼면 그대로 대응"], ["team-ui", "사전 제작", "UX 파이프라인 팀 조율", "P,C,E", "W", "D", "M", "프런트엔드 기능 팀과 거의 1:1 대응"], ["tech-debt", "지원", "기술 부채 등록부 관리", "P", "K", "R", "S", "scan 모드의 코드 스멜 검색만 코드 전용"], ["test-evidence-review", "제작", "테스트 증거의 질 검토", "P,V", "K", "R", "S", "스토리 유형 표만 교체 (SKILL.md:83-88)"], ["test-flakiness", "폴리시", "CI 로그에서 불안정 테스트 탐지", "E,P", "W", "D", "S", "엔진별 로그 위치·형식 (SKILL.md:58-65)"], ["test-helpers", "사전 제작", "엔진별 테스트 헬퍼 생성", "E,P", "W", "D", "L", "코드 생성 단계 전체가 엔진별 (SKILL.md:113-357)"], ["test-setup", "사전 제작", "테스트 프레임워크·CI 초기 구성", "E,P", "W", "D", "L", "엔진별 러너와 CI YAML 3종 (SKILL.md:161-372)"], ["ux-design", "사전 제작", "화면·흐름 UX 명세 작성", "P,V,C", "W", "D", "M", "HUD 모드와 references/sections-hud.md (SKILL.md:357-420)"], ["ux-review", "사전 제작", "UX 명세 검증", "P,V,C", "W", "D", "S", "GDD 정합성 섹션과 HUD 점검 목록 (SKILL.md:140-146, 167-200)"], ["vertical-slice", "사전 제작", "전체 루프 검증용 수직 단면 빌드", "C,P", "R", "R", "L", "재미·핵심 판타지 플레이테스트 문항 (SKILL.md:183-215)"]], "templatesCols": ["n", "used", "t1", "t1e", "t2", "t2e"], "templates": [["SKILL-CONTRACT-TEMPLATE.md", 0, "K", "스킬 계약 템플릿", "K", "스킬 계약 템플릿"], ["accessibility-requirements.md", 12, "W", "접근성(WCAG) 요구사항", "W", "디지털 접근성 점검표"], ["architecture-decision-record.md", 0, "W", "ADR", "D", "없음"], ["architecture-doc-from-code.md", 1, "K", "코드 기반 아키텍처 역문서", "D", "없음"], ["architecture-traceability.md", 0, "W", "요구사항 추적 매트릭스", "D", "없음"], ["art-bible.md", 6, "R", "디자인 시스템·브랜드 가이드", "R", "브랜드 가이드라인"], ["changelog-template.md", 0, "W", "변경 기록", "W", "고객 업데이트 기록"], ["concept-doc-from-prototype.md", 1, "W", "스파이크·PoC 역문서", "W", "파일럿 캠페인 회고"], ["design-doc-from-implementation.md", 1, "K", "구현 기반 기능 명세 역문서", "D", "없음"], ["difficulty-curve.md", 2, "R", "온보딩 복잡도 곡선(드물게 사용)", "D", "없음"], ["economy-model.md", 0, "R", "가격·수익화 모델", "D", "없음"], ["faction-design.md", 0, "D", "없음", "R", "타깃·경쟁사 페르소나"], ["game-brief.md", 15, "W", "한 장짜리 제품 브리프", "W", "한 장짜리 캠페인 브리프"], ["game-concept.md", 24, "W", "제품 콘셉트 브리프", "W", "프로젝트 콘셉트 브리프"], ["game-design-document.md", 3, "R", "PRD·기능 명세", "R", "크리에이티브·산출물 브리프"], ["game-pillars.md", 11, "W", "제품 원칙", "W", "브랜드·크리에이티브 원칙"], ["hud-design.md", 2, "R", "상시 대시보드·오버레이 명세", "D", "없음"], ["incident-response.md", 0, "K", "장애 대응(SRE)", "W", "위기 커뮤니케이션 대응"], ["interaction-pattern-library.md", 1, "W", "UI 컴포넌트·인터랙션 패턴 라이브러리", "R", "웹 소재 패턴 라이브러리"], ["level-design-document.md", 0, "D", "없음", "D", "없음"], ["milestone-definition.md", 2, "K", "릴리스 마일스톤 정의", "K", "프로젝트 마일스톤 정의"], ["narrative-character-sheet.md", 0, "D", "없음", "R", "오디언스 페르소나"], ["pitch-document.md", 0, "W", "투자·경영진 피치", "W", "고객 제안서"], ["player-journey.md", 4, "R", "사용자 여정 지도", "R", "고객 여정 지도"], ["post-mortem.md", 0, "K", "포스트모템", "K", "캠페인·프로젝트 포스트모템"], ["project-stage-report.md", 1, "W", "프로젝트 단계 보고서", "W", "프로젝트 단계 보고서"], ["prototype-report.md", 1, "W", "스파이크·PoC 보고서", "R", "파일럿·테스트 캠페인 보고서"], ["release-checklist-template.md", 0, "R", "배포·릴리스 점검표", "D", "없음"], ["release-notes.md", 0, "W", "릴리스 노트", "W", "고객 산출물 노트"], ["risk-register-entry.md", 2, "K", "위험 등록부", "K", "위험 등록부"], ["session-state.md", 17, "K", "세션 체크포인트 형식", "K", "세션 체크포인트 형식"], ["sound-bible.md", 1, "D", "없음", "D", "없음"], ["sprint-plan.md", 1, "K", "스프린트 계획", "K", "스프린트 계획"], ["systems-index.md", 27, "W", "기능 맵·기능 백로그", "R", "워크스트림·산출물 목록"], ["technical-design-document.md", 0, "W", "기술 설계 문서", "D", "없음"], ["test-evidence.md", 1, "K", "QA 증거 기록", "W", "산출물 검수·승인 기록"], ["test-plan.md", 0, "W", "QA·테스트 계획", "D", "없음"], ["ux-spec.md", 4, "K", "UX·화면 명세", "R", "디지털 소재 크리에이티브 브리프"], ["vertical-slice-report.md", 1, "R", "MVP·베타 검증 보고서", "D", "없음"], ["guidance/accessibility-requirements-guide.md", 1, "W", "접근성 요구사항 작성 안내", "W", "접근성 점검표 작성 안내"], ["guidance/hud-design-guide.md", 1, "R", "대시보드 명세 작성 안내", "D", "없음"], ["guidance/interaction-pattern-library-guide-game-specific.md", 0, "D", "없음", "D", "없음"], ["guidance/interaction-pattern-library-guide-navigation-feedback.md", 0, "K", "화면 이동·로딩·빈 상태·오류 상태 패턴", "R", "없음"], ["guidance/interaction-pattern-library-guide-standard-controls.md", 0, "K", "버튼·모달·토스트·툴팁 명세", "R", "없음"], ["guidance/interaction-pattern-library-guide.md", 1, "K", "패턴 라이브러리 안내 색인", "R", "없음"], ["guidance/ux-spec-guide.md", 1, "W", "UX 명세 작성 안내", "R", "없음"]], "gatesCols": ["id", "owner", "chk", "t1", "t1e", "t2", "t2e"], "gates": [["CD-PILLARS", "creative-director", "필러 정의 직후 스트레스 테스트", "K", "제품 원칙 스트레스 테스트", "K", "크리에이티브 원칙 점검"], ["CD-GDD-ALIGN", "creative-director", "시스템 GDD와 필러의 정합성", "R", "PRD와 제품 원칙 정합성 검토", "R", "산출물 브리프와 원칙 정합성"], ["CD-SYSTEMS", "creative-director", "시스템 분해 결과의 비전 점검", "K", "기능 분해 비전 점검", "R", "워크스트림 분해 점검"], ["CD-NARRATIVE", "creative-director", "스토리·세계관 문서 일관성", "D", "없음", "W", "브랜드 보이스 일관성"], ["CD-PLAYTEST", "creative-director", "플레이테스트 보고서의 경험 검증", "R", "사용성 테스트·베타 피드백 검토", "R", "파일럿·고객 반응 검토"], ["CD-PHASE-GATE", "creative-director", "단계 전환 시 크리에이티브 준비도", "K", "단계 전환 시 비전 준비도", "K", "단계 전환 시 크리에이티브 준비도"], ["TD-SYSTEM-BOUNDARY", "technical-director", "GDD 작성 전 시스템 경계 검토", "K", "모듈·서비스 경계 검토", "D", "없음"], ["TD-FEASIBILITY", "technical-director", "초기 콘셉트의 기술 실현 가능성", "K", "기술 실현 가능성 검토", "R", "납품 실현 가능성"], ["TD-ARCHITECTURE", "technical-director", "마스터 아키텍처 문서 승인", "K", "아키텍처 문서 승인", "D", "없음"], ["TD-ADR", "technical-director", "ADR 승인 전 검토", "K", "ADR 검토", "D", "없음"], ["TD-ENGINE-RISK", "technical-director", "학습 시점 이후 엔진 API 위험", "W", "프레임워크·런타임 버전 위험 검토", "D", "없음"], ["TD-PHASE-GATE", "technical-director", "단계 전환 시 기술 준비도", "K", "단계 전환 시 기술 준비도", "W", "납품 준비도"], ["TD-MANIFEST", "technical-director", "통제 목록 작성 전 검토", "K", "통제 목록 검토", "D", "없음"], ["TD-CHANGE-IMPACT", "technical-director", "설계 변경 영향 평가 검토", "K", "변경 영향 평가 검토", "W", "범위 변경 영향"], ["PR-SCOPE", "producer", "범위와 일정 검증", "K", "범위·일정 검증", "K", "범위·일정 검증"], ["PR-SPRINT", "producer", "스프린트 계획 실현 가능성", "K", "스프린트 계획 검토", "K", "스프린트 계획 검토"], ["PR-MILESTONE", "producer", "마일스톤 위험 평가", "K", "마일스톤 위험 평가", "K", "마일스톤 위험 평가"], ["PR-EPIC", "producer", "스토리 분할 전 에픽 구조", "K", "에픽 구조 검토", "K", "에픽 구조 검토"], ["PR-PHASE-GATE", "producer", "단계 전환 시 제작 준비도", "K", "단계 전환 시 제작 준비도", "K", "단계 전환 시 제작 준비도"], ["AD-CONCEPT-VISUAL", "art-director", "필러 확정 후 비주얼 아이덴티티 방향", "W", "브랜드·UI 비주얼 방향", "K", "비주얼 아이덴티티 방향"], ["AD-ART-BIBLE", "art-director", "에셋 제작 전 아트 바이블 승인", "R", "디자인 시스템·브랜드 가이드 승인", "W", "브랜드 가이드 승인"], ["AD-PHASE-GATE", "art-director", "단계 전환 시 비주얼 준비도", "W", "UI·비주얼 디자인 준비도", "K", "비주얼 준비도"], ["LP-FEASIBILITY", "lead-programmer", "아키텍처 구현 가능성", "K", "구현 가능성 검토", "D", "없음"], ["LP-CODE-REVIEW", "lead-programmer", "구현된 스토리의 코드 리뷰", "K", "코드 리뷰", "D", "없음"], ["QL-STORY-READY", "qa-lead", "스프린트 전 수락 기준의 테스트 가능성", "K", "수락 기준 검토", "R", "산출물 준비도"], ["QL-TEST-COVERAGE", "qa-lead", "에픽 종료 전 테스트 커버리지", "K", "테스트 커버리지 검토", "R", "산출물 검수 범위"], ["ND-CONSISTENCY", "narrative-director", "작가 산출물의 내러티브 일관성", "D", "없음", "W", "카피·콘텐츠 일관성"], ["AD-VISUAL", "art-director", "아트·테크아트 결정의 시각 일관성", "W", "UI 시각 일관성 검토", "K", "시각 일관성 검토"]], "infraCols": ["n", "kind", "what", "cls", "t1", "t2", "e1", "e2", "ev"], "infra": [["session-start.sh", "훅", "세션 시작 안내, 상태 복구, 엔진 레퍼런스 불일치 점검", "혼합", "W", "W", "S", "M", "L273-281 엔진 레퍼런스 경로 검사"], ["detect-gaps.sh", "훅", "누락된 GDD·ADR·계획 문서 알림", "게임", "W", "R", "M", "L", "L70 game-concept.md, L84-91 src·Assets·Source 탐색, L275-282 시스템 문서 규칙"], ["validate-commit.sh", "훅", "커밋 전 JSON·GDD 섹션·하드코딩 수치 점검", "혼합", "W", "W", "M", "L", "L175 ^design/gdd/ 필터, L304 damage·health 등 수치 정규식"], ["validate-push.sh", "훅", "보호 브랜치 푸시 경고", "범용", "K", "K", "S", "S", ""], ["validate-assets.sh", "훅", "assets/ 아래 명명·JSON 검사", "혼합", "W", "W", "S", "S", "L68 assets/ 경로가 아니면 즉시 종료"], ["validate-skill-change.sh", "훅", "스킬 수정 후 skill-test 실행 안내", "범용", "K", "K", "S", "S", ""], ["notify.sh", "훅", "Windows 알림 표시", "범용", "K", "K", "S", "S", ""], ["pre-compact.sh", "훅", "압축 전 상태·변경·WIP 기록", "혼합", "W", "W", "S", "S", "L144 design/gdd/*.md 글롭"], ["post-compact.sh", "훅", "압축 후 active.md 재확인 안내", "범용", "K", "K", "S", "S", ""], ["session-stop.sh", "훅", "active.md 보관, 커밋·에이전트 사용 집계", "범용", "K", "K", "S", "S", ""], ["log-agent.sh", "훅", "서브에이전트 시작 감사 로그", "범용", "K", "K", "S", "S", ""], ["log-agent-stop.sh", "훅", "서브에이전트 종료 감사 로그", "범용", "K", "K", "S", "S", ""], ["log-instructions.sh", "훅", "로드된 규칙·지침 파일 기록(settings.json에는 미연결)", "범용", "K", "K", "S", "S", ""], ["yaml-helper.sh", "헬퍼", "설정 조회·병합·검증, code root 결정", "혼합", "W", "W", "S", "M", "L472 engine.name 열거값, L1236-1239 엔진별 code root"], ["adr-dep-graph.sh", "스크립트", "ADR 의존 그래프와 순환 탐지", "범용", "K", "D", "S", "S", "T2에서는 ADR을 만들지 않으므로 쓸 곳이 없음"], ["artifact-check.sh", "스크립트", "workflow-catalog 산출물 존재 확인", "범용", "K", "K", "S", "S", "경로는 카탈로그 데이터에서 읽음"], ["gdd-structure-check.sh", "스크립트", "GDD 8개 섹션 존재 검사", "게임", "W", "R", "M", "L", "L37-44 섹션 목록, L49-55 제외 목록"], ["migrate-v1-config.sh", "스크립트", "v1.0→v1.1 설정 이관", "혼합", "K", "K", "S", "S", "주석과 메시지에만 부수적 언급"], ["project-coherence.sh", "스크립트", "project.yaml과 실제 엔진 파일 대조", "게임", "R", "D", "M", "S", "L123-131, L161-190 godot|unity|unreal 분기"], ["review-receipts.sh", "스크립트", "리뷰 대상의 내용 해시 추적", "범용", "K", "K", "S", "S", ""], ["review-scope.sh", "스크립트", "git diff로 교차 검토 범위 계산", "게임", "W", "W", "S", "M", "L34 design/gdd 글롭, L38-44 제외 목록"], ["rotate-session-state.sh", "스크립트", "active.md 이력 회전", "범용", "K", "K", "S", "S", ""], ["agent-memory.md", "규칙", ".claude/agent-memory/**", "범용", "K", "K", "S", "S", ""], ["ai-code.md", "규칙", "src/ai/** 행동 트리·NPC 인지", "게임", "D", "D", "S", "S", ""], ["data-files.md", "규칙", "assets/data/** 데이터 파일", "혼합", "W", "D", "S", "S", "combat_enemies.json 예시"], ["design-docs.md", "규칙", "design/gdd/** 8개 섹션 GDD 스키마", "게임", "W", "R", "M", "L", ""], ["engine-code.md", "규칙", "src/core/** 엔진 코드", "게임", "D", "D", "S", "S", ""], ["gameplay-code.md", "규칙", "src/gameplay/** 게임플레이 코드", "게임", "W", "D", "S", "S", "비즈니스 로직 규칙으로 일반화"], ["narrative.md", "규칙", "design/narrative/** 세계관·대사", "게임", "D", "W", "S", "M", "T2에서는 브랜드 보이스 규칙으로 전환"], ["network-code.md", "규칙", "src/networking/** 네트워크 코드", "혼합", "W", "D", "S", "S", ""], ["prototype-code.md", "규칙", "prototypes/** 프로토타입 코드", "범용", "K", "K", "S", "S", ""], ["shader-code.md", "규칙", "assets/shaders/** 셰이더", "게임", "D", "D", "S", "S", ""], ["skill-authoring.md", "규칙", ".claude/skills/**, .claude/agents/** 작성 규칙", "범용", "K", "K", "S", "S", ""], ["test-standards.md", "규칙", "tests/** 테스트 표준", "범용", "K", "K", "S", "S", ""], ["ui-code.md", "규칙", "src/ui/** 게임패드·색각 이상 모드", "혼합", "W", "W", "S", "S", ""]], "configCols": ["key", "cls", "t1", "t2", "note"], "config": [["modes.review_mode", "범용", "유지", "유지", "게이트 실행 깊이(full/lean/solo)"], ["modes.rigor", "범용", "유지", "유지", "절차 무게를 한 번에 정하는 상위 값"], ["modes.workflow", "범용", "유지", "유지", "설계 문서 깊이(full/standard/minimal)"], ["workflow_overrides", "범용", "유지", "유지", "시스템별 문서 요구 예외"], ["modes.automation", "범용", "유지", "유지", "협업·안내·자율 모드"], ["modes.automation_always_ask", "범용", "유지", "유지", "항상 확인받을 결정 범주"], ["modes.story_granularity", "범용", "유지", "유지", "스토리 크기"], ["docs.density", "범용", "유지", "유지", "문서 분량"], ["testing.framework", "게임", "스택 테스트 러너로 이름 변경", "검수 도구로 이름 변경", "엔진별 기본값"], ["testing.strict.*", "혼합", "유지하고 유형 이름 수정", "유지하고 유형 이름 수정", "Visual/Feel 등 증거 유형별 차단 여부"], ["qa.level", "범용", "유지", "유지", "증거 기준 수준"], ["qa.coverage_minimum", "소프트웨어", "유지", "교체 또는 제거", "코드 커버리지 비율"], ["strict_gate_checks", "범용", "유지", "유지", "게이트 FAIL을 차단으로 볼지"], ["team.size", "범용", "유지", "유지", "활성 에이전트 수 조정"], ["platform.multiplayer", "게임", "제거", "제거", "실시간 멀티플레이 여부"], ["platform.online", "혼합", "외부 연동 여부로 이름 변경", "고객 포털·API 여부로 이름 변경", "온라인 서비스 여부"], ["platform.cert_tier", "게임", "제거", "제거", "itch/steam/console 인증 등급"], ["accessibility.target", "범용(예약)", "유지하고 실제로 연결", "유지하고 실제로 연결", "읽는 곳이 아직 없음"], ["cadence.sprint_length · milestone_length", "범용(예약)", "유지", "유지", "읽는 곳이 아직 없음"], ["performance.target_framerate 외 3개", "게임", "지연 시간·번들 크기 예산으로 교체", "제거", "프레임·드로우콜·메모리 예산"], ["performance.enforce", "범용", "유지", "유지", "warn/block/off"], ["project.stage", "혼합", "단계 이름 변경", "단계 이름 변경", "gate-check만 기록"], ["project.kind", "범용(예약)", "도메인 분기 지점으로 구현", "도메인 분기 지점으로 구현", "현재 읽는 곳이 0개"], ["engine.name + specialists", "게임", "stack.name과 전문가 매핑으로 교체", "제거", "엔진 전문가 라우팅"], ["commands", "범용", "유지", "유지(run은 해당 없을 수 있음)", "build/test/run/smoke 명령"], ["naming", "혼합", "구조는 유지하고 기본값 교체", "대부분 제거", "엔진별 명명 규칙"], ["features.session_state", "범용", "유지", "유지", "세션 체크포인트 사용 여부"], ["features.token_budget_warn_at", "범용", "유지하고 연결 누락 수정", "유지하고 연결 누락 수정", "문서는 세 곳에서 읽는다고 하지만 실제로 읽는 곳이 없음"], ["schema_version", "범용", "유지", "유지", "설정 스키마 버전"], ["framework.version · last_upgraded", "범용", "유지", "유지", "CCGS 버전 기록"]]}, "counts": {"t1": {"agents": {"K": 16, "W": 9, "R": 19, "D": 5}, "skills": {"K": 16, "W": 37, "R": 18, "D": 3}, "templates": {"K": 14, "W": 18, "R": 9, "D": 5}, "gates": {"K": 19, "W": 4, "R": 3, "D": 2}, "hooks": {"K": 8, "W": 6, "R": 0, "D": 0}, "scripts": {"K": 5, "W": 2, "R": 1, "D": 0}, "rules": {"K": 4, "W": 5, "R": 0, "D": 4}, "total": {"K": 82, "W": 81, "R": 50, "D": 19}}, "t2": {"agents": {"K": 2, "W": 19, "R": 0, "D": 28}, "skills": {"K": 7, "W": 11, "R": 31, "D": 25}, "templates": {"K": 6, "W": 12, "R": 13, "D": 15}, "gates": {"K": 10, "W": 5, "R": 6, "D": 7}, "hooks": {"K": 8, "W": 5, "R": 1, "D": 0}, "scripts": {"K": 4, "W": 1, "R": 1, "D": 2}, "rules": {"K": 4, "W": 2, "R": 1, "D": 6}, "total": {"K": 41, "W": 55, "R": 53, "D": 83}}}, "lines": {"t1": {"agents": {"K": 1869, "W": 1327, "R": 2903, "D": 449}, "skills": {"K": 3095, "W": 11079, "R": 7436, "D": 524}, "templates": {"K": 1956, "W": 2743, "R": 1572, "D": 498}, "gates": {"K": 354, "W": 72, "R": 54, "D": 36}, "hooks": {"K": 667, "W": 2657, "R": 0, "D": 0}, "scripts": {"K": 1504, "W": 198, "R": 196, "D": 0}, "rules": {"K": 202, "W": 118, "R": 0, "D": 92}, "total": {"K": 9647, "W": 18194, "R": 12161, "D": 1599}}, "t2": {"agents": {"K": 272, "W": 2562, "R": 0, "D": 3714}, "skills": {"K": 1479, "W": 1959, "R": 10143, "D": 8553}, "templates": {"K": 647, "W": 1527, "R": 2512, "D": 2083}, "gates": {"K": 184, "W": 91, "R": 111, "D": 130}, "hooks": {"K": 667, "W": 2356, "R": 301, "D": 0}, "scripts": {"K": 1374, "W": 112, "R": 86, "D": 326}, "rules": {"K": 202, "W": 26, "R": 19, "D": 165}, "total": {"K": 4825, "W": 8633, "R": 13172, "D": 14971}}}, "groups": [["agents", "에이전트"], ["skills", "스킬"], ["templates", "템플릿"], ["gates", "디렉터 게이트"], ["hooks", "훅·헬퍼"], ["scripts", "스크립트"], ["rules", "규칙"]], "density": [{"label": "훅·헬퍼", "pct": 3.3, "hit": 110, "lines": 3324}, {"label": "스크립트", "pct": 7.3, "hit": 138, "lines": 1898}, {"label": "스킬 테스트 프레임워크", "pct": 14.0, "hit": 2035, "lines": 14586}, {"label": "프레임워크 문서", "pct": 14.1, "hit": 693, "lines": 4923}, {"label": "스킬", "pct": 15.2, "hit": 3360, "lines": 22134}, {"label": "루트 문서(docs/)", "pct": 15.8, "hit": 390, "lines": 2462}, {"label": "에이전트", "pct": 16.6, "hit": 1085, "lines": 6548}, {"label": "규칙", "pct": 16.7, "hit": 69, "lines": 412}, {"label": "템플릿", "pct": 19.6, "hit": 1327, "lines": 6769}, {"label": "디렉터 게이트", "pct": 23.4, "hit": 121, "lines": 516}], "effort": {"cols": ["T1 최소 전환", "T1 전체 전환", "T2 지식 서비스"], "rows": [["에이전트", "13개 + 스택 전문가 3개", [19.2, 50.5], [48.0, 126.0], [33.4, 90.8]], ["스킬", "척추 스킬 36개", [44.0, 118.0], [93.9, 255.8], [108.2, 289.5]], ["템플릿", "", null, [19.7, 58.0], [20.4, 60.0]], ["디렉터 게이트", "", null, [3.5, 9.6], [5.1, 13.7]], ["훅·스크립트·규칙", "", [7.5, 19.9], [7.4, 19.9], [17.2, 46.3]], ["범위·용어 확정", "", [2, 4], null, null], ["보류 항목 정리(스킬 38개, 에이전트 36개)", "", [3.7, 7.4], null, null], ["문서 정리", "", [4, 10], [12, 30], [20, 40]], ["스택 레퍼런스 작성", "", null, [4, 10], null], ["새 납품 공정 설계와 신규 스킬 10~15개", "", null, null, [30, 120]], ["교차 참조 정리", "", [4, 10], [6, 16], [8, 20]], ["검증", "", [6, 12], [8, 16], [10, 20]], ["테스트 카탈로그 갱신", "", null, [1, 3], [1, 3]]], "total": [[90.4, 231.8], [203.5, 544.2], [253.2, 703.3]], "optional": ["선택: 행동 명세 123개 재작성", [30, 90], [30, 90], [30, 90]]}};
+
+</script>
+<script>
+(function () {
+  "use strict";
+
+  var VERDICT_LABEL = { K: "유지", W: "수정", R: "재설계", D: "제거" };
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function formatThousands(n) {
+    var s = Math.round(n).toString();
+    return s.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function colIndex(cols) {
+    var m = {};
+    cols.forEach(function (c, i) { m[c] = i; });
+    return m;
+  }
+
+  function verdictChip(code) {
+    var label = VERDICT_LABEL[code] || code;
+    var cls = (code || "").toLowerCase();
+    return '<span class="chip ' + cls + '">' + escapeHtml(label) + "</span>";
+  }
+
+  function effortCode(v) {
+    if (!v || v === "-") return '<span class="muted-cell">없음</span>';
+    return "<code>" + escapeHtml(String(v)) + "</code>";
+  }
+
+  /* ---------------- density chart ---------------- */
+
+  function renderDensityChart() {
+    var el = document.getElementById("chart-density");
+    if (!el || !window.CCGS || !CCGS.density) return;
+    var max = 25;
+    var ticks = [0, 5, 10, 15, 20, 25];
+
+    var rows = CCGS.density.map(function (d) {
+      var pct = Math.min(d.pct, max) / max * 100;
+      var title = d.hit + " / " + d.lines + "줄";
+      return (
+        '<div class="density-row">' +
+        '<span class="density-label">' + escapeHtml(d.label) + "</span>" +
+        '<span class="density-track" title="' + escapeHtml(title) + '">' +
+        '<span class="density-fill" style="width:' + pct.toFixed(2) + '%"></span>' +
+        "</span>" +
+        '<span class="density-value">' + d.pct.toFixed(1) + "%</span>" +
+        "</div>"
+      );
+    }).join("");
+
+    var axis =
+      '<div class="density-axis">' +
+      '<span></span>' +
+      '<span class="density-ticks">' + ticks.map(function (t) { return "<span>" + t + "%</span>"; }).join("") + "</span>" +
+      '<span></span>' +
+      "</div>";
+
+    el.innerHTML = '<div class="density-chart-inner"><div class="density-rows">' + rows + "</div>" + axis + "</div>";
+  }
+
+  /* ---------------- verdict chart ---------------- */
+
+  function verdictBarRow(label, counts, mode) {
+    var order = ["K", "W", "R", "D"];
+    var total = order.reduce(function (s, k) { return s + (counts[k] || 0); }, 0);
+    var segs = order.map(function (k) {
+      var v = counts[k] || 0;
+      var pct = total ? (v / total * 100) : 0;
+      var wide = mode === "lines" ? pct >= 14 : pct >= 9;
+      var text = mode === "lines" ? (pct.toFixed(1) + "%") : String(v);
+      var titleVal = mode === "lines" ? (formatThousands(v) + "줄") : (v + "개");
+      var title = VERDICT_LABEL[k] + " " + titleVal + " (" + pct.toFixed(1) + "%)";
+      return (
+        '<span class="verdict-seg seg-' + k.toLowerCase() + '" style="width:' + pct.toFixed(3) + '%" title="' + escapeHtml(title) + '">' +
+        (wide ? '<span class="verdict-seg-text">' + escapeHtml(text) + "</span>" : "") +
+        "</span>"
+      );
+    }).join("");
+    var share = total ? ((counts.K + counts.W) / total * 100) : 0;
+    return (
+      '<div class="verdict-row">' +
+      '<span class="verdict-row-label">' + escapeHtml(label) + "</span>" +
+      '<span class="verdict-bar">' + segs + "</span>" +
+      '<span class="verdict-share">' + share.toFixed(0) + "%</span>" +
+      "</div>"
+    );
+  }
+
+  function renderVerdictChart() {
+    var el = document.getElementById("chart-verdicts");
+    if (!el || !window.CCGS || !CCGS.groups) return;
+
+    var legend = '<div class="verdict-legend">' + ["K", "W", "R", "D"].map(function (k) {
+      return '<span class="legend-item"><span class="legend-swatch seg-' + k.toLowerCase() + '"></span>' + VERDICT_LABEL[k] + "</span>";
+    }).join("") + "</div>";
+
+    var panels = ["t1", "t2"].map(function (t) {
+      var rows = CCGS.groups.map(function (g) {
+        return verdictBarRow(g[1], CCGS.counts[t][g[0]], "count");
+      }).join("");
+      var title = t === "t1" ? "T1 소프트웨어 제품 조직" : "T2 지식 서비스 조직";
+      return (
+        '<div class="verdict-panel">' +
+        '<h4 class="verdict-panel-title">' + title + "</h4>" +
+        '<div class="verdict-rows">' +
+        rows +
+        '<hr class="verdict-divider">' +
+        verdictBarRow("합계 (개수)", CCGS.counts[t].total, "count") +
+        verdictBarRow("합계 (줄 수 기준)", CCGS.lines[t].total, "lines") +
+        "</div></div>"
+      );
+    }).join("");
+
+    el.innerHTML = legend + '<div class="verdict-panels">' + panels + "</div>";
+  }
+
+  /* ---------------- effort table ---------------- */
+
+  function fmtNum(v) {
+    return v >= 10 ? String(Math.round(v)) : v.toFixed(1);
+  }
+  function fmtRange(r) {
+    if (!r) return '<span class="muted-cell">해당 없음</span>';
+    return fmtNum(r[0]) + "~" + fmtNum(r[1]);
+  }
+
+  function renderEffortTable() {
+    var el = document.getElementById("effort-table");
+    if (!el || !window.CCGS || !CCGS.effort) return;
+    var eff = CCGS.effort;
+
+    var head = "<tr><th>항목</th>" + eff.cols.map(function (c) { return "<th>" + escapeHtml(c) + "</th>"; }).join("") + "</tr>";
+
+    var bodyRows = eff.rows.map(function (r) {
+      var label = r[0], sub = r[1];
+      var cells = r.slice(2).map(function (v) { return "<td>" + fmtRange(v) + "</td>"; }).join("");
+      return (
+        "<tr><td>" + escapeHtml(label) +
+        (sub ? '<div class="effort-subnote">' + escapeHtml(sub) + "</div>" : "") +
+        "</td>" + cells + "</tr>"
+      );
+    }).join("");
+
+    var totalRow = '<tr class="effort-total"><td>합계</td>' +
+      eff.total.map(function (v) { return "<td>" + fmtRange(v) + "</td>"; }).join("") + "</tr>";
+
+    var optRow = "";
+    if (eff.optional) {
+      var opt = eff.optional;
+      optRow = '<tr class="effort-optional"><td>' + escapeHtml(opt[0]) + "</td>" +
+        opt.slice(1).map(function (v) { return "<td>" + fmtRange(v) + "</td>"; }).join("") + "</tr>";
+    }
+
+    el.innerHTML =
+      '<div class="table-wrap"><table class="t effort-t">' +
+      "<caption>단위: 시간</caption>" +
+      "<thead>" + head + "</thead>" +
+      "<tbody>" + bodyRows + totalRow + optRow + "</tbody>" +
+      "</table></div>";
+  }
+
+  /* ---------------- detail explorer ---------------- */
+
+  var STORAGE_KEY = "ccgs-detail-state";
+  var detailState = { tab: "agents", target: "t1", filter: "all" };
+  var detailSearch = "";
+
+  function loadDetailState() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") {
+          if (parsed.tab) detailState.tab = parsed.tab;
+          if (parsed.target) detailState.target = parsed.target;
+          if (parsed.filter) detailState.filter = parsed.filter;
+        }
+      }
+    } catch (e) { /* localStorage unavailable: keep defaults */ }
+  }
+  function saveDetailState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(detailState)); } catch (e) { /* ignore */ }
+  }
+
+  function buildTabs() {
+    return [
+      {
+        id: "agents", label: "에이전트", cols: CCGS.data.agentsCols, rows: CCGS.data.agents, searchKey: "n",
+        columns: [
+          { key: "n", header: "이름", type: "mono" },
+          { key: "tier", header: "계층" },
+          { key: "cp", header: "결합" },
+          { key: "t1", header: "T1 판정", type: "verdict", tgt: "t1" },
+          { key: "t1r", header: "T1 대응 역할", tgt: "t1" },
+          { key: "t2", header: "T2 판정", type: "verdict", tgt: "t2" },
+          { key: "t2r", header: "T2 대응 역할", tgt: "t2" },
+          { header: "작업량(T1/T2)", type: "effortPair", pair: ["e1", "e2"] },
+          { key: "note", header: "비고" }
+        ]
+      },
+      {
+        id: "skills", label: "스킬", cols: CCGS.data.skillsCols, rows: CCGS.data.skills, searchKey: "n",
+        columns: [
+          { key: "n", header: "이름", type: "mono" },
+          { key: "ph", header: "단계" },
+          { key: "p", header: "목적" },
+          { key: "cp", header: "결합" },
+          { key: "t1", header: "T1 판정", type: "verdict", tgt: "t1" },
+          { key: "t2", header: "T2 판정", type: "verdict", tgt: "t2" },
+          { header: "작업량(T1)", type: "effortPair", pair: ["e1", null] },
+          { key: "ch", header: "바꿔야 할 것" }
+        ]
+      },
+      {
+        id: "templates", label: "템플릿", cols: CCGS.data.templatesCols, rows: CCGS.data.templates, searchKey: "n",
+        columns: [
+          { key: "n", header: "이름", type: "mono" },
+          { key: "used", header: "참조 스킬 수" },
+          { key: "t1", header: "T1 판정", type: "verdict", tgt: "t1" },
+          { key: "t1e", header: "T1 대응 문서", tgt: "t1" },
+          { key: "t2", header: "T2 판정", type: "verdict", tgt: "t2" },
+          { key: "t2e", header: "T2 대응 문서", tgt: "t2" }
+        ]
+      },
+      {
+        id: "gates", label: "디렉터 게이트", cols: CCGS.data.gatesCols, rows: CCGS.data.gates, searchKey: "id",
+        columns: [
+          { key: "id", header: "ID", type: "mono" },
+          { key: "owner", header: "담당 디렉터" },
+          { key: "chk", header: "점검 내용" },
+          { key: "t1", header: "T1 판정", type: "verdict", tgt: "t1" },
+          { key: "t1e", header: "T1 대응", tgt: "t1" },
+          { key: "t2", header: "T2 판정", type: "verdict", tgt: "t2" },
+          { key: "t2e", header: "T2 대응", tgt: "t2" }
+        ]
+      },
+      {
+        id: "infra", label: "훅·스크립트·규칙", cols: CCGS.data.infraCols, rows: CCGS.data.infra, searchKey: "n",
+        columns: [
+          { key: "n", header: "이름", type: "mono" },
+          { key: "kind", header: "종류" },
+          { key: "what", header: "역할" },
+          { key: "cls", header: "분류" },
+          { key: "t1", header: "T1 판정", type: "verdict", tgt: "t1" },
+          { key: "t2", header: "T2 판정", type: "verdict", tgt: "t2" },
+          { header: "작업량(T1/T2)", type: "effortPair", pair: ["e1", "e2"] },
+          { key: "ev", header: "근거" }
+        ]
+      },
+      {
+        id: "config", label: "설정 키", cols: CCGS.data.configCols, rows: CCGS.data.config, searchKey: "key", noFilter: true,
+        columns: [
+          { key: "key", header: "키", type: "mono" },
+          { key: "cls", header: "분류" },
+          { key: "t1", header: "T1 조치", tgt: "t1" },
+          { key: "t2", header: "T2 조치", tgt: "t2" },
+          { key: "note", header: "설명" }
+        ]
+      }
+    ];
+  }
+
+  function renderCell(col, row, tIdx) {
+    if (col.type === "verdict") {
+      return verdictChip(row[tIdx[col.key]]);
+    }
+    if (col.type === "effortPair") {
+      var a = row[tIdx[col.pair[0]]];
+      if (col.pair[1]) {
+        var b = row[tIdx[col.pair[1]]];
+        return effortCode(a) + ' <span class="pair-sep">/</span> ' + effortCode(b);
+      }
+      return effortCode(a);
+    }
+    var val = row[tIdx[col.key]];
+    if (val === undefined || val === null || val === "") return "";
+    if (col.type === "mono") return "<code>" + escapeHtml(String(val)) + "</code>";
+    return escapeHtml(String(val));
+  }
+
+  function detailShellHtml(tabs) {
+    var currentTab = tabs.filter(function (t) { return t.id === detailState.tab; })[0] || tabs[0];
+
+    var tabsHtml = '<div class="detail-tabs" role="tablist" aria-label="상세 매핑 분류">' + tabs.map(function (t) {
+      var selected = t.id === currentTab.id;
+      return (
+        '<button type="button" class="detail-tab' + (selected ? " is-active" : "") + '" role="tab" ' +
+        'aria-selected="' + selected + '" id="tab-' + t.id + '" aria-controls="panel-' + t.id + '" data-tab="' + t.id + '">' +
+        escapeHtml(t.label) + ' <span class="detail-tab-count">' + t.rows.length + "</span></button>"
+      );
+    }).join("") + "</div>";
+
+    var targetHtml = '<div class="detail-target" role="group" aria-label="대상 선택">' +
+      ["t1", "t2"].map(function (t) {
+        var selected = detailState.target === t;
+        var label = t === "t1" ? "T1 소프트웨어 제품 조직" : "T2 지식 서비스 조직";
+        return (
+          '<button type="button" class="detail-target-btn' + (selected ? " is-active" : "") + '" ' +
+          'aria-pressed="' + selected + '" data-target="' + t + '">' + label + "</button>"
+        );
+      }).join("") + "</div>";
+
+    var filtersHtml = "";
+    if (!currentTab.noFilter) {
+      var tIdx = colIndex(currentTab.cols);
+      var vKey = detailState.target;
+      var counts = { all: currentTab.rows.length, K: 0, W: 0, R: 0, D: 0 };
+      currentTab.rows.forEach(function (r) {
+        var v = r[tIdx[vKey]];
+        if (counts[v] !== undefined) counts[v]++;
+      });
+      var chipsDef = [["all", "전체"], ["K", "유지"], ["W", "수정"], ["R", "재설계"], ["D", "제거"]];
+      filtersHtml = '<div class="detail-filters" role="group" aria-label="판정 필터">' + chipsDef.map(function (c) {
+        var selected = detailState.filter === c[0];
+        return (
+          '<button type="button" class="filter-chip filter-' + c[0].toLowerCase() + '" ' +
+          'aria-pressed="' + selected + '" data-filter="' + c[0] + '">' + c[1] + " " + counts[c[0]] + "</button>"
+        );
+      }).join("") + "</div>";
+    }
+
+    var searchHtml =
+      '<div class="detail-search">' +
+      '<label for="detail-search-input" class="visually-hidden">검색</label>' +
+      '<input type="search" id="detail-search-input" class="detail-search-input" placeholder="이름으로 찾기" autocomplete="off">' +
+      "</div>";
+
+    return (
+      tabsHtml +
+      '<div class="detail-toolbar">' + targetHtml + filtersHtml + searchHtml + "</div>" +
+      '<div id="detail-results"></div>'
+    );
+  }
+
+  function updateDetailResults(tabs) {
+    var container = document.getElementById("detail-results");
+    if (!container) return;
+    var tab = tabs.filter(function (t) { return t.id === detailState.tab; })[0] || tabs[0];
+    var tIdx = colIndex(tab.cols);
+    var q = detailSearch.trim().toLowerCase();
+    var searchColIdx = tIdx[tab.searchKey];
+    var verdictColIdx = tIdx[detailState.target];
+
+    var rows = tab.rows.filter(function (r) {
+      if (!tab.noFilter && detailState.filter !== "all") {
+        if (r[verdictColIdx] !== detailState.filter) return false;
+      }
+      if (q) {
+        var val = String(r[searchColIdx] || "").toLowerCase();
+        if (val.indexOf(q) === -1) return false;
+      }
+      return true;
+    });
+
+    var theadHtml = "<tr>" + tab.columns.map(function (c) {
+      var emph = c.tgt && c.tgt === detailState.target;
+      return '<th class="' + (emph ? "is-emphasis" : "") + '">' + escapeHtml(c.header) + "</th>";
+    }).join("") + "</tr>";
+
+    var bodyHtml;
+    if (rows.length === 0) {
+      bodyHtml = '<tr><td class="detail-empty" colspan="' + tab.columns.length + '">조건에 맞는 항목이 없습니다.</td></tr>';
+    } else {
+      bodyHtml = rows.map(function (r) {
+        return "<tr>" + tab.columns.map(function (c) {
+          return "<td>" + renderCell(c, r, tIdx) + "</td>";
+        }).join("") + "</tr>";
+      }).join("");
+    }
+
+    var countLine = '<p class="detail-count">' + tab.rows.length + "개 중 " + rows.length + "개 표시</p>";
+
+    container.setAttribute("role", "tabpanel");
+    container.setAttribute("id", "panel-" + tab.id);
+    container.setAttribute("aria-labelledby", "tab-" + tab.id);
+    container.innerHTML =
+      countLine +
+      '<div class="table-wrap"><table class="t"><thead>' + theadHtml + "</thead><tbody>" + bodyHtml + "</tbody></table></div>";
+  }
+
+  function renderDetailApp() {
+    var root = document.getElementById("detail-app");
+    if (!root || !window.CCGS || !CCGS.data) return;
+    var tabs = buildTabs();
+    if (!tabs.some(function (t) { return t.id === detailState.tab; })) detailState.tab = "agents";
+
+    root.innerHTML = detailShellHtml(tabs);
+
+    root.querySelectorAll(".detail-tab").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        detailState.tab = btn.getAttribute("data-tab");
+        detailState.filter = "all";
+        saveDetailState();
+        renderDetailApp();
+      });
+    });
+    root.querySelectorAll(".detail-target-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        detailState.target = btn.getAttribute("data-target");
+        saveDetailState();
+        renderDetailApp();
+      });
+    });
+    root.querySelectorAll(".filter-chip").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        detailState.filter = btn.getAttribute("data-filter");
+        saveDetailState();
+        renderDetailApp();
+      });
+    });
+    var searchInput = root.querySelector(".detail-search-input");
+    if (searchInput) {
+      searchInput.value = detailSearch;
+      searchInput.addEventListener("input", function () {
+        detailSearch = searchInput.value;
+        updateDetailResults(tabs);
+      });
+    }
+
+    updateDetailResults(tabs);
+  }
+
+  /* ---------------- section nav highlight ---------------- */
+
+  function setupSectionNavHighlight() {
+    var navLinks = document.querySelectorAll(".section-nav a");
+    if (!navLinks.length || !("IntersectionObserver" in window)) return;
+    var map = {};
+    navLinks.forEach(function (a) { map[a.getAttribute("href").slice(1)] = a; });
+    var sections = document.querySelectorAll("main .block[id]");
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var link = map[entry.target.id];
+        if (!link) return;
+        navLinks.forEach(function (a) { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+        link.classList.add("is-current");
+        link.setAttribute("aria-current", "true");
+      });
+    }, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
+
+    sections.forEach(function (s) { observer.observe(s); });
+  }
+
+  /* ---------------- boot ---------------- */
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!window.CCGS) return;
+    loadDetailState();
+    renderDensityChart();
+    renderVerdictChart();
+    renderEffortTable();
+    renderDetailApp();
+    setupSectionNavHighlight();
+  });
+})();
+
+</script>
