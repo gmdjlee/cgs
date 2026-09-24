@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-ORG-001 |
 | Title | Hedge Fund Standard Organization Blueprint |
-| Version | 0.4 |
+| Version | 0.5 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -29,6 +29,7 @@ accounting firm first.
 | 0.2 | 2026-09-24 | Mission reset after founder rounds 1-3; activation waves; W1 information core. |
 | 0.3 | 2026-09-24 | Kept ceo-office in W2 (Erratum 01: W1 11, W2 23 total, W3 29 total). Applied DEC-17 to §8 and §9. Recorded DEC-17 to DEC-24 in §14. Defined the 8 /stock-pitch sections (DEC-23). |
 | 0.4 | 2026-09-24 | Recorded DEC-25, DEC-29, DEC-30, and DEC-32 in §14, and marked Q35 and Q36 as not asked. Changed the /refresh-facts cadence in §11A to "on request" (DEC-35). |
+| 0.5 | 2026-09-24 | Reconciled with DEC-17 to DEC-38: no order drafting (DEC-30) in §2A, §3, and §6; confidential data (DEC-32) in §2A and §13; fixed seats (DEC-18), limit approval (DEC-19), and review depth (DEC-20) in §8 and §9; the virtual investment committee (DEC-22) and the stage scalar (DEC-21) in §11; new §11A.4 to §11A.8 (DEC-26, DEC-27, DEC-28, DEC-31, DEC-33); the principle priority (DEC-25) in §12; the question list in §14. |
 
 ## 2. Purpose and basis
 
@@ -68,7 +69,10 @@ Rules:
 
 - The user makes every investment decision. Agents give information,
   analysis, and recommendations with a confidence level.
-- Agents do not send orders.
+- Agents do not draft or send orders. Agents record hypothetical
+  model-portfolio positions (DEC-30).
+- Holdings and personal data stay in a gitignored local directory. Wave
+  W1 uses no classification scheme (DEC-32).
 - Every number carries a source and an as-of date.
 - Every stock call and every house-view change goes through the bull
   case, the bear case, and the synthesis (DEC-16).
@@ -109,7 +113,7 @@ repeats the human-required rule for the roles marked "Yes" below.
 | 2 | Front office | 최고투자책임자(CIO) — chief investment officer | Set investment philosophy. Make the final portfolio decision. Set the risk budget. Often combined with the CEO role. | May count toward the 3-person investment-management-staff requirement. HF-REF-05 표 4-1. | Yes — HF-REF-05 표 4-1: "3 or more full-time staff as investment-management staff." | Draft research summaries. Generate portfolio exposure reports. Collect pre-trade check results for review. | Make the final portfolio decision. Set the final risk budget. Approve an order. |
 | 3 | Front office | 포트폴리오 매니저(PM)·운용역 — portfolio manager | Run a strategy or book. Own the performance result. Core of the 3-person staff requirement. | "3 or more full-time investment-management staff." Enforcement Decree Art. 271-2(4)(1). HF-REF-05 표 4-1. | Yes — HF-REF-08 표 6-1; HF-REF-05 표 4-1. | Draft the investment thesis and stop-loss condition. Organize screening results. | Make the trading decision. Submit an order. |
 | 4 | Front office | 애널리스트·퀀트 리서처 — analyst / quant researcher | Analyze companies and industries. Research models. Often combined with the PM role, or a small hire. | Not stated — no statutory basis in this chunk. | No — no legal duty stated in this chunk. | Screen data. Help run a backtest. Draft a research note. | Make the final investment decision. Approve a model for live use. |
-| 5 | Front office | 트레이더 — trader | Execute orders. Get best execution. Manage stock loans and liquidity. | Not stated. | No stated duty — but sending a live order is understood to need a human (INFERENCE). | Prepare order material. Collect TCA data. Compare broker performance. | Send a live order (execution instruction). |
+| 5 | Front office | 트레이더 — trader | Execute orders. Get best execution. Manage stock loans and liquidity. | Not stated. | No stated duty — but sending a live order is understood to need a human (INFERENCE). | Collect TCA data. Compare broker performance. Give liquidity and market-impact information. | Draft or send a live order (execution instruction) (DEC-30). |
 | 6 | Middle office | 위험관리 담당(CRO) — chief risk officer | Set and check limits. Run stress tests. Manage liquidity. Report independently of the CIO. | At some firm sizes, the compliance officer may combine this role. HF-REF-06 §4.5. | Yes — HF-REF-06 §4.5: "depending on firm size, the compliance officer may combine the risk-officer role." | Monitor limits. Alert on a loss-rule breach. Run stress-test scenarios. Track crowding indicators. | Give final approval of a limit value. Approve an exception for the CIO. |
 | 7 | Middle office | 준법감시인(CCO) — compliance officer | Set internal-control standards. Manage conflicts of interest. Log staff personal trading. Review sales material. Handle regulatory reporting. | The Act on Corporate Governance of Financial Companies requires this appointment; this officer must not also do asset management. HF-REF-06 §4.5. | Yes — HF-REF-06 §4.5: "the compliance officer must not also do asset-management work"; HF-REF-08 표 6-1: "statutory appointment, no combination with the management-operation role." | Check the pre-trade compliance log. Log personal-trading disclosures. Track the regulatory reporting calendar. Check sales material against a checklist. | Give the final compliance approval or rejection. Report to the regulator in person. |
 | 8 | Middle office | 오퍼레이션 — operations | Confirm trades. Settle trades. Reconcile balances between the firm, the prime broker, and the custodian. Process corporate actions. | Not stated. | No stated duty. | Automate trade confirmation and balance reconciliation. Flag a mismatch. | Give the final approval of a reconciliation correction. |
@@ -243,6 +247,7 @@ this table replaces a human-required role from Section 4.
 The following prohibited actions apply to every agent in this roster, in
 every row, in addition to any row-specific entry:
 
+- Draft an order.
 - Send an order.
 - Sign a filing or a contract.
 - Give the final NAV.
@@ -437,6 +442,10 @@ cco verdict. Only the founder or the board may accept a documented
 exception. A control review runs from a skill, not from the agent under
 review — the reviewed agent must never approve its own control check.
 
+**Review depth rule (DEC-20).** Judgment outputs use full review: a stock
+call, the house view, and a limit. Routine outputs, such as the daily
+briefing, use lean review.
+
 **Bull, bear, and synthesis rule (DEC-16).** This rule applies from wave
 W1, for every stock call and every house-view change.
 
@@ -462,16 +471,18 @@ Per DEC-17, "hard block" does not mean a hook. A hard-block control needs
 the cro verdict (and the cco verdict from W2) plus a recorded approval by
 the user. A control decision without that receipt reads NOT ASSESSED. The
 action does not proceed until the receipt exists. Revisit hook
-enforcement before real capital.
+enforcement before real capital. DEC-18 keeps the cro (W1) and cco (W2)
+seats fixed. No workflow mode skips them. They join every gate and every
+cio synthesis.
 
 | # | Control | Stage | Owner role | Rule | Hard block | Citation |
 |---|---|---|---|---|---|---|
 | 1 | Pre-trade compliance check | Before order submission | Trader / OMS, with rules set by cro and cco | Check the fund-rule limit, the statutory limit, and the short-sale-eligible balance before the order reaches the EMS. On a violation, return to portfolio construction. | Yes | HF-REF-09 §7.1, §7.3 |
-| 2 | Loss rules | Portfolio monitoring | cro | Set the loss limit as a number in advance. Enforce it with no exception. | Yes | HF-REF-09 §7.2 |
+| 2 | Loss rules | Portfolio monitoring | cro drafts; the founder approves | The cro drafts the loss limit as a number in advance. The founder approves it, and the limit lives in a config file (DEC-19). Enforce it with no exception. | Yes | HF-REF-09 §7.2 |
 | 3 | Four-eyes check | Operations (settlement / reconciliation) | Operations | Use the four-eyes principle, three-way reconciliation, and segregation of duties to control operational risk. | Yes | HF-REF-09 §7.2 표 7-1 |
 | 4 | Three-way reconciliation | Every day, after settlement | Operations | Match the firm's, the prime broker's, and the custodian's (or administrator's) balances and cash, every day. | No — a detection control; a mismatch needs a separate correction step. | HF-REF-10 §7.4 표 7-2 |
 | 5 | Independent NAV computation | NAV calculation | Administrator (external) + fund accounting (internal check) | The firm must not set its own fund value. The administrator computes the NAV; the firm checks it. | Yes | HF-REF-10 §7.4 |
-| 6 | Model-change control (code/model governance) | Model development and deployment lifecycle | cco/cro give the approval; the quant lead gives technical input only, with no approval authority (INFERENCE — HF-REF-12 §7.8 names no co-owner) | Put model-change approval, code-access rights, and change-history management in the compliance rules. The 2025 SEC penalty against Two Sigma is the cited reason. | Yes — CONDITIONAL: archetype = quant, code pipeline = yes | HF-REF-12 §7.8 |
+| 6 | Model-change control (code/model governance) | Model development and deployment lifecycle | cco/cro give the approval; the quant lead gives technical input only, with no approval authority (INFERENCE — HF-REF-12 §7.8 names no co-owner) | Put model-change approval, code-access rights, and change-history management in the compliance rules. The 2025 SEC penalty against Two Sigma is the cited reason. | Yes — CONDITIONAL: archetype = quant, code pipeline = yes. Not active in W1 (Q25 = B, DEC-29). | HF-REF-12 §7.8 |
 | 7 | Short-sale balance management | Before a short-sale order | Trading / operations (OMS, short-sale balance system) | Let a sale order out only within the balance of each fund, discretionary, or trust account. | Yes | HF-REF-06 §4.4 표 4-4 |
 | 8 | Five-year order-record retention | Record keeping | cco / operations | Keep the date, name, quantity, and staff name for every short-sale order for five years. | No — a statutory duty, not a trade-blocking gate. | HF-REF-06 §4.4 표 4-4 |
 | 9 | Asset valuation committee / valuation rule | Asset valuation | Valuation committee / fund accounting | Prepare the pre-trade compliance function and the valuation-committee rule before registration. | Yes | HF-REF-06 §4.5 |
@@ -553,7 +564,9 @@ source correction).
 
 Source: HF-REF-09 §7.1. This cycle repeats for every investment idea. It
 is not a `project.stage` value; it runs like a story inside a growth
-stage.
+stage. `project.stage` tracks only the S1-S8 and G1-G3 axis and stays
+one scalar. W1's daily, weekly, and monthly cadence runs beside it
+(DEC-21).
 
 1. **Idea generation** (screening, data) → a scope and screening-criteria
    document; this step prevents style drift.
@@ -572,6 +585,11 @@ stage.
    the decision record. When the investment committee runs, its minutes
    become operational-due-diligence evidence. The cycle then returns to
    step 1.
+
+Wave W1 runs this investment committee as a virtual body: cio, cro,
+portfolio-manager, and red-team-analyst present the case. The user
+decides. The committee keeps minutes (DEC-22). In W1, chief-of-staff
+keeps them (INFERENCE; P2 confirms the owner).
 
 ## 11A. Information products and delivery (W1)
 
@@ -592,7 +610,7 @@ one owner agent (Section 6). The table below lists every W1 product
 | /idea-screen | idea-screener | Ranked candidate list with screen evidence | Weekly |
 | /risk-report | cro | Exposure, concentration, liquidity, bear-market stress, regulatory limits | Daily summary, weekly full |
 | /portfolio-review | portfolio-manager | Model portfolio view and sizing proposals | Weekly |
-| /call-review | cio, chief-of-staff | Track record of past calls against outcomes | Monthly |
+| /call-review | cio, chief-of-staff | Track record of past calls against outcomes, and model-portfolio performance against a benchmark | Monthly |
 | /coverage-config | data-steward | Coverage universe, sector clusters, data sources | On change |
 | /refresh-facts | data-steward | Re-verification of medium and high volatility values | On the user's request only (DEC-35); no fixed schedule |
 
@@ -631,11 +649,45 @@ later round.
 The taxonomy maps to KRX sectors now. It maps to GICS when US equities
 join (DEC-15).
 
+### 11A.4 Build order (DEC-26)
+
+W1 builds /daily-briefing, /house-view, /event-alert, /idea-screen,
+/stock-pitch, /red-team-review, and /cio-synthesis first. Risk,
+portfolio, and quality products follow.
+
+### 11A.5 First milestone (DEC-27)
+
+The first milestone delivers one daily briefing, and one stock through
+screen, pitch, red-team review, synthesis, and the virtual investment
+committee (DEC-22).
+
+### 11A.6 Delivery surface (DEC-28)
+
+W1 delivers every product through an HTML dashboard and one
+notification channel. P2 selects the channel from the tools the new
+repository's environment can reach.
+
+### 11A.7 Data sources (DEC-31)
+
+W1 uses OpenDART for disclosures and financials. It uses exchange or
+broker data for prices, volume, and flows. It uses web search for
+regulation, news, and macro. P2 selects the price provider.
+
+### 11A.8 Document language (DEC-33)
+
+Agents, skills, rules, and procedures use ASD-STE100 English. Every W1
+product uses Korean: the briefings, the reports, the answers, the
+alerts, and the dashboard.
+
 ## 12. Principles to encode
 
 This table is the "agent_encoding" field from `orgmap.json`, verbatim in
 sense. Every row carries an INFERENCE mark: the report states the
-benchmark principle, not an agent design.
+benchmark principle, not an agent design. DEC-25 puts three principles
+first: documented principles and open dissent, research-centred
+collective management, and capacity control. In W1, cro and
+portfolio-manager outputs carry capacity estimates. The loss and
+exposure limits stay as config values (DEC-19).
 
 | # | Principle | Benchmark firm | Report application | Agent encoding (INFERENCE) | Citation |
 |---|---|---|---|---|---|
@@ -660,7 +712,7 @@ any of them.
 
 | # | Gap | What the loaded chunks give instead | Citation |
 |---|---|---|---|
-| 1 | MNPI (material non-public information) control and information-barrier procedure | A conflict-of-interest-prevention system only; no MNPI control or barrier design. | HF-REF-05 표 4-1 |
+| 1 | MNPI (material non-public information) control and information-barrier procedure | A conflict-of-interest-prevention system only; no MNPI control or barrier design. This gap stays open until legal review, before wave W2 (DEC-32). | HF-REF-05 표 4-1 |
 | 2 | Personal-trading pre-clearance workflow detail | Only a statement that the firm must make a personal-trading rule; no workflow. | HF-REF-08 표 6-1; HF-REF-18 표 10-1 (corrected — see Section 14) |
 | 3 | Cybersecurity roles and incident-response process | "Security and business continuity" as one technology-stack line, with no role or process detail. | HF-REF-12 §7.8 |
 | 4 | Domestic AML/KYC detailed procedure | The Lime/Optimus case, named but not an AML/KYC procedure. | HF-REF-16 §9.4 |
@@ -723,11 +775,12 @@ decided, except Q35 and Q36. These two are not asked, because Q25 = B
 | Q40 | Conclusion method | §8, §11A | Sets the bull case, bear case, and synthesis rule for every call. | Decided — DEC-16 |
 
 Some questions do not change this document. These are: Q04 (repository
-strategy); Q22–Q24 (skill priority, first milestone, investor-facing
-tool); Q27 (data source); and Q29–Q34 (language policy, AAA scope,
-fact-refresh cadence, approval scope, weekly hours, agent model tier).
-These questions govern implementation and tooling, not the organization
-design in this blueprint.
+strategy); Q30 (AAA scope); Q32 (approval scope); Q33 (weekly hours);
+and Q34 (agent model tier). These questions govern implementation and
+tooling, not the organization design in this blueprint. Q22–Q24, Q27,
+Q29, and Q31 change Section 11A: the build order, the first milestone,
+the delivery surface, the data sources, the document language, and the
+fact-refresh cadence (DEC-26, DEC-27, DEC-28, DEC-31, DEC-33, DEC-35).
 
 **Questions with a changed option set.** Addendum §7 changed the
 option set for six questions, to match the mission reset: Q17
