@@ -1,0 +1,1358 @@
+{
+ "functions": [
+  {
+   "role": "대표이사(CEO)",
+   "division": "management",
+   "responsibilities": "경영 총괄, 대외 관계, 자금 조달; 설립 초기엔 창업자가 겸직하는 경우가 많음",
+   "legal_basis": "임원 자격요건 충족 (금융회사의 지배구조에 관한 법률 제5조) — 법 제249조의3 제2항 제4호",
+   "legal_citation": "HF-REF-05 표 4-1",
+   "human_required": true,
+   "human_required_citation": "HF-REF-05 표 4-1: \"임원 | 금융회사의 지배구조에 관한 법률 제5조의 임원 자격 요건 충족\"",
+   "agent_assist_scope": "INFERENCE: 사업계획서·3개년 재무모델 초안, 이사회 자료 준비, 규제보고 일정 추적, 대외 커뮤니케이션 초안",
+   "prohibited_for_agent": "INFERENCE: 최종 경영 의사결정, 계약·등록신청서 서명, 이사회 대표 발언",
+   "citation": "HF-REF-08 표 6-1"
+  },
+  {
+   "role": "최고투자책임자(CIO)",
+   "division": "front",
+   "responsibilities": "투자 철학, 최종 포트폴리오 결정, 위험 예산 배분; 대표이사 겸직이 흔함",
+   "legal_basis": "투자운용인력 요건(상근 임직원 3명 이상)의 일부로 포함 가능",
+   "legal_citation": "HF-REF-05 표 4-1",
+   "human_required": true,
+   "human_required_citation": "HF-REF-05 표 4-1: \"상근 임직원인 투자운용인력 3명 이상\"",
+   "agent_assist_scope": "INFERENCE: 리서치 요약, 포트폴리오 노출 리포트 생성, 사전점검 결과 취합·제시",
+   "prohibited_for_agent": "INFERENCE: 최종 포트폴리오 결정, 위험예산 배분 확정, 주문 승인",
+   "citation": "HF-REF-08 표 6-1"
+  },
+  {
+   "role": "포트폴리오 매니저(PM)·운용역",
+   "division": "front",
+   "responsibilities": "전략 또는 북(book) 운용, 성과 책임 — \"투자운용인력 3명 요건의 핵심\"",
+   "legal_basis": "상근 임직원인 투자운용인력 3명 이상 | 시행령 제271조의2 제4항 제1호",
+   "legal_citation": "HF-REF-05 표 4-1",
+   "human_required": true,
+   "human_required_citation": "HF-REF-08 표 6-1; HF-REF-05 표 4-1",
+   "agent_assist_scope": "INFERENCE: 투자논리·손절조건 기록 초안, 종목 스크리닝 결과 정리",
+   "prohibited_for_agent": "INFERENCE: 실제 매매 판단, 주문 제출",
+   "citation": "HF-REF-08 표 6-1"
+  },
+  {
+   "role": "애널리스트·퀀트 리서처",
+   "division": "front",
+   "responsibilities": "기업·산업 분석, 모델 연구; 운용역과 겸직하거나 소수 채용",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": false,
+   "human_required_citation": "기술 없음 — 법적 의무 명시되지 않음",
+   "agent_assist_scope": "INFERENCE: 데이터 스크리닝, 백테스트 실행 보조, 리서치 노트 초안",
+   "prohibited_for_agent": "INFERENCE: 최종 투자 판단, 모델의 실거래 반영 승인",
+   "citation": "HF-REF-08 표 6-1"
+  },
+  {
+   "role": "트레이더",
+   "division": "front",
+   "responsibilities": "주문 집행, 최선 집행, 대차와 유동성 관리",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": false,
+   "human_required_citation": "기술 없음 — 다만 실거래 발주는 사람이 담당한다고 이해됨(INFERENCE)",
+   "agent_assist_scope": "INFERENCE: 주문 준비자료, TCA 데이터 취합, 브로커 성과 비교자료 작성",
+   "prohibited_for_agent": "INFERENCE: 실제 주문 발주(체결지시)",
+   "citation": "HF-REF-08 표 6-1; HF-REF-09 §7.3"
+  },
+  {
+   "role": "위험관리 담당(CRO)",
+   "division": "middle",
+   "responsibilities": "한도 설정·점검, 스트레스 테스트, 유동성 관리, 독립 보고 — \"CIO와 분리된 보고 라인 필수\"",
+   "legal_basis": "회사 규모에 따라 준법감시인이 위험관리책임자를 겸직할 수 있는 경우도 있음 (지배구조법, 조문 번호 본문 미기재)",
+   "legal_citation": "HF-REF-06 §4.5",
+   "human_required": true,
+   "human_required_citation": "HF-REF-06 §4.5: \"회사 규모에 따라 준법감시인이 위험관리책임자를 겸직할 수 있는 경우도 있으므로\"",
+   "agent_assist_scope": "INFERENCE: 한도 모니터링, 손실규칙 위반 알림, 스트레스테스트 시나리오 실행, 쏠림지표 추적",
+   "prohibited_for_agent": "INFERENCE: 한도 설정치의 최종 승인, CIO에 대한 예외 승인",
+   "citation": "HF-REF-08 표 6-1; HF-REF-06 §4.5"
+  },
+  {
+   "role": "준법감시인(CCO)",
+   "division": "middle",
+   "responsibilities": "내부통제기준, 이해상충 관리, 임직원 개인 매매, 판매 자료 심사, 규제 보고",
+   "legal_basis": "금융회사의 지배구조에 관한 법률에 따라 준법감시인을 두어야 하며 자산 운용 업무를 겸직할 수 없음",
+   "legal_citation": "HF-REF-06 §4.5",
+   "human_required": true,
+   "human_required_citation": "HF-REF-06 §4.5: \"준법감시인은 자산 운용 업무를 겸직할 수 없습니다\"; HF-REF-08 표 6-1: \"법정 선임, 운용 업무 겸직 금지\"",
+   "agent_assist_scope": "INFERENCE: 사전 컴플라이언스 점검 로그 확인, 개인매매 신고 접수·기록, 규제보고 일정 추적, 판매자료 체크리스트 대조",
+   "prohibited_for_agent": "INFERENCE: 최종 컴플라이언스 승인/거부, 규제기관 대면 보고",
+   "citation": "HF-REF-06 §4.5; HF-REF-08 표 6-1"
+  },
+  {
+   "role": "오퍼레이션",
+   "division": "middle",
+   "responsibilities": "매매 확인, 결제, 운용사·PB·수탁사 간 잔고 대사, 기업 행위 처리",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": false,
+   "human_required_citation": "기술 없음",
+   "agent_assist_scope": "INFERENCE: 매매확인·잔고대사 자동화, 불일치 항목 플래깅",
+   "prohibited_for_agent": "INFERENCE: 대사 불일치의 최종 정정 승인",
+   "citation": "HF-REF-08 표 6-1; HF-REF-10 §7.4 표 7-2"
+  },
+  {
+   "role": "펀드 회계·기준가(내부검증)",
+   "division": "back",
+   "responsibilities": "기준가격 산정 결과 검증 — \"사무관리회사가 산정하고 운용사가 독립적으로 검증\"",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": false,
+   "human_required_citation": "기술 없음 — 다만 최종 확정은 사람이 담당(INFERENCE)",
+   "agent_assist_scope": "INFERENCE: 사무관리회사 산출 기준가와 내부 기록 자동대조, 괴리 발생시 알림",
+   "prohibited_for_agent": "INFERENCE: 최종 기준가 확정·공표",
+   "citation": "HF-REF-08 표 6-1; HF-REF-10 §7.4"
+  },
+  {
+   "role": "CFO·COO",
+   "division": "back",
+   "responsibilities": "운용사 회계, 예산, 인사, 계약 관리 — \"1명이 겸직\"",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": false,
+   "human_required_citation": "기술 없음",
+   "agent_assist_scope": "INFERENCE: 예산집행현황 추적, 계약관리대장 정리, 인사기록 관리보조",
+   "prohibited_for_agent": "INFERENCE: 예산 최종승인, 계약 체결",
+   "citation": "HF-REF-08 표 6-1"
+  },
+  {
+   "role": "IT·데이터·보안",
+   "division": "back",
+   "responsibilities": "시스템 운영, 데이터 관리, 사이버보안, 업무 연속성 — \"외부 위탁 중심\"",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": false,
+   "human_required_citation": "기술 없음",
+   "agent_assist_scope": "INFERENCE: 시스템 가동상태 모니터링, 백업·재해복구 점검 로그 관리",
+   "prohibited_for_agent": "INFERENCE: 보안사고 대응 최종 판단, 접근권한 부여·회수 승인",
+   "citation": "HF-REF-08 표 6-1"
+  },
+  {
+   "role": "IR·마케팅",
+   "division": "sales",
+   "responsibilities": "투자자 관계, 판매사 협업, 실사 질의서 대응, 보고서 작성",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": false,
+   "human_required_citation": "기술 없음",
+   "agent_assist_scope": "INFERENCE: DDQ 답변 초안, 월간성과보고서·투자자서신 초안, 판매사 커뮤니케이션 로그 정리",
+   "prohibited_for_agent": "INFERENCE: 투자자 대상 최종 확약·보증 발언, 투자광고 최종 승인",
+   "citation": "HF-REF-08 표 6-1; HF-REF-11 §7.7"
+  },
+  {
+   "role": "법무",
+   "division": "sales (원문 표 6-1의 부문 열 그대로 '영업'으로 분류됨)",
+   "responsibilities": "규약·계약 검토 — \"외부 법무법인 활용\"",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": false,
+   "human_required_citation": "기술 없음 — 외부 위탁 전제",
+   "agent_assist_scope": "INFERENCE: 계약서 조항 대조·체크리스트 검토, 규약 개정이력 추적",
+   "prohibited_for_agent": "INFERENCE: 법률 자문 제공, 계약 최종 검토·서명",
+   "citation": "HF-REF-08 표 6-1"
+  },
+  {
+   "role": "이사회·감사",
+   "division": "governance",
+   "responsibilities": "조직도 최상위, 대표이사를 감독",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": true,
+   "human_required_citation": "INFERENCE: 이사·감사는 통상 자연인 선임이 원칙 (이 청크에는 근거 조문 없음, 조직도 위치만 제시됨)",
+   "agent_assist_scope": "INFERENCE: 이사회 자료 준비, 회의록 초안, 의결안건 추적",
+   "prohibited_for_agent": "INFERENCE: 의결권 행사, 감사의견 표명",
+   "citation": "HF-REF-08 §6.2 (조직도)"
+  },
+  {
+   "role": "투자위원회",
+   "division": "governance",
+   "responsibilities": "운영 시 회의록과 의사결정 근거를 남김 — 운영실사에서 투자규율 입증자료로 쓰임",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": false,
+   "human_required_citation": "운영은 임의(\"운용한다면\"); 법정 의무 아님",
+   "agent_assist_scope": "INFERENCE: 회의록 작성, 의사결정 근거 문서화, 과거 결정 대조 조회",
+   "prohibited_for_agent": "INFERENCE: 투자위원회 의결·표결 참여",
+   "citation": "HF-REF-09 §7.1"
+  },
+  {
+   "role": "자산 평가 위원회",
+   "division": "middle/governance",
+   "responsibilities": "비시장성·부실화 자산의 과대평가를 막는 평가 규정 운영 — 등록 전 준비해야 할 기본 장치",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": false,
+   "human_required_citation": "GAP: 구성·정족수·의결절차가 이 청크에 없음",
+   "agent_assist_scope": "INFERENCE: 비시장성 자산 평가근거 자료 취합, 평가액 변동 추이 모니터링, 위반사례 체크리스트 대조",
+   "prohibited_for_agent": "INFERENCE: 최종 평가액 의결",
+   "citation": "HF-REF-06 §4.5"
+  },
+  {
+   "role": "자본배분위원회 (멀티매니저 전용, CONDITIONAL: archetype=multi-manager)",
+   "division": "governance/front",
+   "responsibilities": "운용팀(pod)별 자본 배분 결정",
+   "legal_basis": null,
+   "legal_citation": null,
+   "human_required": false,
+   "human_required_citation": "기술 없음 — 구성원인 CIO는 human_required=true",
+   "agent_assist_scope": "INFERENCE: 팀별 배분 성과 데이터 집계, 배분 시나리오 시뮬레이션 제시",
+   "prohibited_for_agent": "INFERENCE: 최종 자본배분 의결",
+   "citation": "HF-REF-08 §6.4 (조직도)"
+  }
+ ],
+ "reporting_lines": [
+  {
+   "line": "이사회·감사 → 대표이사(CEO)",
+   "type": "governance oversight (top)",
+   "citation": "HF-REF-08 §6.2 조직도"
+  },
+  {
+   "line": "대표이사(CEO) → CIO, 준법감시인(CCO), 위험관리담당(CRO), COO·경영지원",
+   "type": "direct reports",
+   "citation": "HF-REF-08 §6.2 조직도"
+  },
+  {
+   "line": "CIO → 운용역(PM) 1·2, 트레이더",
+   "type": "front-office chain",
+   "citation": "HF-REF-08 §6.2 조직도"
+  },
+  {
+   "line": "COO → 오퍼레이션, IR·마케팅",
+   "type": "back/sales chain",
+   "citation": "HF-REF-08 §6.2 조직도"
+  },
+  {
+   "line": "외부 위탁(사무관리·수탁·PBS·감사·법무) -.-> 오퍼레이션",
+   "type": "external outsourcing linkage (dotted)",
+   "citation": "HF-REF-08 §6.2 조직도"
+  },
+  {
+   "constraint": "위험관리 담당이 CIO에게 보고하는 구조는 피해야 하며, 리스크와 준법 기능은 대표이사(또는 이사회)에게 직접 보고해야 함",
+   "type": "independence constraint (hard)",
+   "note": "기관 투자자가 운영 실사에서 이 보고 라인을 반드시 확인함",
+   "citation": "HF-REF-08 §6.2 (\"핵심\" 박스)"
+  },
+  {
+   "constraint": "준법감시인은 자산 운용 업무를 겸직할 수 없음",
+   "type": "independence constraint (statutory)",
+   "citation": "HF-REF-06 §4.5"
+  },
+  {
+   "constraint": "회사 규모에 따라 준법감시인이 위험관리책임자를 겸직할 수 있는 경우도 있으므로, 최소 인원 신설 운용사는 겸직 가능 범위를 법률 검토로 확인해야 함",
+   "type": "conditional CCO/CRO combination",
+   "citation": "HF-REF-06 §4.5"
+  },
+  {
+   "line": "멀티매니저 전용: CIO·자본배분위원회 → 자본배분 → 운용팀 A/B/C/N (실선, 자본배분 경로)와 중앙 리스크 -.-> 운용팀 A/B/C/N (점선, 손실·익스포저 한도 직접 집행)",
+   "type": "dual-line for multi-manager archetype",
+   "note": "자본배분 라인과 리스크 통제 라인이 분리됨",
+   "citation": "HF-REF-08 §6.4 조직도"
+  },
+  {
+   "line": "판매사·수탁사의 외부 감시 라인: 판매사는 운용이 핵심상품설명서에 부합하는지 확인해 시정요구권을 가지며, 수탁사는 운용지시를 감시하고 매 분기 자산 대사를 수행함(일반투자자 대상 펀드)",
+   "type": "external oversight (not internal reporting)",
+   "citation": "HF-REF-06 §4.3 표 4-3"
+  }
+ ],
+ "control_points": [
+  {
+   "control": "사전 컴플라이언스 점검(pre-trade)",
+   "stage": "주문 전(사전 점검)",
+   "owner_role": "트레이더/OMS (CRO·CCO가 설정한 룰셋)",
+   "rule": "\"규약 한도, 법정 한도, 공매도 가능 잔고\"를 거친 뒤 주문을 EMS로 전달; 위반 시 포트폴리오 구성 단계로 회귀",
+   "hard_block": true,
+   "citation": "HF-REF-09 §7.1, §7.3"
+  },
+  {
+   "control": "손실 규칙(loss rules)",
+   "stage": "포트폴리오 모니터링",
+   "owner_role": "CRO",
+   "rule": "\"손실 규칙은 사전에 수치로 정하고 예외 없이 집행할 때 의미가 있습니다\"",
+   "hard_block": true,
+   "citation": "HF-REF-09 §7.2"
+  },
+  {
+   "control": "이중 확인(4-eyes)",
+   "stage": "운영(결제·대사)",
+   "owner_role": "오퍼레이션",
+   "rule": "\"이중 확인(4-eyes) 원칙, 3자 대사, 권한 분리\"로 운영 위험(오류·사고, 대사 불일치)을 통제",
+   "hard_block": true,
+   "citation": "HF-REF-09 §7.2 표 7-1"
+  },
+  {
+   "control": "3자 대사(three-way reconciliation)",
+   "stage": "매일 결제 후",
+   "owner_role": "오퍼레이션",
+   "rule": "운용사·PB·수탁사(또는 사무관리사)의 잔고와 현금을 매일 대조",
+   "hard_block": false,
+   "note": "탐지 통제; 발견 시 별도 정정 절차 필요",
+   "citation": "HF-REF-10 §7.4 표 7-2"
+  },
+  {
+   "control": "독립 기준가 산정(independent NAV)",
+   "stage": "기준가 산정",
+   "owner_role": "사무관리회사(외부) + 펀드회계(내부 검증)",
+   "rule": "\"운용사가 스스로 펀드의 가치를 확정하지 않는 것\"이 핵심 원칙; 매도프 사건이 반면교사",
+   "hard_block": true,
+   "citation": "HF-REF-10 §7.4"
+  },
+  {
+   "control": "모델 변경 통제(code/model governance)",
+   "stage": "모델 개발·배포 생애주기",
+   "owner_role": "CCO/CRO + 퀀트 리드",
+   "rule": "\"모델 변경 승인, 코드 접근 권한, 변경 이력 관리를 컴플라이언스 규정에 포함\"; 2025년 SEC 투시그마 9,000만 달러 제재 사례",
+   "hard_block": true,
+   "conditional": "archetype=quant, code-pipeline=yes",
+   "citation": "HF-REF-12 §7.8"
+  },
+  {
+   "control": "공매도 잔고 관리",
+   "stage": "공매도 주문 전(pre-trade)",
+   "owner_role": "트레이딩/오퍼레이션(OMS, 공매도 잔고관리 시스템)",
+   "rule": "펀드·일임·신탁 계좌별로 \"잔고 범위 안에서만 매도 주문이 나가도록 관리\"",
+   "hard_block": true,
+   "citation": "HF-REF-06 §4.4 표 4-4"
+  },
+  {
+   "control": "주문 기록 5년 보관",
+   "stage": "기록 보관",
+   "owner_role": "CCO/오퍼레이션",
+   "rule": "공매도 주문별 일시·종목·수량·담당 임직원 정보를 5년간 보관",
+   "hard_block": false,
+   "note": "법정 의무이나 거래 자체를 막는 게이트는 아님",
+   "citation": "HF-REF-06 §4.4 표 4-4"
+  },
+  {
+   "control": "자산 평가 위원회/평가 규정",
+   "stage": "자산 평가",
+   "owner_role": "자산평가위원회/펀드회계",
+   "rule": "\"규약 한도를 주문 단계에서 자동으로 점검하는 사전 컴플라이언스 기능과 자산 평가 위원회 운영 규정은 등록 전에 준비해야 할 기본 장치\"",
+   "hard_block": true,
+   "citation": "HF-REF-06 §4.5"
+  },
+  {
+   "control": "레버리지 400% 한도",
+   "stage": "포트폴리오 상시",
+   "owner_role": "CRO/CCO",
+   "rule": "파생상품 위험평가액·채무보증·차입금·실질적 차입의 합계가 순자산의 400% 이내 (법 제249조의7 제1항); 내부 한도는 법정 한도보다 낮게 설정 권고",
+   "hard_block": true,
+   "citation": "HF-REF-06 §4.3 표 4-3; HF-REF-09 §7.2 표 7-1"
+  },
+  {
+   "control": "개방형 설정 50% 비시장성 자산 제한",
+   "stage": "펀드 구조 설계",
+   "owner_role": "법무/상품설계",
+   "rule": "시가를 산출할 수 없는 비시장성 자산 비중이 50%를 넘으면 개방형(수시 환매형) 설정 불가",
+   "hard_block": true,
+   "citation": "HF-REF-06 §4.3 표 4-3"
+  },
+  {
+   "control": "판매사·수탁사 운용 감시",
+   "stage": "운용 상시(일반투자자 대상 펀드)",
+   "owner_role": "판매사/수탁사(외부)",
+   "rule": "판매사는 설명서 부합 여부를 확인해 시정 요구; 수탁사는 운용지시를 감시하고 매 분기 자산 대사 수행",
+   "hard_block": true,
+   "citation": "HF-REF-06 §4.3 표 4-3"
+  },
+  {
+   "control": "환매 연기 시 집합투자자총회",
+   "stage": "유동성 위기 거버넌스",
+   "owner_role": "CEO/이사회/IR",
+   "rule": "환매 연기일부터 3개월 이내 집합투자자총회 개최 (법 제249조의8 제5항)",
+   "hard_block": true,
+   "citation": "HF-REF-06 §4.3 표 4-3"
+  },
+  {
+   "control": "핵심인력 조항(key person clause)",
+   "stage": "펀드 구조화/상시",
+   "owner_role": "법무/IR",
+   "rule": "핵심 인력이 이탈·활동불능 시 투자자가 환매할 수 있는 조항",
+   "hard_block": false,
+   "note": "투자자와의 협상에 따른 계약 조건(CONDITIONAL)",
+   "citation": "HF-REF-14 §8.3"
+  },
+  {
+   "control": "거래상대방 분산(복수 PB)",
+   "stage": "상대방 설정/상시",
+   "owner_role": "CRO/트레이딩",
+   "rule": "복수 PB 활용, 담보 관리로 PB·장외파생 상대방별 노출 통제",
+   "hard_block": false,
+   "citation": "HF-REF-09 §7.2 표 7-1"
+  },
+  {
+   "control": "쏠림(crowding) 모니터링",
+   "stage": "포트폴리오 상시",
+   "owner_role": "CRO",
+   "rule": "쏠림 지표 모니터링, 숏 스퀴즈 대비 한도",
+   "hard_block": "CONDITIONAL — 한도를 설정한 경우에만 hard block",
+   "citation": "HF-REF-09 §7.2 표 7-1"
+  }
+ ],
+ "recurring_artifacts": [
+  {
+   "artifact": "설정 보고(및 변경 보고)",
+   "owner": "CCO/법무",
+   "cadence": "펀드 설정일부터 2주 이내; 변경 시에도 2주 이내 (trigger)",
+   "citation": "HF-REF-06 §4.3 표 4-3 (법 제249조의6)"
+  },
+  {
+   "artifact": "분기 파생상품·채무보증·차입 현황 보고",
+   "owner": "CCO/오퍼레이션",
+   "cadence": "매 분기 말",
+   "citation": "HF-REF-06 §4.3 표 4-3 (법 제249조의7 제3항)"
+  },
+  {
+   "artifact": "수시 보고(환매 연기 등)",
+   "owner": "CCO",
+   "cadence": "사유 발생 시 3영업일 이내 (trigger)",
+   "citation": "HF-REF-06 §4.3 표 4-3 (법 제249조의7 제4항)"
+  },
+  {
+   "artifact": "월별 업무보고서",
+   "owner": "COO/CCO",
+   "cadence": "매월",
+   "note": "미제출 시 등록 직권말소 사유",
+   "citation": "HF-REF-05 §4.1; HF-REF-18 표 10-1"
+  },
+  {
+   "artifact": "자산운용보고서",
+   "owner": "IR/펀드회계",
+   "cadence": "정기 교부 (구체 주기는 청크에 미기재 — GAP)",
+   "citation": "HF-REF-06 §4.3 표 4-3 (법 제249조의8 제2항)"
+  },
+  {
+   "artifact": "핵심상품설명서",
+   "owner": "CIO(초안)/CCO(검증)",
+   "cadence": "펀드 설정·변경 시 (trigger)",
+   "citation": "HF-REF-06 §4.3 표 4-3 (법 제249조의4)"
+  },
+  {
+   "artifact": "월간 성과 보고서",
+   "owner": "IR",
+   "cadence": "매월, 설정 첫 달부터 일정한 형식으로",
+   "citation": "HF-REF-11 §7.7"
+  },
+  {
+   "artifact": "투자자 서신",
+   "owner": "IR/CEO",
+   "cadence": "분기 또는 연간",
+   "citation": "HF-REF-11 §7.7"
+  },
+  {
+   "artifact": "DDQ(표준 실사 질의서) 응답",
+   "owner": "IR/COO",
+   "cadence": "투자자 요청 시(trigger), 상시 최신화",
+   "citation": "HF-REF-11 §7.7; HF-REF-18 표 10-1"
+  },
+  {
+   "artifact": "책무구조도",
+   "owner": "CEO(직접 점검) + 임원별 책무 배분",
+   "cadence": "최초 작성 후 상시 유지·갱신",
+   "citation": "HF-REF-06 §4.5"
+  },
+  {
+   "artifact": "내부통제 규정집(내부통제기준·이해상충방지·위험관리·개인매매·공매도내부통제·자산평가 규정)",
+   "owner": "CCO(초안) → 이사회(의결)",
+   "cadence": "설립 시 제정 + 개정 시",
+   "citation": "HF-REF-05 표 4-2 (3단계); HF-REF-18 표 10-1"
+  },
+  {
+   "artifact": "공매도 잔고 정보 제출(거래소 NSDS)",
+   "owner": "오퍼레이션/트레이딩시스템",
+   "cadence": "매 영업일, 2영업일 이내 제출",
+   "citation": "HF-REF-06 §4.4 표 4-4"
+  },
+  {
+   "artifact": "거래비용분석(TCA)",
+   "owner": "트레이딩/오퍼레이션",
+   "cadence": "정기적",
+   "citation": "HF-REF-09 §7.3"
+  },
+  {
+   "artifact": "투자위원회 회의록",
+   "owner": "CIO/투자위원회 간사",
+   "cadence": "회의 시마다 (trigger)",
+   "citation": "HF-REF-09 §7.1"
+  },
+  {
+   "artifact": "사업계획서·3개년 재무모델·주주간계약",
+   "owner": "CEO/창업 멤버",
+   "cadence": "설립 1단계 1회 산출 + 주기적 갱신",
+   "citation": "HF-REF-05 표 4-2 (1단계)"
+  }
+ ],
+ "lifecycle_tracks": [
+  {
+   "track": "(a) firm-setup track",
+   "source": "HF-REF-05 표 4-2 + HF-REF-18 표 10-1",
+   "stages": [
+    {
+     "stage": "1. 사업 설계",
+     "duration": "1~2개월",
+     "outputs": "사업계획서, 3개년 재무 모델, 주주간 계약",
+     "exit_criteria": "전략설명서·비용반영 백테스트 또는 과거운용기록; 손익분기 운용자산 산정; 서명된 주주간계약·핵심인력조항·승계계획"
+    },
+    {
+     "stage": "2. 법인 설립",
+     "duration": "2~4주",
+     "outputs": "법인 등기, 사업자 등록",
+     "exit_criteria": "자기자본 10억원 이상 납입 및 운영 적자 버퍼 확보"
+    },
+    {
+     "stage": "3. 인력·규정",
+     "duration": "2~3개월",
+     "outputs": "규정집, 인력 현황",
+     "exit_criteria": "상근 투자운용인력 3명 이상 및 준법감시인 확보(협회 등록 가능여부 확인, 퇴사 대비 인력계획); 내부통제기준 등 규정 이사회 의결; 책무구조도(임원별 책무 배분 문서) 작성"
+    },
+    {
+     "stage": "4. 전산·설비 (3단계와 병행)",
+     "duration": "2개월",
+     "outputs": "시스템 구축·테스트 기록",
+     "exit_criteria": "주문관리, 사전컴플라이언스점검, 리스크, 공매도잔고관리, 보안, 업무연속성계획의 시연과 테스트 기록"
+    },
+    {
+     "stage": "5. 사전 협의 (3단계와 병행)",
+     "duration": "2개월",
+     "outputs": "협의 결과, 거래 의향서",
+     "exit_criteria": "PBS·수탁사·사무관리사·판매사·회계감사인과의 거래의향서 또는 계약서"
+    },
+    {
+     "stage": "6. 등록 신청·심사",
+     "duration": "2개월 이내(보완기간 별도)",
+     "outputs": "등록 결정, 관보·홈페이지 공고",
+     "exit_criteria": "금융감독원 사전상담을 거친 등록신청서 제출 → 등록결정통지·관보공고"
+    },
+    {
+     "stage": "7. 협회 가입·인력 등록",
+     "duration": "2~4주",
+     "outputs": "등록 확인",
+     "exit_criteria": "금융투자협회 가입과 투자운용인력 등록 완료"
+    },
+    {
+     "stage": "8. 첫 펀드 설정",
+     "duration": "1개월 내외",
+     "outputs": "설정 후 2주일 이내 금융위원회 보고",
+     "exit_criteria": "집합투자규약·핵심상품설명서·환매/보수조건 확정 및 판매사 상품승인; 설정 후 2주 이내 금융위 보고 접수"
+    }
+   ]
+  },
+  {
+   "track": "(b) investment-operations cycle",
+   "source": "HF-REF-09 §7.1",
+   "stages": [
+    {
+     "stage": "아이디어 발굴 (스크리닝·데이터)",
+     "output": "투자 대상 범위와 스크리닝 기준 문서 — 스타일 드리프트 방지 목적"
+    },
+    {
+     "stage": "심층 분석 (가치평가·촉매·리스크)",
+     "output": "투자 논리, 기대 수익의 원천, 손절/재검토 조건 기록"
+    },
+    {
+     "stage": "포트폴리오 구성 (비중·헤지·유동성)",
+     "output": "종목·섹터·요인별 노출과 유동성을 고려한 비중 결정"
+    },
+    {
+     "stage": "사전 점검 (한도·규약·대차 잔고)",
+     "output": "통과 시 주문 실행으로 진행; 위반 시 포트폴리오 구성으로 회귀",
+     "gate": true
+    },
+    {
+     "stage": "주문 실행 (최선 집행)",
+     "output": "체결 내역"
+    },
+    {
+     "stage": "모니터링 (손익 기여·익스포저)",
+     "output": "모니터링 리포트"
+    },
+    {
+     "stage": "사후 검토 (의사결정 기록)",
+     "output": "수익·손실을 의사결정 기록과 대조하여 과정의 품질 평가; 투자위원회 운영 시 회의록·의사결정 근거를 기록 — 운영실사(ODD) 증빙자료가 됨; 이후 아이디어 발굴로 순환"
+    }
+   ]
+  },
+  {
+   "track": "(c) growth stages",
+   "source": "HF-REF-08 §6.3 표 6-2",
+   "stages": [
+    {
+     "stage": "1단계 설립기",
+     "aum": "1,000억원 미만",
+     "headcount": "7~10명",
+     "features": "CIO 중심의 단일 전략, 백오피스 외부 위탁 최대화, 통제 기능의 최소 독립성 확보",
+     "priority_area": "트랙레코드, 규정과 시스템의 완성도"
+    },
+    {
+     "stage": "2단계 성장기",
+     "aum": "1,000억~5,000억원",
+     "headcount": "10~25명",
+     "features": "전략 2~3개로 확장, 전담 리스크팀, IR 전담 인력, 기준가 내부검증(shadow NAV)",
+     "priority_area": "판매 채널 다변화, 기관 운영실사 대응"
+    },
+    {
+     "stage": "3단계 기관화",
+     "aum": "5,000억원 이상",
+     "headcount": "25명 이상",
+     "features": "복수 PM 체제, 중앙 리스크·데이터 플랫폼, 해외 펀드 구조 검토",
+     "priority_area": "인재 육성 체계, 거버넌스와 승계 계획"
+    }
+   ]
+  }
+ ],
+ "principles": [
+  {
+   "principle": "리스크 규칙의 제도화",
+   "benchmark_firm": "밀레니엄(수치화된 손실 규칙), 멀티매니저의 중앙 리스크 조직",
+   "report_application": "설립 첫날부터 문서화된 손실·익스포저 한도, CIO와 분리된 리스크 보고 라인",
+   "agent_encoding": "INFERENCE: CRO 에이전트가 설정 파일의 수치 한도를 읽어 위반 시 자동 차단·알림하며, 보고 라인은 CEO/이사회로 고정한다",
+   "citation": "HF-REF-17 §9.5 표 9-5"
+  },
+  {
+   "principle": "운용 용량 통제",
+   "benchmark_firm": "상위 20개사(2025 유입제한·자본반환), 브리지워터(Pure Alpha 규모 축소), 르네상스(Medallion 폐쇄 운용)",
+   "report_application": "전략별 용량을 추정하고 신규 자금 제한 기준을 투자자에게 미리 공지",
+   "agent_encoding": "INFERENCE: 용량 모니터링 에이전트가 AUM 대비 추정 용량 비율을 추적해 임계치 접근 시 CIO/CEO에 경고한다(구독 제한 결정은 사람이 함)",
+   "citation": "HF-REF-17 §9.5 표 9-5"
+  },
+  {
+   "principle": "인재·데이터·기술 투자",
+   "benchmark_firm": "D.E. Shaw·르네상스(연구 조직), 투시그마(데이터 인프라)",
+   "report_application": "핵심 인력 지분 참여, 차별화의 원천이 되는 영역에 집중 투자",
+   "agent_encoding": "INFERENCE: HR·보상 에이전트가 지분 베스팅 일정과 이연 보상 이행을 추적한다(보상 결정은 사람이 함)",
+   "citation": "HF-REF-17 §9.5 표 9-5"
+  },
+  {
+   "principle": "거버넌스와 승계",
+   "benchmark_firm": "브리지워터(창업자 퇴진 후 성과 회복), D.E. Shaw(집행위원회)",
+   "report_application": "주주간 계약, 핵심 인력 조항, 승계 계획을 설립 단계에서 문서화",
+   "agent_encoding": "INFERENCE: 거버넌스 문서 에이전트가 주주간계약·핵심인력조항·승계계획의 버전과 갱신 기한을 추적한다(서명·의결은 사람이 함)",
+   "citation": "HF-REF-17 §9.5 표 9-5"
+  },
+  {
+   "principle": "비용 구조의 정렬",
+   "benchmark_firm": "비용 전가 구조에 대한 투자자 반발, 허들 요구 확산",
+   "report_application": "낮은 운용보수와 하이워터마크·허들을 결합한 투명한 보수 구조",
+   "agent_encoding": "INFERENCE: 보수 계산 에이전트가 하이워터마크·허들을 반영한 성과보수를 계산·검증한다(요율 설정은 사람이 함)",
+   "citation": "HF-REF-17 §9.5 표 9-5"
+  },
+  {
+   "principle": "투자자 기반 다변화",
+   "benchmark_firm": "밀레니엄(고액자산가 비중 확대), 맨그룹·타임폴리오(ETF 채널)",
+   "report_application": "판매사 복수화, 직판, 기관 영업, 장기적으로 공모 상품 확장",
+   "agent_encoding": "INFERENCE: IR 에이전트가 판매채널별 자금 비중을 추적해 쏠림을 보고한다",
+   "citation": "HF-REF-17 §9.5 표 9-5"
+  },
+  {
+   "principle": "독립적 운영 인프라",
+   "benchmark_firm": "매도프 사건 이후 기관 투자자의 표준 요구",
+   "report_application": "독립 수탁·사무관리·감사, 3자 대사",
+   "agent_encoding": "INFERENCE: 오퍼레이션 에이전트가 매일 3자 대사를 자동 실행하고 불일치를 에스컬레이션한다(기준가 확정은 절대 하지 않는다)",
+   "citation": "HF-REF-17 §9.5 표 9-5"
+  },
+  {
+   "principle": "자본 반환을 통한 규모 억제·비용 구조 공개",
+   "benchmark_firm": "Citadel",
+   "report_application": "성과가 좋은 해에도 자본을 반환하여 규모를 억제; 비용 구조를 투자자에게 구체적으로 공개",
+   "agent_encoding": "INFERENCE: 비용전가(pass-through) 항목을 투자자 보고서에 자동 공시하는 IR 보고 에이전트",
+   "citation": "HF-REF-16 §9.3"
+  },
+  {
+   "principle": "수치화된 손실 규칙의 예외 없는 집행",
+   "benchmark_firm": "Millennium — \"운용팀이 5% 손실을 내면 자본이 줄고 7.5% 손실을 내면 퇴출\"",
+   "report_application": "운용역에게 넓은 재량을 주되 손실 한도를 사전에 수치화하고 예외 없이 집행",
+   "agent_encoding": "INFERENCE: 멀티매니저 아키타입에서 pod별 손실선(예시 5%/7.5%, 창업자가 자체 수치 설정 필요)을 자동 집행하는 에이전트",
+   "citation": "HF-REF-16 §9.3"
+  },
+  {
+   "principle": "모델 거버넌스와 창업자 간 합의의 중요성 (반면교사)",
+   "benchmark_firm": "Two Sigma — 2025년 SEC 9,000만 달러 과징금 사례",
+   "report_application": "모델 기반 운용사에게 모델 변경 통제가 컴플라이언스의 핵심; 창업자 간 지배구조 합의를 설립 단계에서 문서화",
+   "agent_encoding": "INFERENCE: 모델-거버넌스 에이전트가 모델 변경 이력·승인 상태를 추적하고 미승인 변경을 즉시 플래깅한다",
+   "citation": "HF-REF-16 §9.3"
+  },
+  {
+   "principle": "레버리지와 유동성 위기를 함께 가정한 스트레스 테스트",
+   "benchmark_firm": "LTCM (1998, 약 25배 레버리지 후 붕괴)",
+   "report_application": "정상 상황의 통계를 과신하지 말고 레버리지·유동성 위기를 동시에 가정해야 함",
+   "agent_encoding": "INFERENCE: CRO 에이전트가 정기적으로 레버리지+유동성 복합 스트레스 시나리오를 자동 실행한다",
+   "citation": "HF-REF-14 §8.5 표 8-3"
+  },
+  {
+   "principle": "PB별 분산 레버리지의 합산 관리",
+   "benchmark_firm": "Archegos (2021, 여러 PB 총수익스와프로 레버리지 은닉 후 붕괴)",
+   "report_application": "거래상대방도 위험을 떠안으며, PB별로 분산된 레버리지는 합산해서 관리해야 함",
+   "agent_encoding": "INFERENCE: 거래상대방-노출 에이전트가 복수 PB의 레버리지·익스포저를 합산 집계해 CRO에 보고한다",
+   "citation": "HF-REF-14 §8.5 표 8-3"
+  }
+ ],
+ "archetype_rosters": [
+  {
+   "archetype": "단일 매니저 펀더멘털 (TCI, 엘리엇)",
+   "growth_stage": "1단계 설립기 (7~10명)",
+   "tier1_leadership": [
+    {
+     "agent": "ceo-agent",
+     "supports": "대표이사(CEO)",
+     "chunks": [
+      "HF-REF-08",
+      "HF-REF-05"
+     ]
+    },
+    {
+     "agent": "cio-agent",
+     "supports": "CIO",
+     "chunks": [
+      "HF-REF-08",
+      "HF-REF-09"
+     ]
+    }
+   ],
+   "tier2_leads": [
+    {
+     "agent": "cro-agent",
+     "supports": "위험관리담당(CRO)",
+     "chunks": [
+      "HF-REF-09",
+      "HF-REF-14"
+     ]
+    },
+    {
+     "agent": "cco-agent",
+     "supports": "준법감시인(CCO)",
+     "chunks": [
+      "HF-REF-06",
+      "HF-REF-14"
+     ]
+    },
+    {
+     "agent": "coo-agent",
+     "supports": "CFO·COO",
+     "chunks": [
+      "HF-REF-08",
+      "HF-REF-10"
+     ]
+    }
+   ],
+   "tier3_specialists": [
+    {
+     "agent": "research-analyst-agent",
+     "supports": "애널리스트",
+     "chunks": [
+      "HF-REF-09"
+     ]
+    },
+    {
+     "agent": "trading-ops-agent",
+     "supports": "트레이더+오퍼레이션",
+     "chunks": [
+      "HF-REF-09",
+      "HF-REF-10"
+     ]
+    },
+    {
+     "agent": "ir-agent",
+     "supports": "IR·마케팅",
+     "chunks": [
+      "HF-REF-11"
+     ]
+    }
+   ],
+   "note": "최소 편성; 리서치 깊이와 의사결정 규율이 핵심기능(HF-REF-08 표 6-3)"
+  },
+  {
+   "archetype": "단일 매니저 펀더멘털 (TCI, 엘리엇)",
+   "growth_stage": "3단계 기관화 (25명+)",
+   "tier1_leadership": [
+    {
+     "agent": "ceo-agent",
+     "supports": "대표이사(CEO)"
+    },
+    {
+     "agent": "cio-agent (복수 PM 지원)",
+     "supports": "CIO — \"복수 PM 체제\"",
+     "chunks": [
+      "HF-REF-08 §6.3 표6-2"
+     ]
+    }
+   ],
+   "tier2_leads": [
+    {
+     "agent": "cro-agent (전담 리스크팀 지원)",
+     "supports": "CRO — \"전담 리스크팀\"",
+     "chunks": [
+      "HF-REF-09",
+      "HF-REF-14",
+      "HF-REF-08 §6.3"
+     ]
+    },
+    {
+     "agent": "cco-agent",
+     "supports": "CCO"
+    },
+    {
+     "agent": "coo-agent",
+     "supports": "COO"
+    },
+    {
+     "agent": "ir-lead-agent",
+     "supports": "IR 전담 인력",
+     "chunks": [
+      "HF-REF-11"
+     ]
+    }
+   ],
+   "tier3_specialists": [
+    {
+     "agent": "pm-agent (×복수)",
+     "supports": "복수 PM",
+     "chunks": [
+      "HF-REF-08"
+     ]
+    },
+    {
+     "agent": "shadow-nav-agent",
+     "supports": "기준가 내부검증(shadow NAV)",
+     "chunks": [
+      "HF-REF-10",
+      "HF-REF-08 §6.3"
+     ]
+    },
+    {
+     "agent": "valuation-committee-agent",
+     "supports": "자산평가위원회",
+     "chunks": [
+      "HF-REF-06 §4.5"
+     ]
+    },
+    {
+     "agent": "succession-governance-agent",
+     "supports": "이사회·감사, 승계계획",
+     "chunks": [
+      "HF-REF-16",
+      "HF-REF-17"
+     ]
+    }
+   ]
+  },
+  {
+   "archetype": "시스템·퀀트 (르네상스, 투시그마, AQR, Man AHL) — CONDITIONAL: archetype=quant",
+   "growth_stage": "1단계 설립기 (7~10명)",
+   "tier1_leadership": [
+    {
+     "agent": "ceo-agent",
+     "supports": "CEO"
+    },
+    {
+     "agent": "cio-quant-agent",
+     "supports": "CIO (수석 연구자 겸직)",
+     "chunks": [
+      "HF-REF-08",
+      "HF-REF-09",
+      "HF-REF-12"
+     ]
+    }
+   ],
+   "tier2_leads": [
+    {
+     "agent": "cro-agent (모델리스크 강조)",
+     "supports": "CRO",
+     "chunks": [
+      "HF-REF-09",
+      "HF-REF-12",
+      "HF-REF-14"
+     ]
+    },
+    {
+     "agent": "cco-agent (모델변경 컴플라이언스)",
+     "supports": "CCO",
+     "chunks": [
+      "HF-REF-06",
+      "HF-REF-12",
+      "HF-REF-14"
+     ]
+    },
+    {
+     "agent": "coo-agent",
+     "supports": "COO",
+     "chunks": [
+      "HF-REF-08",
+      "HF-REF-10"
+     ]
+    }
+   ],
+   "tier3_specialists": [
+    {
+     "agent": "quant-researcher-agent",
+     "supports": "퀀트 리서처",
+     "chunks": [
+      "HF-REF-08",
+      "HF-REF-12"
+     ]
+    },
+    {
+     "agent": "model-governance-agent",
+     "supports": "모델 변경 승인·코드 접근 통제·이력 관리(신규 통제 기능)",
+     "chunks": [
+      "HF-REF-12 §7.8",
+      "HF-REF-14 (투시그마 사례)"
+     ]
+    },
+    {
+     "agent": "data-infra-agent",
+     "supports": "IT·데이터·보안",
+     "chunks": [
+      "HF-REF-12"
+     ]
+    },
+    {
+     "agent": "trading-ops-agent",
+     "supports": "트레이더+오퍼레이션",
+     "chunks": [
+      "HF-REF-09",
+      "HF-REF-10"
+     ]
+    }
+   ],
+   "note": "핵심 기능은 데이터 인프라, 연구 플랫폼, 모델 거버넌스 (HF-REF-08 표6-3); 고회전 전략은 증권거래세 0.20% 반영 필요(HF-REF-06 §4.6)"
+  },
+  {
+   "archetype": "시스템·퀀트 (르네상스, 투시그마, AQR, Man AHL) — CONDITIONAL: archetype=quant",
+   "growth_stage": "3단계 기관화 (25명+)",
+   "tier1_leadership": [
+    {
+     "agent": "ceo-agent"
+    },
+    {
+     "agent": "cio-quant-agent (중앙 데이터 플랫폼 지원)",
+     "chunks": [
+      "HF-REF-08 §6.3"
+     ]
+    }
+   ],
+   "tier2_leads": [
+    {
+     "agent": "cro-agent (쏠림·공매도잔고 확장 모니터링)",
+     "chunks": [
+      "HF-REF-09 §7.2 표7-1"
+     ]
+    },
+    {
+     "agent": "cco-agent",
+     "chunks": [
+      "HF-REF-06",
+      "HF-REF-12"
+     ]
+    },
+    {
+     "agent": "coo-agent"
+    },
+    {
+     "agent": "model-governance-agent (전담·상근)",
+     "chunks": [
+      "HF-REF-12",
+      "HF-REF-14"
+     ]
+    }
+   ],
+   "tier3_specialists": [
+    {
+     "agent": "quant-researcher-agent (×복수, 신호팀별)",
+     "chunks": [
+      "HF-REF-08",
+      "HF-REF-12"
+     ]
+    },
+    {
+     "agent": "data-engineering-agent",
+     "chunks": [
+      "HF-REF-12"
+     ]
+    },
+    {
+     "agent": "backtest-agent",
+     "chunks": [
+      "HF-REF-12",
+      "HF-REF-06 §4.6 (거래세 비용반영)"
+     ]
+    },
+    {
+     "agent": "shadow-nav-agent",
+     "chunks": [
+      "HF-REF-10"
+     ]
+    }
+   ]
+  },
+  {
+   "archetype": "멀티매니저 플랫폼 (밀레니엄, 시타델, Point72, Balyasny)",
+   "growth_stage": "1단계 설립기 (7~10명)",
+   "caution": "보고서는 이 모델이 \"규모의 경제가 전제되어 설립 단계 모델로 부적합\"하다고 명시함 (HF-REF-03 §2.1 표2-1); 1단계 로스터는 사실상 단일 매니저 펀더멘털에 가까우며 중앙 리스크 기능만 맹아 단계로 배치함",
+   "tier1_leadership": [
+    {
+     "agent": "ceo-agent",
+     "supports": "CEO"
+    },
+    {
+     "agent": "cio-agent (단일 pod 리드)",
+     "supports": "CIO",
+     "chunks": [
+      "HF-REF-08 §6.2"
+     ]
+    }
+   ],
+   "tier2_leads": [
+    {
+     "agent": "central-risk-agent (맹아 단계)",
+     "supports": "중앙 리스크 조직의 초기 형태",
+     "chunks": [
+      "HF-REF-08 §6.4",
+      "HF-REF-09",
+      "HF-REF-17"
+     ]
+    },
+    {
+     "agent": "cco-agent"
+    },
+    {
+     "agent": "coo-agent"
+    }
+   ],
+   "tier3_specialists": [
+    {
+     "agent": "pod-analyst-agent",
+     "supports": "애널리스트",
+     "chunks": [
+      "HF-REF-08"
+     ]
+    },
+    {
+     "agent": "trading-ops-agent"
+    },
+    {
+     "agent": "ir-agent"
+    }
+   ]
+  },
+  {
+   "archetype": "멀티매니저 플랫폼 (밀레니엄, 시타델, Point72, Balyasny)",
+   "growth_stage": "3단계 기관화 (25명+)",
+   "caution": "보고서는 진정한 플랫폼 모델이 \"수백 명 규모의 인력\"을 요구한다고 명시함(HF-REF-03 §2.1); 따라서 25명+ 로스터도 완전한 플랫폼 복제가 아니라 확장 준비 단계로 이해해야 함",
+   "tier1_leadership": [
+    {
+     "agent": "ceo-agent"
+    },
+    {
+     "agent": "capital-allocation-committee-agent",
+     "supports": "CIO·자본배분위원회",
+     "chunks": [
+      "HF-REF-08 §6.4"
+     ]
+    }
+   ],
+   "tier2_leads": [
+    {
+     "agent": "central-risk-agent",
+     "supports": "중앙 리스크 조직 (pod별 손실·익스포저 한도 실시간 집행)",
+     "chunks": [
+      "HF-REF-08 §6.4",
+      "HF-REF-09",
+      "HF-REF-16",
+      "HF-REF-17"
+     ]
+    },
+    {
+     "agent": "cco-agent"
+    },
+    {
+     "agent": "coo-agent"
+    },
+    {
+     "agent": "platform-ops-agent",
+     "supports": "공통 플랫폼(데이터·실행·오퍼레이션·컴플라이언스)",
+     "chunks": [
+      "HF-REF-08 §6.4",
+      "HF-REF-10",
+      "HF-REF-12"
+     ]
+    }
+   ],
+   "tier3_specialists": [
+    {
+     "agent": "pod-lead-agent (×N, 운용팀 A/B/C/N별)",
+     "chunks": [
+      "HF-REF-08",
+      "HF-REF-09"
+     ]
+    },
+    {
+     "agent": "quant-researcher-agent (퀀트 pod용)",
+     "chunks": [
+      "HF-REF-12"
+     ]
+    },
+    {
+     "agent": "macro-analyst-agent (매크로·채권 pod용)",
+     "chunks": [
+      "HF-REF-09"
+     ]
+    },
+    {
+     "agent": "model-governance-agent (퀀트 pod 존재 시)",
+     "chunks": [
+      "HF-REF-12"
+     ]
+    },
+    {
+     "agent": "ir-agent"
+    }
+   ]
+  },
+  {
+   "archetype": "매크로 (브리지워터)",
+   "growth_stage": "1단계 설립기 (7~10명)",
+   "tier1_leadership": [
+    {
+     "agent": "ceo-agent"
+    },
+    {
+     "agent": "cio-macro-agent",
+     "supports": "CIO (이코노미스트 겸직 가능)",
+     "chunks": [
+      "HF-REF-03 §2.1 표2-1",
+      "HF-REF-08",
+      "HF-REF-09"
+     ]
+    }
+   ],
+   "tier2_leads": [
+    {
+     "agent": "cro-agent (파생·외환 익스포저 강조)",
+     "chunks": [
+      "HF-REF-09",
+      "HF-REF-14"
+     ]
+    },
+    {
+     "agent": "cco-agent",
+     "chunks": [
+      "HF-REF-06",
+      "HF-REF-14"
+     ]
+    },
+    {
+     "agent": "coo-agent",
+     "chunks": [
+      "HF-REF-08",
+      "HF-REF-10"
+     ]
+    }
+   ],
+   "tier3_specialists": [
+    {
+     "agent": "macro-economist-agent",
+     "supports": "이코노미스트",
+     "chunks": [
+      "HF-REF-03",
+      "HF-REF-09"
+     ]
+    },
+    {
+     "agent": "derivatives-trading-agent",
+     "supports": "트레이더 (선물·외환 인프라)",
+     "chunks": [
+      "HF-REF-03",
+      "HF-REF-09",
+      "HF-REF-12"
+     ]
+    },
+    {
+     "agent": "ir-agent",
+     "chunks": [
+      "HF-REF-11"
+     ]
+    }
+   ],
+   "note": "핵심 기능은 거시 리서치, 파생상품 실행 (HF-REF-08 표6-3)"
+  },
+  {
+   "archetype": "매크로 (브리지워터)",
+   "growth_stage": "3단계 기관화 (25명+)",
+   "tier1_leadership": [
+    {
+     "agent": "ceo-agent"
+    },
+    {
+     "agent": "cio-macro-agent (체계적 매크로연구조직 지원 가능)",
+     "chunks": [
+      "HF-REF-08 §6.4",
+      "HF-REF-16"
+     ]
+    }
+   ],
+   "tier2_leads": [
+    {
+     "agent": "cro-agent (확장된 파생·외환 리스크)",
+     "chunks": [
+      "HF-REF-09",
+      "HF-REF-14"
+     ]
+    },
+    {
+     "agent": "cco-agent"
+    },
+    {
+     "agent": "coo-agent"
+    }
+   ],
+   "tier3_specialists": [
+    {
+     "agent": "systematic-macro-research-agent",
+     "supports": "체계적 매크로 연구 조직 (브리지워터식)",
+     "chunks": [
+      "HF-REF-16 §9.3"
+     ]
+    },
+    {
+     "agent": "derivatives-trading-agent (확장팀)"
+    },
+    {
+     "agent": "succession-governance-agent",
+     "supports": "창업자 이후 승계 설계 (브리지워터 교훈)",
+     "chunks": [
+      "HF-REF-16",
+      "HF-REF-17"
+     ]
+    }
+   ]
+  }
+ ],
+ "founder_questions": [
+  {
+   "decision": "투자 전략 선택 (핵심 수익원천)",
+   "options": [
+    "주식 롱숏/롱바이어스드",
+    "이벤트 드리븐·메자닌·공모주",
+    "상대가치·차익거래(퀀트 성향)",
+    "매크로",
+    "퀀트·시스템(완전 시스템 운용)"
+   ],
+   "citation": "HF-REF-03 §2.1 표 2-1",
+   "note": "보고서는 \"검증 가능한 단일 핵심 전략으로 시작\"을 권장하며 멀티매니저 플랫폼은 설립 단계에 부적합하다고 명시"
+  },
+  {
+   "decision": "조직 원형 (archetype) 선택",
+   "options": [
+    "단일 매니저 펀더멘털",
+    "시스템·퀀트",
+    "멀티매니저 플랫폼 (보고서는 설립단계 비권장)",
+    "매크로"
+   ],
+   "citation": "HF-REF-08 §6.4 표 6-3"
+  },
+  {
+   "decision": "관할권 선택 (fund jurisdiction)",
+   "options": [
+    "국내 일반 사모펀드만",
+    "국내 + 케이맨 마스터-피더 병행",
+    "국내 + 미국 onshore LP(SEC/주 등록)",
+    "국내 + 싱가포르/홍콩 현지 거점(MAS/SFC 인가)"
+   ],
+   "citation": "HF-REF-03 §2.2 표 2-2"
+  },
+  {
+   "decision": "목표 투자자 유형 우선순위",
+   "options": [
+    "국내 고액자산가 중심 (3억원 이상 적격투자자)",
+    "국내 법인·전문투자자 중심",
+    "국내 기관(연기금·공제회·보험사) 중심",
+    "시드·앵커 투자자 우선 확보",
+    "해외 기관·패밀리오피스 병행"
+   ],
+   "citation": "HF-REF-03 §2.3 표 2-3"
+  },
+  {
+   "decision": "내부 레버리지 한도(법정 400% 대비)",
+   "options": [
+    "법정 한도와 동일하게 400%",
+    "법정 한도의 절반 수준(약 200%)",
+    "법정 한도의 1/4 수준(약 100%)",
+    "전략별로 상이하게 설정",
+    "초기엔 보수적으로 설정하고 트랙레코드 축적 후 상향"
+   ],
+   "citation": "HF-REF-06 §4.3 표 4-3 (법정 400%); HF-REF-09 §7.2 표 7-1 (\"법정 한도보다 낮은 내부 한도 설정\")"
+  },
+  {
+   "decision": "준법감시인(CCO)·위험관리책임자(CRO) 겸직 여부",
+   "options": [
+    "완전 분리 (각 1명)",
+    "겸직 (신설 소규모 운용사 요건 충족 시 1인)",
+    "겸직 + 외부 리스크 자문 병행",
+    "단계적 분리 (설립기엔 겸직 → 성장기에 분리)"
+   ],
+   "citation": "HF-REF-06 §4.5"
+  },
+  {
+   "decision": "모델·코드 파이프라인 구축 방식 (archetype=quant인 경우)",
+   "options": [
+    "OMS·EMS는 구매 또는 PB 제공 시스템 활용",
+    "PMS는 구매",
+    "리서치·백테스트 환경은 자체 구축 + 버전관리",
+    "리스크 엔진은 구매 후 내부 지표 추가",
+    "전 영역 외부 위탁 최대화(초기엔 구매 중심)"
+   ],
+   "citation": "HF-REF-12 §7.8 표 7-5"
+  },
+  {
+   "decision": "보수 구조 설계 (운용보수/성과보수 조건)",
+   "options": [
+    "순수 하이워터마크만 적용",
+    "하이워터마크 + 허들(기준수익률) 결합",
+    "비용 전가(pass-through) 요소 포함",
+    "설립자 클래스(founder share class) 할인 적용",
+    "대형 약정 할인 티어 적용"
+   ],
+   "citation": "HF-REF-11 §7.6 표 7-4"
+  },
+  {
+   "decision": "시드·앵커 자금 조달 경로",
+   "options": [
+    "창업자 자기자금 + 지인·계열 네트워크",
+    "계열 금융사 시딩",
+    "전문 시딩사(수익공유 15~30% 또는 지분 10~25%)",
+    "기관 위탁운용 공모 참여",
+    "판매사(증권사 PB·WM) 채널 중심 개인투자자 모집"
+   ],
+   "citation": "HF-REF-03 §2.3; HF-REF-11 §7.7"
+  },
+  {
+   "decision": "오프쇼어(케이맨) 확장 시점",
+   "options": [
+    "설립과 동시에 마스터-피더 병행",
+    "국내 트랙레코드 1~2년 축적 후",
+    "해외 기관 수요가 확인된 후",
+    "당분간 국내 전용으로 유지(오프쇼어 미계획)",
+    "싱가포르/홍콩 현지 거점을 먼저 경유"
+   ],
+   "citation": "HF-REF-03 §2.2"
+  }
+ ],
+ "gaps": [
+  "GAP: MNPI(미공개중요정보) 관리와 정보차단벽(information barriers) 절차 — 리포트는 이해상충 방지 체계(HF-REF-05 표4-1)만 언급하고 MNPI 통제·차단벽 설계는 다루지 않음",
+  "GAP: 임직원 개인매매 사전승인(personal trading pre-clearance) 절차의 구체적 워크플로 — HF-REF-06 §4.5는 '임직원 개인 매매' 규정 제정 필요성만 언급함",
+  "GAP: 사이버보안 역할과 침해대응 조직·프로세스 — HF-REF-12 §7.8은 '보안·업무연속성'을 기술 스택 항목으로만 나열함",
+  "GAP: 국내 자금세탁방지(AML)·고객확인(KYC)의 구체 절차 — 라임·옵티머스 사례(HF-REF-16 §9.4)는 언급하나 AML/KYC 절차 자체는 다루지 않음",
+  "GAP: 업무연속성계획(BCP)의 세부 기준 — HF-REF-05 표4-2, HF-REF-18 표10-1이 '업무연속성계획'을 산출물로만 요구함",
+  "GAP: 서비스 제공자(PBS·수탁·사무관리) 실사(due diligence) 절차의 구체 기준 — HF-REF-10 §7.5는 선정 기준만 제시함",
+  "GAP: 자산평가위원회의 구성·정족수·의결 절차 — HF-REF-06 §4.5는 운영규정 필요성만 언급함",
+  "GAP: 핵심인력 이탈 시 대체·승계의 상세 프로세스 — HF-REF-14 §8.3은 key person clause 필요성만 언급함",
+  "GAP: ESG/스튜어드십 정책 — 로드한 청크에 언급 없음",
+  "GAP: 투자자 개인정보보호·데이터 프라이버시 규정 — 로드한 청크에 언급 없음",
+  "GAP: 성과보수 확정 주기의 권장 표준값 — HF-REF-11 §7.6은 '주기가 짧을수록 투자자에게 불리'라고만 하고 특정 주기를 권고하지 않음",
+  "GAP: 모델 거버넌스의 절차 상세(변경승인 워크플로, 코드리뷰 기준, 접근권한 등급 체계) — HF-REF-12 §7.8은 '모델 변경 승인, 코드 접근 권한, 변경 이력 관리'가 필요하다고만 하고 세부 절차는 규정하지 않음"
+ ]
+}

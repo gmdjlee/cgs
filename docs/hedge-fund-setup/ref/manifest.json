@@ -1,0 +1,1141 @@
+{
+  "source": "docs/hedge-fund-setup/hedge_fund_setup_report.md",
+  "source_sha256": "73dcac968ef8db58db0e2364625ee85bf24ff2ba2547297d5a4ba1f55ec7dc5a",
+  "as_of": "2026-09-24",
+  "chunks": [
+    {
+      "id": "HF-REF-00",
+      "file": "00-front-matter.md",
+      "title": "헤지펀드 운용사 설립 가이드",
+      "source_lines": "1-28",
+      "bytes": 2120,
+      "sha256_body": "2f245abfab1c3b05f8f76c042260a4cfaf2d8bfdfce34a175b7a40d37377ab85",
+      "volatility": "low",
+      "domains": [
+        "glossary"
+      ],
+      "sources": [],
+      "source_evidence": {},
+      "related": []
+    },
+    {
+      "id": "HF-REF-01",
+      "file": "01-executive-summary.md",
+      "title": "핵심 요약",
+      "source_lines": "29-58",
+      "bytes": 3949,
+      "sha256_body": "a5c7160172b6bacd080e38379be08605596d1a279b4bcffee1c942ff6af0c525",
+      "volatility": "high",
+      "domains": [
+        "market-data",
+        "registration",
+        "constraints",
+        "governance"
+      ],
+      "sources": [
+        "SRC-01",
+        "SRC-02",
+        "SRC-05",
+        "SRC-07",
+        "SRC-11",
+        "SRC-14",
+        "SRC-15",
+        "SRC-20",
+        "SRC-27",
+        "SRC-31",
+        "SRC-36",
+        "SRC-38",
+        "SRC-61"
+      ],
+      "source_evidence": {
+        "SRC-01": "자본시장법 제249조의7",
+        "SRC-02": "자본시장법 시행령 제271조의2",
+        "SRC-05": "3억원 (레버리지 200% 초과 펀드는 5억원)",
+        "SRC-07": "2025년 3월 31일 공매도 전면 재개와 함께 도입된 무차입공매도 방지 전산·내부통제 의무",
+        "SRC-11": "2026년 1월부터 0.20%로 오른 증권거래세",
+        "SRC-14": "436개사, 적자 비율 47.9%",
+        "SRC-15": "40조원 돌파, 운용 펀드 950개 이상",
+        "SRC-20": "책무구조도 제출 의무",
+        "SRC-27": "라임·옵티머스 사태 이후 강화된 판매사·수탁사의 운용 감시 제도",
+        "SRC-31": "5.6조 달러 (사상 최대, 15분기 연속 증가)",
+        "SRC-36": "운용보수 1.18%, 성과보수 16.29%",
+        "SRC-38": "운용자산 16.6%, 설립 이후 누적 순이익 41.0%",
+        "SRC-61": "약 6,400만 달러"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-02",
+      "file": "02-industry-and-market.md",
+      "title": "1. 헤지펀드의 정의와 산업 현황",
+      "source_lines": "59-135",
+      "bytes": 9064,
+      "sha256_body": "3cdc9d6390ffcb7a88a3b356807d6b56dadef2894efe0d919f03da8aaca62c7b",
+      "volatility": "high",
+      "domains": [
+        "market-data",
+        "fund-regulation"
+      ],
+      "sources": [
+        "SRC-13",
+        "SRC-14",
+        "SRC-15",
+        "SRC-16",
+        "SRC-17",
+        "SRC-18",
+        "SRC-27",
+        "SRC-31",
+        "SRC-32",
+        "SRC-33",
+        "SRC-34",
+        "SRC-35",
+        "SRC-36",
+        "SRC-37",
+        "SRC-38",
+        "SRC-42"
+      ],
+      "source_evidence": {
+        "SRC-13": "507개사, 1,937.3조원",
+        "SRC-14": "4조 1,553억원 (2025년 연간 실적 상회)",
+        "SRC-15": "40조원 돌파, 운용 펀드 950개 이상",
+        "SRC-16": "롱바이어스드 | 62.61%",
+        "SRC-17": "2011년 12월 '한국형 헤지펀드'라는 이름으로 도입되었습니다",
+        "SRC-18": "2011년 12월 약 1,490억원 규모로 출범했습니다",
+        "SRC-27": "2019년 10월 당시 업계 1위였던 라임자산운용의 환매 중단 사태",
+        "SRC-31": "업계 운용자산 | 5.6조 달러 | 2026년 2분기 말 | HFR",
+        "SRC-32": "2026년 2분기에는 한 분기에만 4,093억 달러가 늘어",
+        "SRC-33": "2025년 4분기에 처음으로 5조 달러를 넘어 5.15조 달러로 한 해를 마쳤고",
+        "SRC-34": "2026년 1분기 말 기준 주식 헤지(Equity Hedge) 전략의 자산이 1.58조 달러",
+        "SRC-35": "166개 / 129개 (청산은 2년 만에 최다)",
+        "SRC-36": "신규 설정 펀드 수 | 561개 (2021년 이후 최다)",
+        "SRC-37": "업계 평균 운용보수 | 1.32%",
+        "SRC-38": "상위 20개 운용사는 2025년 말 업계 운용자산의 16.6%를 운용하면서",
+        "SRC-42": "9대 헤지펀드의 운용자산은 2025년 초 이후 2,240억 달러 늘었고"
+      },
+      "related": [
+        "HF-REF-07"
+      ]
+    },
+    {
+      "id": "HF-REF-03",
+      "file": "03-founding-decisions.md",
+      "title": "2. 설립 전 핵심 의사결정",
+      "source_lines": "136-205",
+      "bytes": 8114,
+      "sha256_body": "32c0a38b00cf8be9cd89cb330ca324662cfbca89768e18b5c13ac2cf3ab904b4",
+      "volatility": "medium",
+      "domains": [
+        "strategy",
+        "offshore",
+        "fundraising-ir"
+      ],
+      "sources": [
+        "SRC-01",
+        "SRC-03",
+        "SRC-07",
+        "SRC-11",
+        "SRC-12"
+      ],
+      "source_evidence": {
+        "SRC-01": "레버리지 400% 한도",
+        "SRC-03": "비시장성 자산이 50%를 넘으면 개방형 펀드 불가",
+        "SRC-07": "2025년 공매도 전면 재개로 롱숏 전략의 운용 여건은 정상화되었지만",
+        "SRC-11": "2026년부터 0.20%로 오른 증권거래세를 비용 모델에 반드시 반영해야 합니다",
+        "SRC-12": "증권거래세 0.20%"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-04",
+      "file": "04-legal-structure.md",
+      "title": "3. 법적 구조",
+      "source_lines": "206-270",
+      "bytes": 6006,
+      "sha256_body": "db0e71c976d25bfe777223b34204481e49e186e8218181be1dc254e8dfbb2193",
+      "volatility": "low",
+      "domains": [
+        "legal-structure",
+        "service-providers"
+      ],
+      "sources": [
+        "SRC-01",
+        "SRC-24"
+      ],
+      "source_evidence": {
+        "SRC-01": "설정 후 2주 이내 보고",
+        "SRC-24": "자기자본 3조원 이상 증권사만 영위 가능"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-05",
+      "file": "05-kr-registration-and-roadmap.md",
+      "title": "4. 국내 설립 절차",
+      "source_lines": "271-332",
+      "bytes": 5461,
+      "sha256_body": "035f98964ecdc82d0563f191087e126bc95a3dbabd2c7a53681b0cd14a453494",
+      "volatility": "medium",
+      "domains": [
+        "registration",
+        "organization"
+      ],
+      "sources": [
+        "SRC-01",
+        "SRC-02",
+        "SRC-04",
+        "SRC-20",
+        "SRC-21"
+      ],
+      "source_evidence": {
+        "SRC-01": "등록하지 않고 영업하는 것은 금지됩니다(자본시장법 제249조)",
+        "SRC-02": "10억원 이상 (법률은 5억원 이상으로 정하고, 시행령이 10억원으로 규정)",
+        "SRC-04": "2021년 개정법은 자기자본 유지 요건 미준수, 일정 기간의 미영업",
+        "SRC-20": "책무구조도 작성",
+        "SRC-21": "책무구조도 작성"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-06",
+      "file": "06-kr-fund-rules-controls-tax.md",
+      "title": "4.3 펀드 설정과 운용 규제",
+      "source_lines": "333-397",
+      "bytes": 8501,
+      "sha256_body": "0a5ba1908ff5d586588f61dd7eab8d33258581ab8a32ab084576a5b27e5536f9",
+      "volatility": "medium",
+      "domains": [
+        "fund-regulation",
+        "short-selling",
+        "internal-control",
+        "tax"
+      ],
+      "sources": [
+        "SRC-01",
+        "SRC-03",
+        "SRC-06",
+        "SRC-07",
+        "SRC-08",
+        "SRC-09",
+        "SRC-10",
+        "SRC-11",
+        "SRC-12",
+        "SRC-20",
+        "SRC-21",
+        "SRC-22",
+        "SRC-23"
+      ],
+      "source_evidence": {
+        "SRC-01": "설정일부터 2주일 이내 금융위원회 보고",
+        "SRC-03": "비시장성 자산 비중이 50%를 넘으면 개방형(수시 환매형) 설정 불가",
+        "SRC-06": "투자자 수 | 100인 이하, 일반투자자는 49인 이하",
+        "SRC-07": "2025년 3월 31일 전 종목을 대상으로 재개되었습니다",
+        "SRC-08": "대차 상환기간 | 공매도 목적 대차는 90일 이내에서 정하고",
+        "SRC-09": "계좌별 잔고 관리 | 법인·기관투자자는 내부통제기준에 따라",
+        "SRC-10": "무차입공매도를 막기 위한 제도가 대폭 강화되었고",
+        "SRC-11": "2026년 1월 1일 양도분부터 코스피 0.20%",
+        "SRC-12": "코스닥 0.20%, 코넥스 0.10% (2025년 코스피·코스닥 각 0.15%)",
+        "SRC-20": "중소형 금융투자업자 1,007개사는 2026년 7월 2일까지 책무구조도를 금융감독원에 제출",
+        "SRC-21": "2026년 7월 2일까지 책무구조도를 금융감독원에 제출해야 했습니다",
+        "SRC-22": "금융감독원은 2025년 9월 신설 사모운용사 대표이사 설명회에서",
+        "SRC-23": "금융감독원이 공개한 사모운용사의 흔한 위반 유형은"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-07",
+      "file": "07-offshore-setup.md",
+      "title": "5. 해외 설립 절차",
+      "source_lines": "398-447",
+      "bytes": 6549,
+      "sha256_body": "92689003fa189b9544652359f1579fa39b2db1a338ba979db8862ec86b5f0780",
+      "volatility": "medium",
+      "domains": [
+        "offshore",
+        "fund-regulation"
+      ],
+      "sources": [
+        "SRC-53",
+        "SRC-54",
+        "SRC-55",
+        "SRC-56",
+        "SRC-57",
+        "SRC-58",
+        "SRC-59"
+      ],
+      "source_evidence": {
+        "SRC-53": "2024년 개정안의 준수 기한이 여러 차례 연기되어 2027년 7월 1일로 변경",
+        "SRC-54": "2024년 개정안의 준수 기한이 여러 차례 연기되어 2027년 7월 1일로 변경",
+        "SRC-55": "2026년 6월 29일부터 운용사에 맡긴 자산 140만 달러 이상",
+        "SRC-56": "케이맨 제도는 해외 헤지펀드가 가장 많이 사용하는 역외 관할권입니다",
+        "SRC-57": "회계연도 종료 후 6개월 이내 CIMA에 제출",
+        "SRC-58": "개정 지침(AIFMD II)의 국내법 전환 기한은 2026년 4월 16일이었으며",
+        "SRC-59": "강화된 감독 보고 의무는 2027년 4월부터 적용됩니다"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-08",
+      "file": "08-organization.md",
+      "title": "6. 조직도",
+      "source_lines": "448-537",
+      "bytes": 8072,
+      "sha256_body": "9231d861d7ce88f189cc123a2eb4cd35607ad1672655c35c26c01abaf0cc618e",
+      "volatility": "low",
+      "domains": [
+        "organization",
+        "governance",
+        "compensation"
+      ],
+      "sources": [
+        "SRC-02",
+        "SRC-46"
+      ],
+      "source_evidence": {
+        "SRC-02": "등록 요건 위반(투자운용인력 3명 미만)",
+        "SRC-46": "5% 손실을 내면 자본이 줄어들고 7.5% 손실을 내면 퇴출된다"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-09",
+      "file": "09-investment-risk-execution.md",
+      "title": "7. 운영 방식",
+      "source_lines": "538-583",
+      "bytes": 4771,
+      "sha256_body": "f7fd4f50ac2664b6e68e9ec0c83f079f90df3e72eb718f7499e31b048d83aa06",
+      "volatility": "low",
+      "domains": [
+        "investment-process",
+        "risk",
+        "trading"
+      ],
+      "sources": [
+        "SRC-01",
+        "SRC-09",
+        "SRC-10",
+        "SRC-11",
+        "SRC-12"
+      ],
+      "source_evidence": {
+        "SRC-01": "법정 레버리지 비율(순자산의 400%)",
+        "SRC-09": "공매도 주문은 펀드 계좌별 잔고 범위 안에서만 나가도록 시스템으로 통제",
+        "SRC-10": "공매도 주문은 펀드 계좌별 잔고 범위 안에서만 나가도록 시스템으로 통제",
+        "SRC-11": "증권거래세 0.20%와 매매 수수료를 포함한 총 거래 비용",
+        "SRC-12": "증권거래세 0.20%와 매매 수수료를 포함한 총 거래 비용"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-10",
+      "file": "10-operations-and-providers.md",
+      "title": "7.4 오퍼레이션과 기준가 산정",
+      "source_lines": "584-614",
+      "bytes": 2989,
+      "sha256_body": "cea23be9f7b531cc23305744d45d439484c7cf40d7a93a3ae96dcdab8b4c2b1c",
+      "volatility": "medium",
+      "domains": [
+        "operations",
+        "service-providers"
+      ],
+      "sources": [
+        "SRC-25",
+        "SRC-27",
+        "SRC-36"
+      ],
+      "source_evidence": {
+        "SRC-25": "소규모 사모펀드나 비상장 자산이 포함된 펀드의 수탁을 꺼리는 경향",
+        "SRC-27": "라임·옵티머스 사태 이후 수탁 기관이",
+        "SRC-36": "HFR 집계 상위: 골드만삭스, UBS, JP모건, 모건스탠리"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-11",
+      "file": "11-fees-and-fundraising.md",
+      "title": "7.6 보수 구조",
+      "source_lines": "615-642",
+      "bytes": 4408,
+      "sha256_body": "aaba941b477df8a8ceb49c52891e9c28fed6c669d27d826678a8a7af298c5cdc",
+      "volatility": "high",
+      "domains": [
+        "fees",
+        "fundraising-ir"
+      ],
+      "sources": [
+        "SRC-26",
+        "SRC-36",
+        "SRC-37",
+        "SRC-45",
+        "SRC-60",
+        "SRC-61",
+        "SRC-62",
+        "SRC-63"
+      ],
+      "source_evidence": {
+        "SRC-26": "2011년 한국형 헤지펀드 출범 당시 운용보수 0.3~1%",
+        "SRC-36": "2025년 3분기 신규 펀드 평균 16.29%",
+        "SRC-37": "업계 평균 1.32% (2026년 1분기)",
+        "SRC-45": "멀티전략 투자자 몫은 2021년 이익 1달러당 54센트에서 2023년 41센트로 감소",
+        "SRC-60": "AIMA는 2026년 글에서 해외 기준 최소 출범 예산이 과거 25만 달러에서",
+        "SRC-61": "AIMA와 Cowen이 2022년에 발표한 조사에서 기관 투자자의 80.8%는",
+        "SRC-62": "시드 투자자는 통상 2,500만~1억 달러를 투자하고",
+        "SRC-63": "2024년 Jain Global은 2.5억 달러 이상 약정 투자자에게 성과보수 10%를 제시"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-12",
+      "file": "12-technology-infrastructure.md",
+      "title": "7.8 기술 인프라",
+      "source_lines": "643-659",
+      "bytes": 1686,
+      "sha256_body": "7f87c0f9b02386fe3684b1caffeef13114f92befce71984b042e33e0a048e97c",
+      "volatility": "low",
+      "domains": [
+        "technology",
+        "risk"
+      ],
+      "sources": [
+        "SRC-50"
+      ],
+      "source_evidence": {
+        "SRC-50": "2025년 1월 SEC가 투시그마에 9,000만 달러의 과징금을 부과한 사건"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-13",
+      "file": "13-firm-economics.md",
+      "title": "7.9 운용사 손익 구조와 손익분기 (예시)",
+      "source_lines": "660-697",
+      "bytes": 3109,
+      "sha256_body": "8a582db8d51aef7e74f453ba80be05493f28c45b89425dc0d5c63144d0814686",
+      "volatility": "low",
+      "domains": [
+        "firm-economics"
+      ],
+      "sources": [
+        "SRC-14"
+      ],
+      "source_evidence": {
+        "SRC-14": "국내 사모운용사의 절반 가까이가 적자를 내는 구조적 이유"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-14",
+      "file": "14-constraints-and-risks.md",
+      "title": "8. 제약 조건과 리스크",
+      "source_lines": "698-760",
+      "bytes": 8108,
+      "sha256_body": "107b19680b08371da362b35cb6111ff8a0cffe7bf768b49b7cf98a87d5aaa741",
+      "volatility": "medium",
+      "domains": [
+        "constraints",
+        "risk",
+        "failure-lessons"
+      ],
+      "sources": [
+        "SRC-14",
+        "SRC-27",
+        "SRC-42",
+        "SRC-50",
+        "SRC-53",
+        "SRC-54",
+        "SRC-58",
+        "SRC-59"
+      ],
+      "source_evidence": {
+        "SRC-14": "국내 사모운용사 적자 비율 47.9%",
+        "SRC-27": "라임·옵티머스 | 2019~2020",
+        "SRC-42": "2026년 9월 블룸버그 보도에서 한 투자 전문가는 멀티전략 펀드들이",
+        "SRC-50": "SEC 과징금 9,000만 달러와 1억 6,500만 달러 자발적 상환",
+        "SRC-53": "Form PF 등 보고 의무 (개정안 준수 기한 2027년 7월 1일)",
+        "SRC-54": "Form PF 등 보고 의무 (개정안 준수 기한 2027년 7월 1일)",
+        "SRC-58": "AIFMD II 유동성 관리 수단, 위탁·실체 요건",
+        "SRC-59": "AIFMD II 유동성 관리 수단, 위탁·실체 요건"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-15",
+      "file": "15-benchmark-rankings.md",
+      "title": "9. 세계 최고 헤지펀드 벤치마크",
+      "source_lines": "761-819",
+      "bytes": 5288,
+      "sha256_body": "68ea6886010d00c6fd7a4c407fde6d7f722ee50881c4e8c4df3685d1ef021c5d",
+      "volatility": "high",
+      "domains": [
+        "benchmark",
+        "market-data"
+      ],
+      "sources": [
+        "SRC-38",
+        "SRC-39",
+        "SRC-40",
+        "SRC-41",
+        "SRC-42",
+        "SRC-43",
+        "SRC-44",
+        "SRC-52"
+      ],
+      "source_evidence": {
+        "SRC-38": "LCH Investments는 매년 설립 이후 투자자에게 안겨 준 누적 순이익",
+        "SRC-39": "TCI는 189억 달러를 벌어 단일 운용사 기준 사상 최대 연간 순이익을 기록했고",
+        "SRC-40": "Bridgewater | Pure Alpha II | +34%",
+        "SRC-41": "헤지펀드 자산이 10억 달러를 넘는 551개 운용사가 2025년 상반기 말 3.6조 달러를 운용했으며",
+        "SRC-42": "2026년 9월 블룸버그 보도에 따르면 밀레니엄은 970억 달러를 운용하며",
+        "SRC-43": "Man Group | 영국 런던 | 퀀트 | 665",
+        "SRC-44": "맨그룹의 전체 운용자산은 2026년 6월 말 2,536억 달러로 사상 최대를 기록했습니다",
+        "SRC-52": "헤지펀드 운용 규모는 집계 기준에 따라 크게 달라집니다"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-16",
+      "file": "16-benchmark-operating-models.md",
+      "title": "9.3 운용사별 운영 모델 분석",
+      "source_lines": "820-868",
+      "bytes": 10590,
+      "sha256_body": "b140783ae50d555d0df88d63409d1bacc57ffc311be33deab5fff242a6c453b1",
+      "volatility": "high",
+      "domains": [
+        "benchmark",
+        "governance"
+      ],
+      "sources": [
+        "SRC-19",
+        "SRC-27",
+        "SRC-28",
+        "SRC-29",
+        "SRC-30",
+        "SRC-38",
+        "SRC-39",
+        "SRC-40",
+        "SRC-41",
+        "SRC-42",
+        "SRC-43",
+        "SRC-44",
+        "SRC-46",
+        "SRC-47",
+        "SRC-48",
+        "SRC-49",
+        "SRC-50"
+      ],
+      "source_evidence": {
+        "SRC-19": "상위 2개 운용사(삼성, 브레인)의 설정액 점유율이 2014년 54.1%",
+        "SRC-27": "2019년 10월 환매 중단 사태를 일으켰고, 옵티머스 사태와 합쳐 2조원 이상의 피해",
+        "SRC-28": "2025년 ETF 순자산 증가율이 307%에 달했고",
+        "SRC-29": "운용보수 수익은 점유율 4위 운용사보다 많았습니다",
+        "SRC-30": "2025년 7월 목표수익률 17%를 제시한 단위형·개방형 일반 사모펀드",
+        "SRC-38": "누적 순이익 904억 달러로 업계 1위를 지키고 있고",
+        "SRC-39": "2025년 189억 달러의 순이익으로 단일 운용사 기준 사상 최대 연간 기록",
+        "SRC-40": "2025년 Oculus가 28.2%, Composite가 18.5%를 기록했고",
+        "SRC-41": "처음으로 주식 전략보다 많은 자산을 늘렸다고 분석했습니다",
+        "SRC-42": "2026년 9월에는 회사 전체 운용자산이 1,400억 달러를 넘었습니다",
+        "SRC-43": "운용자산은 2025년 말 2,276억 달러에서",
+        "SRC-44": "2026년 6월 말 2,536억 달러로 늘었습니다",
+        "SRC-46": "운용팀이 5% 손실을 내면 자본이 줄고 7.5% 손실을 내면 퇴출된다",
+        "SRC-47": "3개 주요 펀드는 2021년 초부터 2024년 9월까지 568억 달러의 이익을 냈고",
+        "SRC-48": "2025년에는 운용사 지분 10~15%를 외부에 매각하는 방안을 검토한다는 보도",
+        "SRC-49": "RIEF는 2024년에 22.7%로 2011년 이후 최고 수익률을 기록했습니다",
+        "SRC-50": "9,000만 달러의 과징금을 부과했고, 회사는 피해 펀드에 1억 6,500만 달러를 자발적으로 상환"
+      },
+      "related": [
+        "HF-REF-17"
+      ]
+    },
+    {
+      "id": "HF-REF-17",
+      "file": "17-success-factors.md",
+      "title": "9.5 공통 성공 요인과 설립 시사점",
+      "source_lines": "869-884",
+      "bytes": 2081,
+      "sha256_body": "3b2d264efb925a4f38a94ee42fbeac7ca68f68d2c6ae1cda7e8858e06fe35866",
+      "volatility": "low",
+      "domains": [
+        "benchmark",
+        "governance",
+        "risk"
+      ],
+      "sources": [
+        "SRC-38",
+        "SRC-46"
+      ],
+      "source_evidence": {
+        "SRC-38": "상위 20개사 대부분의 2025년 유입 제한·자본 반환",
+        "SRC-46": "밀레니엄의 수치화된 손실 규칙"
+      },
+      "related": [
+        "HF-REF-16"
+      ]
+    },
+    {
+      "id": "HF-REF-18",
+      "file": "18-execution-checklist.md",
+      "title": "10. 실행 체크리스트",
+      "source_lines": "885-908",
+      "bytes": 2375,
+      "sha256_body": "279a5811fc085c61efda8867c2f0252b858b26d1d6fe6265ec6c6579a7e9fbdf",
+      "volatility": "low",
+      "domains": [
+        "checklist",
+        "registration"
+      ],
+      "sources": [
+        "SRC-01",
+        "SRC-02",
+        "SRC-20",
+        "SRC-21"
+      ],
+      "source_evidence": {
+        "SRC-01": "설정 후 2주일 이내 금융위원회에 보고했는가",
+        "SRC-02": "자기자본 10억원과 운영 적자 버퍼를 확보했는가",
+        "SRC-20": "책무구조도를 작성했는가",
+        "SRC-21": "책무구조도를 작성했는가"
+      },
+      "related": []
+    },
+    {
+      "id": "HF-REF-19",
+      "file": "19-glossary.md",
+      "title": "부록",
+      "source_lines": "909-943",
+      "bytes": 3051,
+      "sha256_body": "6b1bf71f552026225a9acdf47acb01fd32b58bb0b3fdebc1d9b180fea4e122d7",
+      "volatility": "low",
+      "domains": [
+        "glossary"
+      ],
+      "sources": [],
+      "source_evidence": {},
+      "related": []
+    },
+    {
+      "id": "HF-REF-20",
+      "file": "20-sources.md",
+      "title": "부록 B. 참고 자료",
+      "source_lines": "944-1013",
+      "bytes": 10672,
+      "sha256_body": "8269a820cec6015a8bbf95d570bc73d32cc1671d149d8bc41607afbdc4222a8c",
+      "volatility": "medium",
+      "domains": [
+        "sources"
+      ],
+      "sources": [
+        "SRC-01",
+        "SRC-02",
+        "SRC-03",
+        "SRC-04",
+        "SRC-05",
+        "SRC-06",
+        "SRC-07",
+        "SRC-08",
+        "SRC-09",
+        "SRC-10",
+        "SRC-11",
+        "SRC-12",
+        "SRC-13",
+        "SRC-14",
+        "SRC-15",
+        "SRC-16",
+        "SRC-17",
+        "SRC-18",
+        "SRC-19",
+        "SRC-20",
+        "SRC-21",
+        "SRC-22",
+        "SRC-23",
+        "SRC-24",
+        "SRC-25",
+        "SRC-26",
+        "SRC-27",
+        "SRC-28",
+        "SRC-29",
+        "SRC-30",
+        "SRC-31",
+        "SRC-32",
+        "SRC-33",
+        "SRC-34",
+        "SRC-35",
+        "SRC-36",
+        "SRC-37",
+        "SRC-38",
+        "SRC-39",
+        "SRC-40",
+        "SRC-41",
+        "SRC-42",
+        "SRC-43",
+        "SRC-44",
+        "SRC-45",
+        "SRC-46",
+        "SRC-47",
+        "SRC-48",
+        "SRC-49",
+        "SRC-50",
+        "SRC-51",
+        "SRC-52",
+        "SRC-53",
+        "SRC-54",
+        "SRC-55",
+        "SRC-56",
+        "SRC-57",
+        "SRC-58",
+        "SRC-59",
+        "SRC-60",
+        "SRC-61",
+        "SRC-62",
+        "SRC-63"
+      ],
+      "source_evidence": {
+        "SRC-01": "자본시장과 금융투자업에 관한 법률 제249조~제249조의18 (2026년 2월 3일 시행본)",
+        "SRC-02": "자본시장법 시행령 제271조의2 (일반 사모집합투자업 등록 요건)",
+        "SRC-03": "금융위원회, 사모펀드 투자자 보호·체계 개편 하위 규정 시행 (2021)",
+        "SRC-04": "김·장 법률사무소, 사모펀드 규제 개편 관련 자본시장법 개정",
+        "SRC-05": "아주경제, 사모펀드 10월 개편 Q&A (3억원·5억원 최소 투자금)",
+        "SRC-06": "메트로서울, 사모펀드 투자자 100인 확대",
+        "SRC-07": "금융위원회, 3월 31일부터 공매도 전면 재개",
+        "SRC-08": "금융위원회, 공매도 제도개선 법규 개정 완료",
+        "SRC-09": "금융위원회, 공매도 제도개선 후속 시행령 입법예고",
+        "SRC-10": "자본시장연구원, 공매도 재개를 위한 제도개선 및 기대효과",
+        "SRC-11": "삼일PwC, 2025년 세법 개정 해설 (증권거래세)",
+        "SRC-12": "더팩트, 증권거래세 인상 해설",
+        "SRC-13": "금융감독원, 2025년 자산운용회사 영업실적",
+        "SRC-14": "서플, 2026년 2분기 자산운용회사 영업실적 보도",
+        "SRC-15": "더벨, 2025년 한국형 헤지펀드 리그테이블",
+        "SRC-16": "더벨 헤지펀드 리그테이블 전략별 수익률 보도 (게재본)",
+        "SRC-17": "KB의 생각, 한국형 헤지펀드",
+        "SRC-18": "KDI, 국내 헤지펀드 현황 (출범 규모)",
+        "SRC-19": "이데일리, 국내 헤지펀드 3년 성장과 상위사 쏠림 (2014)",
+        "SRC-20": "SBS Biz, 중소형 금융투자업자 책무구조도 설명회",
+        "SRC-21": "금융위원회, 책무구조도 시범운영과 업권별 제출 시기",
+        "SRC-22": "헤럴드경제, 금감원 신설 사모운용사 CEO 설명회",
+        "SRC-23": "SBS Biz, 사모운용사 법규 위반 사례",
+        "SRC-24": "뉴스토마토, PBS와 종합금융투자사업자",
+        "SRC-25": "머니투데이방송, 사모펀드 수탁 기피와 증권사 수탁 진출",
+        "SRC-26": "한국경제, 한국형 헤지펀드 출범 당시 보수 (2011)",
+        "SRC-27": "참여연대, 라임·옵티머스 사태 논평",
+        "SRC-28": "딜사이트, 2025년 ETF 리그테이블 (타임폴리오)",
+        "SRC-29": "스마트투데이, ETF 보수 수익 (타임폴리오)",
+        "SRC-30": "딜사이트, VIP자산운용 목표수익률 펀드",
+        "SRC-31": "HFR, 2026년 2분기 Global Hedge Fund Industry Report",
+        "SRC-32": "Hedgeweek, 2026년 2분기 헤지펀드 자산 급증",
+        "SRC-33": "HFR, 2025년 4분기 업계 자산 5조 달러 돌파",
+        "SRC-34": "HFR, 2026년 1분기 업계 자산",
+        "SRC-35": "HFR, 2026년 1분기 펀드 설정·청산",
+        "SRC-36": "HFR, 2025년 3분기 펀드 설정·보수·PB 순위",
+        "SRC-37": "The Full FX, 2026년 1분기 평균 운용보수",
+        "SRC-38": "Hedge Fund Alpha, LCH Investments 2025년 상위 20개 운용사",
+        "SRC-39": "Institutional Investor, TCI의 2025년 순이익",
+        "SRC-40": "Fortune·Bloomberg, 2025년 헤지펀드 성과",
+        "SRC-41": "With Intelligence, Billion Dollar Club H1 2025",
+        "SRC-42": "EnterpriseAM, 블룸버그 보도 인용 (2026년 9월 대형 헤지펀드 자산)",
+        "SRC-43": "Man Group, 2025년 연간 실적",
+        "SRC-44": "Hedgeweek, Man Group 2026년 상반기 운용자산",
+        "SRC-45": "Hedgeweek, 멀티전략 펀드 보수 구조에 대한 투자자 반발",
+        "SRC-46": "eFinancialCareers, 밀레니엄 손실 한도 규칙",
+        "SRC-47": "Quant Enthusiasts, 시타델 채권 설명서 기반 손익 배분 분석",
+        "SRC-48": "Rupak Ghose, 밀레니엄 지분 매각 보도 분석",
+        "SRC-49": "Institutional Investor, 르네상스 외부 펀드 성과",
+        "SRC-50": "Charltons Quantum, SEC의 투시그마 제재",
+        "SRC-51": "Forbes, 2024년 상위 20개 헤지펀드",
+        "SRC-52": "Altss, 헤지펀드 규모 순위와 집계 기준 차이",
+        "SRC-53": "SEC·CFTC, Form PF 준수 기한 연장 (2025년 9월)",
+        "SRC-54": "Deloitte, Form PF 준수 기한 추가 연장 (2026년 9월)",
+        "SRC-55": "Holland & Knight, qualified client 기준 상향",
+        "SRC-56": "Mourant, 케이맨 뮤추얼펀드 가이드",
+        "SRC-57": "Harneys, 케이맨 등록 펀드 계속 의무 (2026)",
+        "SRC-58": "Regulation Tomorrow, AIFMD II 시행",
+        "SRC-59": "Jones Day, AIFMD II 이행",
+        "SRC-60": "AIMA, 신흥 운용사가 출범 시 흔히 하는 실수 (2026)",
+        "SRC-61": "Institutional Investor, AIMA·Cowen 신흥 운용사 조사 (2022)",
+        "SRC-62": "HPT Group, 신흥 운용사 출범과 시딩 조건",
+        "SRC-63": "Jain Global 보수 할인 사례"
+      },
+      "related": []
+    }
+  ],
+  "sources": [
+    {
+      "id": "SRC-01",
+      "category": "국내 법령",
+      "title": "자본시장과 금융투자업에 관한 법률 제249조~제249조의18 (2026년 2월 3일 시행본)",
+      "url": "https://www.law.go.kr/LSW//lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=1000423642&lsId=010513&print=print"
+    },
+    {
+      "id": "SRC-02",
+      "category": "국내 법령",
+      "title": "자본시장법 시행령 제271조의2 (일반 사모집합투자업 등록 요건)",
+      "url": "https://lbox.kr/statute/%EC%9E%90%EB%B3%B8%EC%8B%9C%EC%9E%A5%EA%B3%BC%EA%B8%88%EC%9C%B5%ED%88%AC%EC%9E%90%EC%97%85%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EB%A0%B9/%EB%B3%B8%EB%AC%B8%20%3E%20%EC%A0%9C5%ED%8E%B8%20%3E%20%EC%A0%9C7%EC%9E%A5%20%3E%20%EC%A0%9C1%EC%A0%88%20%3E%20%EC%A0%9C271%EC%A1%B0%EC%9D%982"
+    },
+    {
+      "id": "SRC-03",
+      "category": "국내 제도",
+      "title": "금융위원회, 사모펀드 투자자 보호·체계 개편 하위 규정 시행 (2021)",
+      "url": "https://www.fsc.go.kr/no010101/76710"
+    },
+    {
+      "id": "SRC-04",
+      "category": "국내 제도",
+      "title": "김·장 법률사무소, 사모펀드 규제 개편 관련 자본시장법 개정",
+      "url": "https://www.kimchang.com/ko/insights/detail.kc?sch_section=4&idx=23013"
+    },
+    {
+      "id": "SRC-05",
+      "category": "국내 제도",
+      "title": "아주경제, 사모펀드 10월 개편 Q&A (3억원·5억원 최소 투자금)",
+      "url": "https://www.ajunews.com/view/20210803171713746"
+    },
+    {
+      "id": "SRC-06",
+      "category": "국내 제도",
+      "title": "메트로서울, 사모펀드 투자자 100인 확대",
+      "url": "https://www.metroseoul.co.kr/article/20210623500005"
+    },
+    {
+      "id": "SRC-07",
+      "category": "공매도",
+      "title": "금융위원회, 3월 31일부터 공매도 전면 재개",
+      "url": "https://www.fsc.go.kr/no010101/84216"
+    },
+    {
+      "id": "SRC-08",
+      "category": "공매도",
+      "title": "금융위원회, 공매도 제도개선 법규 개정 완료",
+      "url": "https://fsc.go.kr/po010101/84091"
+    },
+    {
+      "id": "SRC-09",
+      "category": "공매도",
+      "title": "금융위원회, 공매도 제도개선 후속 시행령 입법예고",
+      "url": "https://fsc.go.kr/no010101/83440"
+    },
+    {
+      "id": "SRC-10",
+      "category": "공매도",
+      "title": "자본시장연구원, 공매도 재개를 위한 제도개선 및 기대효과",
+      "url": "https://www.kcmi.re.kr/publications/pub_detail_view?syear=2025&zcd=002001016&zno=1837&cno=6509"
+    },
+    {
+      "id": "SRC-11",
+      "category": "세제",
+      "title": "삼일PwC, 2025년 세법 개정 해설 (증권거래세)",
+      "url": "https://www.pwc.com/kr/ko/insights/samil-commentary/samilcommenatry_dec2025_kr.pdf"
+    },
+    {
+      "id": "SRC-12",
+      "category": "세제",
+      "title": "더팩트, 증권거래세 인상 해설",
+      "url": "https://news.tf.co.kr/read/economy/2278747.htm"
+    },
+    {
+      "id": "SRC-13",
+      "category": "국내 시장",
+      "title": "금융감독원, 2025년 자산운용회사 영업실적",
+      "url": "https://eiec.kdi.re.kr/policy/materialView.do?num=278685"
+    },
+    {
+      "id": "SRC-14",
+      "category": "국내 시장",
+      "title": "서플, 2026년 2분기 자산운용회사 영업실적 보도",
+      "url": "https://supple.kr/news/cmtw5liqs004l1416kz8uypv7"
+    },
+    {
+      "id": "SRC-15",
+      "category": "국내 시장",
+      "title": "더벨, 2025년 한국형 헤지펀드 리그테이블",
+      "url": "https://www.thebell.co.kr/front/newsview.asp?key=202601210940152680102166"
+    },
+    {
+      "id": "SRC-16",
+      "category": "국내 시장",
+      "title": "더벨 헤지펀드 리그테이블 전략별 수익률 보도 (게재본)",
+      "url": "https://www.cbinsights.com/investor/ck-goldilocks-asset-management"
+    },
+    {
+      "id": "SRC-17",
+      "category": "국내 시장",
+      "title": "KB의 생각, 한국형 헤지펀드",
+      "url": "https://kbthink.com/dictionary/view.html?dictId=KED-00012707"
+    },
+    {
+      "id": "SRC-18",
+      "category": "국내 시장",
+      "title": "KDI, 국내 헤지펀드 현황 (출범 규모)",
+      "url": "https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000123329"
+    },
+    {
+      "id": "SRC-19",
+      "category": "국내 시장",
+      "title": "이데일리, 국내 헤지펀드 3년 성장과 상위사 쏠림 (2014)",
+      "url": "https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=02443606606319832"
+    },
+    {
+      "id": "SRC-20",
+      "category": "내부통제",
+      "title": "SBS Biz, 중소형 금융투자업자 책무구조도 설명회",
+      "url": "https://biz.sbs.co.kr/amp/article/20000289791"
+    },
+    {
+      "id": "SRC-21",
+      "category": "내부통제",
+      "title": "금융위원회, 책무구조도 시범운영과 업권별 제출 시기",
+      "url": "https://www.fsc.go.kr/no010101/83861"
+    },
+    {
+      "id": "SRC-22",
+      "category": "내부통제",
+      "title": "헤럴드경제, 금감원 신설 사모운용사 CEO 설명회",
+      "url": "https://www.heraldk.com/article/2025092418120919693"
+    },
+    {
+      "id": "SRC-23",
+      "category": "내부통제",
+      "title": "SBS Biz, 사모운용사 법규 위반 사례",
+      "url": "https://biz.sbs.co.kr/amp/article/20000153993"
+    },
+    {
+      "id": "SRC-24",
+      "category": "서비스 제공자",
+      "title": "뉴스토마토, PBS와 종합금융투자사업자",
+      "url": "https://newstomato.com/ReadNews.aspx?no=686877"
+    },
+    {
+      "id": "SRC-25",
+      "category": "서비스 제공자",
+      "title": "머니투데이방송, 사모펀드 수탁 기피와 증권사 수탁 진출",
+      "url": "https://news.mtn.co.kr/news-detail/2022050615404193801"
+    },
+    {
+      "id": "SRC-26",
+      "category": "보수",
+      "title": "한국경제, 한국형 헤지펀드 출범 당시 보수 (2011)",
+      "url": "https://www.hankyung.com/amp/2011122351026"
+    },
+    {
+      "id": "SRC-27",
+      "category": "국내 사례",
+      "title": "참여연대, 라임·옵티머스 사태 논평",
+      "url": "https://peoplepower21.org/economy/1737961"
+    },
+    {
+      "id": "SRC-28",
+      "category": "국내 사례",
+      "title": "딜사이트, 2025년 ETF 리그테이블 (타임폴리오)",
+      "url": "https://dealsite.co.kr/articles/154568"
+    },
+    {
+      "id": "SRC-29",
+      "category": "국내 사례",
+      "title": "스마트투데이, ETF 보수 수익 (타임폴리오)",
+      "url": "https://www.smarttoday.co.kr/ko-kr/articles/93033"
+    },
+    {
+      "id": "SRC-30",
+      "category": "국내 사례",
+      "title": "딜사이트, VIP자산운용 목표수익률 펀드",
+      "url": "https://dealsite.co.kr/articles/145141"
+    },
+    {
+      "id": "SRC-31",
+      "category": "글로벌 시장",
+      "title": "HFR, 2026년 2분기 Global Hedge Fund Industry Report",
+      "url": "https://www.hfr.com/product/global-report/"
+    },
+    {
+      "id": "SRC-32",
+      "category": "글로벌 시장",
+      "title": "Hedgeweek, 2026년 2분기 헤지펀드 자산 급증",
+      "url": "https://www.hedgeweek.com/hedge-fund-assets-surge-by-record-409bn-to-5-6tn-in-q2/"
+    },
+    {
+      "id": "SRC-33",
+      "category": "글로벌 시장",
+      "title": "HFR, 2025년 4분기 업계 자산 5조 달러 돌파",
+      "url": "https://www.hfr.com/media/market-commentary/global-hedge-fund-industry-capital-surges-past-historic-5-trillion-milestone/"
+    },
+    {
+      "id": "SRC-34",
+      "category": "글로벌 시장",
+      "title": "HFR, 2026년 1분기 업계 자산",
+      "url": "https://www.hfr.com/media/market-commentary/investor-inflows-drive-global-hedge-fund-industry-capital-to-new-record-as-geopolitical-risks-surge/"
+    },
+    {
+      "id": "SRC-35",
+      "category": "글로벌 시장",
+      "title": "HFR, 2026년 1분기 펀드 설정·청산",
+      "url": "https://www.hfr.com/?p=45774"
+    },
+    {
+      "id": "SRC-36",
+      "category": "글로벌 시장",
+      "title": "HFR, 2025년 3분기 펀드 설정·보수·PB 순위",
+      "url": "https://www.hfr.com/?p=43039"
+    },
+    {
+      "id": "SRC-37",
+      "category": "글로벌 시장",
+      "title": "The Full FX, 2026년 1분기 평균 운용보수",
+      "url": "https://thefullfx.com/?p=8068"
+    },
+    {
+      "id": "SRC-38",
+      "category": "벤치마크",
+      "title": "Hedge Fund Alpha, LCH Investments 2025년 상위 20개 운용사",
+      "url": "https://hedgefundalpha.com/news/top-20-hedge-funds-earn-115b-in-2025/"
+    },
+    {
+      "id": "SRC-39",
+      "category": "벤치마크",
+      "title": "Institutional Investor, TCI의 2025년 순이익",
+      "url": "https://www.institutionalinvestor.com/article/chris-hohns-tci-tops-hedge-fund-gains-2025"
+    },
+    {
+      "id": "SRC-40",
+      "category": "벤치마크",
+      "title": "Fortune·Bloomberg, 2025년 헤지펀드 성과",
+      "url": "https://dc.fortune.com/2026/01/02/top-hedge-fund-performers-2025-bridgewater-de-shaw-citadel-millennium"
+    },
+    {
+      "id": "SRC-41",
+      "category": "벤치마크",
+      "title": "With Intelligence, Billion Dollar Club H1 2025",
+      "url": "https://www.withintelligence.com/insights/billion-dollar-club-h1-2025/"
+    },
+    {
+      "id": "SRC-42",
+      "category": "벤치마크",
+      "title": "EnterpriseAM, 블룸버그 보도 인용 (2026년 9월 대형 헤지펀드 자산)",
+      "url": "https://enterpriseam.com/ksa/2026/09/09/the-hedge-fund-industrys-biggest-players-added-usd-224-bn-in-20-months/"
+    },
+    {
+      "id": "SRC-43",
+      "category": "벤치마크",
+      "title": "Man Group, 2025년 연간 실적",
+      "url": "https://www.man.com/results-for-the-financial-year-ended-31-december-2025"
+    },
+    {
+      "id": "SRC-44",
+      "category": "벤치마크",
+      "title": "Hedgeweek, Man Group 2026년 상반기 운용자산",
+      "url": "https://www.hedgeweek.com/man-group-assets-hit-record-253-6bn-after-strong-h1-inflows-and-performance/"
+    },
+    {
+      "id": "SRC-45",
+      "category": "벤치마크",
+      "title": "Hedgeweek, 멀티전략 펀드 보수 구조에 대한 투자자 반발",
+      "url": "https://www.hedgeweek.com/investors-push-back-on-multi-strategy-hedge-fund-fee-structures/"
+    },
+    {
+      "id": "SRC-46",
+      "category": "벤치마크",
+      "title": "eFinancialCareers, 밀레니엄 손실 한도 규칙",
+      "url": "https://www.efinancialcareers.com/news/citadel-to-balyasny-after-losing-money"
+    },
+    {
+      "id": "SRC-47",
+      "category": "벤치마크",
+      "title": "Quant Enthusiasts, 시타델 채권 설명서 기반 손익 배분 분석",
+      "url": "https://youngandcalculated.substack.com/p/how-quant-firms-split-profit-between"
+    },
+    {
+      "id": "SRC-48",
+      "category": "벤치마크",
+      "title": "Rupak Ghose, 밀레니엄 지분 매각 보도 분석",
+      "url": "https://rupakghose.substack.com/p/is-millennium-worth-14bn"
+    },
+    {
+      "id": "SRC-49",
+      "category": "벤치마크",
+      "title": "Institutional Investor, 르네상스 외부 펀드 성과",
+      "url": "https://institutionalinvestor.com/article/2ekcf5cio9yw4k7nv7hmo/hedge-funds/renaissance-continues-to-surge"
+    },
+    {
+      "id": "SRC-50",
+      "category": "벤치마크",
+      "title": "Charltons Quantum, SEC의 투시그마 제재",
+      "url": "https://charltonsquantum.com/?p=21224"
+    },
+    {
+      "id": "SRC-51",
+      "category": "벤치마크",
+      "title": "Forbes, 2024년 상위 20개 헤지펀드",
+      "url": "https://www.forbes.com/sites/hanktucker/2025/01/19/citadel-de-shaw-and-the-worlds-top-20-hedge-funds-gained-a-record-94-billion-in-2024/"
+    },
+    {
+      "id": "SRC-52",
+      "category": "벤치마크",
+      "title": "Altss, 헤지펀드 규모 순위와 집계 기준 차이",
+      "url": "https://altss.com/rankings/largest-hedge-funds"
+    },
+    {
+      "id": "SRC-53",
+      "category": "미국 규제",
+      "title": "SEC·CFTC, Form PF 준수 기한 연장 (2025년 9월)",
+      "url": "https://www.sec.gov/newsroom/press-releases/2025-119-sec-cftc-extend-form-pf-compliance-date-oct-1-2026"
+    },
+    {
+      "id": "SRC-54",
+      "category": "미국 규제",
+      "title": "Deloitte, Form PF 준수 기한 추가 연장 (2026년 9월)",
+      "url": "https://dart.deloitte.com/USDART/home/news/all-news/2026/sep/sec-chairman-further-extension-amendments-form-pf"
+    },
+    {
+      "id": "SRC-55",
+      "category": "미국 규제",
+      "title": "Holland & Knight, qualified client 기준 상향",
+      "url": "https://www.hklaw.com/en/insights/publications/2026/06/sec-raises-qualified-client-thresholds-under-rule-205-3"
+    },
+    {
+      "id": "SRC-56",
+      "category": "케이맨",
+      "title": "Mourant, 케이맨 뮤추얼펀드 가이드",
+      "url": "https://www.mourant.com/guides/mutual-funds-in-the-cayman-islands/"
+    },
+    {
+      "id": "SRC-57",
+      "category": "케이맨",
+      "title": "Harneys, 케이맨 등록 펀드 계속 의무 (2026)",
+      "url": "https://www.harneys.com/media/az0pdiik/cayman-islands-registered-mutual-fund-continuing-obligations-compliance-guide-2026.pdf"
+    },
+    {
+      "id": "SRC-58",
+      "category": "EU",
+      "title": "Regulation Tomorrow, AIFMD II 시행",
+      "url": "https://www.regulationtomorrow.com/?p=56668"
+    },
+    {
+      "id": "SRC-59",
+      "category": "EU",
+      "title": "Jones Day, AIFMD II 이행",
+      "url": "https://www.jonesday.com/en/insights/2025/12/aifmd-ii-implementation-the-final-countdown"
+    },
+    {
+      "id": "SRC-60",
+      "category": "신규 운용사",
+      "title": "AIMA, 신흥 운용사가 출범 시 흔히 하는 실수 (2026)",
+      "url": "https://www.aima.org/article/what-emerging-managers-get-wrong-when-launching-a-hedge-fund.html"
+    },
+    {
+      "id": "SRC-61",
+      "category": "신규 운용사",
+      "title": "Institutional Investor, AIMA·Cowen 신흥 운용사 조사 (2022)",
+      "url": "https://www.institutionalinvestor.com/article/2bstlpu17730az1xv3kzk/portfolio/everything-is-getting-more-expensive-except-for-starting-a-hedge-fund"
+    },
+    {
+      "id": "SRC-62",
+      "category": "신규 운용사",
+      "title": "HPT Group, 신흥 운용사 출범과 시딩 조건",
+      "url": "https://www.hpt.group/blog-posts/emerging-manager-fund-launch"
+    },
+    {
+      "id": "SRC-63",
+      "category": "신규 운용사",
+      "title": "Jain Global 보수 할인 사례",
+      "url": "https://en.wikipedia.org/wiki/Jain_Global"
+    }
+  ],
+  "unmapped_sources": [
+    "SRC-51"
+  ]
+}
