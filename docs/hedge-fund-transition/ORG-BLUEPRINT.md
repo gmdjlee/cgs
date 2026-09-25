@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-ORG-001 |
 | Title | Hedge Fund Standard Organization Blueprint |
-| Version | 0.5 |
+| Version | 0.6 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -30,6 +30,7 @@ accounting firm first.
 | 0.3 | 2026-09-24 | Kept ceo-office in W2 (Erratum 01: W1 11, W2 23 total, W3 29 total). Applied DEC-17 to §8 and §9. Recorded DEC-17 to DEC-24 in §14. Defined the 8 /stock-pitch sections (DEC-23). |
 | 0.4 | 2026-09-24 | Recorded DEC-25, DEC-29, DEC-30, and DEC-32 in §14, and marked Q35 and Q36 as not asked. Changed the /refresh-facts cadence in §11A to "on request" (DEC-35). |
 | 0.5 | 2026-09-24 | Reconciled with DEC-17 to DEC-38: no order drafting (DEC-30) in §2A, §3, and §6; confidential data (DEC-32) in §2A and §13; fixed seats (DEC-18), limit approval (DEC-19), and review depth (DEC-20) in §8 and §9; the virtual investment committee (DEC-22) and the stage scalar (DEC-21) in §11; new §11A.4 to §11A.8 (DEC-26, DEC-27, DEC-28, DEC-31, DEC-33); the principle priority (DEC-25) in §12; the question list in §14. |
+| 0.6 | 2026-09-25 | Applied the founder's P2 answers (p2/P2-00-INDEX.md §4): minutes owner (P2-C-01), notification channel (P2-D-01, P2-D-02), and price provider (P2-D-03). |
 
 ## 2. Purpose and basis
 
@@ -589,7 +590,7 @@ one scalar. W1's daily, weekly, and monthly cadence runs beside it
 Wave W1 runs this investment committee as a virtual body: cio, cro,
 portfolio-manager, and red-team-analyst present the case. The user
 decides. The committee keeps minutes (DEC-22). In W1, chief-of-staff
-keeps them (INFERENCE; P2 confirms the owner).
+keeps them (P2-C-01, 2026-09-25).
 
 ## 11A. Information products and delivery (W1)
 
@@ -664,14 +665,18 @@ committee (DEC-22).
 ### 11A.6 Delivery surface (DEC-28)
 
 W1 delivers every product through an HTML dashboard and one
-notification channel. P2 selects the channel from the tools the new
-repository's environment can reach.
+notification channel. The channel is Telegram (P2-D-01). The dashboard
+is a locally generated file in a gitignored path. A Telegram message
+can carry a market summary, but never holdings, positions, sizing, or
+personal data (P2-D-02; DEC-32, R-14).
 
 ### 11A.7 Data sources (DEC-31)
 
 W1 uses OpenDART for disclosures and financials. It uses exchange or
 broker data for prices, volume, and flows. It uses web search for
-regulation, news, and macro. P2 selects the price provider.
+regulation, news, and macro. The price provider is the KIS Developers
+Open API, called through a read-only endpoint allow-list (P2-D-03,
+DEC-30). P3 adds pykrx only for a data type that KIS does not give.
 
 ### 11A.8 Document language (DEC-33)
 

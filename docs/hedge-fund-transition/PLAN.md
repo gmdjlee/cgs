@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-PLAN-001 |
 | Title | Hedge Fund Transition — Master Plan |
-| Version | 0.9 |
+| Version | 1.0 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -27,6 +27,7 @@
 | 0.7 | 2026-09-24 | Recorded round 8 (DEC-33 to DEC-36). Changed risk R-02 for manual fact refresh (DEC-35). Changed risk R-07 to match DEC-32 (no information-grade scheme in W1). Corrected the decision count above Table 6.0-1. |
 | 0.8 | 2026-09-24 | Recorded round 9 (DEC-37 and DEC-38). Phase P1 is done. Set the schedule rate in Section 11.3 (DEC-37). Changed risk R-10 for the DEC-38 tier plan. |
 | 0.9 | 2026-09-24 | Reconciled the plan body with DEC-17 to DEC-38: Sections 6.2 and 6.3, P-05, Phases P2 to P6 and P8, Section 11.1, and the glossary. Added the resolved reuse rate after the decisions (TRANSPLANT-MANIFEST.md Section 10) to the F-02 detail. |
+| 1.0 | 2026-09-25 | Phase P2: the design package is drafted in `p2/` (HFT-P2-00 to HFT-P2-07). The founder answered all 25 open items. Added risks R-16 and R-17 for the KIS account and the Telegram channel. P2 waits on the approval receipt. |
 
 This document is not legal advice. It is not tax advice. It is not investment
 advice. Section 3 states this rule in full.
@@ -486,6 +487,11 @@ map; the virtual investment committee design.
 
 Gating questions: Q01, Q02, Q03, Q05-Q12, Q17-Q24, Q29-Q31.
 
+Status (2026-09-25): the package is drafted in [p2/](p2/P2-00-INDEX.md)
+(HFT-P2-00 to HFT-P2-07). The founder answered all 25 open items
+(HFT-P2-00 §4). P2 closes when the founder signs the approval receipt
+(HFT-P2-00 §5).
+
 ### P3 — Repository bootstrap and foundation transplant
 
 | Entry criteria | Exit criteria | Estimate | Owner |
@@ -818,6 +824,8 @@ Do not carry the original P6-P9 estimate forward without this check.
 | R-13 | Confident but wrong information misleads the single decision maker | M | H | Run the bull, bear, and synthesis process for every call; state a confidence level; run `/call-review` to track the record; give a source and an as-of date on every number | cio / red-team-analyst | P6, P7 |
 | R-14 | Information for the user is read as investment advice to a third party | L | H | State in every product that it is for the user's own decisions; do not distribute products to a third party in wave W1 | chief-of-staff | P6, P9 |
 | R-15 | Stale prices or disclosures drive a call | M | M | The data-steward agent checks every as-of date; a product built on stale data shows NOT ASSESSED for that part | data-steward | P6, P7 |
+| R-16 | The KIS data account also carries order endpoints (P2-D-03) | L | H | The adapter calls only a read-only endpoint allow-list; a P3 test fails if the code names an order or transfer endpoint; keys stay in the gitignored directory and no agent reads them (DEC-30, DEC-32) | data-steward / cro | P3, P4 |
+| R-17 | Telegram messages leave the machine and need a running session (P2-D-01) | M | M | Messages carry a market summary only, never holdings or personal data (P2-D-02); P3 sets up one long-running channel session; the local desktop hook stays as a supplement | chief-of-staff | P3, P6 |
 
 Section 12, risk R-12, lists the gaps that need outside counsel:
 
@@ -849,10 +857,10 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
    DEC-17 to DEC-38.
 6. If the founder changes Q25 to C or D later, the Advisor asks Q35 and
    Q36 before Phase P8.
-7. **Next action.** The Advisor drafts the Phase P2 design package from the completed
-   decision log.
-8. The founder approves the Phase P2 design package with an approval
-   receipt.
+7. Done. The Advisor drafted the Phase P2 design package in `p2/`, and
+   the founder answered all 25 open items (2026-09-25).
+8. **Next action.** The founder approves the Phase P2 design package
+   with an approval receipt (HFT-P2-00 §5).
 9. The Worker starts Phase P3 once the founder approves Phase P2.
 10. The Advisor schedules the Phase P5 re-estimate check before Phase
     P6 starts.

@@ -240,6 +240,16 @@ correct: these are external/legal deliverables, not repo globs, per §3).
 | P2-L-02 | Should `/refresh-facts`'s addendum §6 cadence ("Quarterly") be corrected in the addendum itself, or does DEC-35's later, more specific answer ("founder's request only") simply supersede it as drafted, with no addendum edit? | **A.** Leave addendum §6 as historical record; the draft catalog (and any future document) cites DEC-35 as authoritative. **B.** Edit addendum §6's table to say "Founder request only (DEC-35)", replacing "Quarterly". **C.** Add a footnote to addendum §6 pointing to DEC-35 without changing the cell text. | Resolved by the Advisor: **A**. The addendum is a frozen record (`evidence/design-addendum-01.md:7`, "Status: Frozen record of Advisor decisions"). PLAN.md, ORG-BLUEPRINT.md, and this draft already cite DEC-35 as the authority. Not asked of the founder. |
 | P2-L-03 | `/gate-check`'s per-adjacent-pair reference files (`gate-systems-design.md` etc., `.claude/skills/gate-check/references/`) need full rewrites for the 11 new stage transitions (`pre-setup` to `s1` through `g2` to `g3`). Should P3 write one reference file per transition (11 files, matching the live convention), or should the `gate:` block already in this draft catalog (required_artifacts, control_seats, verdict_vocabulary) replace the reference-file convention entirely? | **A.** Keep one reference file per transition (11 files), each expanding on its stage's `gate:` block with fuller checklist prose, as the live catalog does today. **B.** Retire the reference-file convention; `/gate-check` reads the `gate:` block directly and generates its checklist from `required_artifacts` at run time, no separate files. **C.** Hybrid: keep reference files only for the S1-S8 setup transitions (legal/regulatory, needing more prose) and read the `gate:` block directly for G1-G3 (organizational, shorter). | **B**. The `gate:` block already carries every fact the live reference files exist to hold (required artifacts, seats, verdict vocabulary; PLAN.md §6.3). A second copy of the same facts is exactly the drift risk `.claude/rules/skill-authoring.md` obligation 2 and TRANSPLANT-MANIFEST.md's SB-11 warn about (a reference file edited without its SKILL.md, or vice versa). Source: PLAN.md §6.3; skill-authoring.md; TRANSPLANT-MANIFEST.md §6 SB-11. This recommendation is P3-scope to execute; P2 records the design call only. |
 
+## Founder decisions recorded (2026-09-25)
+
+The founder answered the items above. HFT-P2-00 §4 is the register; §4A states the consequences.
+
+| ID | Answer |
+|---|---|
+| P2-L-01 | A: `pre-setup` is a gated stage before S1 |
+| P2-L-02 | Resolved by the Advisor: A (see the table above) |
+| P2-L-03 | B: the `gate:` block replaces the reference files |
+
 ## 11. Traceability
 
 | P2 task / DEC-NN | Section |

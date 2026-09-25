@@ -408,6 +408,17 @@ for a cleared, independent review.
 
 ---
 
+## Founder decisions recorded (2026-09-25)
+
+The founder answered the items above. HFT-P2-00 §4 is the register; §4A states the consequences.
+
+| ID | Answer |
+|---|---|
+| P2-C-01 | A: chief-of-staff keeps the minutes |
+| P2-C-02 | A: accept the table |
+| P2-C-03 | A: `production/control/receipts.log`; limits in `config/risk/` |
+| P2-C-04 | A: fix in P4 task 1 |
+
 ## 8. Traceability
 
 | P2 task / DEC-NN | Covered in |

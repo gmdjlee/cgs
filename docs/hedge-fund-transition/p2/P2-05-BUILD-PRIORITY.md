@@ -183,6 +183,18 @@ decisions in §6.
 | P2-B-04 | Does `/call-review` reuse `prototype-report.md`'s PROCEED/PIVOT/KILL memo shape (Table 5-1 group 3)? | A: reuse it, adapted to a call's outcome (played out / thesis broken / still open). B: design a fresh call-outcome format with no donor. C: reuse it only for the model-portfolio side of `/call-review`, not the per-call side. D: founder picks a different shape. | A. TRANSPLANT-MANIFEST.md §10.3 already flags this row "W1 (P2 decides)"; the three-way verdict shape is the closest existing donor to a call's pass/fail/open judgment. Source: TRANSPLANT-MANIFEST.md §10.3 row `prototype-report.md`; PLAN.md DEC-24. |
 | P2-B-05 | Does `setup-engine/SKILL.md` (Table 5-1 group 4) wait for W2? | A: wait for W2 (as proposed). B: build early, in P6, as a placeholder for the eventual custodian/administrator/jurisdiction choice. | A. No custodian, administrator, or second jurisdiction exists to select until the founder starts fund setup (W2 trigger, DEC-13). Source: TRANSPLANT-MANIFEST.md §10.3 row `setup-engine/SKILL.md`. |
 
+## Founder decisions recorded (2026-09-25)
+
+The founder answered the items above. HFT-P2-00 §4 is the register; §4A states the consequences.
+
+| ID | Answer |
+|---|---|
+| P2-B-01 | A: the proposed order |
+| P2-B-02 | A: reuse all 10 for the W1 dashboard |
+| P2-B-03 | A: wait for W2 |
+| P2-B-04 | A: reuse the memo shape |
+| P2-B-05 | A: wait for W2 |
+
 ## 7. Traceability
 
 | P2 task / DEC-NN | Covered in |

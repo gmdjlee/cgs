@@ -187,6 +187,17 @@ Not listed: which document fills the `data_sources.price` and
 settles this (§7); its own founder decisions `P2-D-01` and `P2-D-03`
 choose the actual values, which are out of scope for this document.
 
+## Founder decisions recorded (2026-09-25)
+
+The founder answered the items above. HFT-P2-00 §4 is the register; §4A states the consequences.
+
+| ID | Answer |
+|---|---|
+| P2-S-01 | B: add the value `draft_free` |
+| P2-S-02 | B: rename the values in P3, before P3 builds the readers |
+| P2-S-03 | A: `long_biased` only |
+| P2-S-04 | B: `standard` |
+
 ## Traceability
 
 | P2 task / DEC | Section |

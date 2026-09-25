@@ -163,6 +163,17 @@ table is INFERENCE.
 | P2-T-03 | Table 6-1 proposes 사전 검토 as the Korean gloss for "pre-screen." No source document gives a Korean term for this control concept. Does the founder approve it? | A: approve 사전 검토. B: approve a different term the founder specifies. C: leave "pre-screen" unglossed, English-only, like the verdict words. | No recommendation (founder judgment). This term appears mainly in technical control documents (English, DEC-33), so the practical impact of the gloss is low; it matters only if a Korean-language control note ever needs it. Source: PLAN.md Appendix B, lines 895-897 (F-09). |
 | P2-T-04 | Table 5-1 recommends 일반 사모펀드 as the only current-usage term, and marks 전문투자형 사모펀드 historical-reference-only. Does the founder confirm this rule for every Korean information product and every technical document? | A: confirm as recommended. B: allow 전문투자형 사모펀드 in an investor-facing document too, since some investors may still use the older term informally. C: founder sets a different rule. | A. The 2021 reform replaced the purpose-based classification with the investor-based one; using the superseded term as a current label risks a compliance or investor-communication error. Source: `docs/hedge-fund-setup/ref/02-industry-and-market.md:25` (HF-REF-02). |
 
+## Founder decisions recorded (2026-09-25)
+
+The founder answered the items above. HFT-P2-00 §4 is the register; §4A states the consequences.
+
+| ID | Answer |
+|---|---|
+| P2-T-01 | A: 수석보좌역, 시장전략가, 레드팀 애널리스트, 종목 스크리너, 데이터 스튜어드 |
+| P2-T-02 | C: by context, as recommended |
+| P2-T-03 | A: 사전 검토 |
+| P2-T-04 | A: 일반 사모펀드 only |
+
 ## 11. Traceability
 
 | P2 task / DEC-NN | Covered in |

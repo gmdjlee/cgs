@@ -184,6 +184,17 @@ through any of these sources (DEC-30).
 | P2-D-03 | Which price/volume/flow provider does data-steward implement first? | A. KRX Data Marketplace OPEN API; B. data.go.kr FSC stock price API; C. KIS Developers Open API; D. Kiwoom REST API; E. pykrx | Recommend A as primary, E as fallback. Reason and sources: §3.3. |
 | P2-D-04 | Which source becomes the US-equities adapter when US coverage activates (DEC-15)? | Not yet scoped in this pass; candidates noted in §3.2/§3.3 are KIS Developers (Option C, broker overseas endpoints) and FinanceDataReader (paired with Option E) | Deferred: decide when US coverage activates (DEC-15 asks only for preparation in W1). GAP: a head-to-head US-source comparison was not run. |
 
+## Founder decisions recorded (2026-09-25)
+
+The founder answered the items above. HFT-P2-00 §4 is the register; §4A states the consequences.
+
+| ID | Answer |
+|---|---|
+| P2-D-01 | B: Telegram channel |
+| P2-D-02 | C: local generated file, plus a market summary with no holdings in the Telegram message |
+| P2-D-03 | C: KIS Developers Open API (Korea Investment & Securities) |
+| P2-D-04 | Deferred to US activation (DEC-15). KIS overseas endpoints are the first candidate. |
+
 ## 5. Traceability
 
 | P2 task / DEC-NN | Covered in |

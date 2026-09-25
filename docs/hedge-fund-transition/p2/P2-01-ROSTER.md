@@ -233,6 +233,16 @@ function and gives a proposed baseline, marked INFERENCE throughout.
 | P2-R-02 | What model tier applies to governance-secretary (Tier 3, W3)? | **A.** Haiku — minutes and succession tracking are an internal record, not a recommendation, verdict, or external draft. **B.** Sonnet — ORG-BLUEPRINT.md:589-592 states investment-committee minutes become operational-due-diligence evidence for an institutional investor, which reads as a draft that reaches an external party. **C.** Sonnet only for investment-committee minutes; Haiku for board minutes and succession tracking (a split by output). **D.** Ask whether wave-W3 minutes will in fact reach an institutional investor before the fund has one (W3 triggers at growth stage 2-3, ORG-BLUEPRINT.md:325-328, ahead of most external due diligence). | Recommend **A** (Haiku), because W3 activates before the fund has outside investors in most growth paths, so the ODD-evidence use is a future case, not a current one; **D** narrows this further if the founder wants it checked against the growth-stage plan. Source: ORG-BLUEPRINT.md:325-328, 589-592. |
 | P2-R-03 | Do research-analyst instances (one per sector cluster, DEC-11) all run at once, or on demand? | **A.** All 6 clusters run on every /weekly-report and /idea-screen cycle, whether or not a cluster has a live idea. **B.** Only clusters with an open idea or a coverage-universe event run; the others stay idle until data-steward's event-alert or idea-screener's ranked list flags one. **C.** A hybrid: all 6 run on a weekly cadence for /weekly-report, but only the flagged cluster runs on demand for /stock-pitch. **D.** The founder sets the run mode per cluster in `project.yaml` coverage config, so the mode can change without a code change. | No recommendation (founder judgment). This is a cost-versus-coverage trade-off the loaded chunks do not address; DEC-11 sets one instance per cluster (ORG-BLUEPRINT.md:93, addendum §5) but not a run cadence. Source: decisions.md:11; ORG-BLUEPRINT.md:637-650 (§11A.3); design-addendum-01.md:95-106 (§5). |
 
+## Founder decisions recorded (2026-09-25)
+
+The founder answered the items above. HFT-P2-00 §4 is the register; §4A states the consequences.
+
+| ID | Answer |
+|---|---|
+| P2-R-01 | A: Haiku |
+| P2-R-02 | A: Haiku |
+| P2-R-03 | C: hybrid. All 6 clusters run once a week for the weekly report; at other times only a cluster with a signal runs |
+
 ## 7. Traceability
 
 | P2 task / DEC-NN | Covered in |

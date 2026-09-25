@@ -121,8 +121,9 @@ data_sources:
     adapter: opendart
     enabled: true
   price:
-    adapter: null                # placeholder: provider still open (see P2-04-CONFIG-SCHEMA.md §7 for the task-numbering GAP)
-    enabled: false
+    adapter: kis_open_api        # P2-D-03 (2026-09-25). Read-only endpoint allow-list; no order endpoint (DEC-30). Keys in data.private_dir (DEC-32).
+    enabled: true
+    supplement: null             # P3 sets pykrx here only if KIS lacks investor-type flows or short-selling data (HFT-P2-00 §4A)
   web_search:
     adapter: web_search
     enabled: true
@@ -131,10 +132,11 @@ data_sources:
 delivery:
   dashboard:
     enabled: true
-    path: production/dashboard
+    path: production/dashboard     # gitignored: the dashboard can show holdings (DEC-32, P2-D-02)
   notification:
-    channel: null                 # placeholder: selected from the tools this repository's environment can reach
-    enabled: false
+    channel: telegram             # P2-D-01 (2026-09-25). Needs a long-running session with the channel.
+    enabled: true
+    content: market_summary_no_holdings   # P2-D-02: never holdings, positions, sizing, or personal data (DEC-32, R-14)
 
 controls:
   # DEC-17 §9 "controls.four_eyes" (PLAN.md §8 task 4 name): the actions
