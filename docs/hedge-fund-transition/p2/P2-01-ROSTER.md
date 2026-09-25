@@ -6,9 +6,9 @@
 |---|---|
 | Document ID | HFT-P2-01 |
 | Title | Final wave roster, model tiers, and tool allow-lists |
-| Version | 0.1 |
+| Version | 1.0 |
 | Date | 2026-09-25 |
-| Status | Draft for founder approval |
+| Status | Approved by the founder (AR-P2-0001, 2026-09-25) |
 | Owner | Advisor (main session) |
 | Author | Worker |
 | Inputs | [ORG-BLUEPRINT.md](../ORG-BLUEPRINT.md) §6, §8, §11A; [design-addendum-01.md](../evidence/design-addendum-01.md) §4, §5, Erratum 01; [PLAN.md](../PLAN.md) §6.0, §8 (P2 task list, P3 task 11); [TRANSPLANT-MANIFEST.md](../TRANSPLANT-MANIFEST.md) §5.8; `.claude/docs/model-tiers.md`; `.claude/agents/producer.md`, `.claude/agents/godot-specialist.md` (frontmatter pattern) |

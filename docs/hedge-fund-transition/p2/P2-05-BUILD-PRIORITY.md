@@ -6,9 +6,9 @@
 |---|---|
 | Document ID | HFT-P2-05 |
 | Title | Skill build priority and deferred components |
-| Version | 0.1 |
+| Version | 1.0 |
 | Date | 2026-09-25 |
-| Status | Draft for founder approval |
+| Status | Approved by the founder (AR-P2-0001, 2026-09-25) |
 | Owner | Advisor (main session) |
 | Author | Worker |
 | Inputs | [PLAN.md](../PLAN.md) §6.0, §8 (P2, P5, P6); [ORG-BLUEPRINT.md](../ORG-BLUEPRINT.md) §6, §11A; [TRANSPLANT-MANIFEST.md](../TRANSPLANT-MANIFEST.md) §4, §9.3, §9.4, §10.3; [evidence/design-addendum-01.md](../evidence/design-addendum-01.md) §6 |
@@ -47,7 +47,7 @@ run in Phase P3, ahead of P5.
 | F5 | 5 | `validate-skill-change.sh` | Fires on a skill edit; advises `/skill-test` | None | TRANSPLANT-MANIFEST.md §4 Table 4-1 row 5 |
 | F6 | 6 | `.claude/settings.json` (rewritten last) | Hook wiring, permissions, statusline wiring | F1-F5 | TRANSPLANT-MANIFEST.md §4 Table 4-1 row 6 |
 | F7 | 7 | `statusline.sh`, `notify.sh` (optional) | ctx%/model/rigor display; desktop notification | F1 | TRANSPLANT-MANIFEST.md §4 Table 4-1 row 7 |
-| F8 | 8, conditional | `code-root-resolution.md`, `validate-assets.sh` | Structured-data path validation | n/a | Not needed: Q25 = B (DEC-29). TRANSPLANT-MANIFEST.md §4 Table 4-1 row 8, §10.4 note 2 |
+| F8 | 8, split | `validate-assets.sh` (TAKE-MODIFY): point its path filter at `config/risk/`. `code-root-resolution.md` stays off. | Limit-file path validation; SB-08 | F1 | TRANSPLANT-MANIFEST.md §10.3 (DEC-19) and §10.4 note 2; code-root-resolution.md stays off because Q25 = B (DEC-29). Erratum E-01 (HFT-P2-00 §5). |
 | F9 | W1 support | `.claude/skills/gate-check/` | PASS/CONCERNS/NOT ASSESSED/FAIL verdict, every W1 product needs it | F1-F6 | TRANSPLANT-MANIFEST.md §9.3 |
 | F10 | W1 support | `.claude/skills/consistency-check/SKILL.md`, rewritten as the fact registry | Fact registry every stock call and house-view cites (DEC-16) | F1-F6 | TRANSPLANT-MANIFEST.md §9.3 |
 | F11 | W1 support | `.claude/skills/skill-test/SKILL.md` | Static and category checks on every new W1 skill | F1-F6 | TRANSPLANT-MANIFEST.md §9.3 |
@@ -56,7 +56,7 @@ run in Phase P3, ahead of P5.
 | F14 | W1 support | `.claude/skills/retrospective/SKILL.md` | Closes each build cycle | F1-F6 | TRANSPLANT-MANIFEST.md §9.3 |
 | F15 | W1 support | `.claude/skills/help/SKILL.md`, `.claude/skills/onboard/SKILL.md` | Orientation once the W1 agents exist | F1-F6 | TRANSPLANT-MANIFEST.md §9.3 |
 
-F8 does not run: Q25 = B, so the conditional item stays off (DEC-29).
+F8 runs in part: `validate-assets.sh` transplants with a new path filter for `config/risk/` (DEC-19). `code-root-resolution.md` stays off, because Q25 = B (DEC-29). Erratum E-01 corrected this row after approval (HFT-P2-00 §5).
 
 ## 4. P5 and P6 build sequence
 

@@ -6,9 +6,9 @@
 |---|---|
 | Document ID | HFT-P2-06 |
 | Title | Korean-English term map |
-| Version | 0.1 |
+| Version | 1.0 |
 | Date | 2026-09-25 |
-| Status | Draft for founder approval |
+| Status | Approved by the founder (AR-P2-0001, 2026-09-25) |
 | Owner | Advisor (main session) |
 | Author | Worker |
 | Inputs | [ORG-BLUEPRINT.md](../ORG-BLUEPRINT.md) §3-§6; [QUESTIONS.md](../QUESTIONS.md) §6 (용어 설명); [PLAN.md](../PLAN.md) Appendix B; report chunks under `docs/hedge-fund-setup/ref/` (HF-REF-02, 04, 05, 06, 08, 09, 19) |

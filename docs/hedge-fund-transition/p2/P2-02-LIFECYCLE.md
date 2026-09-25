@@ -6,9 +6,9 @@
 |---|---|
 | Document ID | HFT-P2-02 |
 | Title | Lifecycle catalog design |
-| Version | 0.1 |
+| Version | 1.0 |
 | Date | 2026-09-25 |
-| Status | Draft for founder approval |
+| Status | Approved by the founder (AR-P2-0001, 2026-09-25) |
 | Owner | Advisor (main session) |
 | Author | Worker |
 | Inputs | PLAN.md §6.0-6.3, §8 (P2 task 2); ORG-BLUEPRINT.md §11, §11A; evidence/design-addendum-01.md §3, §6; TRANSPLANT-MANIFEST.md §6 (SB-07, SB-10, SB-14, SB-22); .claude/docs/workflow-catalog.yaml; .claude/scripts/artifact-check.sh; .claude/hooks/yaml-helper.sh; .claude/skills/help/SKILL.md; .claude/skills/gate-check/SKILL.md, CONTRACT.md; .claude/skills/project-stage-detect/SKILL.md; .claude/skills/ux-design/SKILL.md; .claude/docs/quick-start.md |

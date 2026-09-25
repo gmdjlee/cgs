@@ -6,9 +6,9 @@
 |---|---|
 | Document ID | HFT-P2-00 |
 | Title | Phase P2 design package: index and approval |
-| Version | 0.1 |
+| Version | 1.0 |
 | Date | 2026-09-25 |
-| Status | Draft for founder approval. All 25 open items answered (2026-09-25). |
+| Status | Approved by the founder (AR-P2-0001, 2026-09-25) |
 | Owner | Advisor (main session) |
 | Inputs | [PLAN.md](../PLAN.md) §8 P2; HFT-P2-01 to HFT-P2-07 |
 | Writing standard | ASD-STE100 |
@@ -19,9 +19,10 @@ This package is the output of Phase P2 (target design) in
 [PLAN.md](../PLAN.md) §8. The exit criterion of P2 is a founder approval
 receipt for the package. Section 5 holds the receipt form.
 
-All documents in this package are drafts. DEC-36 lets an agent write a
-draft with no approval. A change to final status needs the founder's
-approval receipt.
+The founder approved this package on 2026-09-25 (receipt AR-P2-0001,
+Section 5). DEC-36 requires this approval for a change to final status.
+Every document in the package now has the status "Approved". A later
+change to an approved document needs a new receipt.
 
 ## 2. Package contents
 
@@ -137,12 +138,12 @@ approval. It follows the receipt fields in HFT-P2-03 §4.3.
 | ID | AR-P2-0001 |
 | Decision type | Change to final status (DEC-36) |
 | Target | `docs/hedge-fund-transition/p2/` (HFT-P2-00 to HFT-P2-07) |
-| Content hash | The commit hash of the approved package (to be filled) |
+| Content hash | Git commit `7936f09e3f31932145331e7b17c9ff459010d172` (the package as presented for approval) |
 | CRO verdict reference | Not applicable: the package holds no control decision that takes effect now. The limit values stay for the cro to draft after P6 (DEC-19). |
-| Approver | The founder (to be filled) |
-| Date and time | To be filled |
+| Approver | The founder (CEO and CIO; DEC-03). Recorded from the founder's message in the planning session: "P2를 승인하고 P3는 로컬에서 진행할 수 있도록 기록을 남겨 주세요." |
+| Date and time | 2026-09-25T02:56:41Z |
 | Scope | Approval of the P2 design package. It lets Phase P3 start (PLAN.md §8). |
-| Notes | To be filled |
+| Notes | (1) Phase P3 runs in a local Claude Code session, in the new repository. The handoff is [../P3-LOCAL-HANDOFF.md](../P3-LOCAL-HANDOFF.md). (2) P3 copies this receipt into the new repository as the first entry of `production/control/receipts.log` (P2-C-03). (3) Erratum E-01, applied after approval with no decision change: HFT-P2-05 row F8 said `validate-assets.sh` is not needed. TRANSPLANT-MANIFEST.md §10.3 and §10.4 note 2 resolve it to TAKE-MODIFY in W1 (DEC-19). HFT-P2-05 now matches the manifest, which the package already cited as its authority. |
 
 ## 6. Traceability
 

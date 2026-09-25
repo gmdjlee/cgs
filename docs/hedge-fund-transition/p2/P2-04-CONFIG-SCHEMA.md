@@ -6,9 +6,9 @@
 |---|---|
 | Document ID | HFT-P2-04 |
 | Title | project.yaml config schema |
-| Version | 0.1 |
+| Version | 1.0 |
 | Date | 2026-09-25 |
-| Status | Draft for founder approval |
+| Status | Approved by the founder (AR-P2-0001, 2026-09-25) |
 | Owner | Advisor (main session) |
 | Author | Worker |
 | Inputs | `/home/user/cgs/project.yaml`; `docs/hedge-fund-transition/TRANSPLANT-MANIFEST.md` §5.4, §10; `docs/hedge-fund-transition/PLAN.md` §6, §7, §8; `docs/hedge-fund-transition/ORG-BLUEPRINT.md` §6, §7, §10; `docs/hedge-fund-transition/evidence/design-addendum-01.md` §5; `.claude/docs/effects-map.md`; `.claude/hooks/yaml-helper.sh`; `.claude/docs/automation-modes.md`; `.claude/docs/model-tiers.md`; `.claude/docs/config-resolution.md`; `docs/hedge-fund-transition/QUESTIONS.md`; `/tmp/.../scratchpad/decisions.md` (DEC-01 to DEC-38) |

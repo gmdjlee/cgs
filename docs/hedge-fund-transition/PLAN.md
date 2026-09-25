@@ -6,7 +6,7 @@
 |---|---|
 | Document ID | HFT-PLAN-001 |
 | Title | Hedge Fund Transition — Master Plan |
-| Version | 1.0 |
+| Version | 1.1 |
 | Date | 2026-09-24 |
 | Status | Draft for founder review |
 | Owner | Advisor (main session) |
@@ -28,6 +28,7 @@
 | 0.8 | 2026-09-24 | Recorded round 9 (DEC-37 and DEC-38). Phase P1 is done. Set the schedule rate in Section 11.3 (DEC-37). Changed risk R-10 for the DEC-38 tier plan. |
 | 0.9 | 2026-09-24 | Reconciled the plan body with DEC-17 to DEC-38: Sections 6.2 and 6.3, P-05, Phases P2 to P6 and P8, Section 11.1, and the glossary. Added the resolved reuse rate after the decisions (TRANSPLANT-MANIFEST.md Section 10) to the F-02 detail. |
 | 1.0 | 2026-09-25 | Phase P2: the design package is drafted in `p2/` (HFT-P2-00 to HFT-P2-07). The founder answered all 25 open items. Added risks R-16 and R-17 for the KIS account and the Telegram channel. P2 waits on the approval receipt. |
+| 1.1 | 2026-09-25 | The founder approved the P2 package (AR-P2-0001). Phase P2 is done. Phase P3 runs in a local session; see [P3-LOCAL-HANDOFF.md](P3-LOCAL-HANDOFF.md). |
 
 This document is not legal advice. It is not tax advice. It is not investment
 advice. Section 3 states this rule in full.
@@ -489,8 +490,8 @@ Gating questions: Q01, Q02, Q03, Q05-Q12, Q17-Q24, Q29-Q31.
 
 Status (2026-09-25): the package is drafted in [p2/](p2/P2-00-INDEX.md)
 (HFT-P2-00 to HFT-P2-07). The founder answered all 25 open items
-(HFT-P2-00 §4). P2 closes when the founder signs the approval receipt
-(HFT-P2-00 §5).
+(HFT-P2-00 §4). Done: the founder approved the package on 2026-09-25
+(receipt AR-P2-0001, HFT-P2-00 §5).
 
 ### P3 — Repository bootstrap and foundation transplant
 
@@ -859,9 +860,11 @@ Section 12, risk R-12, lists the gaps that need outside counsel:
    Q36 before Phase P8.
 7. Done. The Advisor drafted the Phase P2 design package in `p2/`, and
    the founder answered all 25 open items (2026-09-25).
-8. **Next action.** The founder approves the Phase P2 design package
-   with an approval receipt (HFT-P2-00 §5).
-9. The Worker starts Phase P3 once the founder approves Phase P2.
+8. Done. The founder approved the Phase P2 design package on
+   2026-09-25 (receipt AR-P2-0001, HFT-P2-00 §5).
+9. **Next action.** The founder runs Phase P3 in a local Claude Code
+   session, in the new repository. [P3-LOCAL-HANDOFF.md](P3-LOCAL-HANDOFF.md)
+   gives the prerequisites, the steps, the checks, and the start prompt.
 10. The Advisor schedules the Phase P5 re-estimate check before Phase
     P6 starts.
 

@@ -6,9 +6,9 @@
 |---|---|
 | Document ID | HFT-P2-07 |
 | Title | Notification channel and price data provider |
-| Version | 0.1 |
+| Version | 1.0 |
 | Date | 2026-09-25 |
-| Status | Draft for founder approval |
+| Status | Approved by the founder (AR-P2-0001, 2026-09-25) |
 | Owner | Advisor (main session) |
 | Author | Worker |
 | Inputs | `docs/hedge-fund-transition/PLAN.md` §6, §8 (P2 tasks 7-8); `docs/hedge-fund-transition/ORG-BLUEPRINT.md` §11A.6-11A.7; `docs/hedge-fund-transition/TRANSPLANT-MANIFEST.md`; `docs/hedge-fund-transition/evidence/design-addendum-01.md`; decisions.md (DEC-01..DEC-38); `.claude/hooks/notify.sh`; external sources cited inline |

@@ -13,6 +13,8 @@ CCGS v1.1.1(커밋 `7ed2c3e`)의 운영 기반만 선별하여 옮기고, 헤지
 | [ORG-BLUEPRINT.md](ORG-BLUEPRINT.md) | 표준 헤지펀드 조직의 설계입니다. 직무, 법정 인력, 보고 라인, 에이전트 로스터, 통제 지점, 규제 일정, 수명 주기를 다룹니다. | ASD-STE100 영어 |
 | [TRANSPLANT-MANIFEST.md](TRANSPLANT-MANIFEST.md) | CCGS 구성 요소 232개를 하나씩 판정한 이식 목록입니다. 최소 이식 세트와 조용히 깨지는 지점 28곳의 점검 방법을 포함합니다. | ASD-STE100 영어 |
 | [AAA-QUALITY-BAR.md](AAA-QUALITY-BAR.md) | 에이전트와 스킬이 통과해야 하는 AAA 합격 기준 14개와 인증 절차입니다. | ASD-STE100 영어 |
+| [P3-LOCAL-HANDOFF.md](P3-LOCAL-HANDOFF.md) | P3를 창업자의 로컬 Claude Code 세션에서 진행하기 위한 인수인계 문서입니다. 준비 사항, 단계별 절차와 점검 방법, 세션 규칙, 시작 프롬프트를 담고 있습니다. | ASD-STE100 영어 |
+| [p2/](p2/P2-00-INDEX.md) | 창업자가 승인한 P2 설계 패키지입니다(승인 기록 AR-P2-0001). | ASD-STE100 영어 |
 | [evidence/](evidence/README.md) | 계획을 만드는 데 사용한 분석 원본과 검증 기록입니다. 문서의 사실 주장을 다시 확인할 때 사용합니다. | 영어·한국어 |
 | [evidence/design-addendum-01.md](evidence/design-addendum-01.md) | 3라운드 이후 창업자가 조직의 사명을 다시 설정한 기록입니다. DEC-09부터 DEC-16까지의 결정과 웨이브 로스터, W1 정보 상품을 담고 있습니다. | ASD-STE100 영어 |
 
@@ -51,7 +53,7 @@ W1의 정보 상품은 일간 브리핑, 주간 리포트, 수시 질의응답, 
 
 1. [PLAN.md](PLAN.md)와 [QUESTIONS.md](QUESTIONS.md)를 읽습니다.
 2. 1라운드부터 9라운드까지, 그리고 사명 재설정에 따른 추가 라운드(R3+)까지 모든 답변을 기록했습니다(Q01~Q34, Q37~Q40, 총 38건). 이로써 P1(창업자 결정) 단계를 마쳤습니다. Q25가 B이므로 조건부 질문 Q35와 Q36은 묻지 않습니다. 자세한 내용은 [design-addendum-01.md](evidence/design-addendum-01.md)에 있습니다.
-3. P2(목표 설계) 설계 패키지 초안을 [p2/](p2/P2-00-INDEX.md)에 작성했고, 창업자가 남은 설계 결정 25건에 모두 답했습니다(2026-09-25). 다음 단계는 창업자가 승인 기록(P2-00 5절)으로 패키지를 확정하는 것입니다. 참고로 8라운드에서 창업자는 규제·시장 정보를 정기 재검증 없이 직접 관리하기로 했으므로(DEC-35), `/refresh-facts`는 창업자가 요청할 때만 실행합니다. 답변은 [QUESTIONS.md](QUESTIONS.md)에 결정 ID(DEC-NN)로 기록합니다.
+3. P2(목표 설계) 설계 패키지를 [p2/](p2/P2-00-INDEX.md)에 작성했고, 창업자가 2026-09-25에 승인했습니다(승인 기록 AR-P2-0001). 다음 단계인 P3(저장소 구축과 기반 이식)는 창업자의 로컬 Claude Code 세션에서 새 저장소를 만들어 진행합니다. 준비 사항, 절차, 점검 항목, 시작 프롬프트는 [P3-LOCAL-HANDOFF.md](P3-LOCAL-HANDOFF.md)에 있습니다. 참고로 8라운드에서 창업자는 규제·시장 정보를 정기 재검증 없이 직접 관리하기로 했으므로(DEC-35), `/refresh-facts`는 창업자가 요청할 때만 실행합니다. 답변은 [QUESTIONS.md](QUESTIONS.md)에 결정 ID(DEC-NN)로 기록합니다.
 
 ## 작성과 검증 방법
 

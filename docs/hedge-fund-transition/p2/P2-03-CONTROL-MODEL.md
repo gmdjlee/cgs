@@ -6,9 +6,9 @@
 |---|---|
 | Document ID | HFT-P2-03 |
 | Title | Control model and virtual investment committee |
-| Version | 0.1 |
+| Version | 1.0 |
 | Date | 2026-09-25 |
-| Status | Draft for founder approval |
+| Status | Approved by the founder (AR-P2-0001, 2026-09-25) |
 | Owner | Advisor (main session) |
 | Author | Worker |
 | Inputs | `docs/hedge-fund-transition/PLAN.md` §6.3, §7, §8 (P2), glossary; `docs/hedge-fund-transition/ORG-BLUEPRINT.md` §8, §9, §11.3, §11A; `docs/hedge-fund-transition/AAA-QUALITY-BAR.md` (`control` category, CT1-CT5); `docs/hedge-fund-transition/TRANSPLANT-MANIFEST.md` §5.2; `docs/hedge-fund-transition/evidence/design-spec.md`; `.claude/docs/director-gates/*.md`; `.claude/docs/director-gates.md`; `.claude/docs/effects-map.md`; `.claude/skills/*/SKILL.md`; `.claude/scripts/review-receipts.sh`; `docs/hedge-fund-setup/ref/06-kr-fund-rules-controls-tax.md` (HF-REF-06) |

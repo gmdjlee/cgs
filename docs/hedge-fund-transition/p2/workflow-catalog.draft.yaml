@@ -1,4 +1,4 @@
-# DRAFT: Founder approval pending. See HFT-P2-02 (Lifecycle catalog design),
+# APPROVED DESIGN DRAFT (AR-P2-0001, 2026-09-25). P3 installs it as .claude/docs/workflow-catalog.yaml. See HFT-P2-02 (Lifecycle catalog design),
 # docs/hedge-fund-transition/p2/P2-02-LIFECYCLE.md, for the design rationale,
 # the founder decision items, and the reader-update list.
 #
@@ -12,8 +12,8 @@
 # One stage axis (DEC-21; PLAN.md §6.2; ORG-BLUEPRINT.md §11): the fund setup
 # stages S1-S8 and the growth stages G1-G3 replace the 7 game-dev phases
 # (concept .. release). `project.stage` stays one scalar (F-11). A proposed
-# `pre-setup` stage (label "S0 information core") comes before S1 -- see
-# founder decision P2-L-01 below.
+# `pre-setup` stage (label "S0 information core") comes before S1. Founder
+# decision P2-L-01 = A confirms it (2026-09-25).
 #
 # The `phases:` top-level key, the `steps:` list shape, and the `artifact:`
 # block (glob / pattern / min_count / any_of / note) are UNCHANGED on purpose.
@@ -48,7 +48,7 @@ phases:
 
   pre-setup:
     label: "S0: Information core (PROPOSED)"
-    description: "Wave W1 runs now, before fund setup starts. Founder decision P2-L-01 confirms this stage's existence and label."
+    description: "Wave W1 runs now, before fund setup starts. Founder decision P2-L-01 = A confirmed this stage and its label (2026-09-25)."
     status: PROPOSED
     next_phase: s1
     waves_active: [w1]
@@ -79,7 +79,7 @@ phases:
         - "One daily briefing on record (DEC-14, DEC-27)"
         - "One stock through screen, pitch, red-team review, synthesis, and the virtual investment committee (DEC-22, DEC-27)"
       wave_trigger: "W1 runs now, before S1 (PLAN.md §8 P2 task 2; DEC-21)."
-      note: "This stage and its label are a P2 PROPOSAL. See founder decision P2-L-01."
+      note: "Confirmed by founder decision P2-L-01 = A (2026-09-25)."
 
   s1:
     label: "S1 — 사업 설계 (Business design)"
