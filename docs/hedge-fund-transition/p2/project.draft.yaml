@@ -1,0 +1,195 @@
+# project.yaml: DRAFT for the new hedge-fund repository (DEC-04).
+# Document HFT-P2-04, "project.yaml config schema". See P2-04-CONFIG-SCHEMA.md
+# for the field-by-field table, citations, and the founder decisions this
+# draft still needs. Status: Draft for founder approval (DEC-36).
+#
+# This file shows the state AFTER the hedge-fund equivalent of `/start` has
+# run (P-06: same mechanism as CCGS). Before that point the file carries only
+# `schema_version` and `framework`, exactly as CCGS ships it
+# (project.yaml:1-27). Six knobs never get a literal value here on purpose:
+# modes.review_mode, modes.workflow, docs.density, qa.level,
+# modes.story_granularity, team.size. Setting one pins it and turns off the
+# modes.rigor expansion for it (yaml-helper.sh:1014-1017; CLAUDE.md's own
+# "Technical Preferences" note repeats this rule). Use /settings to raise one
+# on purpose.
+
+schema_version: 1
+
+framework:
+  version: 1.1.1
+  last_upgraded: 2026-09-24
+
+# --- Kept CCGS control knobs (TRANSPLANT-MANIFEST.md §5.4) -----------------
+
+modes:
+  rigor: standard              # Advisor proposal, pending founder decision P2-S-04. CCGS default is minimal (yaml-helper.sh:999); DEC-34 (AAA for every component) argues against minimal.
+
+  # DEC-36: free drafts, approval only before a final-status change or a
+  # commit. No CCGS value means this exactly (automation-modes.md:66-94).
+  # `draft_free` is the P2-S-01 recommendation (option b below); not yet a
+  # valid enum value in yaml-helper.sh. P3 adds it after the founder decides.
+  automation: draft_free
+
+  # First 3 rows: the CCGS defaults, already recognized by is_always_ask_category
+  # (automation-modes.md:142-149; yaml-helper.sh:890-892). Last 3: new
+  # hedge-fund categories (TRANSPLANT-MANIFEST.md §5.4 row); no skill calls
+  # is_always_ask_category with these yet. P3+ adds the call sites.
+  automation_always_ask:
+    - scope_changes
+    - file_deletions
+    - schema_changes
+    - risk_limit_changes
+    - trade_related_actions
+    - client_data_access
+
+performance:
+  enforce: warn                 # kept for a future risk-limit-breach reuse (TRANSPLANT-MANIFEST.md §5.4)
+
+features:
+  session_state: on
+  token_budget_warn_at: 0.7      # documented default; not yet wired into pre-compact.sh/session-start.sh/statusline.sh (TRANSPLANT-MANIFEST.md §5.4): a P3 task
+
+# Recurring-cycle lengths. No DEC sets a number; INFERENCE placeholders,
+# reusable later for IC or board cadence once implemented (TRANSPLANT-MANIFEST.md §5.4).
+cadence:
+  sprint_length: 1w
+  milestone_length: 4w
+
+# Per-system override map. Kept unchanged (TRANSPLANT-MANIFEST.md §5.4);
+# empty until a system needs a non-default workflow tier.
+workflow_overrides: {}
+
+# Evidence-type taxonomy. Kept unchanged mechanically; the logic/integration/
+# visual/ui/config type names still need a hedge-fund redesign
+# (TRANSPLANT-MANIFEST.md §5.4 Required change). Out of scope for HFT-P2-04.
+# Left unset: each skill applies its own default (config-resolution.md:216-221).
+testing:
+  strict: {}
+
+# Kept per TRANSPLANT-MANIFEST.md §5.4. Not relied on for any control
+# decision: DEC-17 uses a cro verdict plus a recorded approval instead. A
+# control decision without a receipt reads NOT ASSESSED regardless of this
+# key's value.
+strict_gate_checks: true
+
+project:
+  # `pre-setup` is HFT-P2-02's proposed first lifecycle value. Pending
+  # founder decision P2-L (see HFT-P2-02). The full enum (S1-S8, G1-G3 plus
+  # any pre-setup/pre-registration values) also comes from HFT-P2-02.
+  stage: pre-setup
+
+# --- New hedge-fund keys (PLAN.md §8 P2 task 4) -----------------------------
+
+# DEC-05: single-manager fundamental. Routes specialist/conditional agent
+# activation the way engine.name routed engine specialists in CCGS
+# (TRANSPLANT-MANIFEST.md §5.4 `archetype` row; ORG-BLUEPRINT.md §7).
+archetype: single_manager_fundamental
+
+# DEC-06: long-biased. Turns on the downside-defense risk output (bear-market
+# stress, net exposure) in /risk-report.
+strategy: long_biased
+
+# DEC-07: Korea first, Cayman later. A list on purpose.
+jurisdiction:
+  - KR-FSC
+
+# DEC-19: paths only. The cro drafts the numbers in these files; the founder
+# approves. No leverage/VaR/concentration/loss number lives in project.yaml.
+risk:
+  limits_config: config/risk/limits.yaml
+  registry: config/risk/limits-registry.yaml   # as_of + effective date per limit (PLAN.md:323-324)
+
+# W2. Filing deadlines, IC/board cadence, audit windows (ORG-BLUEPRINT.md §10).
+regulatory_calendar: config/regulatory/calendar.yaml
+
+coverage:
+  markets:
+    - KR                        # US joins later (DEC-15)
+  sector_taxonomy: KRX          # becomes GICS when US equities join (DEC-15)
+  # INFERENCE, for the founder to confirm (design-addendum-01.md §5).
+  clusters:
+    - IT, semiconductors, electronics
+    - Batteries, autos, industrials
+    - Financials
+    - Healthcare and biotech
+    - Consumer, retail, media, entertainment
+    - Materials, energy, utilities
+
+# DEC-31: one adapter per source.
+data_sources:
+  opendart:
+    adapter: opendart
+    enabled: true
+  price:
+    adapter: null                # placeholder: provider still open (see P2-04-CONFIG-SCHEMA.md §7 for the task-numbering GAP)
+    enabled: false
+  web_search:
+    adapter: web_search
+    enabled: true
+
+# DEC-28: dashboard plus one notification channel.
+delivery:
+  dashboard:
+    enabled: true
+    path: production/dashboard
+  notification:
+    channel: null                 # placeholder: selected from the tools this repository's environment can reach
+    enabled: false
+
+controls:
+  # DEC-17 §9 "controls.four_eyes" (PLAN.md §8 task 4 name): the actions
+  # that need a second, independent human sign-off. Activates at W2; W1 has
+  # no execution or NAV process (DEC-13).
+  four_eyes:
+    - trade_execution
+    - valuation
+    - nav_calculation
+
+  # DEC-17, DEC-36: decision types that need a recorded founder-approval
+  # receipt before they count as final.
+  approval_required_for:
+    - risk_limit_change           # DEC-17, DEC-19
+    - final_status_change         # DEC-36
+    - commit                      # DEC-36
+
+  # DEC-18: never skipped, regardless of modes.review_mode/workflow/team.size.
+  fixed_seats:
+    - cro                         # active from W1
+    - cco                         # active from W2
+
+# DEC-20: judgment outputs get full review; routine outputs get lean review.
+review:
+  depth_by_output:
+    stock_call: full
+    house_view: full
+    limit: full
+    daily_briefing: lean
+
+agents:
+  # DEC-38, W1 assignments. W2/W3 assignments come from HFT-P2-01 (PLAN.md §8
+  # P2 task 9). A Tier 3 agent that writes a judgment output uses sonnet, not
+  # haiku (model-tiers.md's own judgment exception, DEC-38).
+  model_tiers:
+    cio: opus
+    cro: opus
+    chief-of-staff: opus
+    portfolio-manager: sonnet
+    head-of-research: sonnet
+    market-strategist: sonnet
+    research-analyst: sonnet
+    red-team-analyst: sonnet
+    data-steward: haiku
+    idea-screener: haiku
+    trader: haiku
+
+# DEC-32: gitignored. Holdings and personal data. No classification scheme in
+# W1.
+data:
+  private_dir: data/private
+
+# DEC-33: STE English for technical documents; Korean for information
+# products, external documents, and responses to the user.
+language:
+  technical: en-STE100
+  products: ko
+  responses: ko
