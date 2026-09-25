@@ -1,0 +1,476 @@
+# DRAFT: Founder approval pending. See HFT-P2-02 (Lifecycle catalog design),
+# docs/hedge-fund-transition/p2/P2-02-LIFECYCLE.md, for the design rationale,
+# the founder decision items, and the reader-update list.
+#
+# This file is a REPLACEMENT DRAFT for .claude/docs/workflow-catalog.yaml. It
+# does not replace the live file. A Worker copies it over only after the
+# founder approves HFT-P2-02 and P3 (repository bootstrap) applies the reader
+# changes HFT-P2-02 lists (DEC-36: final status needs an approval receipt).
+#
+# --- What changed from the CCGS original, and why -------------------------
+#
+# One stage axis (DEC-21; PLAN.md §6.2; ORG-BLUEPRINT.md §11): the fund setup
+# stages S1-S8 and the growth stages G1-G3 replace the 7 game-dev phases
+# (concept .. release). `project.stage` stays one scalar (F-11). A proposed
+# `pre-setup` stage (label "S0 information core") comes before S1 -- see
+# founder decision P2-L-01 below.
+#
+# The `phases:` top-level key, the `steps:` list shape, and the `artifact:`
+# block (glob / pattern / min_count / any_of / note) are UNCHANGED on purpose.
+# `.claude/scripts/artifact-check.sh` is a hand-rolled indentation parser
+# (its own header, artifact-check.sh:26-29) keyed on the literal string
+# "phases:" at 0 indent, "- id:" at 6-space indent, and "artifact:" at
+# 8-space indent (artifact-check.sh:125-181). Keeping that exact shape means
+# the parser needs NO code change to walk this file -- only its CALLERS need
+# to learn the new stage ids (see HFT-P2-02 §5, the reader table).
+#
+# Two sections are new:
+#   - Each phase (stage) entry gets a `gate:` block: required_artifacts,
+#     control_seats, verdict_vocabulary, wave_trigger, waves_active. This is
+#     new content, not a new parsing shape -- artifact-check.sh only looks
+#     for "artifact:" inside a step, so a sibling "gate:" key at the same
+#     4-space indent as "steps:" is inert to it (see HFT-P2-02 §5, row 1).
+#   - A top-level `cycles:` section (after `phases:`) models the W1
+#     information cycles (DEC-21: they run BESIDE the stage axis, not as
+#     stages). See HFT-P2-02 §4 for which readers ignore it safely and which
+#     ones need a content change to use it.
+#
+# project.stage values in THIS draft: pre-setup, s1, s2, s3, s4, s5, s6, s7,
+# s8, g1, g2, g3 -- lower-case, matching the phase keys below exactly. The
+# original catalog used a separate Title-Case vocabulary for project.stage
+# ("Systems Design") from its own lower-kebab phase keys ("systems-design"),
+# joined only by a hand-written table in help/SKILL.md:70-77 (SB-22,
+# TRANSPLANT-MANIFEST.md §6). Collapsing the two vocabularies into one removes
+# that translation table and the SB-22 risk it carried. This simplification
+# is a P2 design call under DEC-21, not itself a founder decision.
+
+phases:
+
+  pre-setup:
+    label: "S0: Information core (PROPOSED)"
+    description: "Wave W1 runs now, before fund setup starts. Founder decision P2-L-01 confirms this stage's existence and label."
+    status: PROPOSED
+    next_phase: s1
+    waves_active: [w1]
+    steps:
+      - id: w1-roster-live
+        name: "W1 roster active"
+        command: null
+        required: true
+        artifact:
+          note: "11 W1 agent definitions exist under .claude/agents/ (chief-of-staff, cio, cro, head-of-research, market-strategist, portfolio-manager, research-analyst, idea-screener, red-team-analyst, data-steward, trader). Not glob-checkable by count alone; confirm names match addendum §4."
+        description: "The W1 information-core roster (11 agents) is built and runs (DEC-09; addendum §4)."
+
+      - id: first-milestone
+        name: "First milestone (DEC-27)"
+        command: /daily-briefing
+        required: true
+        artifact:
+          note: "One daily briefing produced, and one stock carried through /idea-screen, /stock-pitch, /red-team-review, /cio-synthesis, and the virtual investment committee (DEC-22, DEC-27)."
+        description: "One daily briefing, and one stock through the full pitch-to-committee sequence."
+
+    gate:
+      # DEC-18: cco is a W2 seat. W2 is not active in pre-setup (waves_active
+      # above), so only cro sits this gate.
+      control_seats: [cro]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "W1 roster (11 agents) built and running (addendum §4)"
+        - "One daily briefing on record (DEC-14, DEC-27)"
+        - "One stock through screen, pitch, red-team review, synthesis, and the virtual investment committee (DEC-22, DEC-27)"
+      wave_trigger: "W1 runs now, before S1 (PLAN.md §8 P2 task 2; DEC-21)."
+      note: "This stage and its label are a P2 PROPOSAL. See founder decision P2-L-01."
+
+  s1:
+    label: "S1 — 사업 설계 (Business design)"
+    description: "Strategy, financial model, shareholders' agreement (ORG-BLUEPRINT.md §11.1; HF-REF-05 표 4-2)."
+    next_phase: s2
+    waves_active: [w1, w2]
+    steps:
+      - id: business-plan
+        name: "Business plan and 3-year financial model"
+        command: null
+        required: true
+        artifact:
+          note: "Business plan, 3-year financial model, and a strategy statement on file. Not a repo glob check -- these are external/legal documents (ORG-BLUEPRINT.md §11.1)."
+        description: "Business plan, 3-year financial model, shareholders' agreement drafted."
+
+      - id: track-record
+        name: "Track record or backtest"
+        command: null
+        required: true
+        artifact:
+          note: "A cost-included backtest, or a past track record, on file."
+        description: "Cost-included backtest or past track record; break-even AUM figure."
+
+      - id: shareholders-agreement
+        name: "Shareholders' agreement"
+        command: null
+        required: true
+        artifact:
+          note: "Signed shareholders' agreement with a key-person clause and a succession plan."
+        description: "Signed shareholders' agreement, key-person clause, succession plan."
+
+      - id: w2-roster-live
+        name: "W2 roster active"
+        command: null
+        required: true
+        artifact:
+          note: "11 more agent definitions exist under .claude/agents/ (22 total): cco, coo, fund-operations-lead, investor-relations, compliance-analyst, regulatory-reporting-specialist, operations-analyst, fund-accountant, legal-counsel-liaison, technology-lead, security-officer (addendum §3, §4)."
+        description: "Wave W2 (fund operation) activates at S1 (addendum §3)."
+
+    gate:
+      control_seats: [cro, cco]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "A strategy statement (ORG-BLUEPRINT.md §11.1)"
+        - "A cost-included backtest or a past track record"
+        - "A break-even AUM figure"
+        - "A signed shareholders' agreement with a key-person clause and a succession plan"
+        - "W2 roster (22 total agents) built and running (addendum §3, §4)"
+      wave_trigger: "W2 fund operation activates at S1 (addendum §3; PLAN.md §6.1)."
+
+  s2:
+    label: "S2 — 법인 설립 (Company incorporation)"
+    description: "Corporate registration, business registration (ORG-BLUEPRINT.md §11.1)."
+    next_phase: s3
+    waves_active: [w1, w2]
+    steps:
+      - id: corporate-registration
+        name: "Corporate and business registration"
+        command: null
+        required: true
+        artifact:
+          note: "Corporate registration and business registration filed. External/legal documents."
+        description: "Corporate registration, business registration complete."
+    gate:
+      control_seats: [cro, cco]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "Paid-in capital of 1 billion won or more, plus an operating-deficit buffer (ORG-BLUEPRINT.md §11.1)"
+      wave_trigger: "W2 stays active (activated at S1)."
+
+  s3:
+    label: "S3 — 인력·규정 (Staffing and rules)"
+    description: "Rule set, staffing status (ORG-BLUEPRINT.md §11.1)."
+    next_phase: s4
+    waves_active: [w1, w2]
+    steps:
+      - id: rule-set
+        name: "Internal-control rule set"
+        command: null
+        required: true
+        artifact:
+          note: "Rule set and staffing status on file."
+        description: "Internal-control standards adopted by the board; accountability map written."
+    gate:
+      control_seats: [cro, cco]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "3 or more full-time investment-management staff and a compliance officer in place (ORG-BLUEPRINT.md §11.1)"
+        - "Internal-control standards adopted by the board"
+        - "The accountability map written"
+      wave_trigger: "W2 stays active (activated at S1)."
+
+  s4:
+    label: "S4 — 전산·설비 (Systems and facilities)"
+    description: "System build and test record, parallel with S3 (ORG-BLUEPRINT.md §11.1)."
+    next_phase: s5
+    waves_active: [w1, w2]
+    steps:
+      - id: systems-test-record
+        name: "Systems demonstration and test record"
+        command: null
+        required: true
+        artifact:
+          note: "Demonstration and test record for order management, pre-trade compliance, risk, short-sale balance management, security, and the business continuity plan."
+        description: "System build and test record complete."
+    gate:
+      control_seats: [cro, cco]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "Demonstration and test record: order management, pre-trade compliance, risk, short-sale balance management, security, business continuity (ORG-BLUEPRINT.md §11.1)"
+      wave_trigger: "W2 stays active (activated at S1)."
+
+  s5:
+    label: "S5 — 사전 협의 (Pre-consultation)"
+    description: "Consultation result, letters of intent, parallel with S3 (ORG-BLUEPRINT.md §11.1)."
+    next_phase: s6
+    waves_active: [w1, w2]
+    steps:
+      - id: consultation-letters
+        name: "Letters of intent / contracts"
+        command: null
+        required: true
+        artifact:
+          note: "Letter of intent or contract with the PBS, custodian, administrator, distributor, and auditor."
+        description: "Consultation result and letters of intent on file."
+    gate:
+      control_seats: [cro, cco]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "Letter of intent or contract with the PBS, the custodian, the administrator, the distributor, and the auditor (ORG-BLUEPRINT.md §11.1)"
+      wave_trigger: "W2 stays active (activated at S1)."
+
+  s6:
+    label: "S6 — 등록 신청·심사 (Registration application and review)"
+    description: "Registration decision, official-gazette and website notice (ORG-BLUEPRINT.md §11.1)."
+    next_phase: s7
+    waves_active: [w1, w2]
+    steps:
+      - id: registration-application
+        name: "Registration application filed"
+        command: null
+        required: true
+        artifact:
+          note: "Registration application filed after FSS pre-consultation."
+        description: "Application filed; registration decision and gazette publication received."
+    gate:
+      control_seats: [cro, cco]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "The registration decision notice and gazette publication received (ORG-BLUEPRINT.md §11.1)"
+      wave_trigger: "W2 stays active (activated at S1)."
+
+  s7:
+    label: "S7 — 협회 가입·인력 등록 (Association membership and staff registration)"
+    description: "Registration confirmation (ORG-BLUEPRINT.md §11.1)."
+    next_phase: s8
+    waves_active: [w1, w2]
+    steps:
+      - id: association-membership
+        name: "KOFIA membership and staff registration"
+        command: null
+        required: true
+        artifact:
+          note: "KOFIA membership and investment-management-staff registration complete."
+        description: "Association membership and staff registration confirmed."
+    gate:
+      control_seats: [cro, cco]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "KOFIA membership and investment-management-staff registration complete (ORG-BLUEPRINT.md §11.1)"
+      wave_trigger: "W2 stays active (activated at S1)."
+
+  s8:
+    label: "S8 — 첫 펀드 설정 (First fund launch)"
+    description: "Report to the FSC within 2 weeks of setup (ORG-BLUEPRINT.md §11.1)."
+    next_phase: g1
+    waves_active: [w1, w2]
+    steps:
+      - id: fund-launch
+        name: "Fund rules and FSC report"
+        command: null
+        required: true
+        artifact:
+          note: "Fund rules, summary prospectus, redemption/fee terms finalized; distributor product approval received; FSC report filed."
+        description: "First fund launched; FSC report filed within 2 weeks of setup."
+    gate:
+      control_seats: [cro, cco]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "The fund rules, the summary prospectus, and the redemption/fee terms finalized (ORG-BLUEPRINT.md §11.1)"
+        - "The distributor's product approval received"
+        - "The FSC report filed within 2 weeks of setup"
+      wave_trigger: "W2 stays active (activated at S1)."
+
+  g1:
+    label: "G1 — 설립기 (Founding stage)"
+    description: "Under 100 billion won AUM; 7-10 headcount; single CIO-led strategy (ORG-BLUEPRINT.md §11.2; HF-REF-08 표 6-2)."
+    next_phase: g2
+    waves_active: [w1, w2]
+    steps:
+      - id: founding-priorities
+        name: "Track record; complete rules and systems"
+        command: null
+        required: true
+        artifact:
+          note: "Priority area per HF-REF-08 표 6-2: track record; complete rules and systems."
+        description: "Track record built; rules and systems complete."
+    gate:
+      control_seats: [cro, cco]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "A single CIO-led strategy in operation, back-office work outsourced where possible (ORG-BLUEPRINT.md §11.2)"
+        - "Minimum independence for the control function documented"
+      wave_trigger: "W2 stays active. W3 has not activated (trigger: G2 or G3)."
+
+  g2:
+    label: "G2 — 성장기 (Growth stage)"
+    description: "100-500 billion won AUM; 10-25 headcount; 2-3 strategies; dedicated risk team (ORG-BLUEPRINT.md §11.2; HF-REF-08 표 6-2)."
+    next_phase: g3
+    waves_active: [w1, w2, w3]
+    steps:
+      - id: dedicated-risk-team
+        name: "Dedicated risk team (전담 리스크팀)"
+        command: null
+        required: true
+        artifact:
+          note: "전담 리스크팀 belongs to G2, not G3 (ORG-BLUEPRINT.md §11.2 note; source correction in §14). Do not attach this to the G3 row."
+        description: "A dedicated risk team, a dedicated IR role, and internal (shadow) NAV verification in place."
+      - id: w3-roster-live
+        name: "W3 roster active"
+        command: null
+        required: true
+        artifact:
+          note: "6 more agent definitions exist under .claude/agents/ (28 total): head-of-trading, investor-relations-lead, investor-communications-writer, risk-analyst, risk-analytics-lead, governance-secretary (addendum §3, §4)."
+        description: "Wave W3 (institutional) activates at G2 or G3 (addendum §3)."
+    gate:
+      control_seats: [cro, cco]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "2-3 strategies in operation (ORG-BLUEPRINT.md §11.2)"
+        - "A dedicated risk team (전담 리스크팀) in place"
+        - "A dedicated IR role in place"
+        - "Internal (shadow) NAV verification running"
+        - "W3 roster (28 total agents) built and running (addendum §3, §4)"
+      wave_trigger: "W3 institutional activates at G2 or G3 (addendum §3; HF-REF-08 표 6-2). This entry is the first stage where W3 can be active."
+
+  g3:
+    label: "G3 — 기관화 (Institutionalization stage)"
+    description: "Over 500 billion won AUM; 25+ headcount; multiple-PM structure; central risk-and-data platform (ORG-BLUEPRINT.md §11.2; HF-REF-08 표 6-2)."
+    next_phase: null
+    waves_active: [w1, w2, w3]
+    steps:
+      - id: central-risk-platform
+        name: "Central risk-and-data platform (중앙 리스크·데이터 플랫폼)"
+        command: null
+        required: true
+        artifact:
+          note: "중앙 리스크·데이터 플랫폼 belongs to G3, not G2 (ORG-BLUEPRINT.md §11.2 note; source correction in §14)."
+        description: "A central risk-and-data platform and a multiple-PM structure in place."
+    gate:
+      control_seats: [cro, cco]
+      verdict_vocabulary: [PASS, CONCERNS, FAIL, "NOT ASSESSED"]
+      required_artifacts:
+        - "A multiple-PM structure in operation (ORG-BLUEPRINT.md §11.2)"
+        - "A central risk-and-data platform (중앙 리스크·데이터 플랫폼) in place"
+        - "An offshore fund structure review completed or scheduled"
+        - "A talent-development system and a succession plan documented"
+      wave_trigger: "W3 stays active (activated at G2 or G3; this project reaches G3 with W3 already on)."
+
+# ---------------------------------------------------------------------------
+# W1 information cycles (DEC-21). These run BESIDE the stage axis above, not
+# as stages -- `project.stage` never takes a cycle name as a value. Every W1
+# product from ORG-BLUEPRINT.md §11A / addendum §6 appears exactly once below,
+# under the cadence it actually runs at, EXCEPT /risk-report: DEC-14 and
+# addendum §6 give it two cadence forms (a daily summary and a weekly full
+# report), so it appears once per form, distinguished by `form:`.
+#
+# Readers: `.claude/scripts/artifact-check.sh` never opens this section (its
+# `in_phases` flag resets to false at any 0-indent key that is not literally
+# "phases:" -- artifact-check.sh:138). See HFT-P2-02 §4 for the full reader
+# table, including which readers need a content change to use this section
+# (chiefly /help, so the founder sees today's due cadence products, not only
+# stage progress).
+cycles:
+
+  daily:
+    label: "Daily"
+    products:
+      - skill: /daily-briefing
+        owner: chief-of-staff
+        output: "Market, portfolio, risk, and watch-list events on one page"
+      - skill: /event-alert
+        owner: data-steward
+        output: "Disclosure, price-move, and limit-proximity alerts"
+        trigger_note: "Fires on event, delivered within the daily cycle"
+      - skill: /risk-report
+        form: summary
+        owner: cro
+        output: "Exposure, concentration, liquidity, bear-market stress, regulatory limits -- summary form"
+
+  weekly:
+    label: "Weekly"
+    products:
+      - skill: /weekly-report
+        owner: chief-of-staff
+        output: "House view, sector reviews, pick-list changes, risk review"
+      - skill: /house-view
+        owner: [market-strategist, red-team-analyst, cio]
+        output: "Market direction with bull case, bear case, and synthesis"
+        trigger_note: "Weekly, and also on regime change"
+      - skill: /idea-screen
+        owner: idea-screener
+        output: "Ranked candidate list with screen evidence"
+      - skill: /portfolio-review
+        owner: portfolio-manager
+        output: "Model portfolio view and sizing proposals"
+      - skill: /risk-report
+        form: full
+        owner: cro
+        output: "Exposure, concentration, liquidity, bear-market stress, regulatory limits -- full form"
+
+  monthly:
+    label: "Monthly"
+    products:
+      - skill: /call-review
+        owner: [cio, chief-of-staff]
+        output: "Track record of past calls against outcomes, model portfolio against a benchmark"
+
+  on_demand:
+    label: "On demand"
+    products:
+      - skill: /ask
+        owner: chief-of-staff
+        output: "Routed answer from the right agent, with sources"
+        trigger_note: "On demand"
+      # Per-idea sequence (DEC-16, DEC-22, DEC-23): a stock call always runs
+      # bull case -> bear case -> CIO synthesis -> virtual investment
+      # committee. `sequence` and `next` record that order for a reader that
+      # wants to render it as a pipeline.
+      - skill: /stock-pitch
+        owner: research-analyst
+        output: "Bull case and full research note for one stock, 8 sections (DEC-23)"
+        trigger_note: "On idea"
+        sequence: 1
+        next: /red-team-review
+      - skill: /red-team-review
+        owner: red-team-analyst
+        output: "Bear case against one pitch or house-view change"
+        trigger_note: "For every pitch and every house-view change"
+        sequence: 2
+        next: /cio-synthesis
+      - skill: /cio-synthesis
+        owner: cio
+        output: "Synthesis, confidence level, and open questions for the user"
+        trigger_note: "After each red-team review"
+        sequence: 3
+        next: virtual-investment-committee
+      - skill: virtual-investment-committee
+        owner: [cio, cro, portfolio-manager, red-team-analyst]
+        output: "Minutes; the user decides (DEC-22)"
+        trigger_note: "After each cio-synthesis, for a call the user wants decided by committee"
+        sequence: 4
+        note: "Not a slash-command skill; a virtual body the W1 roster convenes. chief-of-staff keeps minutes (INFERENCE, ORG-BLUEPRINT.md §11.3; P2 confirms the owner)."
+      - skill: /coverage-config
+        owner: data-steward
+        output: "Coverage universe, sector clusters, data sources"
+        trigger_note: "On change"
+      - skill: /refresh-facts
+        owner: data-steward
+        output: "Re-verification of medium and high volatility values"
+        trigger_note: "Founder request only (DEC-35). No fixed schedule. Runs only when the founder asks for it, unlike every other entry in this section."
+
+# ---------------------------------------------------------------------------
+# Wave reference (addendum §3; PLAN.md §6.1). Repeated here for a reader that
+# wants wave facts without walking every phase's `gate.wave_trigger`.
+waves:
+  w1:
+    label: "W1 information core"
+    trigger: "Now"
+    agent_count: 11
+  w2:
+    label: "W2 fund operation"
+    trigger: "S1 (the founder starts fund setup)"
+    agent_count: 22
+  w3:
+    label: "W3 institutional"
+    trigger: "G2 or G3"
+    agent_count: 28
+  conditional:
+    label: "Q25 conditional (quant / model-governance)"
+    trigger: "Q25 = C or D"
+    agent_count: "0-4 more"
+    active: false
+    note: "OFF. Q25 = B (DEC-29)."
